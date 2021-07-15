@@ -1,0 +1,13 @@
+# editors
+.vscode/
+
+# Python
+__pycache__/
+
+# configuration
+data_import/.env
+
+# data
+*.accdb
+
+temp/
