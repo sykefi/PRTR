@@ -5,4 +5,5 @@ dependencies:
   - pytest
   - pylint
   - flake8
+  - pandas
   - pyodbc  # for Access DB

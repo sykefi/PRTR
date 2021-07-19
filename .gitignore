@@ -11,3 +11,4 @@ data_import/.env
 *.accdb
 
 temp/
+data_import/csv/

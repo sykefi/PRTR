@@ -35,8 +35,10 @@ __read_env_variables()
 @dataclass(frozen=True)
 class Conf():
     prtr_db_file_path: str
+    country_code: str
 
 
 conf = Conf(
-    prtr_db_file_path=__read_required_env_var('PRTR_DB_FILE_PATH')
+    prtr_db_file_path=__read_required_env_var('PRTR_DB_FILE_PATH'),
+    country_code=__read_required_env_var('COUNTRY_CODE')
 )
