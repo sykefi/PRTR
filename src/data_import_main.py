@@ -94,5 +94,15 @@ print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')
 if not os.path.exists(conf.csv_out_dir):
     os.makedirs(conf.csv_out_dir)
 
-facilities.to_csv(fr'{conf.csv_out_dir}/facilities.csv', sep=';', index=False)
-releases.to_csv(fr'{conf.csv_out_dir}/releases.csv', sep=';', index=False)
+facilities.to_csv(
+    fr'{conf.csv_out_dir}/facilities.csv',
+    sep=';',
+    index=False,
+    encoding='utf-8'
+)
+releases.to_csv(
+    fr'{conf.csv_out_dir}/releases.csv',
+    sep=';',
+    index=False,
+    encoding='utf-8'
+)

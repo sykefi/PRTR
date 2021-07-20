@@ -1,14 +1,11 @@
-from api.models import Facility, facility_csv_dict_2_facility
+from api.models import Facility
 from api.conf import conf
-import csv
 from fastapi import FastAPI, HTTPException, status
 from typing import List
+import api.data as data
 
 
-facilities: List[Facility] = [
-    facility_csv_dict_2_facility(d) for d
-    in csv.DictReader(open(conf.facilities_csv_fp), delimiter=';')
-]
+facilities = data.load_facilities(conf.facilities_csv_fp)
 
 
 root_path = f'/api/{conf.api_version}'
@@ -37,7 +34,11 @@ def read_root():
     response_model=List[Facility],
     status_code=200
 )
-def read_facilities(facility_id: str = None, skip: int = 0, limit: int = 10):
+def read_facilities(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10
+):
     if not facility_id:
         return facilities[skip:skip + limit]
 

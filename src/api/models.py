@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import Optional, TypedDict
 from pydantic import BaseModel
 
 
@@ -23,15 +23,15 @@ class Facility(BaseModel):
     parentCompanyName: str
     nameOfFeature: str
     mainActivityCode: str
-    mainActivityName: str
+    mainActivityName: Optional[str] = None
     pointGeometryLon: float
     pointGeometryLat: float
-    streetName: str
-    buildingNumber: str
-    postalCode: str
-    city: str
+    streetName: Optional[str] = None
+    buildingNumber: Optional[str] = None
+    postalCode: Optional[str] = None
+    city: Optional[str] = None
     countryCode: str
-    telephoneNo: str
+    telephoneNo: Optional[str] = None
 
 
 def facility_csv_dict_2_facility(csv_facility: FacilityCsvDict) -> Facility:
