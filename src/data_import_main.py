@@ -8,21 +8,21 @@ Requires installation of driver MS for Access DB: "Microsoft Access Database Eng
 
 """
 
-from conf import conf
+from data_import.conf import conf
 import os
 import pandas as pd
 import pyodbc
 
 
-csv_out_dir = 'csv'
-access_driver = 'Microsoft Access Driver (*.mdb, *.accdb)'
+accdb_driver = 'Microsoft Access Driver (*.mdb, *.accdb)'
 
 
+# ensure that the required driver is available for opening .accdb data
 drivers = [i for i in pyodbc.drivers()]
-if access_driver not in drivers:
+if accdb_driver not in drivers:
     raise EnvironmentError(
         f'No driver for .accdb files found'
-        f' - expected to have driver "{access_driver}" available.\n'
+        f' - expected to have driver "{accdb_driver}" available.\n'
         f'Available drivers: {drivers}'
     )
 
@@ -77,7 +77,7 @@ sql_releases = (
 
 
 conn = pyodbc.connect(
-    fr'Driver={{{access_driver}}};'
+    fr'Driver={{{accdb_driver}}};'
     fr'DBQ={conf.prtr_db_file_path};'
 )
 
@@ -89,8 +89,8 @@ releases = pd.read_sql_query(sql_releases, conn)
 print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')
 
 
-if not os.path.exists(csv_out_dir):
-    os.makedirs(csv_out_dir)
+if not os.path.exists(conf.csv_out_dir):
+    os.makedirs(conf.csv_out_dir)
 
-facilities.to_csv(fr'{csv_out_dir}/facilities.csv', sep=';', index=False)
-releases.to_csv(fr'{csv_out_dir}/releases.csv', sep=';', index=False)
+facilities.to_csv(fr'{conf.csv_out_dir}/facilities.csv', sep=';', index=False)
+releases.to_csv(fr'{conf.csv_out_dir}/releases.csv', sep=';', index=False)
