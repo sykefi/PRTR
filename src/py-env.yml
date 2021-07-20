@@ -1,5 +1,8 @@
 name: prtr
 
+channels:
+  - conda-forge
+
 dependencies:
   - python=3.9
   - pytest
@@ -7,3 +10,5 @@ dependencies:
   - flake8
   - pandas
   - pyodbc  # for Access DB
+  - fastapi
+  - uvicorn

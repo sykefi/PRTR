@@ -15,5 +15,5 @@ class Conf():
 conf = Conf(
     prtr_db_file_path=conf_utils.read_required_env_var('PRTR_DB_FILE_PATH'),
     country_code=conf_utils.read_required_env_var('COUNTRY_CODE'),
-    csv_out_dir='data_import/csv'
+    csv_out_dir='api/assets'
 )
