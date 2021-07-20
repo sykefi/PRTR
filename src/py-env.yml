@@ -12,3 +12,4 @@ dependencies:
   - pyodbc  # for Access DB
   - fastapi
   - uvicorn
+  - requests

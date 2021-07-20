@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Conf():
-    api_name: str
+    api_title: str
     api_description: str
     facilities_csv_fp: str
     releases_csv_fp: str
@@ -11,7 +11,7 @@ class Conf():
 
 
 conf = Conf(
-    api_name='FIN-PRTR',
+    api_title='FIN-PRTR',
     api_description=(
         'The European Pollutant Release and Transfer Register (E-PRTR) '
         'data published as a national web service.'

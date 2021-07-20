@@ -15,7 +15,7 @@ facilities: List[Facility] = [
 root_path = f'/api/{conf.api_version}'
 
 app = FastAPI(
-    title=conf.api_name,
+    title=conf.api_title,
     description=conf.api_description,
     version=conf.api_version,
     openapi_url=f'{root_path}/openapi.json',

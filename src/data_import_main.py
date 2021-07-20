@@ -1,9 +1,11 @@
 """
 A script for reading E-PRTR data from MS Access DB.
 
-E-PRTR data is available for download at https://industry.eea.europa.eu/download
+E-PRTR data is available for download at
+https://industry.eea.europa.eu/download
 
-Requires installation of driver MS for Access DB: "Microsoft Access Database Engine 2016 Redistributable" (or newer)
+Requires installation of driver MS for Access DB: "Microsoft Access Database
+Engine 2016 Redistributable" (or newer)
 (https://www.microsoft.com/en-us/download/details.aspx?id=54920)
 
 """
