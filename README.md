@@ -25,7 +25,7 @@ $ python data_import_main.py
 
 ### Running the server locally
 ```
-$ uvicorn api_main:app --reload
+$ uvicorn main:app --reload
 ```
 
 ### Running the tests

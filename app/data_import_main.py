@@ -10,6 +10,7 @@ Engine 2016 Redistributable" (or newer)
 
 """
 
+from data_import.utils import print_main_activity_codes_as_enum
 from data_import.conf import conf
 import os
 import pandas as pd
@@ -49,7 +50,8 @@ sql_facilities = (
     (
         2_ProductionFacility
         LEFT JOIN 2d_CompetentAuthorityEPRTR ON
-        [2_ProductionFacility].Facility_INSPIRE_ID = [2d_CompetentAuthorityEPRTR].Facility_INSPIRE_ID
+        [2_ProductionFacility].Facility_INSPIRE_ID =
+        [2d_CompetentAuthorityEPRTR].Facility_INSPIRE_ID
     )
     WHERE [2_ProductionFacility].countryCode='{conf.country_code}';
     '''
@@ -71,7 +73,8 @@ sql_releases = (
     (
         2f_PollutantRelease
         INNER JOIN 2_ProductionFacility ON
-        [2f_PollutantRelease].Facility_INSPIRE_ID = [2_ProductionFacility].Facility_INSPIRE_ID
+        [2f_PollutantRelease].Facility_INSPIRE_ID =
+        [2_ProductionFacility].Facility_INSPIRE_ID
     )
     WHERE [2_ProductionFacility].countryCode='{conf.country_code}';
     '''
@@ -86,6 +89,9 @@ conn = pyodbc.connect(
 
 facilities = pd.read_sql_query(sql_facilities, conn)
 print(f'Read {len(facilities)} facilities from {conf.prtr_db_file_path}')
+
+print_main_activity_codes_as_enum(facilities)
+
 
 releases = pd.read_sql_query(sql_releases, conn)
 print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')

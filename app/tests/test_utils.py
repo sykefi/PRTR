@@ -1,8 +1,10 @@
-from api.models import facility_csv_dict_2_facility
+import pytest
+from models.models import facility_csv_dict_2_facility
+from pydantic import ValidationError
 
 
 def test_reads_facility_from_dictionary():
-    d = {
+    facility = facility_csv_dict_2_facility({
         'Facility_INSPIRE_ID': '123',
         'parentCompanyName': 'ABOY',
         'nameOfFeature': 'COAL',
@@ -16,9 +18,7 @@ def test_reads_facility_from_dictionary():
         'city': 'Espoo',
         'countryCode': 'FI',
         'telephoneNo': '12345'
-    }
-
-    facility = facility_csv_dict_2_facility(d)
+    })
     assert facility.facilityInspireId == '123'
     assert facility.parentCompanyName == 'ABOY'
     assert facility.nameOfFeature == 'COAL'
@@ -32,3 +32,41 @@ def test_reads_facility_from_dictionary():
     assert facility.city == 'Espoo'
     assert facility.countryCode == 'FI'
     assert facility.telephoneNo == '12345'
+
+
+def test_throws_validation_error_for_invalid_facility_main_activity_code():
+    with pytest.raises(ValidationError):
+        facility_csv_dict_2_facility({
+            'Facility_INSPIRE_ID': '123',
+            'parentCompanyName': 'ABOY',
+            'nameOfFeature': 'COAL',
+            'mainActivityCode': 'asdf',
+            'mainActivityName': 'Combustion installations',
+            'pointGeometryLon': 24.6299,
+            'pointGeometryLat': 24.6299,
+            'streetName': 'Ruukinmestarintie 10',
+            'buildingNumber': '10',
+            'postalCode': '02320',
+            'city': 'Espoo',
+            'countryCode': 'FI',
+            'telephoneNo': '12345'
+        })
+
+
+def test_throws_validation_error_for_missing_facility_id():
+    with pytest.raises(ValidationError):
+        facility_csv_dict_2_facility({
+            'Facility_INSPIRE_ID': None,
+            'parentCompanyName': 'ABOY',
+            'nameOfFeature': 'COAL',
+            'mainActivityCode': '1(c)',
+            'mainActivityName': 'Combustion installations',
+            'pointGeometryLon': 24.6299,
+            'pointGeometryLat': 24.6299,
+            'streetName': 'Ruukinmestarintie 10',
+            'buildingNumber': '10',
+            'postalCode': '02320',
+            'city': 'Espoo',
+            'countryCode': 'FI',
+            'telephoneNo': '12345'
+        })

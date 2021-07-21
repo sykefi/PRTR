@@ -1,3 +1,4 @@
+from models.enums import FacilityMainActivityCode
 from typing import Optional, TypedDict
 from pydantic import BaseModel
 
@@ -22,7 +23,7 @@ class Facility(BaseModel):
     facilityInspireId: str
     parentCompanyName: str
     nameOfFeature: str
-    mainActivityCode: str
+    mainActivityCode: FacilityMainActivityCode
     mainActivityName: Optional[str] = None
     pointGeometryLon: float
     pointGeometryLat: float

@@ -1,11 +1,11 @@
-from api.models import Facility
+from models.models import Facility
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
 from typing import List
-import api.data as data
+import api.prtr_data as prtr_data
 
 
-facilities = data.load_facilities(conf.facilities_csv_fp)
+facilities = prtr_data.load_facilities(conf.facilities_csv_fp)
 
 
 root_path = f'/api/{conf.api_version}'
