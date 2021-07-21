@@ -1,3 +1,4 @@
+from pydantic.error_wrappers import ValidationError
 from models.enums import FacilityMainActivityCode
 from typing import Optional, TypedDict
 from pydantic import BaseModel
@@ -36,18 +37,22 @@ class Facility(BaseModel):
 
 
 def facility_csv_dict_2_facility(csv_facility: FacilityCsvDict) -> Facility:
-    return Facility(
-        facilityInspireId=csv_facility['Facility_INSPIRE_ID'],
-        parentCompanyName=csv_facility['parentCompanyName'],
-        nameOfFeature=csv_facility['nameOfFeature'],
-        mainActivityCode=csv_facility['mainActivityCode'],
-        mainActivityName=csv_facility['mainActivityName'],
-        pointGeometryLon=csv_facility['pointGeometryLon'],
-        pointGeometryLat=csv_facility['pointGeometryLat'],
-        streetName=csv_facility['streetName'],
-        buildingNumber=csv_facility['buildingNumber'],
-        postalCode=csv_facility['postalCode'],
-        city=csv_facility['city'],
-        countryCode=csv_facility['countryCode'],
-        telephoneNo=csv_facility['telephoneNo']
-    )
+    try:
+        return Facility(
+            facilityInspireId=csv_facility['Facility_INSPIRE_ID'],
+            parentCompanyName=csv_facility['parentCompanyName'],
+            nameOfFeature=csv_facility['nameOfFeature'],
+            mainActivityCode=csv_facility['mainActivityCode'],
+            mainActivityName=csv_facility['mainActivityName'],
+            pointGeometryLon=csv_facility['pointGeometryLon'],
+            pointGeometryLat=csv_facility['pointGeometryLat'],
+            streetName=csv_facility['streetName'],
+            buildingNumber=csv_facility['buildingNumber'],
+            postalCode=csv_facility['postalCode'],
+            city=csv_facility['city'],
+            countryCode=csv_facility['countryCode'],
+            telephoneNo=csv_facility['telephoneNo']
+        )
+    except ValidationError as e:
+        print(f'Could not create Facility from data: {csv_facility}')
+        raise e
