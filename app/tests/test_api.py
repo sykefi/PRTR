@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from api_main import app, root_path
+from main import app, root_path
 from api.conf import conf
 
 
