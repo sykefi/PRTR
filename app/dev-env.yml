@@ -4,12 +4,12 @@ channels:
   - conda-forge
 
 dependencies:
-  - python=3.9
+  - python=3.8
   - pytest
+  - requests
   - pylint
   - flake8
   - pandas
   - pyodbc  # for Access DB
   - fastapi
   - uvicorn
-  - requests

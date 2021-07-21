@@ -1,0 +1,15 @@
+name: tests
+on: push
+
+jobs:
+  prtr-api-pytest:
+    name: Test PRTR API
+    runs-on: ubuntu-latest
+    container:
+      image: hellej/fin-prtr:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test PRTR API
+      run: |
+          cd app/
+          python -m pytest tests/ -vv
