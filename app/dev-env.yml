@@ -6,10 +6,10 @@ channels:
 dependencies:
   - python=3.8
   - pytest
+  - requests
   - pylint
   - flake8
   - pandas
   - pyodbc  # for Access DB
   - fastapi
   - uvicorn
-  - requests

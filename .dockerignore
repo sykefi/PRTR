@@ -1,0 +1,9 @@
+.git
+.gitignore
+**/*.env
+**/*.vscode
+**/*.log
+**/*__pycache__
+**/*.accdb
+**/*.accdb
+app/temp/
