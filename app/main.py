@@ -2,48 +2,39 @@ from models.models import Facility
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
 from typing import List
-import api.prtr_data as prtr_data
-
-
-facilities = prtr_data.load_facilities(conf.facilities_csv_fp)
-
-
-root_path = f'/api/{conf.api_version}'
+import api.facilities as facilities
 
 
 app = FastAPI(
     title=conf.api_title,
     description=conf.api_description,
     version=conf.api_version,
-    openapi_url=f'{root_path}/openapi.json',
-    docs_url=f'{root_path}/docs'
+    openapi_url='/openapi.json',
+    docs_url='/docs'
 )
 
 
 @app.get('/')
-def read_root():
+def root():
     return {
         'title': app.title,
         'description': app.description,
         'documentation': app.docs_url,
+        'openapi_url': app.openapi_url
     }
 
 
-@app.get(
-    f'{root_path}/facilities',
-    response_model=List[Facility],
-    status_code=200
-)
+root_path = f'/api/{conf.api_version}'
+
+
+@app.get(f'{root_path}/facilities', response_model=List[Facility])
 def read_facilities(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10
 ):
-    if not facility_id:
-        return facilities[skip:skip + limit]
-
-    match = [f for f in facilities if f.facilityInspireId == facility_id]
+    match = facilities.get_facilities(facility_id, skip, limit)
     if not match:
-        raise HTTPException(status.HTTP_404_NOT_FOUND, 'Facility not found')
+        raise HTTPException(status.HTTP_404_NOT_FOUND, 'No facilities found')
 
     return match

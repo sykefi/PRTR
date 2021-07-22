@@ -13,6 +13,7 @@ def test_root_response():
         'title': conf.api_title,
         'description': conf.api_description,
         'documentation': app.docs_url,
+        'openapi_url': app.openapi_url
     }
 
 

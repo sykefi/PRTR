@@ -14,7 +14,8 @@ conf = Conf(
     api_title='FIN-PRTR',
     api_description=(
         'The European Pollutant Release and Transfer Register (E-PRTR) '
-        'data published as a national web service.'
+        'data published as a national web service '
+        '(serving only Finnish PRTR data).'
     ),
     api_version='v1',
     facilities_csv_fp='api/assets/facilities.csv',

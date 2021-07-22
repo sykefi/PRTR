@@ -3,7 +3,7 @@
 # PRTR-API
 A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface).
 
-The development version of the API (serving only Finnish PRTR data) is published at [prtr-api-dev.azurewebsites.net](https://prtr-api-dev.azurewebsites.net/api/v1/docs).
+The development version of the API (serving only Finnish PRTR data) is published at [prtr-api-dev.azurewebsites.net](https://prtr-api-dev.azurewebsites.net/docs).
 
 A prototype of the user interface (or portal) is published at [prtr.fi](http://prtr.fi/).
 
@@ -29,6 +29,7 @@ $ python data_import_main.py
 ```
 $ uvicorn main:app --reload
 ```
+API should now be accessible at [localhost:8000](http://localhost:8000/).
 
 ### Running the tests
 ```
