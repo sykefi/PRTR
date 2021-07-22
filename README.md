@@ -1,4 +1,4 @@
-[![API tests](https://github.com/sykefi/PRTR/workflows/tests/badge.svg)](https://github.com/sykefi/PRTR/actions)
+[![API tests & deploy dev](https://github.com/sykefi/PRTR/workflows/tests%20%26%20deploy%20dev/badge.svg)](https://github.com/sykefi/PRTR/actions)
 
 # PRTR
 A project for handling the European Pollutant Release and Transfer Register (E-PRTR) data and publishing it as a national web service.
