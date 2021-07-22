@@ -1,4 +1,4 @@
-name: tests
+name: tests & deploy dev
 on: push
 
 jobs:
@@ -13,3 +13,22 @@ jobs:
       run: |
           cd app/
           python -m pytest tests/ -vv
+
+  build-deploy-dev:
+    runs-on: ubuntu-latest
+    needs: prtr-api-pytest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/docker-login@v1
+      with:
+        login-server: prtrdev.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - run: |
+        docker build . -t prtrdev.azurecr.io/fin-prtr:dev
+        docker push prtrdev.azurecr.io/fin-prtr:dev
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'prtr-api-dev'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'prtrdev.azurecr.io/fin-prtr:dev'
