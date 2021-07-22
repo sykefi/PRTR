@@ -2,11 +2,11 @@ name: tests & deploy dev
 on: push
 
 jobs:
-  prtr-api-pytest:
-    name: Test PRTR API
+  tests:
+    name: Test API
     runs-on: ubuntu-latest
     container:
-      image: hellej/fin-prtr:latest
+      image: prtrdev.azurecr.io/fin-prtr:latest
     steps:
     - uses: actions/checkout@v2
     - name: Test PRTR API
@@ -15,8 +15,10 @@ jobs:
           python -m pytest tests/ -vv
 
   build-deploy-dev:
+    name: Build & deploy dev
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: prtr-api-pytest
+    needs: tests
     steps:
     - uses: actions/checkout@v2
     - uses: azure/docker-login@v1
@@ -25,8 +27,9 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -t prtrdev.azurecr.io/fin-prtr:dev
+        docker build . -t prtrdev.azurecr.io/fin-prtr:dev -t prtrdev.azurecr.io/fin-prtr:latest
         docker push prtrdev.azurecr.io/fin-prtr:dev
+        docker push prtrdev.azurecr.io/fin-prtr:latest
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'prtr-api-dev'
