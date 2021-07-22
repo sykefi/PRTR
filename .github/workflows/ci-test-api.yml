@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: prtrdev.azurecr.io/fin-prtr:latest
+      credentials:
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
     steps:
     - uses: actions/checkout@v2
     - name: Test PRTR API
