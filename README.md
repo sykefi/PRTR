@@ -1,14 +1,16 @@
 [![API tests & deploy dev](https://github.com/sykefi/PRTR/workflows/tests%20%26%20deploy%20dev/badge.svg)](https://github.com/sykefi/PRTR/actions)
 
-# PRTR
-A project for handling the European Pollutant Release and Transfer Register (E-PRTR) data and publishing it as a national web service.
+# PRTR-API
+A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface).
 
-E-PRTR data is available for download at [industry.eea.europa.eu/download](https://industry.eea.europa.eu/download).
+The development version of the API (serving only Finnish PRTR data) is published at [prtr-api-dev.azurewebsites.net](https://prtr-api-dev.azurewebsites.net/api/v1/docs).
 
+A prototype of the user interface (or portal) is published at [prtr.fi](http://prtr.fi/).
 
 ## Getting Started
 ### Prerequisites
 - [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/products/individual) package manager for Python. 
+- E-PRTR data is available for download at [industry.eea.europa.eu/download](https://industry.eea.europa.eu/download) (included as CSV files for Finland in [app/api/assets](app/api/assets)).
 
 ### Installation
 ```
@@ -18,7 +20,7 @@ $ conda env create -f dev-env.yml
 $ conda activate prtr
 ```
 ### Data import (optional)
-The data import script requires installation of [driver for MS for Access files](https://www.microsoft.com/en-us/download/details.aspx?id=54920). Adjust the [configuration](app/data_import/conf.py) if needed (filepath to .accdb data, country code etc.). Previously imported PRTR dataset for Finland is already included in the path [app/api/assets](app/api/assets) (as CSV files). 
+The data import script requires installation of [driver for MS for Access files](https://www.microsoft.com/en-us/download/details.aspx?id=54920). Prior to running the script, adjust the [configuration](app/data_import/conf.py) if needed (filepath to .accdb data, country code etc.). Previously imported PRTR dataset for Finland is already included as CSV files in the path [app/api/assets](app/api/assets). 
 ```
 $ python data_import_main.py
 ```

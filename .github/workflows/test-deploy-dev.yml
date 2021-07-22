@@ -1,5 +1,9 @@
 name: tests & deploy dev
-on: push
+
+on:
+  push:
+    paths-ignore:
+      - '**/README.md'
 
 jobs:
   tests:
