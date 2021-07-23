@@ -35,15 +35,17 @@ root_path = f'/api/{conf.api_version}'
 def read_pollutant_releases(
     facility_id: str = None,
     skip: int = 0,
-    limit: int = 10
+    limit: int = 10,
+    reporting_year: int = None
 ):
-    match = prtr_data.get_releases(facility_id, skip, limit)
+    match = prtr_data.get_releases(
+        facility_id, skip, limit, reporting_year, with_facility_info=False
+    )
     if not match:
         raise HTTPException(
             status.HTTP_404_NOT_FOUND,
             'No pollutant releases found'
         )
-
     return match
 
 
@@ -58,15 +60,17 @@ def read_pollutant_releases(
 def read_pollutant_releases_with_facility_info(
     facility_id: str = None,
     skip: int = 0,
-    limit: int = 10
+    limit: int = 10,
+    reporting_year: int = None
 ):
-    match = prtr_data.get_releases_with_facility_info(facility_id, skip, limit)
+    match = prtr_data.get_releases(
+        facility_id, skip, limit, reporting_year, with_facility_info=True
+    )
     if not match:
         raise HTTPException(
             status.HTTP_404_NOT_FOUND,
             'No pollutant releases found'
         )
-
     return match
 
 

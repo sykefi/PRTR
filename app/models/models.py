@@ -42,7 +42,6 @@ def facility_csv_dict_2_facility(
     csv_facility: ProductionFacilityCsvDict
 ) -> ProductionFacility:
     try:
-        city = csv_facility['city'].capitalize() if csv_facility['city'] else None
         return ProductionFacility(
             facilityInspireId=csv_facility['Facility_INSPIRE_ID'],
             parentCompanyName=csv_facility['parentCompanyName'],
@@ -54,7 +53,10 @@ def facility_csv_dict_2_facility(
             streetName=csv_facility['streetName'],
             buildingNumber=csv_facility['buildingNumber'],
             postalCode=csv_facility['postalCode'],
-            city=city,
+            city=(
+                csv_facility['city'].capitalize()
+                if csv_facility['city'] else None
+            ),
             countryCode=csv_facility['countryCode'],
             telephoneNo=csv_facility['telephoneNo']
         )
