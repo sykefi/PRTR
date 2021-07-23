@@ -1,4 +1,4 @@
-from models.enums import PollutantCode
+from models.enums import MainActivityCode, PollutantCode
 from models.models import (
     PollutantRelease, PollutantReleaseWithFacilityInfo,
     ProductionFacility, with_facility_info
@@ -25,12 +25,37 @@ _releases_with_facility_info: List[PollutantReleaseWithFacilityInfo] = [
 def get_facilities(
     facility_id: Union[str, None],
     skip: int,
-    limit: int
+    limit: int,
+    name_search: Union[str, None],
+    main_activity_code: Union[MainActivityCode, None]
 ) -> List[ProductionFacility]:
-    if not facility_id:
-        return _facilities[skip:skip + limit]
-    match = _facility_by_id.get(facility_id, None)
-    return [match] if match else []
+
+    if facility_id:
+        if facility_id in _facility_by_id:
+            return [_facility_by_id[facility_id]]
+        else:
+            return []
+
+    name_search_str: Union[str, None] = (
+        name_search.lower() if name_search else None
+    )
+
+    match = [
+        f for f in _facilities
+        if (
+            (
+                not name_search_str
+                or name_search_str in f.nameOfFeature.lower()
+                or name_search_str in f.parentCompanyName.lower()
+            )
+            and
+            (
+                not main_activity_code
+                or f.mainActivityCode == main_activity_code
+            )
+        )
+    ]
+    return match[skip:skip + limit]
 
 
 def _filter_releases(

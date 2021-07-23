@@ -1,3 +1,4 @@
+from models.enums import MainActivityCode
 from fastapi.testclient import TestClient
 from main import app, root_path
 from api.conf import conf
@@ -47,6 +48,30 @@ def test_get_facility_by_id():
     for facility in body:
         assert facility['facilityInspireId'] == facility_id
         assert _is_facility(facility)
+
+
+def test_get_facility_by_name():
+    name_search = 'Tuulilasintien lajittelulaitos'
+    response = client.get(
+        f'{root_path}/facilities?name_search_str={name_search}'
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert len(body) == 1
+    for facility in body:
+        assert name_search in facility['nameOfFeature']
+
+
+def test_get_facility_by_main_activity_type():
+    main_activity = MainActivityCode.ONE_A
+    response = client.get(
+        f'{root_path}/facilities?main_activity_code={main_activity.value}'
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert len(body) > 1
+    for facility in body:
+        assert facility['mainActivityCode'] == main_activity.value
 
 
 def test_get_releases():

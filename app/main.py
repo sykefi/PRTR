@@ -1,4 +1,4 @@
-from models.enums import PollutantCode
+from models.enums import MainActivityCode, PollutantCode
 from models.models import (
     PollutantRelease, PollutantReleaseWithFacilityInfo, ProductionFacility
 )
@@ -97,9 +97,17 @@ def read_pollutant_releases_with_facility_info(
 def read_production_facilities(
     facility_id: str = None,
     skip: int = 0,
-    limit: int = 10
+    limit: int = 10,
+    name_search_str: str = None,
+    main_activity_code: MainActivityCode = None
 ):
-    match = prtr_data.get_facilities(facility_id, skip, limit)
+    match = prtr_data.get_facilities(
+        facility_id,
+        skip,
+        limit,
+        name_search_str,
+        main_activity_code
+    )
     if not match:
         raise HTTPException(
             status.HTTP_404_NOT_FOUND, 
