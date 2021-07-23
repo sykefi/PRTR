@@ -1,4 +1,7 @@
-from models.models import PollutantRelease, PollutantReleaseWithFacilityInfo, ProductionFacility
+from models.enums import PollutantCode
+from models.models import (
+    PollutantRelease, PollutantReleaseWithFacilityInfo, ProductionFacility
+)
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
 from typing import List
@@ -36,10 +39,16 @@ def read_pollutant_releases(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10,
-    reporting_year: int = None
+    reporting_year: int = None,
+    pollutant_code: PollutantCode = None
 ):
     match = prtr_data.get_releases(
-        facility_id, skip, limit, reporting_year, with_facility_info=False
+        facility_id,
+        skip,
+        limit,
+        reporting_year,
+        pollutant_code,
+        with_facility_info=False
     )
     if not match:
         raise HTTPException(
@@ -61,10 +70,16 @@ def read_pollutant_releases_with_facility_info(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10,
-    reporting_year: int = None
+    reporting_year: int = None,
+    pollutant_code: PollutantCode = None
 ):
     match = prtr_data.get_releases(
-        facility_id, skip, limit, reporting_year, with_facility_info=True
+        facility_id,
+        skip,
+        limit,
+        reporting_year,
+        pollutant_code,
+        with_facility_info=True
     )
     if not match:
         raise HTTPException(

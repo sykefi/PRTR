@@ -93,3 +93,25 @@ def test_get_releases_with_facility_info_by_facility_id():
         assert release['facilityInspireId'] == facility_id
         assert _is_release(release)
         assert _is_facility(release)
+
+
+def test_get_releases_by_year():
+    year = 2010
+    response = client.get(
+        f'{root_path}/releases-facilities?reporting_year={year}'
+    )
+    body = response.json()
+    assert len(body) > 1
+    for release in body:
+        assert release['reportingYear'] == year
+
+
+def test_get_releases_by_pollutant_code():
+    pollutant_code = 'CH4'
+    response = client.get(
+        f'{root_path}/releases-facilities?pollutant_code={pollutant_code}'
+    )
+    body = response.json()
+    assert len(body) > 1
+    for release in body:
+        assert release['pollutantCode'] == pollutant_code
