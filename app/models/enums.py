@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class FacilityMainActivityCode(str, Enum):
+class MainActivityCode(str, Enum):
     ONE_A = '1(a)'
     ONE_B = '1(b)'
     ONE_C = '1(c)'

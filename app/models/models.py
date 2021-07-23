@@ -1,5 +1,7 @@
 from pydantic.error_wrappers import ValidationError
-from models.enums import FacilityMainActivityCode
+from models.enums import (
+    MainActivityCode, Medium, MethodCode, PollutantCode
+)
 from typing import Optional, TypedDict
 from pydantic import BaseModel
 
@@ -24,7 +26,7 @@ class ProductionFacility(BaseModel):
     facilityInspireId: str
     parentCompanyName: str
     nameOfFeature: str
-    mainActivityCode: FacilityMainActivityCode
+    mainActivityCode: MainActivityCode
     mainActivityName: Optional[str] = None
     pointGeometryLon: float
     pointGeometryLat: float
@@ -56,7 +58,10 @@ def facility_csv_dict_2_facility(
             telephoneNo=csv_facility['telephoneNo']
         )
     except ValidationError as e:
-        print(f'Could not create Facility from data: {csv_facility}')
+        print(
+            f'Could not convert to ProductionFacility '
+            f'from data: {csv_facility}'
+        )
         raise e
 
 
@@ -73,12 +78,37 @@ class PollutantReleaseCsvDict(TypedDict):
 
 
 class PollutantRelease(BaseModel):
-    Facility_INSPIRE_ID: str
-    reportingYear: str
-    pollutantCode: str
+    facilityInspireId: str
+    reportingYear: int
+    pollutantCode: PollutantCode
     pollutantName: str
-    medium: str
-    totalPollutantQuantityKg: str
-    AccidentalPollutantQuantityKG: str
-    methodCode: str
+    medium: Medium
+    totalPollutantQuantityKg: float
+    AccidentalPollutantQuantityKG: float
+    methodCode: MethodCode
     methodName: str
+
+
+def release_csv_dict_2_release(
+    csv_release: PollutantReleaseCsvDict
+) -> PollutantRelease:
+    try:
+        return PollutantRelease(
+            facilityInspireId=csv_release['Facility_INSPIRE_ID'],
+            reportingYear=csv_release['reportingYear'],
+            pollutantCode=csv_release['pollutantCode'],
+            pollutantName=csv_release['pollutantName'],
+            medium=csv_release['medium'],
+            totalPollutantQuantityKg=csv_release['totalPollutantQuantityKg'],
+            AccidentalPollutantQuantityKG=(
+                csv_release['AccidentalPollutantQuantityKG']
+            ),
+            methodCode=csv_release['methodCode'],
+            methodName=csv_release['methodName']
+        )
+    except ValidationError as e:
+        print(
+            f'Could not convert to PollutantRelease '
+            f'from data: {csv_release}'
+        )
+        raise e
