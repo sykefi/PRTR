@@ -111,4 +111,4 @@ def test_throws_validation_error_for_invalid_release_pollutant_code():
                 'AccidentalPollutantQuantityKG': '0.0',
                 'methodCode': 'M',
                 'methodName': 'Measured: analytical method used'
-            })
+        })

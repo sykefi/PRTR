@@ -42,6 +42,7 @@ def facility_csv_dict_2_facility(
     csv_facility: ProductionFacilityCsvDict
 ) -> ProductionFacility:
     try:
+        city = csv_facility['city'].capitalize() if csv_facility['city'] else None
         return ProductionFacility(
             facilityInspireId=csv_facility['Facility_INSPIRE_ID'],
             parentCompanyName=csv_facility['parentCompanyName'],
@@ -53,7 +54,7 @@ def facility_csv_dict_2_facility(
             streetName=csv_facility['streetName'],
             buildingNumber=csv_facility['buildingNumber'],
             postalCode=csv_facility['postalCode'],
-            city=csv_facility['city'],
+            city=city,
             countryCode=csv_facility['countryCode'],
             telephoneNo=csv_facility['telephoneNo']
         )
@@ -112,3 +113,26 @@ def release_csv_dict_2_release(
             f'from data: {csv_release}'
         )
         raise e
+
+
+class PollutantReleaseWithFacilityInfo(PollutantRelease):
+    facilityInspireId: str
+    parentCompanyName: str
+    nameOfFeature: str
+    city: Optional[str] = None
+    pointGeometryLon: float
+    pointGeometryLat: float
+
+
+def with_facility_info(
+    release: PollutantRelease,
+    facility: ProductionFacility
+) -> PollutantReleaseWithFacilityInfo:
+    return PollutantReleaseWithFacilityInfo(
+        **release.dict(),
+        parentCompanyName=facility.parentCompanyName,
+        nameOfFeature=facility.nameOfFeature,
+        city=facility.city,
+        pointGeometryLon=facility.pointGeometryLon,
+        pointGeometryLat=facility.pointGeometryLat
+    )

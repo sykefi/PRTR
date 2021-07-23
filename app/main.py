@@ -1,9 +1,8 @@
-from models.models import PollutantRelease, ProductionFacility
+from models.models import PollutantRelease, PollutantReleaseWithFacilityInfo, ProductionFacility
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
 from typing import List
-import api.facilities as facilities
-import api.releases as releases
+import api.prtr_data as prtr_data
 
 
 app = FastAPI(
@@ -29,26 +28,6 @@ root_path = f'/api/{conf.api_version}'
 
 
 @app.get(
-    f'{root_path}/facilities',
-    response_model=List[ProductionFacility],
-    summary='Get production facilities'
-)
-def read_production_facilities(
-    facility_id: str = None,
-    skip: int = 0,
-    limit: int = 10
-):
-    match = facilities.get_facilities(facility_id, skip, limit)
-    if not match:
-        raise HTTPException(
-            status.HTTP_404_NOT_FOUND, 
-            'No production facilities found'
-        )
-
-    return match
-
-
-@app.get(
     f'{root_path}/releases',
     response_model=List[PollutantRelease],
     summary='Get pollutant releases'
@@ -58,11 +37,54 @@ def read_pollutant_releases(
     skip: int = 0,
     limit: int = 10
 ):
-    match = releases.get_releases(facility_id, skip, limit)
+    match = prtr_data.get_releases(facility_id, skip, limit)
     if not match:
         raise HTTPException(
             status.HTTP_404_NOT_FOUND,
             'No pollutant releases found'
+        )
+
+    return match
+
+
+@app.get(
+    f'{root_path}/releases-facilities',
+    response_model=List[PollutantReleaseWithFacilityInfo],
+    summary=(
+        'Get pollutant releases with related '
+        'production facility infomation'
+    )
+)
+def read_pollutant_releases_with_facility_info(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10
+):
+    match = prtr_data.get_releases_with_facility_info(facility_id, skip, limit)
+    if not match:
+        raise HTTPException(
+            status.HTTP_404_NOT_FOUND,
+            'No pollutant releases found'
+        )
+
+    return match
+
+
+@app.get(
+    f'{root_path}/facilities',
+    response_model=List[ProductionFacility],
+    summary='Get production facilities'
+)
+def read_production_facilities(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10
+):
+    match = prtr_data.get_facilities(facility_id, skip, limit)
+    if not match:
+        raise HTTPException(
+            status.HTTP_404_NOT_FOUND, 
+            'No production facilities found'
         )
 
     return match

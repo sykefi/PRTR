@@ -1,68 +1,61 @@
-from pydantic.error_wrappers import ValidationError
-import csv
 from models.models import (
-    PollutantRelease, ProductionFacility,
-    facility_csv_dict_2_facility, release_csv_dict_2_release
+    PollutantRelease, PollutantReleaseWithFacilityInfo,
+    ProductionFacility, with_facility_info
 )
-from typing import Callable, List, Union
+from typing import List
+import api.prtr_data_source as prtr_data_source
+from api.conf import conf
 
 
-def _replace_empty_strings_with_none(d: dict) -> dict:
-    return {k: v if v != '' else None for k, v in d.items()}
+facilities = prtr_data_source.load_facilities(conf.facilities_csv_fp)
+
+facility_by_id = {f.facilityInspireId: f for f in facilities}
+
+releases = prtr_data_source.load_releases(conf.releases_csv_fp)
+
+releases_with_facility_info: List[PollutantReleaseWithFacilityInfo] = [
+    with_facility_info(r, facility_by_id[r.facilityInspireId])
+    for r in releases
+    if r.facilityInspireId in facility_by_id
+]
 
 
-def _dict_to_model_or_none(
-    data: dict,
-    converter: Union[
-        Callable[[dict], ProductionFacility],
-        Callable[[dict], PollutantRelease]
-    ]
-) -> Union[Union[ProductionFacility, PollutantRelease], None]:
-    try:
-        return converter(data)
-    except ValidationError as e:
-        print(e)
-        return None
+def get_facilities(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10
+) -> List[ProductionFacility]:
+    if not facility_id:
+        return facilities[skip:skip + limit]
+
+    match = facility_by_id.get(facility_id, None)
+    return [match] if match else []
 
 
-def _log_import_errors(
-    data: Union[
-        List[Union[PollutantRelease, None]],
-        List[Union[ProductionFacility, None]]
-    ],
-    data_name: str
-) -> None:
-    import_errors = [d for d in data if not d]
-    if import_errors:
-        print(
-            f'Could not read {len(import_errors)} '
-            f'of {len(data)} {data_name}.'
-        )
+def get_releases(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10
+) -> List[PollutantRelease]:
+    if not facility_id:
+        match = releases[skip:skip + limit]
+    else:
+        match = [r for r in releases if r.facilityInspireId == facility_id]
+
+    return match
 
 
-def load_facilities(facilities_fp: str) -> List[ProductionFacility]:
-    facilities = [
-        _dict_to_model_or_none(
-            _replace_empty_strings_with_none(d),
-            facility_csv_dict_2_facility
-        )
-        for d in csv.DictReader(
-            open(facilities_fp, encoding='utf8'), delimiter=';'
-        )
-    ]
-    _log_import_errors(facilities, 'facilities')
-    return [f for f in facilities if f]
+def get_releases_with_facility_info(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10
+) -> List[PollutantReleaseWithFacilityInfo]:
+    if not facility_id:
+        match = releases_with_facility_info[skip:skip + limit]
+    else:
+        match = [
+            r for r in releases_with_facility_info
+            if r.facilityInspireId == facility_id
+        ]
 
-
-def load_releases(releases_fp: str) -> List[PollutantRelease]:
-    releases = [
-        _dict_to_model_or_none(
-            _replace_empty_strings_with_none(d),
-            release_csv_dict_2_release
-        )
-        for d in csv.DictReader(
-            open(releases_fp, encoding='utf8'), delimiter=';'
-        )
-    ]
-    _log_import_errors(releases, 'releases')
-    return [f for f in releases if f]
+    return match
