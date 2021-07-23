@@ -1,4 +1,4 @@
-from models.models import Facility
+from models.models import ProductionFacility
 from typing import List
 import api.prtr_data as prtr_data
 from api.conf import conf
@@ -11,7 +11,7 @@ def get_facilities(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10
-) -> List[Facility]:
+) -> List[ProductionFacility]:
     if not facility_id:
         return facilities[skip:skip + limit]
 

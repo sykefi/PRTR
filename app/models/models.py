@@ -4,7 +4,7 @@ from typing import Optional, TypedDict
 from pydantic import BaseModel
 
 
-class FacilityCsvDict(TypedDict):
+class ProductionFacilityCsvDict(TypedDict):
     Facility_INSPIRE_ID: str
     parentCompanyName: str
     nameOfFeature: str
@@ -20,7 +20,7 @@ class FacilityCsvDict(TypedDict):
     telephoneNo: str
 
 
-class Facility(BaseModel):
+class ProductionFacility(BaseModel):
     facilityInspireId: str
     parentCompanyName: str
     nameOfFeature: str
@@ -36,9 +36,11 @@ class Facility(BaseModel):
     telephoneNo: Optional[str] = None
 
 
-def facility_csv_dict_2_facility(csv_facility: FacilityCsvDict) -> Facility:
+def facility_csv_dict_2_facility(
+    csv_facility: ProductionFacilityCsvDict
+) -> ProductionFacility:
     try:
-        return Facility(
+        return ProductionFacility(
             facilityInspireId=csv_facility['Facility_INSPIRE_ID'],
             parentCompanyName=csv_facility['parentCompanyName'],
             nameOfFeature=csv_facility['nameOfFeature'],
@@ -56,3 +58,27 @@ def facility_csv_dict_2_facility(csv_facility: FacilityCsvDict) -> Facility:
     except ValidationError as e:
         print(f'Could not create Facility from data: {csv_facility}')
         raise e
+
+
+class PollutantReleaseCsvDict(TypedDict):
+    facilityInspireId: str
+    reportingYear: int
+    pollutantCode: str
+    pollutantName: str
+    medium: str
+    totalPollutantQuantityKg: str
+    AccidentalPollutantQuantityKG: str
+    methodCode: str
+    methodName: str
+
+
+class PollutantRelease(BaseModel):
+    Facility_INSPIRE_ID: str
+    reportingYear: str
+    pollutantCode: str
+    pollutantName: str
+    medium: str
+    totalPollutantQuantityKg: str
+    AccidentalPollutantQuantityKG: str
+    methodCode: str
+    methodName: str

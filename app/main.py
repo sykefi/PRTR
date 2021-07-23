@@ -1,4 +1,4 @@
-from models.models import Facility
+from models.models import ProductionFacility
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
 from typing import List
@@ -27,7 +27,7 @@ def root():
 root_path = f'/api/{conf.api_version}'
 
 
-@app.get(f'{root_path}/facilities', response_model=List[Facility])
+@app.get(f'{root_path}/facilities', response_model=List[ProductionFacility])
 def read_facilities(
     facility_id: str = None,
     skip: int = 0,

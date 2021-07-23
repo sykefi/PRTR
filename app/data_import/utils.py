@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Tuple
 from pandas import DataFrame
 
 
@@ -40,4 +40,12 @@ def print_main_activity_codes_as_enum(df: DataFrame):
     for value in sorted([v for v in unique_values if v is not None]):
         enum_name = _get_main_activity_code_enum_name(value)
         print(f"    {enum_name} = '{value}'")
+    print('\n')
+
+
+def print_unique_values_as_enum(df: DataFrame, col: str):
+    unique_values = df[col].unique()
+    print(f'Unique values in column "{col}":')
+    for value in sorted([v for v in unique_values if v is not None]):
+        print(f"    {value} = '{value}'")
     print('\n')

@@ -10,7 +10,9 @@ Engine 2016 Redistributable" (or newer)
 
 """
 
-from data_import.utils import print_main_activity_codes_as_enum
+from data_import.utils import (
+    print_main_activity_codes_as_enum, print_unique_values_as_enum
+)
 from data_import.conf import conf
 import os
 import pandas as pd
@@ -95,6 +97,11 @@ print_main_activity_codes_as_enum(facilities)
 
 releases = pd.read_sql_query(sql_releases, conn)
 print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')
+
+print_unique_values_as_enum(releases, 'pollutantCode')
+print_unique_values_as_enum(releases, 'pollutantName')
+print_unique_values_as_enum(releases, 'medium')
+print_unique_values_as_enum(releases, 'methodCode')
 
 
 if not os.path.exists(conf.csv_out_dir):

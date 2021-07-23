@@ -1,18 +1,18 @@
 from pydantic.error_wrappers import ValidationError
 import csv
 from models.models import (
-    Facility, FacilityCsvDict, facility_csv_dict_2_facility
+    ProductionFacility, ProductionFacilityCsvDict, facility_csv_dict_2_facility
 )
 from typing import List, Union
 
 
-def _replace_empty_strings_with_none(d: FacilityCsvDict) -> dict:
+def _replace_empty_strings_with_none(d: ProductionFacilityCsvDict) -> dict:
     return {k: v if v != '' else None for k, v in d.items()}
 
 
 def _facility_csv_dict_2_facility(
-    csv_facility: FacilityCsvDict
-) -> Union[Facility, None]:
+    csv_facility: ProductionFacilityCsvDict
+) -> Union[ProductionFacility, None]:
     try:
         return facility_csv_dict_2_facility(csv_facility)
     except ValidationError as e:
@@ -20,7 +20,7 @@ def _facility_csv_dict_2_facility(
         return None
 
 
-def load_facilities(facilities_fp: str) -> List[Facility]:
+def load_facilities(facilities_fp: str) -> List[ProductionFacility]:
     facilities = [
         _facility_csv_dict_2_facility(
             _replace_empty_strings_with_none(d)
