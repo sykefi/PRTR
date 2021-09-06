@@ -5,10 +5,10 @@
 __pycache__/
 
 # configuration
-app/data_import/.env
+api/data_import/.env
 
 # data
 *.accdb
 
 temp/
-app/data_import/csv/
+api/data_import/csv/

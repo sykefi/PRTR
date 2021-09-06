@@ -5,5 +5,4 @@
 **/*.log
 **/*__pycache__
 **/*.accdb
-**/*.accdb
-app/temp/
+api/temp/

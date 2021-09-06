@@ -110,7 +110,7 @@ def read_production_facilities(
     )
     if not match:
         raise HTTPException(
-            status.HTTP_404_NOT_FOUND, 
+            status.HTTP_404_NOT_FOUND,
             'No production facilities found'
         )
 

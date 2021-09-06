@@ -3,8 +3,8 @@ on:
   push:
     paths:
       - 'Dockerfile'
-      - 'app/requirements.txt'
-      - 'app/dev-env.yml'
+      - 'api/requirements.txt'
+      - 'api/dev-env.yml'
 
 jobs:
   build-latest:
