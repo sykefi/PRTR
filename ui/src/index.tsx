@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { ChakraProvider } from '@chakra-ui/react'
-import './index.css'
 import App from './App'
+import './index.css'
+import './i18n.tsx'
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <App />
+      <Suspense fallback="loading">
+        <App />
+      </Suspense>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root')
