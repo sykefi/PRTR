@@ -1,9 +1,11 @@
-name: tests & deploy dev
+name: 'API: tests & deploy dev'
 
 on:
   push:
-    paths-ignore:
-      - '**/README.md'
+    paths:
+      - 'api/**'
+      - 'Dockerfile'
+      - '.dockerignore'
 
 jobs:
   tests:
