@@ -1,5 +1,6 @@
 {
   "common": {
-    "tempKey": "Hei PRTR"
+    "facilities": "Laitokset",
+    "pollutantReleases": "Päästöt"
   }
 }
