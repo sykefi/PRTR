@@ -3,12 +3,17 @@ on:
   push:
     paths:
       - 'ui/**'
+      - '.github/workflows/ui-build-test.yml'
 jobs:
-  test:
+  build-test:
+    name: Build & Cypress tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Cypress tests 🧪
         uses: cypress-io/github-action@v2
         with:
-          project: ui
+          working-directory: ui
+          browser: chrome
+          start: npm start
+          wait-on: 'http://localhost:3000/'
