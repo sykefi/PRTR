@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'ui/**'
+      - '.github/workflows/ui-build-test.yml'
 jobs:
   test:
     runs-on: ubuntu-20.04
