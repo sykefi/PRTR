@@ -1,0 +1,14 @@
+name: 'UI: build & tests'
+on:
+  push:
+    paths:
+      - 'ui/**'
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cypress tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          project: ui
