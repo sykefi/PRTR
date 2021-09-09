@@ -1,0 +1,52 @@
+name: 'UI: tests & dev deploy'
+
+on:
+  push:
+    paths:
+      - 'ui/**'
+      - '.github/workflows/ui-test-deploy-dev.yml'
+
+env:
+  AZURE_WEBAPP_NAME: prtr-ui-dev
+  AZURE_WEBAPP_PACKAGE_PATH: 'ui/build' # path to web resources
+  NODE_VERSION: '14.x'
+
+jobs:
+  cypress-tests:
+    name: Cypress tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: ui
+          browser: chrome
+          start: npm start
+          wait-on: 'http://localhost:3000/'
+
+  build-deploy:
+    name: Build and Deploy
+    # if: github.ref == 'refs/heads/main'
+    needs: cypress-tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: ui/package-lock.json
+    - name: npm install
+      run: npm install
+      working-directory: ui
+    - name: npm build
+      run: npm run build
+      working-directory: ui
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.UI_DEV_AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

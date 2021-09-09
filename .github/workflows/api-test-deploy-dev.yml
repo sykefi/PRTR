@@ -1,4 +1,5 @@
-name: 'API: tests & deploy dev'
+name: 'API: tests & dev deploy'
+
 on:
   push:
     paths:
@@ -6,6 +7,7 @@ on:
       - 'Dockerfile'
       - '.dockerignore'
       - '.github/workflows/api-test-deploy-dev.yml'
+
 jobs:
   tests:
     name: Test API
@@ -21,6 +23,7 @@ jobs:
       run: |
           cd api/
           python -m pytest tests/ -vv
+
   build-deploy-dev:
     name: Build & deploy dev
     if: github.ref == 'refs/heads/main'
