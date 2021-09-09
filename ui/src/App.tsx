@@ -8,7 +8,7 @@ const App = () => {
   const { t } = useTranslation()
 
   return (
-    <div>
+    <div data-cy="app-container">
       <Router>
         <div>
           <ul>
