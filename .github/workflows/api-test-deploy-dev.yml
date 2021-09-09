@@ -1,4 +1,4 @@
-name: 'API: tests & deploy dev'
+name: 'API: tests & dev deploy'
 on:
   push:
     paths:

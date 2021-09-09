@@ -1,5 +1,5 @@
-[![API: tests & deploy dev](https://github.com/sykefi/PRTR/workflows/API%3A%20tests%20%26%20deploy%20dev/badge.svg)](https://github.com/sykefi/PRTR/actions)
-[![UI: build & tests](https://github.com/sykefi/PRTR/workflows/UI%3A%20build%20%26%20tests/badge.svg)](https://github.com/sykefi/PRTR/actions)
+[![API: tests & dev deploy](https://github.com/sykefi/PRTR/workflows/API%3A%20tests%20%26%20dev%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
+[![UI: tests & dev deploy](https://github.com/sykefi/PRTR/workflows/UI%3A%20tests%20%26%20dev%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
 
 # PRTR-API
 A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface).
