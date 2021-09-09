@@ -5,7 +5,7 @@ on:
       - 'Dockerfile'
       - 'api/requirements.txt'
       - 'api/dev-env.yml'
-
+      - '.github/workflows/api-build-test-container.yml'
 jobs:
   build-latest:
     name: Build latest

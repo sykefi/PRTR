@@ -5,7 +5,8 @@ on:
       - 'ui/**'
       - '.github/workflows/ui-build-test.yml'
 jobs:
-  test:
+  build-test:
+    name: Build & Cypress tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
