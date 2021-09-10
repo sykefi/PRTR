@@ -18,17 +18,17 @@ app = FastAPI(
 )
 
 origins = [
-    "http://prtr-api-dev.azurewebsites.net",
-    "https://prtr-api-dev.azurewebsites.net",
-    "http://localhost:3000",
+    'http://prtr-ui-dev.azurewebsites.net',
+    'https://prtr-ui-dev.azurewebsites.net',
+    'http://localhost:3000',
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=['*'],
+    allow_headers=['*'],
 )
 
 
