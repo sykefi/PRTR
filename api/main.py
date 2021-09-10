@@ -4,6 +4,7 @@ from models.models import (
 )
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List
 import api.prtr_data as prtr_data
 
@@ -14,6 +15,20 @@ app = FastAPI(
     version=conf.api_version,
     openapi_url='/openapi.json',
     docs_url='/docs'
+)
+
+origins = [
+    "http://prtr-api-dev.azurewebsites.net",
+    "https://prtr-api-dev.azurewebsites.net",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
