@@ -59,8 +59,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Installation
 
-`npm install`
-
+```
+$ cd ui
+$ npm install
+```
 ### Running the app locally
 
 `npm start`
