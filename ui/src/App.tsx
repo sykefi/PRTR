@@ -1,40 +1,35 @@
-import { useTranslation } from 'react-i18next'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { Home } from './components/Home'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { FrontPage } from './components/FrontPage'
 import { Facilities } from './components/Facilities'
 import { Releases } from './components/Releases'
+import Navigation from './components/Navigation'
+import { NavigationItem, RoutePath } from './models'
+import { Box } from '@chakra-ui/layout'
+
+const navigationItems: NavigationItem[] = [
+  { tKey: 'common.frontPage', path: RoutePath.FrontPage },
+  { tKey: 'common.facilities', path: RoutePath.Facilities },
+  { tKey: 'common.pollutantReleases', path: RoutePath.Releases }
+]
 
 const App = () => {
-  const { t } = useTranslation()
-
   return (
     <div data-cy="app-container">
       <Router>
-        <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/facilities">{t('common.facilities')}</Link>
-            </li>
-            <li>
-              <Link to="/releases">{t('common.pollutantReleases')}</Link>
-            </li>
-          </ul>
-
+        <Navigation navigationItems={navigationItems} />
+        <Box p={4}>
           <Switch>
-            <Route path="/facilities">
+            <Route path={`/${RoutePath.Facilities}`}>
               <Facilities />
             </Route>
-            <Route path="/releases">
+            <Route path={`/${RoutePath.Releases}`}>
               <Releases />
             </Route>
             <Route path="/">
-              <Home />
+              <FrontPage />
             </Route>
           </Switch>
-        </div>
+        </Box>
       </Router>
     </div>
   )
