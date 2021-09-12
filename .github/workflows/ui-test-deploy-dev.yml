@@ -12,23 +12,9 @@ env:
   NODE_VERSION: '14.x'
 
 jobs:
-  cypress-tests:
+  test:
     name: Cypress tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Cypress tests
-        uses: cypress-io/github-action@v2
-        with:
-          working-directory: ui
-          browser: chrome
-          start: npm start
-          wait-on: 'http://localhost:3000/'
-
-  build-deploy:
-    name: Build and Deploy
-    if: github.ref == 'refs/heads/main'
-    needs: cypress-tests
+    if: github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -38,8 +24,34 @@ jobs:
         node-version: ${{ env.NODE_VERSION }}
         cache: 'npm'
         cache-dependency-path: ui/package-lock.json
-    - name: npm install
-      run: npm install
+    - name: npm ci
+      run: npm ci
+      working-directory: ui
+    - name: Cypress tests
+      run: |
+        npm start & npm run wait-on -- http://localhost:3000
+        npm run cypress:run
+      working-directory: ui
+
+  test-build-deploy:
+    name: Test, Build and Deploy
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: ui/package-lock.json
+    - name: npm ci
+      run: npm ci
+      working-directory: ui
+    - name: Cypress tests
+      run: |
+        npm start & npm run wait-on -- http://localhost:3000
+        npm run cypress:run
       working-directory: ui
     - name: npm build
       run: npm run build
