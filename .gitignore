@@ -12,3 +12,4 @@ api/data_import/.env
 
 temp/
 api/data_import/csv/
+ui/.ci.sh
