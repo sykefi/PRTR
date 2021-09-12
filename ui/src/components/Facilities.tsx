@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import * as api from '../services'
+import { SolidLoadAnimation } from './LoadAnimation/LoadAnimation'
 
 export const Facilities = () => {
   const [loading, setLoading] = useState(false)
@@ -28,8 +29,8 @@ export const Facilities = () => {
 
   return (
     <div>
-      {loading && 'loading...'}
-      {facilities && JSON.stringify(facilities)}
+      {(loading && <SolidLoadAnimation sizePx={25} />) ||
+        (facilities && JSON.stringify(facilities))}
     </div>
   )
 }
