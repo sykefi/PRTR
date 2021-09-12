@@ -56,6 +56,10 @@ jobs:
     - name: npm build
       run: npm run build
       working-directory: ui
+    - name: add process.json
+      run: |
+        echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+      working-directory: ui
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with: 
