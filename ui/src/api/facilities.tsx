@@ -1,7 +1,11 @@
 import APIError from '../models/APIError'
 import { apiBasePath } from './conf'
+import { Facility } from './models/Faclity'
 
-const getData = async (url: string, controller: AbortController) => {
+const getData = async <T extends any>(
+  url: string,
+  controller: AbortController
+): Promise<T> => {
   try {
     const res = await fetch(url, { signal: controller.signal })
     if (!res.ok) {
@@ -17,7 +21,7 @@ const getData = async (url: string, controller: AbortController) => {
         url=${res.url}
         body=${JSON.stringify(errorBody)}`)
     }
-    const body = await res.json()
+    const body = (await res.json()) as T
     return await body
   } catch (e) {
     throw new APIError(e as Error)
@@ -26,7 +30,7 @@ const getData = async (url: string, controller: AbortController) => {
 
 export const getFacilities = async (
   controller: AbortController
-): Promise<any> => {
+): Promise<Facility[]> => {
   const url = `${apiBasePath}/facilities`
-  return await getData(url, controller)
+  return await getData<Facility[]>(url, controller)
 }

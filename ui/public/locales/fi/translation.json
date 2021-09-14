@@ -3,6 +3,8 @@
     "welcomeMessage": "Tervetuloa FIN-PRTR palvelun kehitysversioon!",
     "frontPage": "Etusivu",
     "facilities": "Laitokset",
-    "pollutantReleases": "Päästöt"
+    "pollutantReleases": "Päästöt",
+    "facilityTypeCode": "Koodi",
+    "municipality": "Kunta"
   }
 }
