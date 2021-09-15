@@ -14,13 +14,14 @@ const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   const { t } = useTranslation()
 
   return (
-    <Box>
+    <li>
       <Box
         bg="white"
         as="button"
         borderRadius="md"
         boxShadow="sm"
-        padding={3}
+        paddingX={3}
+        paddingY={1.5}
         textAlign="left"
         marginY={1.0}
         width="100%"
@@ -38,7 +39,7 @@ const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
           </Box>
         </Flex>
       </Box>
-    </Box>
+    </li>
   )
 }
 
@@ -109,9 +110,9 @@ const ResultPageSelector = ({
 }
 
 export const FacilityList = () => {
-  const [state, setState] = useState<'initial' | 'loading' | 'error' | 'done'>(
-    'initial'
-  )
+  const [listState, setListState] = useState<
+    'initial' | 'loading' | 'error' | 'done'
+  >('initial')
   const [activeRowRange, setActiveRowRange] = useState<[number, number]>([
     0,
     pageItemCount
@@ -123,6 +124,9 @@ export const FacilityList = () => {
   const { t } = useTranslation()
 
   const setUrlSearchParam = () => {
+    if (urlSearchTerm !== searchTerm) {
+      setListState('loading')
+    }
     if (!!searchTerm) {
       history.push({
         pathname: '/facilities',
@@ -139,15 +143,15 @@ export const FacilityList = () => {
       try {
         const facilities = await api.getFacilities(controller, queryParams)
         setFacilities(facilities)
-        setState('done')
+        setListState('done')
       } catch (e) {
         if (!controller.signal.aborted) {
           console.error(e)
-          setState('error')
+          setListState('error')
         }
       }
     }
-    setState('loading')
+    setListState('loading')
     getFacilities()
 
     return () => {
@@ -155,7 +159,7 @@ export const FacilityList = () => {
     }
   }, [urlSearchTerm])
 
-  switch (state) {
+  switch (listState) {
     case 'initial':
     case 'loading':
       return <SolidLoadAnimation sizePx={25} />
@@ -193,6 +197,7 @@ export const FacilityList = () => {
                   width={438}
                   minWidth={300}
                   marginY={1.0}
+                  value={searchTerm}
                   onChange={e => setSearchTerm(e.target.value)}
                   placeholder={t('common.searchTerm')}
                 />
@@ -200,31 +205,38 @@ export const FacilityList = () => {
                   type="submit"
                   marginY={1.0}
                   marginLeft={1.0}
-                  colorScheme="blue">
+                  disabled={searchTerm === ''}
+                  colorScheme="green">
                   {t('common.search')}
                 </Button>
               </Flex>
             </form>
-          )) || ( // or show search result info & reset search button
-            <Box>
-              <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
-                {t('common.facilitySearchResult', {
-                  searchTerm: urlSearchTerm,
-                  resultCount: facilities ? facilities.length : 0
-                })}
-              </Box>
+          )) || // or show search result info & reset search button
+            (facilities && (
               <Box>
-                <Button
-                  marginTop={2.0}
-                  marginBottom={2.0}
-                  size="sm"
-                  colorScheme="orange"
-                  onClick={() => history.push('/facilities')}>
-                  {t('common.resetSearch')}
-                </Button>
+                <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
+                  {t('common.facilitySearchResult', {
+                    searchTerm: urlSearchTerm,
+                    resultCount: facilities ? facilities.length : 0
+                  })}
+                </Box>
+                <Box>
+                  <Button
+                    marginTop={2.0}
+                    marginBottom={2.0}
+                    size="sm"
+                    colorScheme="orange"
+                    onClick={() => {
+                      if (urlSearchTerm) {
+                        setListState('initial')
+                      }
+                      history.push('/facilities')
+                    }}>
+                    {t('common.goBack')}
+                  </Button>
+                </Box>
               </Box>
-            </Box>
-          )}
+            ))}
 
           {facilities && (
             <>
@@ -233,7 +245,7 @@ export const FacilityList = () => {
                 facilityCount={facilities ? facilities.length : 0}
                 setActiveRowRange={setActiveRowRange}
               />
-              <Box as="ul" boxSizing="border-box">
+              <Box as="ul" listStyleType="none" boxSizing="border-box">
                 {facilities
                   .slice(activeRowRange[0], activeRowRange[1])
                   .map(f => (
