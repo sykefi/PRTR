@@ -38,7 +38,7 @@ def test_get_facilities():
 
 
 def test_get_facility_by_id():
-    facility_id = 'FI.EEA/11035.FACILITY'
+    facility_id = 'FI_EEA_11035'
     response = client.get(
         f'{root_path}/facilities?facility_id={facility_id}'
     )
@@ -84,7 +84,7 @@ def test_get_releases():
 
 
 def test_get_releases_by_facility_id():
-    facility_id = 'FI.EEA/11035.FACILITY'
+    facility_id = 'FI_EEA_11035'
     response = client.get(
         f'{root_path}/releases?facility_id={facility_id}'
     )
@@ -107,7 +107,7 @@ def test_get_releases_with_facility_info():
 
 
 def test_get_releases_with_facility_info_by_facility_id():
-    facility_id = 'FI.EEA/11035.FACILITY'
+    facility_id = 'FI_EEA_11035'
     response = client.get(
         f'{root_path}/releases-facilities?facility_id={facility_id}'
     )

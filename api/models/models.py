@@ -55,8 +55,13 @@ def _replace_all(text: str, dic: Dict[str, str]):
     return text
 
 
-def _clean_id(id_str: str) -> str:
-    return _replace_all(id_str, _id_cleanup)
+def _clean_id(id_str: str, model) -> str:
+    if not id_str:
+        raise ValidationError("Missing Facility ID", model)
+    clean_id = _replace_all(id_str, _id_cleanup)
+    if not clean_id:
+        raise ValidationError("Missing Facility ID", model)
+    return clean_id
 
 
 def facility_csv_dict_2_facility(
@@ -64,7 +69,9 @@ def facility_csv_dict_2_facility(
 ) -> ProductionFacility:
     try:
         return ProductionFacility(
-            facilityInspireId=_clean_id(csv_facility['Facility_INSPIRE_ID']),
+            facilityInspireId=_clean_id(
+                csv_facility['Facility_INSPIRE_ID'], ProductionFacility
+            ),
             parentCompanyName=csv_facility['parentCompanyName'],
             nameOfFeature=csv_facility['nameOfFeature'],
             mainActivityCode=csv_facility['mainActivityCode'],
@@ -118,7 +125,9 @@ def release_csv_dict_2_release(
 ) -> PollutantRelease:
     try:
         return PollutantRelease(
-            facilityInspireId=_clean_id(csv_release['Facility_INSPIRE_ID']),
+            facilityInspireId=_clean_id(
+                csv_release['Facility_INSPIRE_ID'], PollutantRelease
+            ),
             reportingYear=csv_release['reportingYear'],
             pollutantCode=csv_release['pollutantCode'],
             pollutantName=csv_release['pollutantName'],

@@ -88,7 +88,7 @@ def test_reads_release_from_dictionary():
         'methodName': 'Measured: analytical method used'
     })
 
-    assert release.facilityInspireId == 'FI.EEA/11035.FACILITY'
+    assert release.facilityInspireId == 'FI_EEA_11035'
     assert release.reportingYear == 2015
     assert release.pollutantCode == PollutantCode.NH3
     assert release.pollutantName == 'Ammonia'
