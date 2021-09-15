@@ -2,7 +2,7 @@ from pydantic.error_wrappers import ValidationError
 from models.enums import (
     MainActivityCode, Medium, MethodCode, PollutantCode
 )
-from typing import Optional, TypedDict
+from typing import Dict, Optional, TypedDict
 from pydantic import BaseModel
 
 
@@ -38,12 +38,33 @@ class ProductionFacility(BaseModel):
     telephoneNo: Optional[str] = None
 
 
+_id_cleanup: Dict[str, str] = {
+    'http://paikkatiedot.fi/so/1002031/pf/ProductionInstallationPart/': '',
+    'http://paikkatiedot.fi/so/1002031/pf/ProductionFacility/': '',
+    '.ProductionFacility': '',
+    '.FACILITY': '',
+    '.': '_',
+    '-': '_',
+    '/': '_'
+}
+
+
+def _replace_all(text: str, dic: Dict[str, str]):
+    for k, v in dic.items():
+        text = text.replace(k, v)
+    return text
+
+
+def _clean_id(id_str: str) -> str:
+    return _replace_all(id_str, _id_cleanup)
+
+
 def facility_csv_dict_2_facility(
     csv_facility: ProductionFacilityCsvDict
 ) -> ProductionFacility:
     try:
         return ProductionFacility(
-            facilityInspireId=csv_facility['Facility_INSPIRE_ID'],
+            facilityInspireId=_clean_id(csv_facility['Facility_INSPIRE_ID']),
             parentCompanyName=csv_facility['parentCompanyName'],
             nameOfFeature=csv_facility['nameOfFeature'],
             mainActivityCode=csv_facility['mainActivityCode'],
@@ -97,7 +118,7 @@ def release_csv_dict_2_release(
 ) -> PollutantRelease:
     try:
         return PollutantRelease(
-            facilityInspireId=csv_release['Facility_INSPIRE_ID'],
+            facilityInspireId=_clean_id(csv_release['Facility_INSPIRE_ID']),
             reportingYear=csv_release['reportingYear'],
             pollutantCode=csv_release['pollutantCode'],
             pollutantName=csv_release['pollutantName'],
