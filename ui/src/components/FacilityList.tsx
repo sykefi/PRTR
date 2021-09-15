@@ -10,6 +10,12 @@ import { FacilityQueryParams } from '../api/models/FacilityQueryParams'
 
 const pageItemCount = 20
 
+enum URLSearchParamName {
+  SearchTerm = 'searchTerm',
+  ActiveRangeLowerLimit = 'listLowerLimit',
+  ActiveRangeUpperLimit = 'listUpperLimit'
+}
+
 const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   const { t } = useTranslation()
 
@@ -43,8 +49,12 @@ const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   )
 }
 
+const useURLSearchParams = (): URLSearchParams => {
+  return new URLSearchParams(useLocation().search)
+}
+
 const useURLSearchParam = (name: string): string | null => {
-  return new URLSearchParams(useLocation().search).get(name)
+  return useURLSearchParams().get(name)
 }
 
 const getQueryParams = (
@@ -60,13 +70,14 @@ const getQueryParams = (
 const ResultPageSelector = ({
   activeRowRange,
   facilityCount,
-  setActiveRowRange
+  history
 }: {
   activeRowRange: [number, number]
   facilityCount: number
-  setActiveRowRange: (range: [number, number]) => void
+  history: History
 }) => {
   const { t } = useTranslation()
+  const urlSearchParams = useURLSearchParams()
 
   if (facilityCount < activeRowRange[1]) {
     return null
@@ -81,6 +92,21 @@ const ResultPageSelector = ({
     Math.min(activeRowRange[1] + pageItemCount, facilityCount)
   ]
 
+  const updateActiveRowRage = (limits: [number, number]) => {
+    urlSearchParams.set(
+      URLSearchParamName.ActiveRangeLowerLimit,
+      limits[0].toString()
+    )
+    urlSearchParams.set(
+      URLSearchParamName.ActiveRangeUpperLimit,
+      limits[1].toString()
+    )
+    history.push({
+      pathname: '/facilities',
+      search: '?' + urlSearchParams.toString()
+    })
+  }
+
   return (
     <Flex margin={1.0} marginTop={6.0} marginBottom={2.0} alignItems="center">
       <Box fontWeight="bold" marginRight={3}>
@@ -92,7 +118,7 @@ const ResultPageSelector = ({
           <Button
             colorScheme="blue"
             size="sm"
-            onClick={() => setActiveRowRange(newLowerLimits)}>
+            onClick={() => updateActiveRowRage(newLowerLimits)}>
             {t('common.previousPage')}
           </Button>
         )}
@@ -100,7 +126,7 @@ const ResultPageSelector = ({
           <Button
             colorScheme="blue"
             size="sm"
-            onClick={() => setActiveRowRange(newUpperLimits)}>
+            onClick={() => updateActiveRowRage(newUpperLimits)}>
             {t('common.nextPage')}
           </Button>
         )}
@@ -113,14 +139,20 @@ export const FacilityList = () => {
   const [listState, setListState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
-  const [activeRowRange, setActiveRowRange] = useState<[number, number]>([
-    0,
-    pageItemCount
-  ])
   const [facilities, setFacilities] = useState<Facility[] | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const history = useHistory()
-  const urlSearchTerm = useURLSearchParam('searchTerm')
+  const urlSearchTerm = useURLSearchParam(URLSearchParamName.SearchTerm)
+  const activeRangeLowerLimit =
+    useURLSearchParam(URLSearchParamName.ActiveRangeLowerLimit) || '0'
+  const activeRangeUpperLimit =
+    useURLSearchParam(URLSearchParamName.ActiveRangeUpperLimit) ||
+    pageItemCount.toString()
+
+  const activeRowRange = [activeRangeLowerLimit, activeRangeUpperLimit].map(v =>
+    parseInt(v)
+  ) as [number, number]
+
   const { t } = useTranslation()
 
   const setUrlSearchParam = () => {
@@ -128,9 +160,11 @@ export const FacilityList = () => {
       setListState('loading')
     }
     if (!!searchTerm) {
+      const urlParams = new URLSearchParams()
+      urlParams.set('searchTerm', searchTerm)
       history.push({
         pathname: '/facilities',
-        search: '?searchTerm=' + searchTerm
+        search: '?' + urlParams.toString()
       })
     }
   }
@@ -243,7 +277,7 @@ export const FacilityList = () => {
               <ResultPageSelector
                 activeRowRange={activeRowRange}
                 facilityCount={facilities ? facilities.length : 0}
-                setActiveRowRange={setActiveRowRange}
+                history={history}
               />
               <Box as="ul" listStyleType="none" boxSizing="border-box">
                 {facilities
