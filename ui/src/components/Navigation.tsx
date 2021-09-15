@@ -20,7 +20,7 @@ const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
   return (
     <Link
       as={RrLink}
-      to={navigationItem.path}
+      to={'/' + navigationItem.path}
       exact={navigationItem.path === RoutePath.FrontPage}
       px={2}
       py={1}

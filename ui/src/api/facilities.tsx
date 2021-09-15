@@ -1,6 +1,6 @@
 import APIError from '../models/APIError'
 import { apiBasePath } from './conf'
-import { Facility } from './models/Faclity'
+import { Facility } from './models/Facility'
 
 const getData = async <T extends any>(
   url: string,
