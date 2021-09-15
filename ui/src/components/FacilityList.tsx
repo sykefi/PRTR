@@ -1,16 +1,17 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
 import * as api from '../api'
 import { Facility } from '../api/models/Facility'
 import { SolidLoadAnimation } from './LoadAnimation/LoadAnimation'
 
 const FacilityBox = ({ f }: { f: Facility }) => {
   const { t } = useTranslation()
+  const history = useHistory()
 
   return (
-    <Link to={'/facilities/' + f.facilityInspireId}>
+    <div>
       <Box
         bg="white"
         as="button"
@@ -20,7 +21,8 @@ const FacilityBox = ({ f }: { f: Facility }) => {
         textAlign="left"
         margin={1.0}
         width="90%"
-        maxWidth="650px">
+        maxWidth="650px"
+        onClick={() => history.push('/facilities/' + f.facilityInspireId)}>
         <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
           {f.nameOfFeature}
         </Box>
@@ -33,7 +35,7 @@ const FacilityBox = ({ f }: { f: Facility }) => {
           </Box>
         </Flex>
       </Box>
-    </Link>
+    </div>
   )
 }
 
