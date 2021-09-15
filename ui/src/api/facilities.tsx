@@ -17,6 +17,10 @@ const getData = async <T extends any>(
       } catch {
         errorBody = undefined
       }
+      if (res.status === 404) {
+        console.warn('No facilities found, response:', res)
+        return [] as T
+      }
       throw new Error(`Fetch failed: ${url} ->
         status=${res.status}
         statusText=${res.statusText}

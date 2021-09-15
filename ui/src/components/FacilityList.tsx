@@ -55,7 +55,9 @@ const getQueryParams = (
 }
 
 export const FacilityList = () => {
-  const [loading, setLoading] = useState(false)
+  const [state, setState] = useState<'initial' | 'loading' | 'error' | 'done'>(
+    'initial'
+  )
   const [facilities, setFacilities] = useState<Facility[] | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const history = useHistory()
@@ -72,21 +74,22 @@ export const FacilityList = () => {
   }
 
   useEffect(() => {
-    console.log('update facility list')
+    console.log('update facility list, params:', urlSearchTerm)
     const controller = new AbortController()
     const queryParams = getQueryParams(urlSearchTerm)
     const getFacilities = async () => {
       try {
         const facilities = await api.getFacilities(controller, queryParams)
         setFacilities(facilities)
-        setLoading(false)
+        setState('done')
       } catch (e) {
         if (!controller.signal.aborted) {
           console.error(e)
+          setState('error')
         }
       }
     }
-    setLoading(true)
+    setState('loading')
     getFacilities()
 
     return () => {
@@ -94,26 +97,80 @@ export const FacilityList = () => {
     }
   }, [urlSearchTerm])
 
-  return (
-    <div>
-      <Flex margin={1.0} marginBottom={2.0} flexWrap="wrap">
-        <Input
-          bgColor="white"
-          width={400}
-          minWidth={300}
-          margin={1.0}
-          onChange={e => setSearchTerm(e.target.value)}
-          placeholder={t('common.searchTerm')}
-        />
-        <Button margin={1.0} colorScheme="blue" onClick={setUrlSearchParam}>
-          {t('common.search')}
-        </Button>
-      </Flex>
-      {(loading && <SolidLoadAnimation sizePx={25} />) ||
-        (facilities &&
-          facilities.map(f => (
-            <FacilityBox key={f.facilityInspireId} f={f} history={history} />
-          )))}
-    </div>
-  )
+  switch (state) {
+    case 'initial':
+    case 'loading':
+      return <SolidLoadAnimation sizePx={25} />
+
+    case 'error':
+      return (
+        <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
+          <Box>
+            {t('facilities.loadFacilitiesErroredText', {
+              searchTerm: urlSearchTerm,
+              resultCount: facilities ? facilities.length : 0
+            })}
+          </Box>
+          <Box>
+            <Button
+              marginY={2.0}
+              size="sm"
+              colorScheme="blue"
+              onClick={() => history.push('/')}>
+              {t('common.goBack')}
+            </Button>
+          </Box>
+        </Box>
+      )
+
+    case 'done':
+      return (
+        <div>
+          {(!urlSearchTerm && ( // show search input(s) & button
+            <form onSubmit={setUrlSearchParam}>
+              <Flex marginY={1.0} marginBottom={2.0} flexWrap="wrap">
+                <Input
+                  type="text"
+                  bgColor="white"
+                  width={400}
+                  minWidth={300}
+                  margin={1.0}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  placeholder={t('common.searchTerm')}
+                />
+                <Button type="submit" margin={1.0} colorScheme="blue">
+                  {t('common.search')}
+                </Button>
+              </Flex>
+            </form>
+          )) || ( // or show search result info & reset search button
+            <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
+              <Box>
+                {t('common.facilitySearchResult', {
+                  searchTerm: urlSearchTerm,
+                  resultCount: facilities ? facilities.length : 0
+                })}
+              </Box>
+              <Box>
+                <Button
+                  marginY={2.0}
+                  size="sm"
+                  colorScheme="blue"
+                  onClick={() => history.push('/facilities')}>
+                  {t('common.resetSearch')}
+                </Button>
+              </Box>
+            </Box>
+          )}
+
+          {facilities &&
+            facilities.map(f => (
+              <FacilityBox key={f.facilityInspireId} f={f} history={history} />
+            ))}
+        </div>
+      )
+
+    default:
+      return null
+  }
 }

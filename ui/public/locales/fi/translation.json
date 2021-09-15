@@ -7,6 +7,13 @@
     "facilityTypeCode": "Koodi",
     "municipality": "Kunta",
     "searchTerm": "Hakusana",
+    "resetSearch": "Poista haku",
+    "goBackToSearch": "Palaa hakuun",
+    "goBack": "Paluu",
+    "facilitySearchResult": "Hakusanalla \"{{searchTerm}}\" löytyi {{resultCount}} kohdetta.",
     "search": "Etsi"
+  },
+  "facilities": {
+    "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan."
   }
 }
