@@ -6,6 +6,7 @@ import { History } from 'history'
 import * as api from '../api'
 import { Facility } from '../api/models/Facility'
 import { SolidLoadAnimation } from './LoadAnimation/LoadAnimation'
+import { FacilityQueryParams } from '../api/models/FacilityQueryParams'
 
 const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   const { t } = useTranslation()
@@ -43,6 +44,16 @@ const useURLSearchParam = (name: string): string | null => {
   return new URLSearchParams(useLocation().search).get(name)
 }
 
+const getQueryParams = (
+  urlSearchTerm: string | null
+): FacilityQueryParams | undefined => {
+  return urlSearchTerm
+    ? {
+        name_search_str: urlSearchTerm
+      }
+    : undefined
+}
+
 export const FacilityList = () => {
   const [loading, setLoading] = useState(false)
   const [facilities, setFacilities] = useState<Facility[] | null>(null)
@@ -61,14 +72,12 @@ export const FacilityList = () => {
   }
 
   useEffect(() => {
-    console.log('searchTerm:', urlSearchTerm)
-  }, [urlSearchTerm])
-
-  useEffect(() => {
+    console.log('update facility list')
     const controller = new AbortController()
+    const queryParams = getQueryParams(urlSearchTerm)
     const getFacilities = async () => {
       try {
-        const facilities = await api.getFacilities(controller)
+        const facilities = await api.getFacilities(controller, queryParams)
         setFacilities(facilities)
         setLoading(false)
       } catch (e) {
@@ -83,7 +92,7 @@ export const FacilityList = () => {
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [urlSearchTerm])
 
   return (
     <div>

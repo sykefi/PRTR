@@ -1,6 +1,8 @@
 import APIError from '../models/APIError'
 import { apiBasePath } from './conf'
 import { Facility } from './models/Facility'
+import { FacilityQueryParams } from './models/FacilityQueryParams'
+import { serializeQueryParams } from './utils'
 
 const getData = async <T extends any>(
   url: string,
@@ -29,8 +31,12 @@ const getData = async <T extends any>(
 }
 
 export const getFacilities = async (
-  controller: AbortController
+  controller: AbortController,
+  queryParams?: FacilityQueryParams
 ): Promise<Facility[]> => {
-  const url = `${apiBasePath}/facilities`
+  const queryString =
+    queryParams &&
+    '?' + serializeQueryParams(queryParams as Record<string, string | number>)
+  const url = `${apiBasePath}/facilities` + (queryString || '')
   return await getData<Facility[]>(url, controller)
 }
