@@ -1,14 +1,14 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Input, Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router-dom'
+import { History } from 'history'
 import * as api from '../api'
 import { Facility } from '../api/models/Facility'
 import { SolidLoadAnimation } from './LoadAnimation/LoadAnimation'
 
-const FacilityBox = ({ f }: { f: Facility }) => {
+const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   const { t } = useTranslation()
-  const history = useHistory()
 
   return (
     <div>
@@ -39,9 +39,30 @@ const FacilityBox = ({ f }: { f: Facility }) => {
   )
 }
 
+const useURLSearchParam = (name: string): string | null => {
+  return new URLSearchParams(useLocation().search).get(name)
+}
+
 export const FacilityList = () => {
   const [loading, setLoading] = useState(false)
   const [facilities, setFacilities] = useState<Facility[] | null>(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const history = useHistory()
+  const urlSearchTerm = useURLSearchParam('searchTerm')
+  const { t } = useTranslation()
+
+  const setUrlSearchParam = () => {
+    if (!!searchTerm) {
+      history.push({
+        pathname: '/facilities',
+        search: '?searchTerm=' + searchTerm
+      })
+    }
+  }
+
+  useEffect(() => {
+    console.log('searchTerm:', urlSearchTerm)
+  }, [urlSearchTerm])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -66,9 +87,24 @@ export const FacilityList = () => {
 
   return (
     <div>
+      <Flex margin={1.0} marginBottom={2.0} flexWrap="wrap">
+        <Input
+          bgColor="white"
+          width={400}
+          minWidth={300}
+          margin={1.0}
+          onChange={e => setSearchTerm(e.target.value)}
+          placeholder={t('common.searchTerm')}
+        />
+        <Button margin={1.0} colorScheme="blue" onClick={setUrlSearchParam}>
+          {t('common.search')}
+        </Button>
+      </Flex>
       {(loading && <SolidLoadAnimation sizePx={25} />) ||
         (facilities &&
-          facilities.map(f => <FacilityBox key={f.facilityInspireId} f={f} />))}
+          facilities.map(f => (
+            <FacilityBox key={f.facilityInspireId} f={f} history={history} />
+          )))}
     </div>
   )
 }
