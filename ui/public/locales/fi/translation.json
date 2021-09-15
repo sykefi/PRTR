@@ -5,7 +5,7 @@
     "facilities": "Laitokset",
     "pollutantReleases": "Päästöt",
     "facilityTypeCode": "Koodi",
-    "municipality": "Kunta",
+    "municipality": "Paikkakunta",
     "searchTerm": "Hakusana",
     "resetSearch": "Poista haku",
     "goBackToSearch": "Palaa hakuun",

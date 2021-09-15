@@ -12,31 +12,29 @@ const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   const { t } = useTranslation()
 
   return (
-    <div>
-      <Box
-        bg="white"
-        as="button"
-        borderRadius="md"
-        boxShadow="sm"
-        padding={3}
-        textAlign="left"
-        margin={1.0}
-        width="90%"
-        maxWidth="650px"
-        onClick={() => history.push('/facilities/' + f.facilityInspireId)}>
-        <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-          {f.nameOfFeature}
-        </Box>
-        <Flex>
-          <Box fontSize="smaller" marginRight={2}>
-            {t('common.facilityTypeCode')}: {f.mainActivityCode}
-          </Box>
-          <Box fontSize="smaller">
-            {t('common.municipality')}: {f.city}
-          </Box>
-        </Flex>
+    <Box
+      bg="white"
+      as="button"
+      borderRadius="md"
+      boxShadow="sm"
+      padding={3}
+      textAlign="left"
+      marginY={1.0}
+      width="100%"
+      maxWidth="500px"
+      onClick={() => history.push('/facilities/' + f.facilityInspireId)}>
+      <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+        {f.nameOfFeature}
       </Box>
-    </div>
+      <Flex>
+        <Box fontSize="smaller" marginRight={2}>
+          {t('common.facilityTypeCode')}: {f.mainActivityCode}
+        </Box>
+        <Box fontSize="smaller">
+          {t('common.municipality')}: {f.city}
+        </Box>
+      </Flex>
+    </Box>
   )
 }
 
@@ -104,7 +102,7 @@ export const FacilityList = () => {
 
     case 'error':
       return (
-        <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
+        <Box margin={1.0} marginY={2.0} fontWeight="bold">
           <Box>
             {t('facilities.loadFacilitiesErroredText', {
               searchTerm: urlSearchTerm,
@@ -125,20 +123,24 @@ export const FacilityList = () => {
 
     case 'done':
       return (
-        <div>
+        <>
           {(!urlSearchTerm && ( // show search input(s) & button
             <form onSubmit={setUrlSearchParam}>
-              <Flex marginY={1.0} marginBottom={2.0} flexWrap="wrap">
+              <Flex marginTop={1.0} marginBottom={2.0} flexWrap="wrap">
                 <Input
                   type="text"
                   bgColor="white"
-                  width={400}
+                  width={434}
                   minWidth={300}
-                  margin={1.0}
+                  marginY={1.0}
                   onChange={e => setSearchTerm(e.target.value)}
                   placeholder={t('common.searchTerm')}
                 />
-                <Button type="submit" margin={1.0} colorScheme="blue">
+                <Button
+                  type="submit"
+                  marginY={1.0}
+                  marginLeft={1.0}
+                  colorScheme="blue">
                   {t('common.search')}
                 </Button>
               </Flex>
@@ -163,11 +165,18 @@ export const FacilityList = () => {
             </Box>
           )}
 
-          {facilities &&
-            facilities.map(f => (
-              <FacilityBox key={f.facilityInspireId} f={f} history={history} />
-            ))}
-        </div>
+          {facilities && (
+            <Box as="ul" boxSizing="border-box">
+              {facilities.map(f => (
+                <FacilityBox
+                  key={f.facilityInspireId}
+                  f={f}
+                  history={history}
+                />
+              ))}
+            </Box>
+          )}
+        </>
       )
 
     default:
