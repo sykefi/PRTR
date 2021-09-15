@@ -1,4 +1,4 @@
-import { Box, Flex, Input, Button } from '@chakra-ui/react'
+import { Box, Flex, Input, Button, ButtonGroup } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -8,32 +8,36 @@ import { Facility } from '../api/models/Facility'
 import { SolidLoadAnimation } from './LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../api/models/FacilityQueryParams'
 
+const pageItemCount = 20
+
 const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
   const { t } = useTranslation()
 
   return (
-    <Box
-      bg="white"
-      as="button"
-      borderRadius="md"
-      boxShadow="sm"
-      padding={3}
-      textAlign="left"
-      marginY={1.0}
-      width="100%"
-      maxWidth="500px"
-      onClick={() => history.push('/facilities/' + f.facilityInspireId)}>
-      <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
-        {f.nameOfFeature}
+    <Box>
+      <Box
+        bg="white"
+        as="button"
+        borderRadius="md"
+        boxShadow="sm"
+        padding={3}
+        textAlign="left"
+        marginY={1.0}
+        width="100%"
+        maxWidth="500px"
+        onClick={() => history.push('/facilities/' + f.facilityInspireId)}>
+        <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+          {f.nameOfFeature}
+        </Box>
+        <Flex>
+          <Box fontSize="smaller" marginRight={2}>
+            {t('common.facilityTypeCode')}: {f.mainActivityCode}
+          </Box>
+          <Box fontSize="smaller">
+            {t('common.municipality')}: {f.city}
+          </Box>
+        </Flex>
       </Box>
-      <Flex>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('common.facilityTypeCode')}: {f.mainActivityCode}
-        </Box>
-        <Box fontSize="smaller">
-          {t('common.municipality')}: {f.city}
-        </Box>
-      </Flex>
     </Box>
   )
 }
@@ -52,10 +56,66 @@ const getQueryParams = (
     : undefined
 }
 
+const ResultPageSelector = ({
+  activeRowRange,
+  facilityCount,
+  setActiveRowRange
+}: {
+  activeRowRange: [number, number]
+  facilityCount: number
+  setActiveRowRange: (range: [number, number]) => void
+}) => {
+  const { t } = useTranslation()
+
+  if (facilityCount < activeRowRange[1]) {
+    return null
+  }
+
+  const newLowerLimits: [number, number] = [
+    Math.max(0, activeRowRange[0] - pageItemCount),
+    activeRowRange[0]
+  ]
+  const newUpperLimits: [number, number] = [
+    activeRowRange[1],
+    Math.min(activeRowRange[1] + pageItemCount, facilityCount)
+  ]
+
+  return (
+    <Flex margin={1.0} marginTop={6.0} marginBottom={2.0} alignItems="center">
+      <Box fontWeight="bold" marginRight={3}>
+        {t('common.showingItems')} {activeRowRange[0] + 1}-{activeRowRange[1]} (
+        {facilityCount})
+      </Box>
+      <ButtonGroup>
+        {activeRowRange[1] > pageItemCount && (
+          <Button
+            colorScheme="blue"
+            size="sm"
+            onClick={() => setActiveRowRange(newLowerLimits)}>
+            {t('common.previousPage')}
+          </Button>
+        )}
+        {activeRowRange[1] < facilityCount && (
+          <Button
+            colorScheme="blue"
+            size="sm"
+            onClick={() => setActiveRowRange(newUpperLimits)}>
+            {t('common.nextPage')}
+          </Button>
+        )}
+      </ButtonGroup>
+    </Flex>
+  )
+}
+
 export const FacilityList = () => {
   const [state, setState] = useState<'initial' | 'loading' | 'error' | 'done'>(
     'initial'
   )
+  const [activeRowRange, setActiveRowRange] = useState<[number, number]>([
+    0,
+    pageItemCount
+  ])
   const [facilities, setFacilities] = useState<Facility[] | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const history = useHistory()
@@ -130,7 +190,7 @@ export const FacilityList = () => {
                 <Input
                   type="text"
                   bgColor="white"
-                  width={434}
+                  width={438}
                   minWidth={300}
                   marginY={1.0}
                   onChange={e => setSearchTerm(e.target.value)}
@@ -146,8 +206,8 @@ export const FacilityList = () => {
               </Flex>
             </form>
           )) || ( // or show search result info & reset search button
-            <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
-              <Box>
+            <Box>
+              <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
                 {t('common.facilitySearchResult', {
                   searchTerm: urlSearchTerm,
                   resultCount: facilities ? facilities.length : 0
@@ -155,9 +215,10 @@ export const FacilityList = () => {
               </Box>
               <Box>
                 <Button
-                  marginY={2.0}
+                  marginTop={2.0}
+                  marginBottom={2.0}
                   size="sm"
-                  colorScheme="blue"
+                  colorScheme="orange"
                   onClick={() => history.push('/facilities')}>
                   {t('common.resetSearch')}
                 </Button>
@@ -166,15 +227,24 @@ export const FacilityList = () => {
           )}
 
           {facilities && (
-            <Box as="ul" boxSizing="border-box">
-              {facilities.map(f => (
-                <FacilityBox
-                  key={f.facilityInspireId}
-                  f={f}
-                  history={history}
-                />
-              ))}
-            </Box>
+            <>
+              <ResultPageSelector
+                activeRowRange={activeRowRange}
+                facilityCount={facilities ? facilities.length : 0}
+                setActiveRowRange={setActiveRowRange}
+              />
+              <Box as="ul" boxSizing="border-box">
+                {facilities
+                  .slice(activeRowRange[0], activeRowRange[1])
+                  .map(f => (
+                    <FacilityBox
+                      key={f.facilityInspireId}
+                      f={f}
+                      history={history}
+                    />
+                  ))}
+              </Box>
+            </>
           )}
         </>
       )

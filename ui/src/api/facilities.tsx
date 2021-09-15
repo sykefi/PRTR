@@ -4,6 +4,8 @@ import { Facility } from './models/Facility'
 import { FacilityQueryParams } from './models/FacilityQueryParams'
 import { serializeQueryParams } from './utils'
 
+const defaultLimit = 150
+
 const getData = async <T extends any>(
   url: string,
   controller: AbortController
@@ -36,11 +38,15 @@ const getData = async <T extends any>(
 
 export const getFacilities = async (
   controller: AbortController,
-  queryParams?: FacilityQueryParams
+  queryParams: FacilityQueryParams = {}
 ): Promise<Facility[]> => {
-  const queryString =
-    queryParams &&
-    '?' + serializeQueryParams(queryParams as Record<string, string | number>)
-  const url = `${apiBasePath}/facilities` + (queryString || '')
+  const allQueryParams: FacilityQueryParams = {
+    limit: defaultLimit,
+    ...queryParams
+  }
+  const queryString = serializeQueryParams(
+    allQueryParams as Record<string, string | number>
+  )
+  const url = `${apiBasePath}/facilities?` + queryString
   return await getData<Facility[]>(url, controller)
 }
