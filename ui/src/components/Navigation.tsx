@@ -55,19 +55,21 @@ const Navigation = ({
   return (
     <>
       <Box boxShadow="md" bg="white" px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={16} alignItems={'center'} justifyContent="center">
           <IconButton
             size={'md'}
+            marginRight={4}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
-            display={{ md: 'none' }}
+            display={{ sm: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
+            <Box fontWeight="bold">FIN-PRTR</Box>
             <HStack
               as={'nav'}
               spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
+              display={{ base: 'none', sm: 'flex' }}>
               {navigationItems.map(item => (
                 <NavLink key={item.path} navigationItem={item} />
               ))}
@@ -76,7 +78,7 @@ const Navigation = ({
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
+          <Box pb={4} display={{ sm: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {navigationItems.map(item => (
                 <NavLink key={item.path} navigationItem={item} />

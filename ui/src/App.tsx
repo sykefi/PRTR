@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { FrontPage } from './components/FrontPage'
-import { FacilityList } from './components/FacilityList'
+import { FacilityList } from './components/FacilityList/FacilityList'
 import { Releases } from './components/Releases'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
