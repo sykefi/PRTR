@@ -2,18 +2,21 @@ from pydantic.error_wrappers import ValidationError
 from models.enums import (
     MainActivityCode, Medium, MethodCode, PollutantCode
 )
-from typing import Dict, Optional, TypedDict
+from typing import Optional, TypedDict
 from pydantic import BaseModel
 
 
 class ProductionFacilityCsvDict(TypedDict):
     Facility_INSPIRE_ID: str
+    facilityId: str
     parentCompanyName: str
     nameOfFeature: str
     mainActivityCode: str
     mainActivityName: str
     pointGeometryLon: str
     pointGeometryLat: str
+    x: str
+    y: str
     streetName: str
     buildingNumber: str
     postalCode: str
@@ -23,13 +26,15 @@ class ProductionFacilityCsvDict(TypedDict):
 
 
 class ProductionFacility(BaseModel):
-    facilityInspireId: str
+    facilityId: str
     parentCompanyName: str
     nameOfFeature: str
     mainActivityCode: MainActivityCode
     mainActivityName: Optional[str] = None
-    pointGeometryLon: float
-    pointGeometryLat: float
+    # pointGeometryLon: float
+    # pointGeometryLat: float
+    x: int
+    y: int
     streetName: Optional[str] = None
     buildingNumber: Optional[str] = None
     postalCode: Optional[str] = None
@@ -38,46 +43,20 @@ class ProductionFacility(BaseModel):
     telephoneNo: Optional[str] = None
 
 
-_id_cleanup: Dict[str, str] = {
-    'http://paikkatiedot.fi/so/1002031/pf/ProductionInstallationPart/': '',
-    'http://paikkatiedot.fi/so/1002031/pf/ProductionFacility/': '',
-    '.ProductionFacility': '',
-    '.FACILITY': '',
-    '.': '_',
-    '-': '_',
-    '/': '_'
-}
-
-
-def _replace_all(text: str, dic: Dict[str, str]):
-    for k, v in dic.items():
-        text = text.replace(k, v)
-    return text
-
-
-def _clean_id(id_str: str, model) -> str:
-    if not id_str:
-        raise ValidationError("Missing Facility ID", model)
-    clean_id = _replace_all(id_str, _id_cleanup)
-    if not clean_id:
-        raise ValidationError("Missing Facility ID", model)
-    return clean_id
-
-
 def facility_csv_dict_2_facility(
     csv_facility: ProductionFacilityCsvDict
 ) -> ProductionFacility:
     try:
         return ProductionFacility(
-            facilityInspireId=_clean_id(
-                csv_facility['Facility_INSPIRE_ID'], ProductionFacility
-            ),
+            facilityId=csv_facility['facilityId'],
             parentCompanyName=csv_facility['parentCompanyName'],
             nameOfFeature=csv_facility['nameOfFeature'],
             mainActivityCode=csv_facility['mainActivityCode'],
             mainActivityName=csv_facility['mainActivityName'],
-            pointGeometryLon=csv_facility['pointGeometryLon'],
-            pointGeometryLat=csv_facility['pointGeometryLat'],
+            # pointGeometryLon=csv_facility['pointGeometryLon'],
+            # pointGeometryLat=csv_facility['pointGeometryLat'],
+            x=csv_facility['x'],
+            y=csv_facility['y'],
             streetName=csv_facility['streetName'],
             buildingNumber=csv_facility['buildingNumber'],
             postalCode=csv_facility['postalCode'],
@@ -98,6 +77,7 @@ def facility_csv_dict_2_facility(
 
 class PollutantReleaseCsvDict(TypedDict):
     facilityInspireId: str
+    facilityId: str
     reportingYear: int
     pollutantCode: str
     pollutantName: str
@@ -109,7 +89,7 @@ class PollutantReleaseCsvDict(TypedDict):
 
 
 class PollutantRelease(BaseModel):
-    facilityInspireId: str
+    facilityId: str
     reportingYear: int
     pollutantCode: PollutantCode
     pollutantName: str
@@ -125,9 +105,7 @@ def release_csv_dict_2_release(
 ) -> PollutantRelease:
     try:
         return PollutantRelease(
-            facilityInspireId=_clean_id(
-                csv_release['Facility_INSPIRE_ID'], PollutantRelease
-            ),
+            facilityId=csv_release['facilityId'],
             reportingYear=csv_release['reportingYear'],
             pollutantCode=csv_release['pollutantCode'],
             pollutantName=csv_release['pollutantName'],
@@ -148,12 +126,12 @@ def release_csv_dict_2_release(
 
 
 class PollutantReleaseWithFacilityInfo(PollutantRelease):
-    facilityInspireId: str
+    facilityId: str
     parentCompanyName: str
     nameOfFeature: str
     city: Optional[str] = None
-    pointGeometryLon: float
-    pointGeometryLat: float
+    x: float
+    y: float
 
 
 def with_facility_info(
@@ -165,6 +143,6 @@ def with_facility_info(
         parentCompanyName=facility.parentCompanyName,
         nameOfFeature=facility.nameOfFeature,
         city=facility.city,
-        pointGeometryLon=facility.pointGeometryLon,
-        pointGeometryLat=facility.pointGeometryLat
+        x=facility.x,
+        y=facility.y
     )

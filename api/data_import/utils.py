@@ -1,8 +1,73 @@
-from typing import Tuple
+from data_import.conf import conf
+from typing import Dict
 from pandas import DataFrame
+import pyproj
+from pyproj import CRS
+from shapely.geometry import Point
+from shapely.ops import transform
 
 
-_characters_by_number_1_10 = {
+def _replace_all(text: str, dic: Dict[str, str]):
+    for k, v in dic.items():
+        text = text.replace(k, v)
+    return text
+
+
+project = pyproj.Transformer.from_crs(
+    crs_from=CRS('epsg:4326'),
+    crs_to=CRS(f'epsg:{conf.proj_crs_epsg}'),
+    always_xy=True
+)
+
+
+def add_projected_x_y_columns(
+    df: DataFrame,
+    lon_col='pointGeometryLon',
+    lat_col='pointGeometryLat'
+) -> DataFrame:
+    df['point_geom_wgs'] = df.apply(
+         lambda row: Point(row[lon_col], row[lat_col]),
+         axis=1
+    )
+    df['point_geom_proj'] = [
+        transform(project.transform, geom) for geom in df['point_geom_wgs']
+    ]
+    df['x'] = [round(geom.x) for geom in df['point_geom_proj']]
+    df['y'] = [round(geom.y) for geom in df['point_geom_proj']]
+    df.drop(columns=['point_geom_wgs', 'point_geom_proj'], inplace=True)
+
+
+_id_cleanup: Dict[str, str] = {
+    'http://paikkatiedot.fi/so/1002031/pf/ProductionInstallationPart/': '',
+    'http://paikkatiedot.fi/so/1002031/pf/ProductionFacility/': '',
+    '.ProductionFacility': '',
+    '.FACILITY': '',
+    '.': '_',
+    '-': '_',
+    '/': '_',
+    ';': '_'
+}
+
+
+def clean_id(id_str: str) -> str:
+    if not id_str:
+        raise ValueError("Missing Facility ID")
+    clean_id = _replace_all(id_str, _id_cleanup)
+    if not clean_id:
+        raise ValueError("Missing Facility ID")
+    return clean_id
+
+
+def validate_ids(df: DataFrame, id_col='facilityId'):
+    ids = list(df[id_col])
+    if len(ids) != len(set(ids)):
+        raise ValueError(
+            f'Found IDs that are not unique in column {id_col}, ',
+            f'all: {len(ids)}, unique: {len(set(ids))}.'
+        )
+
+
+_characters_by_number_0_10 = {
     0: 'zero',
     1: 'one',
     2: 'two',
@@ -17,20 +82,19 @@ _characters_by_number_1_10 = {
 }
 
 
-def _replace_all(word: str, to_replace: Tuple[Tuple[str, str]]):
-    for r in to_replace:
-        word = word.replace(*r)
-    return word
-
-
 def _get_main_activity_code_enum_name(code: str) -> str:
     if code == 'MISSING':
         return code
     num = int(code[0])
-    num_english = _characters_by_number_1_10.get(num)
+    num_english = _characters_by_number_0_10.get(num)
     name = f"{num_english}{code[1:].strip(')')}"
     return _replace_all(
-        name, ((')(', '_'), ('(', '_'), (')', '_'))
+        name,
+        {
+            ')(': '_',
+            '(': '_',
+            ')': '_'
+        }
     ).upper()
 
 

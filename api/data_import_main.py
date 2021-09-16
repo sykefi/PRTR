@@ -11,7 +11,8 @@ Engine 2016 Redistributable" (or newer)
 """
 
 from data_import.utils import (
-    print_main_activity_codes_as_enum, print_unique_values_as_enum
+    add_projected_x_y_columns, print_main_activity_codes_as_enum,
+    print_unique_values_as_enum, clean_id, validate_ids
 )
 from data_import.conf import conf
 import os
@@ -29,6 +30,12 @@ if accdb_driver not in drivers:
         f'No driver for .accdb files found'
         f' - expected to have driver "{accdb_driver}" available.\n'
         f'Available drivers: {drivers}'
+    )
+
+
+if not os.path.exists(conf.prtr_db_file_path):
+    raise EnvironmentError(
+        f'No data file found in the specified path: {conf.prtr_db_file_path}',
     )
 
 
@@ -83,6 +90,7 @@ sql_releases = (
 )
 
 
+print(f'Attempting to read PRTR data from {conf.prtr_db_file_path}')
 conn = pyodbc.connect(
     fr'Driver={{{accdb_driver}}};'
     fr'DBQ={conf.prtr_db_file_path};'
@@ -90,12 +98,20 @@ conn = pyodbc.connect(
 
 
 facilities = pd.read_sql_query(sql_facilities, conn)
+facilities['facilityId'] = [
+    clean_id(id_str) for id_str in facilities['Facility_INSPIRE_ID']
+]
+validate_ids(facilities)
+add_projected_x_y_columns(facilities)
 print(f'Read {len(facilities)} facilities from {conf.prtr_db_file_path}')
 
 print_main_activity_codes_as_enum(facilities)
 
 
 releases = pd.read_sql_query(sql_releases, conn)
+releases['facilityId'] = [
+    clean_id(id_str) for id_str in releases['Facility_INSPIRE_ID']
+]
 print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')
 
 print_unique_values_as_enum(releases, 'pollutantCode')

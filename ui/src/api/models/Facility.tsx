@@ -1,11 +1,11 @@
 export interface Facility {
-  facilityInspireId: string
+  facilityId: string
   parentCompanyName: string
   nameOfFeature: string
   mainActivityCode: string
   mainActivityName: string
-  pointGeometryLon: number
-  pointGeometryLat: number
+  x: number
+  y: number
   streetName: string
   buildingNumber?: any
   postalCode: string

@@ -32,7 +32,7 @@ const FacilityBox = ({ f, history }: { f: Facility; history: History }) => {
         marginY={1.0}
         width="100%"
         maxWidth="500px"
-        onClick={() => history.push('/facilities/' + f.facilityInspireId)}>
+        onClick={() => history.push('/facilities/' + f.facilityId)}>
         <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
           {f.nameOfFeature}
         </Box>
@@ -283,11 +283,7 @@ export const FacilityList = () => {
                 {facilities
                   .slice(activeRowRange[0], activeRowRange[1])
                   .map(f => (
-                    <FacilityBox
-                      key={f.facilityInspireId}
-                      f={f}
-                      history={history}
-                    />
+                    <FacilityBox key={f.facilityId} f={f} history={history} />
                   ))}
               </Box>
             </>

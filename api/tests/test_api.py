@@ -46,7 +46,7 @@ def test_get_facility_by_id():
     body = response.json()
     assert len(body) == 1
     for facility in body:
-        assert facility['facilityInspireId'] == facility_id
+        assert facility['facilityId'] == facility_id
         assert _is_facility(facility)
 
 
@@ -92,7 +92,7 @@ def test_get_releases_by_facility_id():
     body = response.json()
     assert len(body) == 8
     for release in body:
-        assert release['facilityInspireId'] == facility_id
+        assert release['facilityId'] == facility_id
         assert _is_release(release)
 
 
@@ -115,7 +115,7 @@ def test_get_releases_with_facility_info_by_facility_id():
     body = response.json()
     assert len(body) == 8
     for release in body:
-        assert release['facilityInspireId'] == facility_id
+        assert release['facilityId'] == facility_id
         assert _is_release(release)
         assert _is_facility(release)
 

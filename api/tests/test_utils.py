@@ -9,12 +9,15 @@ from pydantic import ValidationError
 def test_reads_facility_from_dictionary():
     facility = facility_csv_dict_2_facility({
         'Facility_INSPIRE_ID': '123',
+        'facilityId': '12',
         'parentCompanyName': 'ABOY',
         'nameOfFeature': 'COAL',
         'mainActivityCode': '1(c)',
         'mainActivityName': 'Combustion installations',
         'pointGeometryLon': 24.6299,
         'pointGeometryLat': 24.6299,
+        'x': 2000,
+        'y': 6000,
         'streetName': 'Ruukinmestarintie 10',
         'buildingNumber': '10',
         'postalCode': '02320',
@@ -22,13 +25,16 @@ def test_reads_facility_from_dictionary():
         'countryCode': 'FI',
         'telephoneNo': '12345'
     })
-    assert facility.facilityInspireId == '123'
+    # assert facility.facilityInspireId == '123'
+    assert facility.facilityId == '12'
     assert facility.parentCompanyName == 'ABOY'
     assert facility.nameOfFeature == 'COAL'
     assert facility.mainActivityCode == MainActivityCode.ONE_C
     assert facility.mainActivityName == 'Combustion installations'
-    assert facility.pointGeometryLon == 24.6299
-    assert facility.pointGeometryLat == 24.6299
+    # assert facility.pointGeometryLon == 24.6299
+    # assert facility.pointGeometryLat == 24.6299
+    assert facility.x == 2000
+    assert facility.y == 6000
     assert facility.streetName == 'Ruukinmestarintie 10'
     assert facility.buildingNumber == '10'
     assert facility.postalCode == '02320'
@@ -41,12 +47,15 @@ def test_throws_validation_error_for_invalid_facility_main_activity_code():
     with pytest.raises(ValidationError):
         facility_csv_dict_2_facility({
             'Facility_INSPIRE_ID': '123',
+            'facilityId': '12',
             'parentCompanyName': 'ABOY',
             'nameOfFeature': 'COAL',
             'mainActivityCode': 'asdf',
             'mainActivityName': 'Combustion installations',
             'pointGeometryLon': 24.6299,
             'pointGeometryLat': 24.6299,
+            'x': 2000,
+            'y': 6000,
             'streetName': 'Ruukinmestarintie 10',
             'buildingNumber': '10',
             'postalCode': '02320',
@@ -60,12 +69,15 @@ def test_throws_validation_error_for_facility_missing_facility_id():
     with pytest.raises(ValidationError):
         facility_csv_dict_2_facility({
             'Facility_INSPIRE_ID': None,
+            'facilityId': None,
             'parentCompanyName': 'ABOY',
             'nameOfFeature': 'COAL',
             'mainActivityCode': '1(c)',
             'mainActivityName': 'Combustion installations',
             'pointGeometryLon': 24.6299,
             'pointGeometryLat': 24.6299,
+            'x': 2000,
+            'y': 6000,
             'streetName': 'Ruukinmestarintie 10',
             'buildingNumber': '10',
             'postalCode': '02320',
@@ -78,6 +90,7 @@ def test_throws_validation_error_for_facility_missing_facility_id():
 def test_reads_release_from_dictionary():
     release = release_csv_dict_2_release({
         'Facility_INSPIRE_ID': 'FI.EEA/11035.FACILITY',
+        'facilityId': 'FI_EEA_11035',
         'reportingYear': '2015',
         'pollutantCode': 'NH3',
         'pollutantName': 'Ammonia',
@@ -88,7 +101,7 @@ def test_reads_release_from_dictionary():
         'methodName': 'Measured: analytical method used'
     })
 
-    assert release.facilityInspireId == 'FI_EEA_11035'
+    assert release.facilityId == 'FI_EEA_11035'
     assert release.reportingYear == 2015
     assert release.pollutantCode == PollutantCode.NH3
     assert release.pollutantName == 'Ammonia'
@@ -103,6 +116,7 @@ def test_throws_validation_error_for_invalid_release_pollutant_code():
     with pytest.raises(ValidationError):
         release_csv_dict_2_release({
                 'Facility_INSPIRE_ID': 'FI.EEA/11035.FACILITY',
+                'facilityId': '11035_FACILITY',
                 'reportingYear': '2015',
                 'pollutantCode': 'NH3___',
                 'pollutantName': 'Ammonia',

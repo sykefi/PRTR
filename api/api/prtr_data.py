@@ -11,14 +11,14 @@ from api.conf import conf
 
 _facilities = prtr_data_source.load_facilities(conf.facilities_csv_fp)
 
-_facility_by_id = {f.facilityInspireId: f for f in _facilities}
+_facility_by_id = {f.facilityId: f for f in _facilities}
 
 _releases = prtr_data_source.load_releases(conf.releases_csv_fp)
 
 _releases_with_facility_info: List[PollutantReleaseWithFacilityInfo] = [
-    with_facility_info(r, _facility_by_id[r.facilityInspireId])
+    with_facility_info(r, _facility_by_id[r.facilityId])
     for r in _releases
-    if r.facilityInspireId in _facility_by_id
+    if r.facilityId in _facility_by_id
 ]
 
 
@@ -74,7 +74,7 @@ def _filter_releases(
     match = [
         r for r in releases_data
         if (
-            (not facility_id or r.facilityInspireId == facility_id) and
+            (not facility_id or r.facilityId == facility_id) and
             (not pollutant_code or r.pollutantCode == pollutant_code) and
             (not reporting_year or r.reportingYear == reporting_year)
         )
