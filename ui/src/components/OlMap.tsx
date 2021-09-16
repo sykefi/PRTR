@@ -65,10 +65,8 @@ export const OlMap = () => {
       width="600px"
       minWidth="290px"
       maxWidth="100%"
-      height="100%"
-      maxHeight="70vh"
-      minHeight={{ base: '500px', md: '700px' }}
-      background=" white"
+      height={{ base: '500px', md: '700px' }}
+      background="white"
       borderRadius="md"
       marginTop={1}
       boxShadow="sm"

@@ -147,14 +147,16 @@ export const FacilityList = () => {
                   as="ul"
                   listStyleType="none"
                   boxSizing="border-box"
-                  maxHeight="700px"
+                  maxHeight={{ base: 'unset', md: '700px' }}
                   maxWidth="100%"
+                  marginTop={1}
                   marginBottom={2}
                   overflowY={{ base: 'unset', md: 'auto' }}>
                   {facilities
                     .slice(activeRowRange[0], activeRowRange[1])
-                    .map(f => (
+                    .map((f, idx) => (
                       <FacilityListItem
+                        idx={idx}
                         key={f.facilityId}
                         f={f}
                         history={history}

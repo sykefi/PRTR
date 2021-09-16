@@ -4,9 +4,11 @@ import { History } from 'history'
 import { Box, Flex } from '@chakra-ui/layout'
 
 export const FacilityListItem = ({
+  idx,
   f,
   history
 }: {
+  idx: number
   f: Facility
   history: History
 }) => {
@@ -23,6 +25,7 @@ export const FacilityListItem = ({
         paddingY={1.5}
         textAlign="left"
         marginY={1.0}
+        marginTop={idx === 0 ? 'unset' : 1}
         width="500px"
         maxWidth="100%"
         onClick={() => history.push('/facilities/' + f.facilityId)}>
