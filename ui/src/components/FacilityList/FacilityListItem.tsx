@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next'
 import { Facility } from '../../api/models/Facility'
 import { History } from 'history'
 import { Box, Flex } from '@chakra-ui/layout'
-import { Link } from 'react-router-dom'
 
 export const FacilityListItem = ({
   f,
