@@ -1,10 +1,10 @@
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
 import { Facility } from '../../api/models/Facility'
-import { SolidLoadAnimation } from '../LoadAnimation/LoadAnimation'
+import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { useURLSearchParam } from '../../hooks/useURLSearchParams'
 import { FacilityURLSearchParamName } from '../../models/FacilityURLSearchParamName'
@@ -12,6 +12,7 @@ import { ResultPageSelector } from './ResultPageSelector'
 import { FacilityListItem } from './FacilityListItem'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
+import { OlMap } from '../OlMap'
 
 const pageItemCount = 20
 
@@ -86,8 +87,7 @@ export const FacilityList = () => {
   switch (listState) {
     case 'initial':
     case 'loading':
-      return <SolidLoadAnimation sizePx={25} />
-
+      return <LoadAnimation sizePx={30} />
     case 'error':
       return (
         <Box margin={1.0} marginY={2.0} fontWeight="bold">
@@ -112,46 +112,60 @@ export const FacilityList = () => {
     case 'done':
       return (
         <>
-          {(!urlSearchTerm && ( // show search input(s) & button
+          {!urlSearchTerm && (
             <FacilitySearchPanel
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
               handleSubmit={setUrlSearchParam}
             />
-          )) || // or show search result info & reset search button
-            (facilities && (
-              <FacilitySearchResultInfo
-                urlSearchTerm={urlSearchTerm}
-                resultCount={facilities ? facilities.length : 0}
-                handleExitResults={() => {
-                  if (urlSearchTerm) {
-                    setListState('initial')
-                  }
-                  history.push('/facilities')
-                }}
-              />
-            ))}
-
+          )}
           {facilities && (
-            <>
+            <Flex
+              maxWidth="100%"
+              direction="column"
+              align={{ base: 'center', lg: 'unset' }}>
+              {!!urlSearchTerm && (
+                <FacilitySearchResultInfo
+                  urlSearchTerm={urlSearchTerm}
+                  resultCount={facilities ? facilities.length : 0}
+                  handleExitResults={() => {
+                    if (urlSearchTerm) {
+                      setListState('initial')
+                    }
+                    history.push('/facilities')
+                  }}
+                />
+              )}
               <ResultPageSelector
                 pageItemCount={pageItemCount}
                 activeRowRange={activeRowRange}
                 facilityCount={facilities ? facilities.length : 0}
                 history={history}
               />
-              <Box as="ul" listStyleType="none" boxSizing="border-box">
-                {facilities
-                  .slice(activeRowRange[0], activeRowRange[1])
-                  .map(f => (
-                    <FacilityListItem
-                      key={f.facilityId}
-                      f={f}
-                      history={history}
-                    />
-                  ))}
-              </Box>
-            </>
+              <Flex wrap="wrap" justify="center" maxWidth="100%">
+                <Box
+                  as="ul"
+                  listStyleType="none"
+                  boxSizing="border-box"
+                  minHeight="700px"
+                  maxWidth="100%"
+                  maxHeight={{ base: 'unset', md: '70vh' }}
+                  overflowY={{ base: 'unset', md: 'auto' }}>
+                  {facilities
+                    .slice(activeRowRange[0], activeRowRange[1])
+                    .map(f => (
+                      <FacilityListItem
+                        key={f.facilityId}
+                        f={f}
+                        history={history}
+                      />
+                    ))}
+                </Box>
+                <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
+                  <OlMap />
+                </Box>
+              </Flex>
+            </Flex>
           )}
         </>
       )

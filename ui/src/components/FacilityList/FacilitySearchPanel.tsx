@@ -2,6 +2,11 @@ import { Button } from '@chakra-ui/button'
 import { Input } from '@chakra-ui/input'
 import { Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+
+const Form = styled.form`
+  max-width: 100%;
+`
 
 export const FacilitySearchPanel = ({
   searchTerm,
@@ -15,13 +20,14 @@ export const FacilitySearchPanel = ({
   const { t } = useTranslation()
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Flex marginTop={1.0} marginBottom={2.0} flexWrap="wrap">
         <Input
           type="text"
           bgColor="white"
           width={438}
           minWidth={300}
+          maxWidth="100%"
           marginY={1.0}
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
@@ -36,6 +42,6 @@ export const FacilitySearchPanel = ({
           {t('common.search')}
         </Button>
       </Flex>
-    </form>
+    </Form>
   )
 }

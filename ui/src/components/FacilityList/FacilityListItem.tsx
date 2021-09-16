@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Facility } from '../../api/models/Facility'
 import { History } from 'history'
 import { Box, Flex } from '@chakra-ui/layout'
+import { Link } from 'react-router-dom'
 
 export const FacilityListItem = ({
   f,
@@ -23,10 +24,16 @@ export const FacilityListItem = ({
         paddingY={1.5}
         textAlign="left"
         marginY={1.0}
-        width="100%"
-        maxWidth="500px"
+        width="500px"
+        maxWidth="100%"
         onClick={() => history.push('/facilities/' + f.facilityId)}>
-        <Box fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
+        <Box
+          fontWeight="semibold"
+          as="h4"
+          lineHeight="tight"
+          overflowWrap="normal"
+          whiteSpace="unset"
+          overflow="hidden">
           {f.nameOfFeature}
         </Box>
         <Flex>

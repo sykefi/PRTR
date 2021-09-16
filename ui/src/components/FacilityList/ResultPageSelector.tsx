@@ -48,8 +48,13 @@ export const ResultPageSelector = ({
   }
 
   return (
-    <Flex margin={1.0} marginTop={6.0} marginBottom={2.0} alignItems="center">
-      <Box fontWeight="bold" marginRight={3}>
+    <Flex
+      margin={1}
+      marginTop={3}
+      marginBottom={2}
+      alignItems="center"
+      wrap="wrap">
+      <Box fontWeight="bold" marginRight={3} marginY={1.5}>
         {t('common.showingItems')} {activeRowRange[0] + 1}-{activeRowRange[1]} (
         {facilityCount})
       </Box>

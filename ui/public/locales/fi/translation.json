@@ -13,7 +13,7 @@
     "toGoBack": "Paluu",
     "facilitySearchResult": "Hakusanalla \"{{searchTerm}}\" löytyi {{resultCount}} kohdetta.",
     "search": "Etsi",
-    "showingItems": "Näytetään kohteet",
+    "showingItems": "Kohteet",
     "previousPage": "Edellinen sivu",
     "nextPage": "Seuraava sivu"
   },

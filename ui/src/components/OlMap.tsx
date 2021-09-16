@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Map, View } from 'ol'
-import styled from 'styled-components'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import GeoJSON from 'ol/format/GeoJSON'
@@ -11,19 +10,7 @@ import { Extent } from 'ol/extent'
 import Projection from 'ol/proj/Projection'
 import 'ol/ol.css'
 import './OlMap.css'
-
-const MapContainer = styled.div`
-  width: 100%;
-  max-width: 600px;
-  min-width: 500px;
-  height: 100%;
-  max-height: 70vh;
-  min-height: 700px;
-  background: white;
-  border-radius: 0.375rem;
-  margin: 0px 5px;
-  box-shadow: var(--chakra-shadows-sm);
-`
+import { Box } from '@chakra-ui/layout'
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
 
@@ -72,5 +59,19 @@ export const OlMap = () => {
     }
   }, [])
 
-  return <MapContainer id="map"></MapContainer>
+  return (
+    <Box
+      id="map"
+      width="600px"
+      minWidth="290px"
+      maxWidth="100%"
+      height="100%"
+      maxHeight="70vh"
+      minHeight={{ base: '500px', md: '700px' }}
+      background=" white"
+      borderRadius="md"
+      marginTop={1}
+      boxShadow="sm"
+    />
+  )
 }
