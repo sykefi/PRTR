@@ -147,9 +147,9 @@ export const FacilityList = () => {
                   as="ul"
                   listStyleType="none"
                   boxSizing="border-box"
-                  minHeight="700px"
+                  maxHeight="700px"
                   maxWidth="100%"
-                  maxHeight={{ base: 'unset', md: '70vh' }}
+                  marginBottom={2}
                   overflowY={{ base: 'unset', md: 'auto' }}>
                   {facilities
                     .slice(activeRowRange[0], activeRowRange[1])
