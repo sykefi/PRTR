@@ -87,7 +87,11 @@ export const FacilityList = () => {
   switch (listState) {
     case 'initial':
     case 'loading':
-      return <LoadAnimation sizePx={30} />
+      return (
+        <Box p={4}>
+          <LoadAnimation sizePx={30} />
+        </Box>
+      )
     case 'error':
       return (
         <Box margin={1.0} marginY={2.0} fontWeight="bold">

@@ -35,7 +35,10 @@ export const LoadAnimation = ({
 }) => {
   return (
     <Spinner>
-      <StyledLoadingIcon sizePx={sizePx} color={color || 'black'} />
+      <StyledLoadingIcon
+        sizePx={sizePx}
+        color={color || 'var(--chakra-colors-blue-600)'}
+      />
     </Spinner>
   )
 }

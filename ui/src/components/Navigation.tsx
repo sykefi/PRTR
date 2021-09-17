@@ -3,6 +3,7 @@ import {
   Flex,
   HStack,
   Link,
+  Icon,
   IconButton,
   useDisclosure,
   useColorModeValue,
@@ -12,6 +13,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { NavLink as RrLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { NavigationItem, RoutePath } from '../models'
+import { GiFactory } from 'react-icons/gi'
 
 const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
   const { t } = useTranslation()
@@ -55,7 +57,7 @@ const Navigation = ({
   return (
     <>
       <Box boxShadow="md" bg="white" px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent="center">
+        <Flex h={16} align="center" justifyContent="center">
           <IconButton
             size={'md'}
             marginRight={4}
@@ -64,8 +66,23 @@ const Navigation = ({
             display={{ sm: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box fontWeight="bold">FIN-PRTR</Box>
+          <HStack spacing={8} align="center">
+            <Flex align="center">
+              <Icon
+                w={9}
+                h={9}
+                color="blue.600"
+                as={GiFactory}
+                paddingBottom={1}
+              />
+              <Box
+                fontWeight="bold"
+                letterSpacing={0.2}
+                color="blue.600"
+                marginX={0.5}>
+                FIN-PRTR
+              </Box>
+            </Flex>
             <HStack
               as={'nav'}
               spacing={4}
