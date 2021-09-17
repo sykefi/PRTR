@@ -5,9 +5,9 @@
 
 A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface).
 
-The development version of the API (serving only Finnish PRTR data) is published at [prtr-api-dev.azurewebsites.net](https://prtr-api-dev.azurewebsites.net/docs).
-
 The development version of the UI is published at [prtr-ui-dev.azurewebsites.net](https://prtr-ui-dev.azurewebsites.net/).
+
+The development version of the API (serving only Finnish PRTR data) is published at [prtr-api-dev.azurewebsites.net](https://prtr-api-dev.azurewebsites.net/docs).
 
 A prototype of the user interface (or portal) is published at [prtr.fi](http://prtr.fi/).
 
@@ -63,10 +63,28 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 $ cd ui
 $ npm install
 ```
+
 ### Running the app locally
 
 `npm start`
 
 ### Running the tests
 
+To open the interactive dashboard (Cypress) for running and debugging tests, run:
+
 `npm run cypress`
+
+### Configuration
+
+By default the app uses the PRTR API at the address defined in [.env.development](ui/.env.development). To use local backend instead, you can add a new file .env.development.local and add the same environment variable there as `REACT_APP_PRTR_SERVER=http://localhost:8000`.
+
+### Code style
+
+The project is currently formatted with [Prettier](https://prettier.io/). In VSCode, the easiest way to format is to use the plugin [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) with the following settings:
+
+```
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+}
+```
