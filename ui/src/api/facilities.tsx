@@ -1,10 +1,9 @@
 import APIError from '../models/APIError'
+import { facilityResultLimit } from '../env'
 import { apiBasePath } from './conf'
 import { Facility } from './models/Facility'
 import { FacilityQueryParams } from './models/FacilityQueryParams'
 import { serializeQueryParams } from './utils'
-
-const defaultLimit = 150
 
 const getData = async <T extends any>(
   url: string,
@@ -41,7 +40,7 @@ export const getFacilities = async (
   queryParams: FacilityQueryParams = {}
 ): Promise<Facility[]> => {
   const allQueryParams: FacilityQueryParams = {
-    limit: defaultLimit,
+    limit: facilityResultLimit,
     ...queryParams
   }
   const queryString = serializeQueryParams(
