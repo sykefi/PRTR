@@ -49,6 +49,7 @@ export const ResultPageSelector = ({
 
   return (
     <Flex
+      data-cy="result-page-selector"
       margin={1}
       marginTop={3}
       marginBottom={2}
@@ -61,6 +62,7 @@ export const ResultPageSelector = ({
       <ButtonGroup>
         {activeRowRange[1] > pageItemCount && (
           <Button
+            data-cy="previous-page-btn"
             colorScheme="blue"
             size="sm"
             onClick={() => updateActiveRowRage(newLowerLimits)}>
@@ -69,6 +71,7 @@ export const ResultPageSelector = ({
         )}
         {activeRowRange[1] < facilityCount && (
           <Button
+            data-cy="next-page-btn"
             colorScheme="blue"
             size="sm"
             onClick={() => updateActiveRowRage(newUpperLimits)}>

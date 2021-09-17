@@ -14,7 +14,7 @@ export const FacilitySearchResultInfo = ({
   const { t } = useTranslation()
 
   return (
-    <Box>
+    <Box data-cy="search-result-info">
       <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
         {t('common.facilitySearchResult', {
           searchTerm: urlSearchTerm,
@@ -23,6 +23,7 @@ export const FacilitySearchResultInfo = ({
       </Box>
       <Box>
         <Button
+          data-cy="exit-results-btn"
           marginTop={2.0}
           marginBottom={2.0}
           size="sm"

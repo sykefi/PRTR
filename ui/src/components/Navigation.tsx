@@ -56,7 +56,7 @@ const Navigation = ({
 
   return (
     <>
-      <Box boxShadow="md" bg="white" px={4}>
+      <Box boxShadow="md" bg="white" px={4} data-cy="navigation-panel">
         <Flex h={16} align="center" justifyContent="center">
           <IconButton
             size={'md'}

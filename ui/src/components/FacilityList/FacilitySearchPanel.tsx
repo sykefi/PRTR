@@ -20,9 +20,10 @@ export const FacilitySearchPanel = ({
   const { t } = useTranslation()
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
       <Flex marginTop={1.0} marginBottom={2.0} flexWrap="wrap" justify="center">
         <Input
+          data-cy="facility-search-term"
           type="text"
           bgColor="white"
           width={438}
@@ -34,6 +35,7 @@ export const FacilitySearchPanel = ({
           placeholder={t('common.searchTerm')}
         />
         <Button
+          data-cy="search-facilities-btn"
           type="submit"
           marginY={1.0}
           marginLeft={1.0}

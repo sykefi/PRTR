@@ -88,7 +88,7 @@ export const FacilityList = () => {
     case 'initial':
     case 'loading':
       return (
-        <Box p={4}>
+        <Box p={4} data-cy="facilities-load-animation">
           <LoadAnimation sizePx={30} />
         </Box>
       )
@@ -148,6 +148,7 @@ export const FacilityList = () => {
               />
               <Flex wrap="wrap" justify="center" maxWidth="100%">
                 <Box
+                  data-cy="facility-list"
                   as="ul"
                   listStyleType="none"
                   boxSizing="border-box"

@@ -26,6 +26,7 @@ export const FacilityListItem = ({
         textAlign="left"
         marginY={1.0}
         marginTop={idx === 0 ? 'unset' : 1}
+        marginRight={{ base: 'unset', md: 1 }}
         width="500px"
         maxWidth="100%"
         onClick={() => history.push('/facilities/' + f.facilityId)}>
