@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
-import { Facility } from '../../api/models/Facility'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { useURLSearchParam } from '../../hooks/useURLSearchParams'
@@ -13,6 +12,7 @@ import { FacilityListItem } from './FacilityListItem'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
 import { OlMap } from '../OlMap'
+import { Facility } from '../../api/models/Facility'
 
 const pageItemCount = 20
 
@@ -30,7 +30,7 @@ export const FacilityList = () => {
   const [listState, setListState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
-  const [facilities, setFacilities] = useState<Facility[] | null>(null)
+  const [facilities, seFacilities] = useState<Facility[] | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const history = useHistory()
   const urlSearchTerm = useURLSearchParam(FacilityURLSearchParamName.SearchTerm)
@@ -66,8 +66,8 @@ export const FacilityList = () => {
     const queryParams = getQueryParams(urlSearchTerm)
     const getFacilities = async () => {
       try {
-        const facilities = await api.getFacilities(controller, queryParams)
-        setFacilities(facilities)
+        const data = await api.getFacilities(controller, queryParams)
+        seFacilities(data)
         setListState('done')
       } catch (e) {
         if (!controller.signal.aborted) {
@@ -127,7 +127,7 @@ export const FacilityList = () => {
               {!!urlSearchTerm && (
                 <FacilitySearchResultInfo
                   urlSearchTerm={urlSearchTerm}
-                  resultCount={facilities ? facilities.length : 0}
+                  resultCount={facilities.length}
                   handleExitResults={() => {
                     if (urlSearchTerm) {
                       setListState('initial')
@@ -139,7 +139,7 @@ export const FacilityList = () => {
               <ResultPageSelector
                 pageItemCount={pageItemCount}
                 activeRowRange={activeRowRange}
-                facilityCount={facilities ? facilities.length : 0}
+                facilityCount={facilities.length}
                 history={history}
               />
               <Flex wrap="wrap" justify="center" maxWidth="100%">
@@ -164,7 +164,7 @@ export const FacilityList = () => {
                     ))}
                 </Box>
                 <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
-                  <OlMap />
+                  <OlMap facilities={facilities} />
                 </Box>
               </Flex>
             </>
