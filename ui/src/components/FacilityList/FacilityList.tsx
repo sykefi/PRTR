@@ -164,7 +164,10 @@ export const FacilityList = () => {
                     ))}
                 </Box>
                 <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
-                  <OlMap facilities={facilities} />
+                  <OlMap
+                    facilities={facilities}
+                    zoomToInitialExtent={!urlSearchTerm}
+                  />
                 </Box>
               </Flex>
             </>

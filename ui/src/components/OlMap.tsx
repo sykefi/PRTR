@@ -1,19 +1,18 @@
-import { useEffect } from 'react'
-import { Feature, Map, View } from 'ol'
+import { useEffect, useState } from 'react'
+import { Map, View } from 'ol'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import GeoJSON from 'ol/format/GeoJSON'
 import municipalitiesGeoJson from '../assets/kunnat21_4-5milj_3067.json'
 import { Style, Fill, Circle, Stroke } from 'ol/style'
-import { easeOut } from 'ol/easing'
 import { Extent } from 'ol/extent'
 import Projection from 'ol/proj/Projection'
+import { easeOut } from 'ol/easing'
 import 'ol/ol.css'
 import './OlMap.css'
 import { Box } from '@chakra-ui/layout'
-import Geometry from 'ol/geom/Geometry'
 import { Facility } from '../api/models/Facility'
-import { facilitiesAsGeoJSONFC } from '../utils'
+import { OlLayerFacilities } from './OlLayerFacilities'
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
 
@@ -72,61 +71,58 @@ const olMap = new Map({
 
 interface Props {
   facilities?: Facility[]
+  zoomToInitialExtent: boolean
 }
 
 export const OlMap = (props: Props) => {
-  // create/render map
+  const [mapIsRendered, setMapIsRendered] = useState(false)
+
   useEffect(() => {
     if (!olMap.getTarget()) {
       olMap.setTarget('map')
       setTimeout(() => {
         olMap.updateSize()
-        olMap.getView().fit(initialExtent, { padding: [0, 0, 0, 0] })
-        olMap.getView().setCenter([456101, 7186327])
+        setMapIsRendered(true)
         console.log(olMap)
-      }, 200)
+      }, 100)
     }
-
     return () => {
       olMap.setTarget(undefined)
+      setMapIsRendered(false)
     }
   }, [])
 
-  // update facility layer data
   useEffect(() => {
-    if (!!props.facilities) {
-      const fc = facilitiesAsGeoJSONFC(props.facilities)
-      const features = facilitySource
-        .getFormat()
-        ?.readFeatures(fc) as Feature<Geometry>[]
-      if (!!features) {
-        facilitySource.addFeatures(features)
-        console.log(
-          'olMap.getView().calculateExtent()',
-          olMap.getView().calculateExtent()
-        )
-
-        console.log('facilitySource.getExtent()', facilitySource.getExtent())
-
-        olMap.getView().fit([418564, 6687192, 424008, 6696389])
-      }
+    if (mapIsRendered && props.zoomToInitialExtent) {
+      olMap.getView().fit(initialExtent, {
+        padding: [100, 100, 100, 100],
+        duration: 1000,
+        easing: easeOut
+      })
     }
-    return () => {
-      facilitySource.clear()
-    }
-  }, [props.facilities])
+  }, [mapIsRendered, props.zoomToInitialExtent])
 
   return (
-    <Box
-      id="map"
-      width="600px"
-      minWidth="290px"
-      maxWidth="100%"
-      height={{ base: '500px', md: '700px' }}
-      background="white"
-      borderRadius="md"
-      marginTop={1}
-      boxShadow="sm"
-    />
+    <>
+      <Box
+        id="map"
+        width="600px"
+        minWidth="290px"
+        maxWidth="100%"
+        height={{ base: '500px', md: '700px' }}
+        background="white"
+        borderRadius="md"
+        marginTop={1}
+        boxShadow="sm"
+      />
+      {mapIsRendered && props.facilities && (
+        <OlLayerFacilities
+          olMap={olMap}
+          facilities={props.facilities}
+          facilitySource={facilitySource}
+          zoomToInitialExtent={props.zoomToInitialExtent}
+        />
+      )}
+    </>
   )
 }
