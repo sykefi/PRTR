@@ -21,12 +21,12 @@ export const FacilitySearchPanel = ({
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Flex marginTop={1.0} marginBottom={2.0} flexWrap="wrap">
+      <Flex marginTop={1.0} marginBottom={2.0} flexWrap="wrap" justify="center">
         <Input
           type="text"
           bgColor="white"
           width={438}
-          minWidth={300}
+          minWidth={200}
           maxWidth="100%"
           marginY={1.0}
           value={searchTerm}

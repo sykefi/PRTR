@@ -111,7 +111,10 @@ export const FacilityList = () => {
 
     case 'done':
       return (
-        <>
+        <Flex
+          maxWidth="100%"
+          direction="column"
+          align={{ base: 'center', lg: 'unset' }}>
           {!urlSearchTerm && (
             <FacilitySearchPanel
               searchTerm={searchTerm}
@@ -120,10 +123,7 @@ export const FacilityList = () => {
             />
           )}
           {facilities && (
-            <Flex
-              maxWidth="100%"
-              direction="column"
-              align={{ base: 'center', lg: 'unset' }}>
+            <>
               {!!urlSearchTerm && (
                 <FacilitySearchResultInfo
                   urlSearchTerm={urlSearchTerm}
@@ -167,9 +167,9 @@ export const FacilityList = () => {
                   <OlMap />
                 </Box>
               </Flex>
-            </Flex>
+            </>
           )}
-        </>
+        </Flex>
       )
 
     default:
