@@ -7,10 +7,7 @@ import { Facility } from '../../api/models/Facility'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { OlMap } from '../OlMap'
-import {
-  useURLSearchParam,
-  useURLSearchParams
-} from '../../hooks/useURLSearchParams'
+import { useURLSearchParam } from '../../hooks/useURLSearchParams'
 import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
 import { FacilityURLSearchParamName } from '../../models/FacilityURLSearchParamName'
 import { ResultPageSelector } from './ResultPageSelector'
@@ -34,7 +31,6 @@ export const FacilityList = () => {
   const [listState, setListState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
-  const urlSearchParams = useURLSearchParams()
   const urlSearchTerm = useURLSearchParam(FacilityURLSearchParamName.SearchTerm)
   const urlFacilityMainActivityCode = useURLSearchParam(
     FacilityURLSearchParamName.FacilityMainActivityCode
@@ -61,6 +57,10 @@ export const FacilityList = () => {
 
   const { t } = useTranslation()
 
+  /**
+   * Resets current URL search parameters (including active row ranges)
+   * and sets new ones. This will trigger the facility list update.
+   */
   const setUrlSearchParams = () => {
     if (
       urlSearchTerm !== searchTerm ||
@@ -70,17 +70,18 @@ export const FacilityList = () => {
     } else {
       return
     }
+    const newUrlSearchParams = new URLSearchParams()
     if (searchTerm)
-      urlSearchParams.set(FacilityURLSearchParamName.SearchTerm, searchTerm)
+      newUrlSearchParams.set(FacilityURLSearchParamName.SearchTerm, searchTerm)
     if (facilityMainActivityCode) {
-      urlSearchParams.set(
+      newUrlSearchParams.set(
         FacilityURLSearchParamName.FacilityMainActivityCode,
         facilityMainActivityCode
       )
     }
     history.push({
       pathname: '/facilities',
-      search: '?' + urlSearchParams.toString()
+      search: '?' + newUrlSearchParams.toString()
     })
   }
 
