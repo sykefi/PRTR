@@ -11,11 +11,6 @@ const Form = styled.form`
   max-width: 100%;
 `
 
-export const colourOptions = [
-  { value: '2(b)', label: 'Rauta- ja terästeollisuus' },
-  { value: '5(f)', label: 'Yhdyskuntajätevesien käsittelylaitokset' }
-]
-
 export const FacilitySearchPanel = ({
   searchTerm,
   setSearchTerm,
@@ -41,7 +36,7 @@ export const FacilitySearchPanel = ({
               isClearable
               closeMenuOnSelect
               name="colors"
-              options={colourOptions}
+              options={facilityMainActivityCodeOptions}
               borderColor="blue"
               placeholder="Valitse toimiala"
               onChange={e => console.log(e)}

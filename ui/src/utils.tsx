@@ -42,4 +42,11 @@ export const checkForMissingTranslations = (
       missing
     )
   }
+  const emptyValues = keys.filter(k => k in translations && !translations[k])
+  if (emptyValues.length > 0) {
+    console.warn(
+      `Found empty values for translation keys (${lng}: ${translationFile}):`,
+      emptyValues
+    )
+  }
 }
