@@ -1,5 +1,6 @@
 import 'react-i18next';
 import translation from '../public/locales/fi/translation.json';
+import mainActivityCodeDesc from '../public/locales/fi/mainActivityCodeDesc.json';
 
 // TS magic for translations by ford04: https://stackoverflow.com/a/58308279/15619648
 type Concat<K extends string, P extends string> = `${K}${'' extends P
@@ -31,6 +32,7 @@ declare module 'react-i18next' {
     // custom resources type
     resources: {
       translation: typeof translation;
+      mainActivityCodeDesc: typeof mainActivityCodeDesc;
     }
   }
 }

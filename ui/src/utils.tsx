@@ -1,3 +1,5 @@
+import i18next from 'i18next'
+import { Namespace } from 'react-i18next'
 import { Facility } from './api/models/Facility'
 import {
   GeoJSONPointFeature,
@@ -24,5 +26,20 @@ export const facilitiesAsGeoJSONFC = (
       }
     },
     features: facilities.map(facilityAsGeoJSONFeature)
+  }
+}
+
+export const checkForMissingTranslations = (
+  translationFile: Namespace,
+  keys: string[],
+  lng: 'fi' | 'sv' | 'en' = 'fi'
+) => {
+  const translations = i18next.getResourceBundle(lng, translationFile as string)
+  const missing = keys.filter(k => !(k in translations))
+  if (missing.length > 0) {
+    console.error(
+      `Missing translation keys (${lng}: ${translationFile}):`,
+      missing
+    )
   }
 }

@@ -5,6 +5,7 @@ import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { ChakraSelect } from '../ChakraReactSelect'
+import { useFacilityMainActivityOptions } from './useFacilityMainActivityOptions'
 
 const Form = styled.form`
   max-width: 100%;
@@ -25,6 +26,7 @@ export const FacilitySearchPanel = ({
   handleSubmit: () => void
 }) => {
   const { t } = useTranslation()
+  const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
