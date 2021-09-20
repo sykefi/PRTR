@@ -31,6 +31,9 @@ export const FacilityList = () => {
   const [listState, setListState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
+  const history = useHistory()
+  const { t } = useTranslation()
+
   const urlSearchTerm = useURLSearchParam(FacilityURLSearchParamName.SearchTerm)
   const urlFacilityMainActivityCode = useURLSearchParam(
     FacilityURLSearchParamName.FacilityMainActivityCode
@@ -46,7 +49,6 @@ export const FacilityList = () => {
   const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
     FacilityMainActivityCode | undefined
   >(undefined)
-  const history = useHistory()
 
   const activeRowRange = [
     urlActiveRangeLowerLimit,
@@ -55,11 +57,10 @@ export const FacilityList = () => {
 
   const showingSearchResults = !!urlSearchTerm || !!urlFacilityMainActivityCode
 
-  const { t } = useTranslation()
-
   /**
    * Resets current URL search parameters (including active row ranges)
-   * and sets new ones. This will trigger the facility list update.
+   * and sets new ones (if some of them changed). This will trigger
+   * the facility list update.
    */
   const setUrlSearchParams = () => {
     if (
@@ -86,7 +87,15 @@ export const FacilityList = () => {
   }
 
   useEffect(() => {
-    console.log('update facility list, params:', urlSearchTerm)
+    console.log(
+      'update facility list with query params:',
+      urlSearchTerm,
+      urlFacilityMainActivityCode
+    )
+    // we need to reset the form state when user navigates back to search
+    !urlFacilityMainActivityCode && setFacilityMainActivityCode(undefined)
+    !urlSearchTerm && setSearchTerm(undefined)
+
     const controller = new AbortController()
     const getFacilities = async () => {
       try {
