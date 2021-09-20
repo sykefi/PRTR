@@ -102,6 +102,8 @@ export const OlMap = (props: Props) => {
     }
   }, [mapIsRendered, props.zoomToInitialExtent])
 
+  const facilityCount = props.facilities?.length
+
   return (
     <>
       <Box
@@ -115,10 +117,10 @@ export const OlMap = (props: Props) => {
         marginTop={1}
         boxShadow="sm"
       />
-      {mapIsRendered && props.facilities && (
+      {mapIsRendered && !!facilityCount && (
         <OlLayerFacilities
           olMap={olMap}
-          facilities={props.facilities}
+          facilities={props.facilities!}
           facilitySource={facilitySource}
           zoomToInitialExtent={props.zoomToInitialExtent}
         />
