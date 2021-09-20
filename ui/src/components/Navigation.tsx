@@ -9,11 +9,11 @@ import {
   useColorModeValue,
   Stack
 } from '@chakra-ui/react'
+import { GiFactory } from 'react-icons/gi'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { NavLink as RrLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { NavigationItem, RoutePath } from '../models'
-import { GiFactory } from 'react-icons/gi'
 
 const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
   const { t } = useTranslation()

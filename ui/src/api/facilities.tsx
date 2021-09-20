@@ -5,10 +5,10 @@ import { Facility } from './models/Facility'
 import { FacilityQueryParams } from './models/FacilityQueryParams'
 import { serializeQueryParams } from './utils'
 
-const getData = async <T extends any>(
+const getData = async <T,>(
   url: string,
   controller: AbortController
-): Promise<T> => {
+): Promise<T | []> => {
   try {
     const res = await fetch(url, { signal: controller.signal })
     if (!res.ok) {
@@ -20,7 +20,7 @@ const getData = async <T extends any>(
       }
       if (res.status === 404) {
         console.warn('No facilities found, response:', res)
-        return [] as T
+        return []
       }
       throw new Error(`Fetch failed: ${url} ->
         status=${res.status}
@@ -28,8 +28,8 @@ const getData = async <T extends any>(
         url=${res.url}
         body=${JSON.stringify(errorBody)}`)
     }
-    const body = (await res.json()) as T
-    return await body
+    const body = await res.json()
+    return (await body) as T
   } catch (e) {
     throw new APIError(e as Error)
   }
@@ -47,5 +47,5 @@ export const getFacilities = async (
     allQueryParams as Record<string, string | number>
   )
   const url = `${apiBasePath}/facilities?` + queryString
-  return await getData<Facility[]>(url, controller)
+  return (await getData(url, controller)) as Facility[]
 }

@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Flex } from '@chakra-ui/layout'
 import { FrontPage } from './components/FrontPage'
 import { FacilityList } from './components/FacilityList/FacilityList'
 import { Releases } from './components/Releases'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
-import { Flex } from '@chakra-ui/layout'
 import { FacilityInfo } from './components/FacilityInfo'
 
 const navigationItems: NavigationItem[] = [

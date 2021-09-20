@@ -1,7 +1,7 @@
 export interface GeoJSONPointFeature {
   type: 'Feature'
   geometry: { type: 'Point'; coordinates: [number, number] }
-  properties: {}
+  properties: Record<string, unknown>
 }
 
 export interface GeoJSONFeatureCollection {

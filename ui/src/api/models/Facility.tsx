@@ -7,9 +7,9 @@ export interface Facility {
   x: number
   y: number
   streetName: string
-  buildingNumber?: any
+  buildingNumber?: string
   postalCode: string
   city: string
   countryCode: string
-  telephoneNo?: any
+  telephoneNo?: string
 }

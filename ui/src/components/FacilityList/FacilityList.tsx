@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
+import { Facility } from '../../api/models/Facility'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
+import { OlMap } from '../OlMap'
 import { useURLSearchParam } from '../../hooks/useURLSearchParams'
 import { FacilityURLSearchParamName } from '../../models/FacilityURLSearchParamName'
 import { ResultPageSelector } from './ResultPageSelector'
 import { FacilityListItem } from './FacilityListItem'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
-import { OlMap } from '../OlMap'
-import { Facility } from '../../api/models/Facility'
 
 const pageItemCount = 20
 

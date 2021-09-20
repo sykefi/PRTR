@@ -31,6 +31,6 @@ declare module 'react-i18next' {
     // custom resources type
     resources: {
       translation: typeof translation;
-    };
-  };
-};
+    }
+  }
+}
