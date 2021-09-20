@@ -27,6 +27,7 @@ export type TranslationKeys = DeepLeafKeys<typeof translation>;
 declare module 'react-i18next' {
   // and extend them!
   interface CustomTypeOptions {
+    ns: ['translation', 'mainActivityCodeDesc'],
     // custom namespace type if you changed it
     defaultNS: 'translation';
     // custom resources type

@@ -12,12 +12,14 @@
     "goBack": "Palaa",
     "toGoBack": "Paluu",
     "facilitySearchResult": "Hakusanalla \"{{searchTerm}}\" löytyi {{resultCount}} kohdetta.",
+    "facilitySearchResultCountText": "Haulla löytyi {{resultCount}} kohdetta.",
     "search": "Etsi",
     "showingItems": "Kohteet",
     "previousPage": "Edellinen sivu",
     "nextPage": "Seuraava sivu"
   },
   "facilities": {
-    "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan."
+    "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
+    "selectFacilityMainActivityCode": "Valitse laitoksen toimiala"
   }
 }

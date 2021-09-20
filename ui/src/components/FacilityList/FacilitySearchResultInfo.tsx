@@ -7,7 +7,7 @@ export const FacilitySearchResultInfo = ({
   resultCount,
   handleExitResults
 }: {
-  urlSearchTerm: string | null
+  urlSearchTerm: string | undefined
   resultCount: number
   handleExitResults: () => void
 }) => {
@@ -16,10 +16,14 @@ export const FacilitySearchResultInfo = ({
   return (
     <Box data-cy="search-result-info">
       <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
-        {t('common.facilitySearchResult', {
-          searchTerm: urlSearchTerm,
-          resultCount
-        })}
+        {(!!urlSearchTerm &&
+          t('common.facilitySearchResult', {
+            searchTerm: urlSearchTerm,
+            resultCount
+          })) ||
+          t('common.facilitySearchResultCountText', {
+            resultCount
+          })}
       </Box>
       <Box>
         <Button

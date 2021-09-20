@@ -4,6 +4,7 @@ import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
+import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { useFacilityMainActivityOptions } from './useFacilityMainActivityOptions'
 
@@ -13,15 +14,28 @@ const Form = styled.form`
 
 export const FacilitySearchPanel = ({
   searchTerm,
+  facilityMainActivityCode,
   setSearchTerm,
+  setFacilityMainActivityCode,
   handleSubmit
 }: {
-  searchTerm: string
+  searchTerm: string | undefined
+  facilityMainActivityCode: FacilityMainActivityCode | undefined
   setSearchTerm: (term: string) => void
+  setFacilityMainActivityCode: (
+    code: FacilityMainActivityCode | undefined
+  ) => void
   handleSubmit: () => void
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
+
+  const initialOption = facilityMainActivityCode
+    ? {
+        value: facilityMainActivityCode,
+        label: t(`mainActivityCodeDesc:${facilityMainActivityCode}`)
+      }
+    : undefined
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
@@ -35,11 +49,14 @@ export const FacilitySearchPanel = ({
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              name="colors"
+              value={initialOption}
+              name="facilityMainActivityCode"
               options={facilityMainActivityCodeOptions}
               borderColor="blue"
-              placeholder="Valitse toimiala"
-              onChange={e => console.log(e)}
+              placeholder={t(
+                'translation:facilities.selectFacilityMainActivityCode'
+              )}
+              onChange={e => setFacilityMainActivityCode(e?.value)}
             />
           </Box>
           <Input
@@ -49,18 +66,18 @@ export const FacilitySearchPanel = ({
             minWidth={200}
             maxWidth="100%"
             marginY={1.0}
-            value={searchTerm}
+            value={searchTerm || ''}
             onChange={e => setSearchTerm(e.target.value)}
-            placeholder={t('common.searchTerm')}
+            placeholder={t('translation:common.searchTerm')}
           />
           <Button
             data-cy="search-facilities-btn"
             type="submit"
             marginY={1.0}
             marginLeft={1.0}
-            disabled={searchTerm === ''}
+            disabled={!searchTerm && !facilityMainActivityCode}
             colorScheme="green">
-            {t('common.search')}
+            {t('translation:common.search')}
           </Button>
         </FormControl>
       </Flex>
