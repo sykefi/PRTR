@@ -127,85 +127,81 @@ export const FacilityPage = () => {
     }
   }, [urlSearchTerm, urlFacilityMainActivityCode])
 
-  switch (listState) {
-    case 'initial':
-    case 'loading':
-      return (
-        <Box p={4} data-cy="facilities-load-animation">
-          <LoadAnimation sizePx={30} />
-        </Box>
-      )
-    case 'error':
-      return (
-        <Box margin={1.0} marginY={2.0} fontWeight="bold">
-          <Box>
-            {t('facilities.loadFacilitiesErroredText', {
-              searchTerm: urlSearchTerm,
-              resultCount: facilities ? facilities.length : 0
-            })}
-          </Box>
-          <Box>
-            <Button
-              marginY={2.0}
-              size="sm"
-              colorScheme="blue"
-              onClick={() => history.push('/')}>
-              {t('common.goBack')}
-            </Button>
-          </Box>
-        </Box>
-      )
+  if (listState === 'initial' || listState === 'loading') {
+    return (
+      <Box p={4} data-cy="facilities-load-animation">
+        <LoadAnimation sizePx={30} />
+      </Box>
+    )
+  }
 
-    case 'done':
-      return (
-        <Flex
-          maxWidth="100%"
-          direction="column"
-          align={{ base: 'center', lg: 'unset' }}>
-          {!showingSearchResults && (
-            <FacilitySearchPanel
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-              facilityMainActivityCode={facilityMainActivityCode}
-              setFacilityMainActivityCode={setFacilityMainActivityCode}
-              handleSubmit={setUrlSearchParams}
+  if (listState === 'error') {
+    return (
+      <Box margin={1.0} marginY={2.0} fontWeight="bold">
+        <Box>
+          {t('facilities.loadFacilitiesErroredText', {
+            searchTerm: urlSearchTerm,
+            resultCount: facilities ? facilities.length : 0
+          })}
+        </Box>
+        <Box>
+          <Button
+            marginY={2.0}
+            size="sm"
+            colorScheme="blue"
+            onClick={() => history.push('/')}>
+            {t('common.goBack')}
+          </Button>
+        </Box>
+      </Box>
+    )
+  }
+
+  return (
+    <Flex
+      maxWidth="100%"
+      direction="column"
+      align={{ base: 'center', lg: 'unset' }}>
+      {!showingSearchResults && (
+        <FacilitySearchPanel
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          facilityMainActivityCode={facilityMainActivityCode}
+          setFacilityMainActivityCode={setFacilityMainActivityCode}
+          handleSubmit={setUrlSearchParams}
+        />
+      )}
+      {facilities && (
+        <>
+          {showingSearchResults && (
+            <FacilitySearchResultInfo
+              urlSearchTerm={urlSearchTerm}
+              resultCount={facilities.length}
+              handleExitResults={returnToMainList}
             />
           )}
-          {facilities && (
-            <>
-              {showingSearchResults && (
-                <FacilitySearchResultInfo
-                  urlSearchTerm={urlSearchTerm}
-                  resultCount={facilities.length}
-                  handleExitResults={returnToMainList}
-                />
-              )}
-              <ResultPageSelector
-                pageItemCount={pageItemCount}
-                activeRowRange={activeRowRange}
-                facilityCount={facilities.length}
-                history={history}
+          <ResultPageSelector
+            pageItemCount={pageItemCount}
+            activeRowRange={activeRowRange}
+            facilityCount={facilities.length}
+            history={history}
+          />
+          <Flex wrap="wrap" justify="center" maxWidth="100%">
+            <FacilityList
+              facilities={facilities}
+              activeRowRange={activeRowRange}
+              history={history}
+              handleExitResults={returnToMainList}
+            />
+            <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
+              <OlMap
+                facilities={facilities}
+                zoomToInitialExtent={!urlSearchTerm}
               />
-              <Flex wrap="wrap" justify="center" maxWidth="100%">
-                <FacilityList
-                  facilities={facilities}
-                  activeRowRange={activeRowRange}
-                  history={history}
-                  handleExitResults={returnToMainList}
-                />
-                <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
-                  <OlMap
-                    facilities={facilities}
-                    zoomToInitialExtent={!urlSearchTerm}
-                  />
-                </Box>
-              </Flex>
-            </>
-          )}
-        </Flex>
-      )
-
-    default:
-      return null
-  }
+            </Box>
+          </Flex>
+        </>
+      )}
+    </Flex>
+  )
 }
