@@ -1,4 +1,12 @@
 {
   "plugins": ["cypress"],
-  "extends": ["plugin:cypress/recommended"]
+  "extends": ["plugin:cypress/recommended"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["cypress/tsconfig.json"]
+      }
+    }
+  ]
 }
