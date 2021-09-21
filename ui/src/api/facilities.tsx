@@ -7,6 +7,10 @@ import { serializeQueryParams } from './utils'
 
 const cache = new Map<string, Facility[]>()
 
+enum CacheKey {
+  AllFacilities = 'allFacilities'
+}
+
 const getData = async <T,>(
   url: string,
   controller: AbortController
@@ -50,15 +54,45 @@ export const getFacilities = async (
   )
   const url = `${apiBasePath}/facilities?` + queryString
 
-  const cached = cache.get(url)
-  if (cached) return cached
+  if (!Object.values(queryParams).some(v => !!v)) {
+    // get all facilities from cache if no filters are used
+    const cached = cache.get(CacheKey.AllFacilities)
+    if (cached) return cached
+  }
 
   const data = (await getData(url, controller)) as Facility[]
 
   // set facilities to cache if they were not filtered
   if (!Object.values(queryParams).some(v => !!v)) {
-    cache.set(url, data)
+    cache.set(CacheKey.AllFacilities, data)
   }
 
   return data
+}
+
+export const getFacility = async (
+  controller: AbortController,
+  facilityId: string
+): Promise<Facility> => {
+  const allFacilities = cache.get(CacheKey.AllFacilities)
+  if (allFacilities) {
+    const match = allFacilities.find(f => f.facilityId === facilityId)
+    if (match) return match
+  }
+
+  const queryParams: FacilityQueryParams = {
+    facility_id: facilityId
+  }
+  const queryString = serializeQueryParams(
+    queryParams as Record<string, string | number>
+  )
+  const url = `${apiBasePath}/facilities?` + queryString
+  const data = (await getData(url, controller)) as Facility[]
+
+  if (data.length === 0) {
+    throw new APIError({
+      message: 'No facilities found with ID: ' + facilityId
+    })
+  }
+  return data[0]
 }

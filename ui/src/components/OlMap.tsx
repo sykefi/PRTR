@@ -80,6 +80,7 @@ export const OlMap = (props: Props) => {
   const [mapIsRendered, setMapIsRendered] = useState(false)
 
   useEffect(() => {
+    // mount and unmount map with the component
     if (!olMap.getTarget()) {
       olMap.setTarget('map')
       renderDelay = setTimeout(() => {
