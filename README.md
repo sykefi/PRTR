@@ -3,7 +3,7 @@
 
 # PRTR
 
-A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface).
+A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface). The project is funded by the [Ministry of the Environment](https://ym.fi/en/front-page) and implemented by the [Finnish Environment Institute](https://www.syke.fi/en-US).
 
 The development version of the UI is published at [prtr-ui-dev.azurewebsites.net](https://prtr-ui-dev.azurewebsites.net/).
 
