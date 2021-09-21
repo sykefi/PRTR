@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Flex } from '@chakra-ui/layout'
 import { FrontPage } from './components/FrontPage'
-import { FacilityList } from './components/FacilityList/FacilityList'
+import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { Releases } from './components/Releases'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
@@ -24,7 +24,7 @@ const App = () => {
               <FacilityInfo />
             </Route>
             <Route path={`/${RoutePath.Facilities}`}>
-              <FacilityList />
+              <FacilityPage />
             </Route>
             <Route path={`/${RoutePath.Releases}`}>
               <Releases />

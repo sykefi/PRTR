@@ -105,18 +105,7 @@ describe('Facilities', () => {
   })
 
   it('Goes back to initial facility list from "Palaa"', () => {
-    cy.intercept(
-      {
-        method: 'GET',
-        url: '**/api/v1/facilities**'
-      },
-      {
-        fixture: 'allFacilities.json',
-        delay: 200
-      }
-    )
     cy.get('[data-cy=exit-results-btn]').click()
-    cy.get('[data-cy=facilities-load-animation]').should('exist')
     cy.get('[data-cy=facilities-load-animation]').should('not.exist')
     cy.get('[data-cy=facility-list]')
       .children()

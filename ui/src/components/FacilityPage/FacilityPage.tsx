@@ -27,7 +27,7 @@ const getQueryParams = (
   }
 }
 
-export const FacilityList = () => {
+export const FacilityPage = () => {
   const [listState, setListState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
