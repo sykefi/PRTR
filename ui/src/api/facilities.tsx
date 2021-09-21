@@ -5,6 +5,8 @@ import { Facility } from './models/Facility'
 import { FacilityQueryParams } from './models/FacilityQueryParams'
 import { serializeQueryParams } from './utils'
 
+const cache = new Map<string, Facility[]>()
+
 const getData = async <T,>(
   url: string,
   controller: AbortController
@@ -47,5 +49,16 @@ export const getFacilities = async (
     allQueryParams as Record<string, string | number>
   )
   const url = `${apiBasePath}/facilities?` + queryString
-  return (await getData(url, controller)) as Facility[]
+
+  const cached = cache.get(url)
+  if (cached) return cached
+
+  const data = (await getData(url, controller)) as Facility[]
+
+  // set facilities to cache if they were not filtered
+  if (!Object.values(queryParams).some(v => !!v)) {
+    cache.set(url, data)
+  }
+
+  return data
 }
