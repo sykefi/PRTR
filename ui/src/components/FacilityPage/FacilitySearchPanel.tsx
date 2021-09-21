@@ -6,7 +6,19 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
-import { useFacilityMainActivityOptions } from './useFacilityMainActivityOptions'
+import { OptionType } from '../../models/OptionType'
+
+const useFacilityMainActivityOptions =
+  (): OptionType<FacilityMainActivityCode>[] => {
+    const { t } = useTranslation('mainActivityCodeDesc')
+
+    return Object.values(FacilityMainActivityCode).reduce((prev, curr) => {
+      return prev.concat({
+        value: curr,
+        label: t(curr)
+      })
+    }, [] as OptionType<FacilityMainActivityCode>[])
+  }
 
 const Form = styled.form`
   max-width: 100%;

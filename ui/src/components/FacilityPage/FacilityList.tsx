@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { History } from 'history'
 import { Box } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
 import { FacilityListItem } from './FacilityListItem'
@@ -7,12 +6,10 @@ import { FacilityListItem } from './FacilityListItem'
 export const FacilityList = ({
   facilities,
   activeRowRange,
-  history,
   handleExitResults
 }: {
   facilities: Facility[]
   activeRowRange: [number, number]
-  history: History
   handleExitResults: () => void
 }) => {
   useEffect(() => {
@@ -43,12 +40,7 @@ export const FacilityList = ({
       marginBottom={2}
       overflowY={{ base: 'unset', md: 'auto' }}>
       {facilities.slice(activeRowRange[0], activeRowRange[1]).map((f, idx) => (
-        <FacilityListItem
-          idx={idx}
-          key={f.facilityId}
-          f={f}
-          history={history}
-        />
+        <FacilityListItem idx={idx} key={f.facilityId} f={f} />
       ))}
     </Box>
   )

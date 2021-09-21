@@ -94,6 +94,7 @@ export const FacilityPage = () => {
   }
 
   useEffect(() => {
+    // fetch facilities after URL search parameters are changed
     console.log(
       'update facility list with query params:',
       urlSearchTerm,
@@ -190,7 +191,6 @@ export const FacilityPage = () => {
             <FacilityList
               facilities={facilities}
               activeRowRange={activeRowRange}
-              history={history}
               handleExitResults={returnToMainList}
             />
             <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">

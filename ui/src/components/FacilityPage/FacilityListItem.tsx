@@ -1,18 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import { History } from 'history'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Box, Flex, Link } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
 
-export const FacilityListItem = ({
-  idx,
-  f,
-  history
-}: {
-  idx: number
-  f: Facility
-  history: History
-}) => {
+export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
   const { t } = useTranslation()
 
   return (
