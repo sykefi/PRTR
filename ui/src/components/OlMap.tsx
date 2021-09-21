@@ -58,6 +58,8 @@ const facilityLayer = new VectorLayer({
   })
 })
 
+let renderDelay: null | ReturnType<typeof setTimeout> = null
+
 const olMap = new Map({
   target: undefined,
   layers: [baseLayer, facilityLayer],
@@ -80,14 +82,14 @@ export const OlMap = (props: Props) => {
   useEffect(() => {
     if (!olMap.getTarget()) {
       olMap.setTarget('map')
-      setTimeout(() => {
+      renderDelay = setTimeout(() => {
         olMap.updateSize()
         setMapIsRendered(true)
-        console.log(olMap)
       }, 100)
     }
     return () => {
       olMap.setTarget(undefined)
+      if (!!renderDelay) clearTimeout(renderDelay)
       setMapIsRendered(false)
     }
   }, [])
