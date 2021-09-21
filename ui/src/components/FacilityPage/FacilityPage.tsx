@@ -11,9 +11,9 @@ import { useURLSearchParam } from '../../hooks/useURLSearchParams'
 import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
 import { FacilityURLSearchParamName } from '../../models/FacilityURLSearchParamName'
 import { ResultPageSelector } from './ResultPageSelector'
-import { FacilityListItem } from './FacilityListItem'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
+import { FacilityList } from './FacilityList'
 
 const pageItemCount = 20
 
@@ -56,6 +56,13 @@ export const FacilityPage = () => {
   ].map(v => parseInt(v)) as [number, number]
 
   const showingSearchResults = !!urlSearchTerm || !!urlFacilityMainActivityCode
+
+  const returnToMainList = () => {
+    if (urlSearchTerm) {
+      setListState('initial')
+    }
+    history.push('/facilities')
+  }
 
   /**
    * Resets current URL search parameters (including active row ranges)
@@ -170,12 +177,7 @@ export const FacilityPage = () => {
                 <FacilitySearchResultInfo
                   urlSearchTerm={urlSearchTerm}
                   resultCount={facilities.length}
-                  handleExitResults={() => {
-                    if (urlSearchTerm) {
-                      setListState('initial')
-                    }
-                    history.push('/facilities')
-                  }}
+                  handleExitResults={returnToMainList}
                 />
               )}
               <ResultPageSelector
@@ -185,27 +187,12 @@ export const FacilityPage = () => {
                 history={history}
               />
               <Flex wrap="wrap" justify="center" maxWidth="100%">
-                <Box
-                  data-cy="facility-list"
-                  as="ul"
-                  listStyleType="none"
-                  boxSizing="border-box"
-                  maxHeight={{ base: 'unset', md: '700px' }}
-                  maxWidth="100%"
-                  marginTop={1}
-                  marginBottom={2}
-                  overflowY={{ base: 'unset', md: 'auto' }}>
-                  {facilities
-                    .slice(activeRowRange[0], activeRowRange[1])
-                    .map((f, idx) => (
-                      <FacilityListItem
-                        idx={idx}
-                        key={f.facilityId}
-                        f={f}
-                        history={history}
-                      />
-                    ))}
-                </Box>
+                <FacilityList
+                  facilities={facilities}
+                  activeRowRange={activeRowRange}
+                  history={history}
+                  handleExitResults={returnToMainList}
+                />
                 <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
                   <OlMap
                     facilities={facilities}
