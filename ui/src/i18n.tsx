@@ -25,7 +25,8 @@ i18n
     backend: {
       // for all available options read the backend's repository readme file
       loadPath: '/locales/{{lng}}/{{ns}}.json'
-    }
+    },
+    ns: ['translation', 'mainActivityCodeDesc'] // load these namespaces already on init
   })
 
 export default i18n

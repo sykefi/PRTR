@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Flex } from '@chakra-ui/layout'
 import { FrontPage } from './components/FrontPage'
@@ -6,6 +8,9 @@ import { Releases } from './components/Releases'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
 import { FacilityInfo } from './components/FacilityInfo'
+import { isDevOrTestEnv } from './env'
+import { checkForMissingTranslations } from './utils'
+import { FacilityMainActivityCode } from './models/FacilityMainActivityCode'
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.frontPage', path: RoutePath.FrontPage },
@@ -14,6 +19,18 @@ const navigationItems: NavigationItem[] = [
 ]
 
 const App = () => {
+  const { ready } = useTranslation(['translation', 'mainActivityCodeDesc'])
+
+  useEffect(() => {
+    // check for missing translations
+    if (ready && isDevOrTestEnv) {
+      checkForMissingTranslations(
+        'mainActivityCodeDesc',
+        Object.values(FacilityMainActivityCode)
+      )
+    }
+  }, [ready])
+
   return (
     <div data-cy="app-container">
       <Router>
