@@ -32,13 +32,11 @@ export const FacilityList = ({
       as="ul"
       listStyleType="none"
       boxSizing="border-box"
-      height="calc(100vh - 310px)"
-      minHeight={600}
-      maxHeight={800}
+      maxHeight="calc(100vh - 310px)"
       maxWidth="100%"
       marginTop={1}
       marginBottom={2}
-      overflowY={{ base: 'unset', md: 'auto' }}>
+      overflowY="auto">
       {facilities.slice(activeRowRange[0], activeRowRange[1]).map((f, idx) => (
         <FacilityListItem idx={idx} key={f.facilityId} f={f} />
       ))}
