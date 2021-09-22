@@ -32,7 +32,7 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
       </Link>
       <Flex>
         <Box fontSize="smaller" marginRight={2}>
-          {t('common.facilityTypeCode')}: {f.mainActivityCode}
+          {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
         </Box>
         <Box fontSize="smaller">
           {t('common.municipality')}: {f.city}

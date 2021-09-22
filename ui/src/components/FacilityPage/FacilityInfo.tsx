@@ -113,7 +113,7 @@ export const FacilityInfo = () => {
           {facility.nameOfFeature}
         </Box>
         <InfoPropRow
-          label={t('translation:common.facilityTypeCode')}
+          label={t('translation:facilities.facilityTypeCode')}
           value={
             facility.mainActivityCode +
             (t(`mainActivityCodeDesc:${facility.mainActivityCode}`)

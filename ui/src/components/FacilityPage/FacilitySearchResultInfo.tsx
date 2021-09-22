@@ -17,11 +17,11 @@ export const FacilitySearchResultInfo = ({
     <Box data-cy="search-result-info">
       <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
         {(!!urlSearchTerm &&
-          t('common.facilitySearchResult', {
+          t('facilities.facilitySearchResult', {
             searchTerm: urlSearchTerm,
             resultCount
           })) ||
-          t('common.facilitySearchResultCountText', {
+          t('facilities.facilitySearchResultCountText', {
             resultCount
           })}
       </Box>
