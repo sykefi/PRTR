@@ -10,7 +10,7 @@ import { NavigationItem, RoutePath } from './models'
 import { FacilityInfo } from './components/FacilityPage/FacilityInfo'
 import { isDevOrTestEnv } from './env'
 import { checkForMissingTranslations } from './utils'
-import { FacilityMainActivityCode } from './models/FacilityMainActivityCode'
+import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.frontPage', path: RoutePath.FrontPage },

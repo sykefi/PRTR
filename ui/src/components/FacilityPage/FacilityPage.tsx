@@ -8,7 +8,7 @@ import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { OlMap } from '../OlMap'
 import { useURLSearchParam } from '../../hooks/useURLSearchParams'
-import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
+import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { FacilityURLSearchParamName } from '../../models/FacilityURLSearchParamName'
 import { ResultPageSelector } from './ResultPageSelector'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
@@ -19,7 +19,7 @@ const pageItemCount = 20
 
 const getQueryParams = (
   urlSearchTerm: string | undefined,
-  mainActivityCode: string | undefined
+  mainActivityCode: FacilityMainActivityCode | undefined
 ): FacilityQueryParams | undefined => {
   return {
     name_search_str: urlSearchTerm,
@@ -193,7 +193,7 @@ export const FacilityPage = () => {
               activeRowRange={activeRowRange}
               handleExitResults={returnToMainList}
             />
-            <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
+            <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
               <OlMap
                 facilities={facilities}
                 zoomToInitialExtent={!urlSearchTerm}

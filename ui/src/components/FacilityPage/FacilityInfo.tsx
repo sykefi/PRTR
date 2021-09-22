@@ -100,8 +100,7 @@ export const FacilityInfo = () => {
         width={450}
         minWidth={250}
         maxWidth="100%"
-        marginTop={1}
-        marginBottom={2}
+        m={2}
         padding={4}
         height="max-content"
         maxHeight={600}
@@ -134,7 +133,7 @@ export const FacilityInfo = () => {
           value={facility.telephoneNo || ''}
         />
       </Box>
-      <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
+      <Box m={2} maxWidth="100%">
         <OlMap
           width={450}
           height={500}

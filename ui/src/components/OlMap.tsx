@@ -116,12 +116,10 @@ export const OlMap = (props: Props) => {
         width={props.width || '600px'}
         minWidth={250}
         maxWidth="100%"
-        height={props.height || 'calc(100vh - 310px)'}
-        minHeight={props.height || 600}
-        maxHeight={800}
+        height={props.height || 'max(600px, calc(100vh - 320px))'}
+        maxHeight={props.height || 1000}
         background="white"
         borderRadius="md"
-        marginTop={1}
         boxShadow="sm"
       />
       {mapIsRendered && !!facilityCount && (

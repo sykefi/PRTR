@@ -120,7 +120,6 @@ def release_csv_dict_2_release(
 
 
 class PollutantReleaseWithFacilityInfo(PollutantRelease):
-    facilityId: str
     parentCompanyName: str
     nameOfFeature: str
     city: Optional[str] = None

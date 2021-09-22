@@ -4,7 +4,7 @@ import { FormControl } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
+import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 
