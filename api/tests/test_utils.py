@@ -25,14 +25,10 @@ def test_reads_facility_from_dictionary():
         'countryCode': 'FI',
         'telephoneNo': '12345'
     })
-    # assert facility.facilityInspireId == '123'
     assert facility.facilityId == '12'
     assert facility.parentCompanyName == 'ABOY'
     assert facility.nameOfFeature == 'COAL'
     assert facility.mainActivityCode == MainActivityCode.ONE_C
-    assert facility.mainActivityName == 'Combustion installations'
-    # assert facility.pointGeometryLon == 24.6299
-    # assert facility.pointGeometryLat == 24.6299
     assert facility.x == 2000
     assert facility.y == 6000
     assert facility.streetName == 'Ruukinmestarintie 10'

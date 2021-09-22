@@ -30,9 +30,6 @@ class ProductionFacility(BaseModel):
     parentCompanyName: str
     nameOfFeature: str
     mainActivityCode: MainActivityCode
-    mainActivityName: Optional[str] = None
-    # pointGeometryLon: float
-    # pointGeometryLat: float
     x: int
     y: int
     streetName: Optional[str] = None
@@ -52,9 +49,6 @@ def facility_csv_dict_2_facility(
             parentCompanyName=csv_facility['parentCompanyName'],
             nameOfFeature=csv_facility['nameOfFeature'],
             mainActivityCode=csv_facility['mainActivityCode'],
-            mainActivityName=csv_facility['mainActivityName'],
-            # pointGeometryLon=csv_facility['pointGeometryLon'],
-            # pointGeometryLat=csv_facility['pointGeometryLat'],
             x=csv_facility['x'],
             y=csv_facility['y'],
             streetName=csv_facility['streetName'],
