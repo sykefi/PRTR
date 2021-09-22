@@ -1,8 +1,10 @@
+import { FacilityMainActivityCode } from '../../models/FacilityMainActivityCode'
+
 export interface Facility {
   facilityId: string
   parentCompanyName: string
   nameOfFeature: string
-  mainActivityCode: string
+  mainActivityCode: FacilityMainActivityCode
   mainActivityName: string
   x: number
   y: number

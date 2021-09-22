@@ -4,11 +4,13 @@
     "frontPage": "Etusivu",
     "facilities": "Laitokset",
     "pollutantReleases": "Päästöt",
-    "facilityTypeCode": "Koodi",
+    "facilityTypeCode": "Toimialaluokitus",
     "municipality": "Paikkakunta",
     "searchTerm": "Hakusana",
     "resetSearch": "Poista haku",
     "goBackToSearch": "Palaa hakuun",
+    "streetAddress": "Katuosoite",
+    "telephoneNumber": "Puhelinnumero",
     "goBack": "Palaa",
     "toGoBack": "Paluu",
     "facilitySearchResult": "Hakusanalla \"{{searchTerm}}\" löytyi {{resultCount}} kohdetta.",
@@ -20,6 +22,7 @@
   },
   "facilities": {
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
-    "selectFacilityMainActivityCode": "Valitse laitoksen toimiala"
+    "selectFacilityMainActivityCode": "Valitse laitoksen toimiala",
+    "couldNotFindFacilityWithId": "Laitoksen tietoja ei löytynyt"
   }
 }
