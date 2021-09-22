@@ -97,7 +97,7 @@ export const FacilityInfo = () => {
         data-cy="facility-info-container"
         listStyleType="none"
         boxSizing="border-box"
-        width={300}
+        width={450}
         minWidth={250}
         maxWidth="100%"
         marginTop={1}
@@ -136,6 +136,8 @@ export const FacilityInfo = () => {
       </Box>
       <Box px={{ base: 'unset', md: 2 }} maxWidth="100%">
         <OlMap
+          width={450}
+          height={500}
           facilities={facility ? [facility] : undefined}
           zoomToInitialExtent={false}
         />

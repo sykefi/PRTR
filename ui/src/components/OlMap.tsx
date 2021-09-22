@@ -73,6 +73,8 @@ const olMap = new Map({
 
 interface Props {
   facilities?: Facility[]
+  width?: number
+  height?: string | number
   zoomToInitialExtent: boolean
 }
 
@@ -111,11 +113,11 @@ export const OlMap = (props: Props) => {
     <>
       <Box
         id="map"
-        width="600px"
-        minWidth="290px"
+        width={props.width || '600px'}
+        minWidth={250}
         maxWidth="100%"
-        height="calc(100vh - 310px)"
-        minHeight={600}
+        height={props.height || 'calc(100vh - 310px)'}
+        minHeight={props.height || 600}
         maxHeight={800}
         background="white"
         borderRadius="md"
