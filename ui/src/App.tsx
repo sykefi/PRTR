@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Flex } from '@chakra-ui/layout'
 import { FrontPage } from './components/FrontPage'
-import { FacilityPage } from './components/FacilityPage/FacilityPage'
+import { FacilitiesPage } from './components/FacilitiesPage/FacilitiesPage'
 import { Releases } from './components/Releases'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
-import { FacilityInfo } from './components/FacilityPage/FacilityInfo'
+import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { isDevOrTestEnv } from './env'
 import { checkForMissingTranslations } from './utils'
 import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
@@ -35,13 +35,18 @@ const App = () => {
     <div data-cy="app-container">
       <Router>
         <Navigation navigationItems={navigationItems} />
-        <Flex p={4} width="100%" flexWrap="wrap" justify="center">
+        <Flex
+          p={{ base: 1, md: 4 }}
+          paddingTop={4}
+          width="100%"
+          flexWrap="wrap"
+          justify="center">
           <Switch>
             <Route path={`/${RoutePath.Facilities}/:facilityId`}>
-              <FacilityInfo />
+              <FacilityPage />
             </Route>
             <Route path={`/${RoutePath.Facilities}`}>
-              <FacilityPage />
+              <FacilitiesPage />
             </Route>
             <Route path={`/${RoutePath.Releases}`}>
               <Releases />

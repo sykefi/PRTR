@@ -15,7 +15,8 @@
     "search": "Etsi",
     "showingItems": "Kohteet",
     "previousPage": "Edellinen sivu",
-    "nextPage": "Seuraava sivu"
+    "nextPage": "Seuraava sivu",
+    "basicInfo": "Perustiedot"
   },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
@@ -23,6 +24,7 @@
     "facilitySearchResultCountText": "Haulla löytyi {{resultCount}} kohdetta.",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
     "selectFacilityMainActivityCode": "Valitse laitoksen toimiala",
-    "couldNotFindFacilityWithId": "Laitoksen tietoja ei löytynyt"
+    "couldNotFindFacilityWithId": "Laitoksen tietoja ei löytynyt",
+    "facilityReleaseInfo": "Päästötiedot"
   }
 }

@@ -26,6 +26,7 @@ const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
       exact={navigationItem.path === RoutePath.FrontPage}
       px={2}
       py={1}
+      fontSize="lg"
       rounded={'md'}
       _hover={{
         textDecoration: 'none',
