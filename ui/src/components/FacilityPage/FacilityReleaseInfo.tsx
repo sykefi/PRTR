@@ -107,7 +107,7 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
       background="white"
       borderRadius="md"
       boxShadow="md">
-      <Heading as="h3" size="md" fontWeight="semibold" marginY={2}>
+      <Heading as="h3" size="md" fontWeight="semibold" marginY={3}>
         {t('translation:facilities.facilityReleaseInfo')}
       </Heading>
       {releases.length > 0 && <FacilityReleaseTable releases={releases} />}

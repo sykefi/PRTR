@@ -1,0 +1,86 @@
+﻿CAS-numero/nummer/number;pollutantCode;Lyhenne - förkortning - abbreviation;FI;SE;EN
+74-82-8;CH4;CH4;Metaani;Metan;Methane
+630-08-0;CO;CO;Hiilimonoksidi;Kolmonoxid;Carbon monoxide
+124-38-9;CO2;CO2;Hiilidioksidi;Koldioxid;Carbon dioxide
+10024-97-2;N2O;N2O;Dityppioksidi;Dikväveoxid;Nitrous oxide
+7664-41-7;NH3;NH3;Ammoniakki;Ammoniak;Ammonia
+;NMVOC;NMVOC;Haihtuvat orgaaniset yhdisteet pl. metaani;Flyktiga organiska föreningar exkl. metan;Non-methane volatile organic compounds
+;NOX;NOx;Typen oksidit;Kväveoksider;Nitrogen oxides
+;PFCS;PFC;Perfluorihiilivedyt;Perfluorkarboner;Perfluorocarbons
+2551-62-4;SF6;SF6;Rikkiheksafluoridi;Svavelhexafluorid;Sulphur hexafluoride
+;SOX;SOx;Rikin oksidit;Svaveloxider;Sulphur oxides
+;TOTALNITROGEN;Ntot;Kokonaistyppi;Totalkväve;Total nitrogen
+;TOTALPHOSPHORUS;Ptot;Kokonaisfosfori;Totalfosfor;Total phosphorus
+;HCFCS;HCFC;Osittain halogenoidut kloorifluorihiilivedyt;Klorfluorkolväten;Hydrochlorofluorocarbons
+;CFCS;CFC;Halogenoidut kloorifluorihiilivedyt;Klorfluorkarboner;Chlorofluorocarbons
+;HALONS;;Halonit;Haloner;Halons
+7440-38-2;ASANDCOMPOUNDS;As;Arseeni;Arsenik;Arsenic and compounds (as As)
+7440-43-9;CDANDCOMPOUNDS;Cd;Kadmium;Kadmium;Cadmium and compounds (as Cd)
+7440-47-3;CRANDCOMPOUNDS;Cr;Kromi;Krom;Chromium and compounds (as Cr)
+7440-50-8;CUANDCOMPOUNDS;Cu;Kupari;Koppar;Copper and compounds (as Cu)
+7439-97-6;HGANDCOMPOUNDS;Hg;Elohopea;Kvicksilver;Mercury and compounds (as Hg)
+7440-02-0;NIANDCOMPOUNDS;Ni;Nikkeli;Nickel;Nickel and compounds (as Ni)
+7439-92-1;PBANDCOMPOUNDS;Pb;Lyijy;Bly;Lead and compounds (as Pb)
+7440-66-6;ZNANDCOMPOUNDS;Zn;Sinkki;Zink;Zinc and compounds (as Zn)
+15972-60-8;ALACHLOR;;Alakloori;Alaklor;Alachlor
+309-00-2;ALDRIN;;Aldriini;Aldrin;Aldrin
+1912-24-9;ATRAZINE;;Atrasiini;Atrazin;Atrazine
+57-74-9;CLORDANE;;Klordaani;Klordan;Chlordane
+143-50-0;CHLORDECONE;;Klordekoni;Klordekon;Chlordecone
+470-90-6;CHLORFENVINPHOS;;Klorfenvinfossi;Klorfenvinfos;Chlorfenvinphos
+85535-84-8;CHLORO-ALKANES(C10-13);;Klooririalkaanit;Klorerade Alkaner;Chloro-alkanes, C10-C13
+2921-88-2;CHLORPYRIFOS;;Klorpyrifos;Klorpyrifos;Chlorpyrifos
+50-29-3;DDT;DDT;Diklooridifenyylitrikloorietaani;Diklordifenyltrikloretan;DDT
+107-06-2;DCE-1,2;EDC;1,2-Dikloorietaani ;1,2-Dikloretan;1,2-dichloroethane
+75-09-2;DCM;DCM;1,2-Dikloorimetaani ;1,2-Diklormetan;Dichloromethane
+60-57-1;DIELDRIN;;Dieldriini;Dieldrin;Dieldrin
+330-54-1;DIURON;;Diuroni;Diuron;Diuron
+115-29-7;ENDOSULPHAN;;Endosulfaani;Endosulfan;Endosulphan
+72-20-8;ENDRIN;;Endriini;Endrin;Endrin
+;HALOGENATEDORGANICCOMPOUNDS;AOX;Halogenoidut orgaanisetyhdisteet;Halogenerade organiska föreningar;Halogenated organic compounds (as AOX)
+76-44-8;HEPTACHLOR;;Heptakloori;Heptaklor;Heptachlor
+118-74-1;HCB;HCB;Heksaklooribentseeni;Hexaklorbensen;Hexachlorobenzene
+87-68-3;HCBD;HCBD;Heksaklooridibutadieeni;Hexaklorbutadien;Hexachlorobutadiene
+608-73-1;HCH;HCH;1,2,3,4,5,6-Heksakloorisyklo-Heksaani (Hch);1,2,3,4,5,6- Hexaklorcyklohexan;1,2,3,4,5,6-hexachlorocyclohexane
+58-89-9;LINDANE;;Lindaani;Lindan;Lindane
+2385-85-5;MIREX;;Mireksi;Mirex;Mirex
+;PCDD+PCDF(DIOXINS+FURANS);PCDD/F;Polyklooratut dioksiinit ja furaanit;Polyklorerade dioxiner och furaner;Polychlorinated biphenyls
+608-93-5;PENTACHLOROBENZENE;;Pentaklooribentseeni;Pentaklorbensen;Pentachlorobenzene
+87-86-5;PCP;PCP;Pentakloorifenoli;Pentaklorfenol;Pentachlorophenol
+1336-36-3;PCBS;;Polyklooratut bifenyylit;Polyklorerade bifenyler;Polychlorinated biphenyls
+122-34-9;SIMAZINE;;Simatsiini;Simazin;Simazine
+127-18-4;PER;PER;Tetrakloorietyleeni;Tetrekloretylen;Tetrachloroethylene
+56-23-5;TCM;TCM;Tetrakloorimetaani ;Tetraklormetan;Tetrachloromethane
+12002-48-1;TCB;TCB;Triklooribentseenit ;Triklorbensener;Trichlorobenzenes (all isomers)
+71-55-6;TETRACHLOROETHANE-1,1,2,2;;1,1,1-Trikloorietaani;1,1,1-Trikloretan;1,1,2,2-tetrachloroethane
+79-34-5;TETRACHLOROETHANE-1,1,2,2;;1,1,2,2-Tetrakloorietaani;1,1,2,2-Tetrakloretan;1,1,2,2-tetrachloroethane
+79-01-6;TRI;;Trikloorietyleeni;Trikloretylen;Trichloroethylene
+67-66-3;TRICHLOROMETHANE;;Trikloorimetaani;Triklormetan;Trichloromethane
+8001-35-2;TOXAPHENE;;Toksafeeni;Toxafen;Toxaphene
+75-01-4;VINYLCHLORIDE;;Vinyylikloridi;Vinylklorid;Vinyl chloride
+120-12-7;ANTHRACENE;;Antraseeni;Antracen;Anthracene
+71-43-2;BENZENE;;Bentseeni;Bensen;Benzene
+;PBDE;PBDE;Bromatut difenyylieetterit;Bromerade difenyletrar;Brominated diphenylethers
+;NPANDNPES;NP/NPE;Nonyylifenolietoksylaatit;Alkylfenoler och etoxilater;Nonylphenol and Nonylphenol ethoxylates
+100-41-4;ETHYLBENZENE;;Etyylibentseeni;Etylbensen;Ethyl benzene
+75-21-8;ETHYLENEOXIDE;;Etyleenioksidi;Etylenoxid;Ethylene oxide
+34123-59-6;ISOPROTURON;;Isoproturoni;Isoproturon;Isoproturon
+91-20-3;NAPHTHALENE;;Naftaleeni;Naftalen;Naphthalene
+;ORGANOTINCOMPOUNDS;;Orgaaniset tinayhdisteet;Tennorganiska föreningar;Organotin compounds(as total Sn)
+117-81-7;DEHP;DEHP;Di-2-Etyyliheksyyliftalaatti;Di(2-Etylhexyl)Ftalat ;Di-(2-ethyl hexyl) phthalate
+108-95-2;PHENOLS;;Fenolit;Fenoler;Phenols (as total C)
+;PAHS;PAH;Polysykliset aromaattiset hiilivedyt;Polycykliska aromatiska kolväten;Polycyclic aromatic hydrocarbons
+108-88-3;TOLUENE;;Tolueeni;Toluol;Toluene
+;TRIBUTYLTINANDCOMPOUNDS;;Tributyylitina;Tributyltenn;Tributyltin and compounds
+;TRIPHENYLTINANDCOMPOUNDS;;Trifenyylitina;Trifenyltenn;Triphenyltin and compounds
+;TOC;TOC;Orgaanisen hiilen kokonaismäärä;Totalt organiskt kol;Total organic carbon(as total C or COD/3)
+1582-09-8;TRIFLURALIN;;Trifluraliini;Trifluralin;Trifluralin
+1330-20-7;XYLENES;;Ksyleenit;Xylen;Xylenes
+;CHLORIDES;;Kloridit;Klorider;Chlorides (as total Cl)
+;CHLORINEANDINORGANICCOMPOUNDS;HCl;Kloori ja epäorgaaniset yhdisteet;Klor och oorganiska klorföreningar;Chlorine and inorganic compounds (as HCl)
+1332-21-4;ASBESTOS;;Asbesti;Asbest;Asbestos
+;CYANIDES;CN;Syanidit;Cyanider;Cyanides (as total CN)
+;FLUORIDES;F;Fluoridit;Fluorider;Fluorides (as total F)
+;CHLORINEANDINORGANICCOMPOUNDS;HF;Fluori ja epäorgaaniset yhdisteet;Fluor och oorganiska fluorföreningar;Fluorine and inorganic compounds (as HF)
+74-90-8;HCN;HCN;Syaanivety;Cyanväte;Hydrogen cyanide
+;PM10;PM10;Hiukkaset;Partiklar;Particulate matter

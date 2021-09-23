@@ -9,8 +9,7 @@ import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
 import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { isDevOrTestEnv } from './env'
-import { checkForMissingTranslations } from './utils'
-import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
+import { handleCheckForMissingTranslations } from './utils'
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.frontPage', path: RoutePath.FrontPage },
@@ -22,12 +21,8 @@ const App = () => {
   const { ready } = useTranslation(['translation', 'mainActivityCodeDesc'])
 
   useEffect(() => {
-    // check for missing translations
     if (ready && isDevOrTestEnv) {
-      checkForMissingTranslations(
-        'mainActivityCodeDesc',
-        Object.values(FacilityMainActivityCode)
-      )
+      handleCheckForMissingTranslations()
     }
   }, [ready])
 

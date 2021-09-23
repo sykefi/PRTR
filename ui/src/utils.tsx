@@ -1,6 +1,8 @@
 import i18next from 'i18next'
 import { Namespace } from 'react-i18next'
 import { Facility } from './api/models/Facility'
+import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
+import { PollutantCode } from './api/models/PollutantCode'
 import {
   GeoJSONPointFeature,
   GeoJSONPointFeatureCollection
@@ -49,4 +51,12 @@ export const checkForMissingTranslations = (
       emptyValues
     )
   }
+}
+
+export const handleCheckForMissingTranslations = () => {
+  checkForMissingTranslations(
+    'mainActivityCodeDesc',
+    Object.values(FacilityMainActivityCode)
+  )
+  checkForMissingTranslations('pollutantName', Object.values(PollutantCode))
 }

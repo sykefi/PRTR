@@ -26,7 +26,13 @@ i18n
       // for all available options read the backend's repository readme file
       loadPath: '/locales/{{lng}}/{{ns}}.json'
     },
-    ns: ['translation', 'mainActivityCodeDesc'] // load these namespaces already on init
+    ns: [
+      'translation',
+      'mainActivityCodeDesc',
+      'pollutantName',
+      'pollutantAbbreviation',
+      'pollutantCasNumber'
+    ] // load these namespaces already on init
   })
 
 export default i18n

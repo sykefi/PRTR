@@ -1,6 +1,9 @@
 import 'react-i18next';
 import translation from '../public/locales/fi/translation.json';
 import mainActivityCodeDesc from '../public/locales/fi/mainActivityCodeDesc.json';
+import pollutantName from '../public/locales/fi/pollutantName.json';
+import pollutantAbbreviation from '../public/locales/fi/pollutantAbbreviation.json';
+import pollutantCasNumber from '../public/locales/fi/pollutantCasNumber.json';
 
 // TS magic for translations by ford04: https://stackoverflow.com/a/58308279/15619648
 type Concat<K extends string, P extends string> = `${K}${'' extends P
@@ -27,13 +30,22 @@ export type TranslationKeys = DeepLeafKeys<typeof translation>;
 declare module 'react-i18next' {
   // and extend them!
   interface CustomTypeOptions {
-    ns: ['translation', 'mainActivityCodeDesc'],
+    ns: [
+      'translation',
+      'mainActivityCodeDesc',
+      'pollutantName',
+      'pollutantAbbreviation',
+      'pollutantCasNumber'
+    ],
     // custom namespace type if you changed it
     defaultNS: 'translation';
     // custom resources type
     resources: {
       translation: typeof translation;
       mainActivityCodeDesc: typeof mainActivityCodeDesc;
+      pollutantName: typeof pollutantName;
+      pollutantAbbreviation: typeof pollutantAbbreviation;
+      pollutantCasNumber: typeof pollutantCasNumber;
     }
   }
 }
