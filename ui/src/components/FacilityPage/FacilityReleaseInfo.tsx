@@ -1,9 +1,64 @@
-import { Box, Heading } from '@chakra-ui/layout'
+import { Badge, Box, Heading } from '@chakra-ui/layout'
+import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Medium } from '../../api/models/Medium'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { getReleases } from '../../api/releases'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
+
+const FacilityReleaseTable = ({
+  releases
+}: {
+  releases: PollutantRelease[]
+}) => {
+  const { t } = useTranslation()
+  return (
+    <Table variant="simple" m={3} marginY={4}>
+      <Thead>
+        <Tr>
+          <Th p={1} paddingRight={2}>
+            Year
+          </Th>
+          <Th p={1}>Amount (kg)</Th>
+          <Th p={1}>Pollutant</Th>
+          <Th p={1}>Type</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {releases
+          .sort((a, b) => b.reportingYear - a.reportingYear)
+          .map(r => {
+            return (
+              <Tr key={r.id}>
+                <Td p={1} paddingRight={2}>
+                  {r.reportingYear}
+                </Td>
+                <Td p={1}>
+                  {(
+                    r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
+                  ).toLocaleString('fi')}
+                </Td>
+                <Td p={1} maxWidth={120}>
+                  {r.pollutantCode}
+                </Td>
+                <Td p={1}>
+                  <Badge
+                    colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
+                    {t(
+                      r.medium === Medium.AIR
+                        ? 'releases.releaseToAir'
+                        : 'releases.releaseToWater'
+                    )}
+                  </Badge>
+                </Td>
+              </Tr>
+            )
+          })}
+      </Tbody>
+    </Table>
+  )
+}
 
 export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
   const { t } = useTranslation(['translation'])
@@ -40,8 +95,8 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
 
   return (
     <Box
-      width={450}
-      minWidth={250}
+      data-cy="facility-release-info"
+      minWidth={{ base: 250, md: 450 }}
       maxWidth="100%"
       m={2}
       paddingX={5}
@@ -55,11 +110,9 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
       <Heading as="h3" size="md" fontWeight="semibold" marginY={2}>
         {t('translation:facilities.facilityReleaseInfo')}
       </Heading>
-      {releases.map(r => {
-        return <Box key={r.id}> {r.totalPollutantQuantityKg}</Box>
-      })}
+      {releases.length > 0 && <FacilityReleaseTable releases={releases} />}
       {loading && (
-        <Box p={2} data-cy="facility-info-load-animation">
+        <Box p={2} data-cy="facility-releases-load-animation">
           <LoadAnimation sizePx={30} />
         </Box>
       )}

@@ -48,7 +48,7 @@ export const FacilityPage = () => {
 
   return (
     <>
-      <Flex w="100%" justify="center">
+      <Flex data-cy="facility-page-title" w="100%" justify="center">
         <Heading as="h3" size="md" marginBottom={3}>
           {facility?.nameOfFeature}
         </Heading>

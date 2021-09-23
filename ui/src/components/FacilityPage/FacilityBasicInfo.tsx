@@ -36,6 +36,7 @@ export const FacilityBasicInfo = ({
 
   return (
     <Box
+      data-cy="facility-basic-info"
       width={450}
       minWidth={250}
       maxWidth="100%"

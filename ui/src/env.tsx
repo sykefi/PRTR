@@ -17,5 +17,9 @@ export const isDevOrTestEnv =
 export const prtrServer = readRequiredEnvVar('REACT_APP_PRTR_SERVER')
 
 export const facilityResultLimit = parseInt(
-  getEnvVarOr('REACT_APP_FACILITY_RESULT_LIMIT', '2000')
+  getEnvVarOr('REACT_APP_FACILITIES_RESULT_LIMIT', '2000')
+)
+
+export const releasesResultLimit = parseInt(
+  getEnvVarOr('REACT_APP_RELEASES_RESULT_LIMIT', '2000')
 )

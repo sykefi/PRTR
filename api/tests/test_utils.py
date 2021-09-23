@@ -100,12 +100,10 @@ def test_reads_release_from_dictionary():
     assert release.facilityId == 'FI_EEA_11035'
     assert release.reportingYear == 2015
     assert release.pollutantCode == PollutantCode.NH3
-    assert release.pollutantName == 'Ammonia'
     assert release.medium == Medium.AIR
     assert release.totalPollutantQuantityKg == 11000.0
     assert release.AccidentalPollutantQuantityKG == 0.0
     assert release.methodCode == MethodCode.M
-    assert release.methodName == 'Measured: analytical method used'
 
 
 def test_throws_validation_error_for_invalid_release_pollutant_code():

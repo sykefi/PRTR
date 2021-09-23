@@ -1,5 +1,5 @@
 import APIError from '../models/APIError'
-import { facilityResultLimit } from '../env'
+import { releasesResultLimit } from '../env'
 import { apiBasePath } from './conf'
 import { serializeQueryParams } from './utils'
 import { ReleaseQueryParams } from './models/ReleaseQueryParams'
@@ -19,7 +19,7 @@ const getData = async <T,>(
         errorBody = undefined
       }
       if (res.status === 404) {
-        console.warn('No facilities found, response:', res)
+        console.warn('No releases found, response:', res)
         return []
       }
       throw new Error(`Fetch failed: ${url} ->
@@ -40,7 +40,7 @@ export const getReleases = async (
   queryParams: ReleaseQueryParams = {}
 ): Promise<PollutantRelease[]> => {
   const allQueryParams: ReleaseQueryParams = {
-    limit: facilityResultLimit,
+    limit: releasesResultLimit,
     ...queryParams
   }
   const queryString = serializeQueryParams(

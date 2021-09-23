@@ -86,12 +86,10 @@ class PollutantRelease(BaseModel):
     facilityId: str
     reportingYear: int
     pollutantCode: PollutantCode
-    pollutantName: str
     medium: Medium
     totalPollutantQuantityKg: float
     AccidentalPollutantQuantityKG: float
     methodCode: MethodCode
-    methodName: str
 
 
 def release_csv_dict_2_release(
@@ -102,14 +100,12 @@ def release_csv_dict_2_release(
             facilityId=csv_release['facilityId'],
             reportingYear=csv_release['reportingYear'],
             pollutantCode=csv_release['pollutantCode'],
-            pollutantName=csv_release['pollutantName'],
             medium=csv_release['medium'],
             totalPollutantQuantityKg=csv_release['totalPollutantQuantityKg'],
             AccidentalPollutantQuantityKG=(
                 csv_release['AccidentalPollutantQuantityKG']
             ),
-            methodCode=csv_release['methodCode'],
-            methodName=csv_release['methodName']
+            methodCode=csv_release['methodCode']
         )
     except ValidationError as e:
         print(
