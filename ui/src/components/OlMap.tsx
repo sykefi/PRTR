@@ -114,6 +114,7 @@ export const OlMap = (props: Props) => {
     <>
       <Box
         id="map"
+        border="2px solid white"
         width={props.width || '600px'}
         minWidth={250}
         maxWidth="100%"
@@ -122,7 +123,7 @@ export const OlMap = (props: Props) => {
         maxHeight={props.height || 1000}
         background="white"
         borderRadius="md"
-        boxShadow="sm"
+        boxShadow="md"
       />
       {mapIsRendered && !!facilityCount && (
         <OlLayerFacilities

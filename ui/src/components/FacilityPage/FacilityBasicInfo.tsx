@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/button'
-import { Box } from '@chakra-ui/layout'
+import { Box, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router'
 import { Facility } from '../../api/models/Facility'
@@ -13,7 +13,7 @@ const InfoPropRow = ({
   value: string | null
 }) => {
   return (
-    <Box fontSize="smaller" marginY={2}>
+    <Box marginY={2}>
       <Box fontWeight="semibold">{label}</Box>
       <Box marginTop={0.5} color="blackAlpha.800">
         {value || '-'}
@@ -47,10 +47,10 @@ export const FacilityBasicInfo = ({
       overflowY="auto"
       background="white"
       borderRadius="md"
-      boxShadow="sm">
-      <Box as="h1" fontWeight="semibold" marginY={2}>
+      boxShadow="md">
+      <Heading as="h3" size="md" fontWeight="semibold" marginY={2}>
         {t('translation:common.basicInfo')}
-      </Box>
+      </Heading>
       {facility && (
         <>
           <InfoPropRow

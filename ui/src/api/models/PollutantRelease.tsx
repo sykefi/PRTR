@@ -3,6 +3,7 @@ import { MethodCode } from './MethodCode'
 import { PollutantCode } from './PollutantCode'
 
 export interface PollutantRelease {
+  id: string
   facilityId: string
   reportingYear: number
   pollutantCode: PollutantCode
@@ -12,4 +13,11 @@ export interface PollutantRelease {
   AccidentalPollutantQuantityKG: number
   methodCode: MethodCode
   methodName: string
+}
+
+export const withId = (r: Omit<PollutantRelease, 'id'>): PollutantRelease => {
+  return {
+    ...r,
+    id: `${r.facilityId}_${r.reportingYear}_${r.pollutantCode}_${r.medium}_${r.methodCode}`
+  }
 }
