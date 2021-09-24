@@ -13,10 +13,12 @@ export const BelowNavigationHeaderPanel = ({
       justify="center"
       align="center"
       background="white"
-      paddingX={{ base: 1, md: 4 }}
+      paddingX={{ base: 2, md: 4 }}
       paddingTop={(withYPadding && 6) || 3}
       paddingBottom={(withYPadding && 5) || 1}
-      boxShadow="sm">
+      boxShadow="sm"
+      sx={{ gap: 4 }}
+      wrap="wrap">
       {children}
     </Flex>
   )

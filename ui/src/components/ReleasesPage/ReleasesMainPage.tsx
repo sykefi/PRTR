@@ -28,7 +28,11 @@ export const ReleasesMainPage = () => {
           <HStack spacing={8} align="center">
             <HStack as={'nav'} spacing={4}>
               {navigationItems.map(item => (
-                <NavLink key={item.path} navigationItem={item} />
+                <NavLink
+                  key={item.path}
+                  navigationItem={item}
+                  hideUnderlineOnMobile={false}
+                />
               ))}
             </HStack>
           </HStack>

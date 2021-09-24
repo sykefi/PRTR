@@ -16,9 +16,11 @@ import { useTranslation } from 'react-i18next'
 import { NavigationItem, RoutePath } from '../models'
 
 export const NavLink = ({
-  navigationItem
+  navigationItem,
+  hideUnderlineOnMobile
 }: {
   navigationItem: NavigationItem
+  hideUnderlineOnMobile: boolean
 }) => {
   const { t } = useTranslation()
   const displayText = t(navigationItem.tKey)
@@ -60,7 +62,10 @@ export const NavLink = ({
       href={'#'}>
       {displayText}
       <Box
-        visibility={{ base: 'hidden', sm: 'initial' }}
+        visibility={{
+          base: hideUnderlineOnMobile ? 'hidden' : 'initial',
+          sm: 'initial'
+        }}
         position="relative"
         top="21px"
         marginTop="-6px"
@@ -72,6 +77,10 @@ export const NavLink = ({
       />
     </Link>
   )
+}
+
+NavLink.defaultProps = {
+  hideUnderlineOnMobile: true
 }
 
 const Navigation = ({
