@@ -22,14 +22,14 @@
   },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
-    "facilitySearchResult": "Hakusanalla \"{{searchTerm}}\" löytyi {{resultCount}} kohdetta.",
-    "facilitySearchResultCountText": "Haulla löytyi {{resultCount}} kohdetta.",
+    "facilitySearchResult": "Haulla löytyi {{resultCount}} kohdetta.",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
     "selectFacilityMainActivityCode": "Valitse laitoksen toimiala",
     "couldNotFindFacilityWithId": "Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "couldNotFindFacilityReleases": "Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
-    "facilityReleaseInfo": "Päästötiedot"
+    "facilityReleaseInfo": "Päästötiedot",
+    "goBackToFacilitySearch": "Palaa laitoshakuun"
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",

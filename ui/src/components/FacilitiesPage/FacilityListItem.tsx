@@ -1,10 +1,12 @@
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Box, Flex, Link } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
 
 export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
   const { t } = useTranslation()
+  const location = useLocation()
 
   return (
     <Box
@@ -27,7 +29,10 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
         overflowWrap="normal"
         whiteSpace="unset"
         overflow="hidden"
-        to={'/facilities/' + f.facilityId}>
+        to={{
+          pathname: '/facilities/' + f.facilityId,
+          state: { from: location.pathname } // store the current (i.e. previous) path in location.state.from
+        }}>
         {f.nameOfFeature}
       </Link>
       <Flex>

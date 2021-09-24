@@ -16,14 +16,9 @@ export const FacilitySearchResultInfo = ({
   return (
     <Box data-cy="search-result-info">
       <Box marginBottom={2.0} fontWeight="bold">
-        {(!!urlSearchTerm &&
-          t('facilities.facilitySearchResult', {
-            searchTerm: urlSearchTerm,
-            resultCount
-          })) ||
-          t('facilities.facilitySearchResultCountText', {
-            resultCount
-          })}
+        {t('facilities.facilitySearchResult', {
+          resultCount
+        })}
       </Box>
       <Box>
         <Button

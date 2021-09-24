@@ -1,5 +1,7 @@
-import { Flex, Heading } from '@chakra-ui/layout'
 import { useEffect, useState } from 'react'
+import { Box, Flex, Heading } from '@chakra-ui/layout'
+import { Button } from '@chakra-ui/button'
+import { useHistory, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { getFacility } from '../../api'
@@ -14,6 +16,8 @@ type FacilityParams = {
 }
 
 export const FacilityPage = () => {
+  const history = useHistory()
+  const location = useLocation<{ from?: string }>()
   const [infoState, setInfoState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
@@ -47,12 +51,39 @@ export const FacilityPage = () => {
     }
   }, [facilityId])
 
+  const previousPathIsFacilityList =
+    !!location.state && location.state.from?.includes('facilities')
+
   return (
     <>
       <BelowNavigationHeaderPanel withYPadding>
-        <Heading as="h3" size="md" data-cy="facility-page-title">
-          {facility?.nameOfFeature}
-        </Heading>
+        {facility && (
+          <>
+            <Box>
+              <Button
+                marginRight={5}
+                data-cy="exit-results-btn"
+                size="sm"
+                colorScheme="blue"
+                onClick={() => {
+                  if (
+                    // go back to search page if we came from there
+                    previousPathIsFacilityList
+                  ) {
+                    history.goBack()
+                  } else {
+                    // go back to facility list if previous location is unknown
+                    history.push('/facilities')
+                  }
+                }}>
+                {t('translation:facilities.goBackToFacilitySearch')}
+              </Button>
+            </Box>
+            <Heading as="h3" size="md" data-cy="facility-page-title">
+              {facility?.nameOfFeature}
+            </Heading>
+          </>
+        )}
         {loading && (
           <Heading as="h3" size="md" fontWeight="semibold">
             {t('translation:common.loadingInformation')}

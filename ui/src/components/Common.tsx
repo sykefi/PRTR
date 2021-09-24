@@ -11,6 +11,7 @@ export const BelowNavigationHeaderPanel = ({
     <Flex
       w="100%"
       justify="center"
+      align="center"
       background="white"
       paddingX={{ base: 1, md: 4 }}
       paddingTop={(withYPadding && 6) || 3}
