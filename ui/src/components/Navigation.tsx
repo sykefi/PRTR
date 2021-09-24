@@ -15,7 +15,11 @@ import { NavLink as RrLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { NavigationItem, RoutePath } from '../models'
 
-const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
+export const NavLink = ({
+  navigationItem
+}: {
+  navigationItem: NavigationItem
+}) => {
   const { t } = useTranslation()
   const displayText = t(navigationItem.tKey)
 
@@ -83,6 +87,7 @@ const Navigation = ({
         boxShadow="md"
         bg="white"
         position="relative"
+        zIndex={10}
         px={4}
         data-cy="navigation-panel">
         <Flex h={16} align="center" justifyContent="center">

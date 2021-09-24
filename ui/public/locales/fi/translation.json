@@ -4,6 +4,8 @@
     "frontPage": "Etusivu",
     "facilities": "Laitokset",
     "pollutantReleases": "Päästöt",
+    "releasesToAir": "Päästöt ilmaan",
+    "releasesToWater": "Päästöt veteen",
     "municipality": "Paikkakunta",
     "searchTerm": "Hakusana",
     "resetSearch": "Poista haku",
@@ -36,6 +38,7 @@
     "releaseToWater": "Päästö veteen",
     "pollutant": "Yhdiste",
     "quantity": "Määrä",
-    "releaseMediumType": "Tyyppi"
+    "releaseMediumType": "Tyyppi",
+    "selectPollutant": "Valitse yhdiste"
   }
 }

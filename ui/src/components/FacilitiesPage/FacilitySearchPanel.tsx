@@ -22,7 +22,6 @@ const useFacilityMainActivityOptions =
         }
         return prev
       }, [] as OptionType<FacilityMainActivityCode>[])
-      .filter(o => Boolean(o.label))
       .sort((a, b) => {
         if (a.label < b.label) {
           return -1
@@ -92,7 +91,7 @@ export const FacilitySearchPanel = ({
             colorScheme="red"
             borderColor="var(--chakra-colors-gray-500)"
             _hover={{
-              borderColor: 'black'
+              borderColor: 'var(--chakra-colors-gray-500)'
             }}
             maxWidth="100%"
             marginY={1.0}

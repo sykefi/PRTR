@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { FrontPage } from './components/FrontPage'
 import { FacilitiesPage } from './components/FacilitiesPage/FacilitiesPage'
-import { Releases } from './components/Releases'
+import { ReleasesMainPage } from './components/ReleasesPage/ReleasesMainPage'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
 import { FacilityPage } from './components/FacilityPage/FacilityPage'
@@ -37,7 +37,7 @@ const App = () => {
             <FacilitiesPage />
           </Route>
           <Route path={`/${RoutePath.Releases}`}>
-            <Releases />
+            <ReleasesMainPage />
           </Route>
           <Route exact path="/">
             <FrontPage />

@@ -19,7 +19,7 @@ const FacilityReleaseTable = ({
   ])
 
   return (
-    <Table variant="simple" marginX={1} marginY={4} boxSizing="border-box">
+    <Table variant="simple" marginY={4} boxSizing="border-box">
       <Thead>
         <Tr>
           <Th p={1} paddingRight={3}>

@@ -77,7 +77,7 @@ const chakraComponents: SelectProps['components'] = {
             minH: 10,
             borderColor: 'var(--chakra-colors-gray-500)', // prtr
             _hover: {
-              borderColor: 'black'
+              borderColor: 'var(--chakra-colors-gray-500)' // prtr
             }
           }}
           {...innerProps}
