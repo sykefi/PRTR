@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
 import { Facility } from '../../api/models/Facility'
+import { BelowNavigationHeaderPanel } from '../Common'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { OlMap } from '../OlMap'
@@ -14,7 +15,6 @@ import { ResultPageSelector } from './ResultPageSelector'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
 import { FacilityList } from './FacilityList'
-import { BelowNavigationHeaderPanel } from '../Commont'
 
 const pageItemCount = 20
 

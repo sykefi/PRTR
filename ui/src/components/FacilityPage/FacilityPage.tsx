@@ -1,13 +1,13 @@
-import { Box, Flex, Heading } from '@chakra-ui/layout'
+import { Flex, Heading } from '@chakra-ui/layout'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { getFacility } from '../../api'
 import { Facility } from '../../api/models/Facility'
+import { BelowNavigationHeaderPanel } from '../Common'
 import { OlMap } from '../OlMap'
 import { FacilityReleaseInfo } from './FacilityReleaseInfo'
 import { FacilityBasicInfo } from './FacilityBasicInfo'
-import { BelowNavigationHeaderPanel } from '../Commont'
 
 type FacilityParams = {
   facilityId: string

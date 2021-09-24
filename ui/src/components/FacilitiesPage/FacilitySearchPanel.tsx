@@ -12,12 +12,26 @@ const useFacilityMainActivityOptions =
   (): OptionType<FacilityMainActivityCode>[] => {
     const { t } = useTranslation('mainActivityCodeDesc')
 
-    return Object.values(FacilityMainActivityCode).reduce((prev, curr) => {
-      return prev.concat({
-        value: curr,
-        label: t(curr)
+    return Object.values(FacilityMainActivityCode)
+      .reduce((prev, curr) => {
+        if (t(curr)) {
+          return prev.concat({
+            value: curr,
+            label: `${curr} - ${t(curr)}`
+          })
+        }
+        return prev
+      }, [] as OptionType<FacilityMainActivityCode>[])
+      .filter(o => Boolean(o.label))
+      .sort((a, b) => {
+        if (a.label < b.label) {
+          return -1
+        }
+        if (a.label > b.label) {
+          return 1
+        }
+        return 0
       })
-    }, [] as OptionType<FacilityMainActivityCode>[])
   }
 
 const Form = styled.form`
