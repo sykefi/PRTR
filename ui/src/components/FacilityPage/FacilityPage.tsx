@@ -61,7 +61,6 @@ export const FacilityPage = () => {
           <>
             <Box>
               <Button
-                marginRight={5}
                 data-cy="exit-results-btn"
                 size="sm"
                 colorScheme="blue"
@@ -94,6 +93,8 @@ export const FacilityPage = () => {
         wrap="wrap"
         justify="center"
         maxWidth="100%"
+        sx={{ gap: 'var(--chakra-space-3)' }}
+        padding={3}
         data-cy="facility-info-container">
         <FacilityBasicInfo
           loading={loading}
@@ -102,7 +103,6 @@ export const FacilityPage = () => {
         />
         <FacilityReleaseInfo facilityId={facilityId} />
         <OlMap
-          margin={2}
           width={450}
           height={500}
           facilities={facility ? [facility] : undefined}

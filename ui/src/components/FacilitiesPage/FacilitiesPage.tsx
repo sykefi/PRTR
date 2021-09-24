@@ -187,8 +187,7 @@ export const FacilitiesPage = () => {
         <Flex
           maxWidth="100%"
           direction="column"
-          p={{ base: 1, md: 4 }}
-          paddingTop={4}
+          p={{ base: 3, md: 4 }}
           display="inline-flex"
           width="fit-content"
           flexWrap="wrap"

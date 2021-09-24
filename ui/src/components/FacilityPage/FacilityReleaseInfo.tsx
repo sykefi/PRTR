@@ -103,7 +103,6 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
       width={450}
       minWidth={250}
       maxWidth="100%"
-      m={2}
       paddingX={5}
       paddingY={2}
       height="max-content"
