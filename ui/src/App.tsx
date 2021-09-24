@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Flex } from '@chakra-ui/layout'
 import { FrontPage } from './components/FrontPage'
 import { FacilitiesPage } from './components/FacilitiesPage/FacilitiesPage'
 import { Releases } from './components/Releases'
@@ -30,27 +29,20 @@ const App = () => {
     <div data-cy="app-container">
       <Router>
         <Navigation navigationItems={navigationItems} />
-        <Flex
-          p={{ base: 1, md: 4 }}
-          paddingTop={4}
-          width="100%"
-          flexWrap="wrap"
-          justify="center">
-          <Switch>
-            <Route path={`/${RoutePath.Facilities}/:facilityId`}>
-              <FacilityPage />
-            </Route>
-            <Route path={`/${RoutePath.Facilities}`}>
-              <FacilitiesPage />
-            </Route>
-            <Route path={`/${RoutePath.Releases}`}>
-              <Releases />
-            </Route>
-            <Route exact path="/">
-              <FrontPage />
-            </Route>
-          </Switch>
-        </Flex>
+        <Switch>
+          <Route path={`/${RoutePath.Facilities}/:facilityId`}>
+            <FacilityPage />
+          </Route>
+          <Route path={`/${RoutePath.Facilities}`}>
+            <FacilitiesPage />
+          </Route>
+          <Route path={`/${RoutePath.Releases}`}>
+            <Releases />
+          </Route>
+          <Route exact path="/">
+            <FrontPage />
+          </Route>
+        </Switch>
       </Router>
     </div>
   )

@@ -1,11 +1,11 @@
-import { Box } from '@chakra-ui/layout'
+import { Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 
 export const FrontPage = () => {
   const { t } = useTranslation()
   return (
-    <Box p={2} fontWeight="semibold">
+    <Flex p={6} fontWeight="semibold" justify="center">
       {t('common.welcomeMessage')}
-    </Box>
+    </Flex>
   )
 }

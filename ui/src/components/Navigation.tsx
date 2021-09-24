@@ -50,13 +50,15 @@ const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
       }}
       _focus={{
         background: 'initial',
+        color: '#1876f2',
         '&>div': { borderColor: '#1876f2' }
       }}
       href={'#'}>
       {displayText}
       <Box
+        visibility={{ base: 'hidden', sm: 'initial' }}
         position="relative"
-        top="20px"
+        top="21px"
         marginTop="-6px"
         width="calc(100% + var(--chakra-space-4))"
         borderTop="3px solid transparent"
@@ -77,7 +79,12 @@ const Navigation = ({
 
   return (
     <>
-      <Box boxShadow="md" bg="white" px={4} data-cy="navigation-panel">
+      <Box
+        boxShadow="sm"
+        bg="white"
+        position="relative"
+        px={4}
+        data-cy="navigation-panel">
         <Flex h={16} align="center" justifyContent="center">
           <IconButton
             size={'md'}

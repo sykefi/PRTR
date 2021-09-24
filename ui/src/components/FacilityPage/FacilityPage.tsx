@@ -48,12 +48,19 @@ export const FacilityPage = () => {
 
   return (
     <>
-      <Flex data-cy="facility-page-title" w="100%" justify="center">
-        <Heading as="h3" size="md" marginBottom={4} marginTop={2}>
+      <Flex
+        data-cy="facility-page-title"
+        w="100%"
+        justify="center"
+        background="white"
+        paddingTop={6}
+        paddingBottom={5}
+        boxShadow="sm">
+        <Heading as="h3" size="md">
           {facility?.nameOfFeature}
         </Heading>
         {loading && (
-          <Box paddingBottom={2}>
+          <Box paddingBottom={2} fontWeight="bold" size="md">
             {t('translation:common.loadingInformation')}
           </Box>
         )}

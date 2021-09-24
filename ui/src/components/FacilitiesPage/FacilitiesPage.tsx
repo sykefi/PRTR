@@ -159,49 +159,59 @@ export const FacilitiesPage = () => {
   }
 
   return (
-    <Flex
-      maxWidth="100%"
-      direction="column"
-      align={{ base: 'center', lg: 'unset' }}>
-      {!showingSearchResults && (
-        <FacilitySearchPanel
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          facilityMainActivityCode={facilityMainActivityCode}
-          setFacilityMainActivityCode={setFacilityMainActivityCode}
-          handleSubmit={setUrlSearchParams}
-        />
-      )}
-      {facilities && (
-        <>
-          {showingSearchResults && (
-            <FacilitySearchResultInfo
-              urlSearchTerm={urlSearchTerm}
-              resultCount={facilities.length}
-              handleExitResults={returnToMainList}
-            />
-          )}
-          <ResultPageSelector
-            pageItemCount={pageItemCount}
-            activeRowRange={activeRowRange}
-            facilityCount={facilities.length}
-            history={history}
+    <Flex direction="column" maxWidth="100%" align="center">
+      <Flex
+        maxWidth="100%"
+        direction="column"
+        p={{ base: 1, md: 4 }}
+        paddingTop={4}
+        display="inline-flex"
+        width="fit-content"
+        flexWrap="wrap"
+        justify="center"
+        align="center">
+        {!showingSearchResults && (
+          <FacilitySearchPanel
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            facilityMainActivityCode={facilityMainActivityCode}
+            setFacilityMainActivityCode={setFacilityMainActivityCode}
+            handleSubmit={setUrlSearchParams}
           />
-          <Flex wrap="wrap" justify="center" maxWidth="100%">
-            <FacilityList
-              facilities={facilities}
-              activeRowRange={activeRowRange}
-              handleExitResults={returnToMainList}
-            />
-            <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
-              <OlMap
-                facilities={facilities}
-                zoomToInitialExtent={!urlSearchTerm}
+        )}
+        {facilities && (
+          <>
+            {showingSearchResults && (
+              <FacilitySearchResultInfo
+                urlSearchTerm={urlSearchTerm}
+                resultCount={facilities.length}
+                handleExitResults={returnToMainList}
               />
-            </Box>
-          </Flex>
-        </>
-      )}
+            )}
+            <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
+              <ResultPageSelector
+                pageItemCount={pageItemCount}
+                activeRowRange={activeRowRange}
+                facilityCount={facilities.length}
+                history={history}
+              />
+            </Flex>
+            <Flex wrap="wrap" justify="center" maxWidth="100%">
+              <FacilityList
+                facilities={facilities}
+                activeRowRange={activeRowRange}
+                handleExitResults={returnToMainList}
+              />
+              <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
+                <OlMap
+                  facilities={facilities}
+                  zoomToInitialExtent={!urlSearchTerm}
+                />
+              </Box>
+            </Flex>
+          </>
+        )}
+      </Flex>
     </Flex>
   )
 }

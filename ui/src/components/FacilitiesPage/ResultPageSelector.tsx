@@ -53,7 +53,10 @@ export const ResultPageSelector = ({
       margin={1}
       marginTop={3}
       marginBottom={2}
-      alignItems="center"
+      width="500px"
+      maxWidth="100%"
+      align="center"
+      justify="center"
       wrap="wrap">
       <Box fontWeight="bold" marginRight={3} marginY={1.5}>
         {t('common.showingItems')} {activeRowRange[0] + 1}-{activeRowRange[1]} (
