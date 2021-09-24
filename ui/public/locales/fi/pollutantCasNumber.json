@@ -2,6 +2,7 @@
   "CH4": "74-82-8",
   "CO": "630-08-0",
   "CO2": "124-38-9",
+  "CO2EXCLBIOMASS": "",
   "N2O": "10024-97-2",
   "NH3": "7664-41-7",
   "NMVOC": "",
@@ -81,5 +82,9 @@
   "CYANIDES": "",
   "FLUORIDES": "",
   "HCN": "74-90-8",
-  "PM10": ""
+  "PM10": "",
+  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "",
+  "FLUORANTHENE": "",
+  "HFCS": "",
+  "FLUORINEANDINORGANICCOMPOUNDS": "7782-41-4"
 }

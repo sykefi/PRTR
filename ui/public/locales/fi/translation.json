@@ -14,6 +14,7 @@
     "toGoBack": "Paluu",
     "search": "Etsi",
     "showingItems": "Kohteet",
+    "year": "Vuosi",
     "previousPage": "Edellinen sivu",
     "nextPage": "Seuraava sivu",
     "basicInfo": "Perustiedot",
@@ -32,6 +33,9 @@
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",
-    "releaseToWater": "Päästö veteen"
+    "releaseToWater": "Päästö veteen",
+    "pollutant": "Yhdiste",
+    "quantity": "Määrä",
+    "releaseMediumType": "Tyyppi"
   }
 }

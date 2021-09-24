@@ -85,9 +85,7 @@ export const FacilityBasicInfo = ({
       {error && (
         <>
           <Box marginTop={2.0}>
-            <Box fontSize="smaller">
-              {t('translation:facilities.couldNotFindFacilityWithId')}
-            </Box>
+            <Box>{t('translation:facilities.couldNotFindFacilityWithId')}</Box>
             <Box>
               <Button
                 marginY={2.0}

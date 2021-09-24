@@ -2,6 +2,7 @@
   "CH4": "Methane",
   "CO": "Carbon monoxide",
   "CO2": "Carbon dioxide",
+  "CO2EXCLBIOMASS": "Carbon dioxide (excluding biomass)",
   "N2O": "Nitrous oxide",
   "NH3": "Ammonia",
   "NMVOC": "Non-methane volatile organic compounds",
@@ -81,5 +82,9 @@
   "CYANIDES": "Cyanides (as total CN)",
   "FLUORIDES": "Fluorides (as total F)",
   "HCN": "Hydrogen cyanide",
-  "PM10": "Particulate matter"
+  "PM10": "Particulate matter",
+  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "Oktyylifenolit ja oktyylifenolietoksylaatit",
+  "FLUORANTHENE": "Fluoranthene",
+  "HFCS": "Hydrofluorocarbons",
+  "FLUORINEANDINORGANICCOMPOUNDS": "Fluorine and inorganic compounds (as HF)"
 }

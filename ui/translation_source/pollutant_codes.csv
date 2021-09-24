@@ -2,11 +2,12 @@
 74-82-8;CH4;CH4;Metaani;Metan;Methane
 630-08-0;CO;CO;Hiilimonoksidi;Kolmonoxid;Carbon monoxide
 124-38-9;CO2;CO2;Hiilidioksidi;Koldioxid;Carbon dioxide
+;CO2EXCLBIOMASS;;Hiilidioksidi (biomassa pois lukien);Koldioxid (exkl. biomassa);Carbon dioxide (excluding biomass)
 10024-97-2;N2O;N2O;Dityppioksidi;Dikväveoxid;Nitrous oxide
 7664-41-7;NH3;NH3;Ammoniakki;Ammoniak;Ammonia
 ;NMVOC;NMVOC;Haihtuvat orgaaniset yhdisteet pl. metaani;Flyktiga organiska föreningar exkl. metan;Non-methane volatile organic compounds
 ;NOX;NOx;Typen oksidit;Kväveoksider;Nitrogen oxides
-;PFCS;PFC;Perfluorihiilivedyt;Perfluorkarboner;Perfluorocarbons
+;PFCS;PFC;Perfluorihiilivedyt;Perfluorkolväten;Perfluorocarbons
 2551-62-4;SF6;SF6;Rikkiheksafluoridi;Svavelhexafluorid;Sulphur hexafluoride
 ;SOX;SOx;Rikin oksidit;Svaveloxider;Sulphur oxides
 ;TOTALNITROGEN;Ntot;Kokonaistyppi;Totalkväve;Total nitrogen
@@ -84,3 +85,7 @@
 ;CHLORINEANDINORGANICCOMPOUNDS;HF;Fluori ja epäorgaaniset yhdisteet;Fluor och oorganiska fluorföreningar;Fluorine and inorganic compounds (as HF)
 74-90-8;HCN;HCN;Syaanivety;Cyanväte;Hydrogen cyanide
 ;PM10;PM10;Hiukkaset;Partiklar;Particulate matter
+;OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES;;Oktyylifenolit ja oktyylifenolietoksylaatit;Oktyylifenolit ja oktyylifenolietoksylaatit;Oktyylifenolit ja oktyylifenolietoksylaatit
+;FLUORANTHENE;;Fluoranteeni;Fluoranthene;Fluoranthene
+;HFCS;HFC;Fluorihiilivedyt;Fluorkolväten;Hydrofluorocarbons 
+7782-41-4;FLUORINEANDINORGANICCOMPOUNDS;;Fluori ja epäorgaaniset yhdisteet;Fluor och oorganiska fluorföreningar;Fluorine and inorganic compounds (as HF)

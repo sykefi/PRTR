@@ -12,17 +12,22 @@ const FacilityReleaseTable = ({
 }: {
   releases: PollutantRelease[]
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation([
+    'translation',
+    'pollutantName',
+    'pollutantAbbreviation'
+  ])
+
   return (
     <Table variant="simple" marginX={1} marginY={4} boxSizing="border-box">
       <Thead>
         <Tr>
           <Th p={1} paddingRight={3}>
-            Year
+            {t('translation:common.year')}
           </Th>
-          <Th p={1}>Amount (kg)</Th>
-          <Th p={1}>Pollutant</Th>
-          <Th p={1}>Type</Th>
+          <Th p={1}>{t('translation:releases.quantity')} (kg)</Th>
+          <Th p={1}>{t('translation:releases.pollutant')}</Th>
+          <Th p={1}>{t('translation:releases.releaseMediumType')}</Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -32,21 +37,22 @@ const FacilityReleaseTable = ({
               <Td p={1} paddingRight={3}>
                 {r.reportingYear}
               </Td>
-              <Td p={1}>
+              <Td p={1} paddingRight={3}>
                 {(
                   r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
                 ).toLocaleString('fi')}
               </Td>
-              <Td p={1} maxWidth={120}>
-                {r.pollutantCode}
+              <Td p={1} maxWidth={120} paddingRight={2}>
+                {t(`pollutantAbbreviation:${r.pollutantCode}`) ||
+                  t(`pollutantName:${r.pollutantCode}`)}
               </Td>
               <Td p={1}>
                 <Badge
                   colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
                   {t(
                     r.medium === Medium.AIR
-                      ? 'releases.releaseToAir'
-                      : 'releases.releaseToWater'
+                      ? 'translation:releases.releaseToAir'
+                      : 'translation:releases.releaseToWater'
                   )}
                 </Badge>
               </Td>

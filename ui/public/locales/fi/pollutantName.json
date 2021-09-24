@@ -2,6 +2,7 @@
   "CH4": "Metaani",
   "CO": "Hiilimonoksidi",
   "CO2": "Hiilidioksidi",
+  "CO2EXCLBIOMASS": "Hiilidioksidi (biomassa pois lukien)",
   "N2O": "Dityppioksidi",
   "NH3": "Ammoniakki",
   "NMVOC": "Haihtuvat orgaaniset yhdisteet pl. metaani",
@@ -81,5 +82,9 @@
   "CYANIDES": "Syanidit",
   "FLUORIDES": "Fluoridit",
   "HCN": "Syaanivety",
-  "PM10": "Hiukkaset"
+  "PM10": "Hiukkaset",
+  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "Oktyylifenolit ja oktyylifenolietoksylaatit",
+  "FLUORANTHENE": "Fluoranteeni",
+  "HFCS": "Fluorihiilivedyt",
+  "FLUORINEANDINORGANICCOMPOUNDS": "Fluori ja epäorgaaniset yhdisteet"
 }

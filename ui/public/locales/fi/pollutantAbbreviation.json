@@ -2,6 +2,7 @@
   "CH4": "CH4",
   "CO": "CO",
   "CO2": "CO2",
+  "CO2EXCLBIOMASS": "",
   "N2O": "N2O",
   "NH3": "NH3",
   "NMVOC": "NMVOC",
@@ -81,5 +82,9 @@
   "CYANIDES": "CN",
   "FLUORIDES": "F",
   "HCN": "HCN",
-  "PM10": "PM10"
+  "PM10": "PM10",
+  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "",
+  "FLUORANTHENE": "",
+  "HFCS": "HFC",
+  "FLUORINEANDINORGANICCOMPOUNDS": ""
 }

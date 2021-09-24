@@ -2,11 +2,12 @@
   "CH4": "Metan",
   "CO": "Kolmonoxid",
   "CO2": "Koldioxid",
+  "CO2EXCLBIOMASS": "Koldioxid (exkl. biomassa)",
   "N2O": "Dikväveoxid",
   "NH3": "Ammoniak",
   "NMVOC": "Flyktiga organiska föreningar exkl. metan",
   "NOX": "Kväveoksider",
-  "PFCS": "Perfluorkarboner",
+  "PFCS": "Perfluorkolväten",
   "SF6": "Svavelhexafluorid",
   "SOX": "Svaveloxider",
   "TOTALNITROGEN": "Totalkväve",
@@ -81,5 +82,9 @@
   "CYANIDES": "Cyanider",
   "FLUORIDES": "Fluorider",
   "HCN": "Cyanväte",
-  "PM10": "Partiklar"
+  "PM10": "Partiklar",
+  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "Oktyylifenolit ja oktyylifenolietoksylaatit",
+  "FLUORANTHENE": "Fluoranthene",
+  "HFCS": "Fluorkolväten",
+  "FLUORINEANDINORGANICCOMPOUNDS": "Fluor och oorganiska fluorföreningar"
 }
