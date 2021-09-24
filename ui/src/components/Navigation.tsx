@@ -26,6 +26,8 @@ const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
       exact={navigationItem.path === RoutePath.FrontPage}
       px={2}
       py={1}
+      color="blackAlpha.700"
+      fontWeight={600}
       fontSize="lg"
       rounded={'md'}
       _hover={{
@@ -41,9 +43,27 @@ const NavLink = ({ navigationItem }: { navigationItem: NavigationItem }) => {
         overflow: 'hidden',
         visibility: 'hidden'
       }}
-      _activeLink={{ fontWeight: 600 }}
+      _activeLink={{
+        fontWeight: 600,
+        color: '#1876f2',
+        '&>div': { borderColor: '#1876f2' }
+      }}
+      _focus={{
+        background: 'initial',
+        '&>div': { borderColor: '#1876f2' }
+      }}
       href={'#'}>
       {displayText}
+      <Box
+        position="relative"
+        top="20px"
+        marginTop="-6px"
+        width="calc(100% + var(--chakra-space-4))"
+        borderTop="3px solid transparent"
+        borderTopLeftRadius="1px"
+        borderTopRightRadius="1px"
+        left={-2}
+      />
     </Link>
   )
 }
