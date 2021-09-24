@@ -64,7 +64,6 @@ export const FacilitySearchPanel = ({
               value={initialOption}
               name="facilityMainActivityCode"
               options={facilityMainActivityCodeOptions}
-              borderColor="blue"
               placeholder={t(
                 'translation:facilities.selectFacilityMainActivityCode'
               )}
@@ -76,6 +75,11 @@ export const FacilitySearchPanel = ({
             type="text"
             bgColor="white"
             minWidth={200}
+            colorScheme="red"
+            borderColor="var(--chakra-colors-gray-500)"
+            _hover={{
+              borderColor: 'black'
+            }}
             maxWidth="100%"
             marginY={1.0}
             value={searchTerm || ''}

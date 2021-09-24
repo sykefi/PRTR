@@ -15,7 +15,7 @@ export const FacilitySearchResultInfo = ({
 
   return (
     <Box data-cy="search-result-info">
-      <Box margin={1.0} marginBottom={2.0} fontWeight="bold">
+      <Box marginBottom={2.0} fontWeight="bold">
         {(!!urlSearchTerm &&
           t('facilities.facilitySearchResult', {
             searchTerm: urlSearchTerm,
@@ -29,7 +29,6 @@ export const FacilitySearchResultInfo = ({
         <Button
           data-cy="exit-results-btn"
           marginTop={2.0}
-          marginBottom={2.0}
           size="sm"
           colorScheme="orange"
           onClick={handleExitResults}>

@@ -74,7 +74,11 @@ const chakraComponents: SelectProps['components'] = {
             p: 0,
             overflow: 'hidden',
             h: 'auto',
-            minH: 10
+            minH: 10,
+            borderColor: 'var(--chakra-colors-gray-500)', // prtr
+            _hover: {
+              borderColor: 'black'
+            }
           }}
           {...innerProps}
           {...(isFocused && { 'data-focus': true })}
@@ -115,7 +119,12 @@ const chakraComponents: SelectProps['components'] = {
     )
   },
   IndicatorSeparator: ({ innerProps }) => (
-    <Divider {...innerProps} orientation="vertical" opacity="1" />
+    <Divider
+      {...innerProps}
+      orientation="vertical"
+      borderColor="var(--chakra-colors-gray-500)"
+      opacity="1"
+    />
   ),
   ClearIndicator: ({ innerProps }) => (
     <CloseButton {...innerProps} size="sm" mx={2} />

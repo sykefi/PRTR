@@ -119,7 +119,7 @@ export const OlMap = (props: Props) => {
         minWidth={250}
         maxWidth="100%"
         margin={props.margin || 0}
-        height={props.height || 'max(600px, calc(100vh - 320px))'}
+        height={props.height || 'max(600px, calc(100vh - 345px))'}
         maxHeight={props.height || 1000}
         background="white"
         borderRadius="md"

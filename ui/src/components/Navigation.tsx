@@ -80,7 +80,7 @@ const Navigation = ({
   return (
     <>
       <Box
-        boxShadow="sm"
+        boxShadow="md"
         bg="white"
         position="relative"
         px={4}
@@ -88,7 +88,7 @@ const Navigation = ({
         <Flex h={16} align="center" justifyContent="center">
           <IconButton
             size={'md'}
-            marginRight={4}
+            marginX={4}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
             display={{ sm: 'none' }}

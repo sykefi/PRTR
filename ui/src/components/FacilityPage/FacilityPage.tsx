@@ -7,6 +7,7 @@ import { Facility } from '../../api/models/Facility'
 import { OlMap } from '../OlMap'
 import { FacilityReleaseInfo } from './FacilityReleaseInfo'
 import { FacilityBasicInfo } from './FacilityBasicInfo'
+import { BelowNavigationHeaderPanel } from '../Commont'
 
 type FacilityParams = {
   facilityId: string
@@ -48,23 +49,16 @@ export const FacilityPage = () => {
 
   return (
     <>
-      <Flex
-        data-cy="facility-page-title"
-        w="100%"
-        justify="center"
-        background="white"
-        paddingTop={6}
-        paddingBottom={5}
-        boxShadow="sm">
-        <Heading as="h3" size="md">
+      <BelowNavigationHeaderPanel withYPadding>
+        <Heading as="h3" size="md" data-cy="facility-page-title">
           {facility?.nameOfFeature}
         </Heading>
         {loading && (
-          <Box paddingBottom={2} fontWeight="bold" size="md">
+          <Heading as="h3" size="md" fontWeight="semibold">
             {t('translation:common.loadingInformation')}
-          </Box>
+          </Heading>
         )}
-      </Flex>
+      </BelowNavigationHeaderPanel>
       <Flex
         wrap="wrap"
         justify="center"

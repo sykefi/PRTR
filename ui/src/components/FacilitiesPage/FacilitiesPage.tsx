@@ -14,6 +14,7 @@ import { ResultPageSelector } from './ResultPageSelector'
 import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
 import { FacilityList } from './FacilityList'
+import { BelowNavigationHeaderPanel } from '../Commont'
 
 const pageItemCount = 20
 
@@ -130,9 +131,11 @@ export const FacilitiesPage = () => {
 
   if (listState === 'initial' || listState === 'loading') {
     return (
-      <Box p={4} data-cy="facilities-load-animation">
-        <LoadAnimation sizePx={30} />
-      </Box>
+      <BelowNavigationHeaderPanel withYPadding>
+        <Box data-cy="facilities-load-animation">
+          <LoadAnimation sizePx={30} />
+        </Box>
+      </BelowNavigationHeaderPanel>
     )
   }
 
@@ -159,18 +162,9 @@ export const FacilitiesPage = () => {
   }
 
   return (
-    <Flex direction="column" maxWidth="100%" align="center">
-      <Flex
-        maxWidth="100%"
-        direction="column"
-        p={{ base: 1, md: 4 }}
-        paddingTop={4}
-        display="inline-flex"
-        width="fit-content"
-        flexWrap="wrap"
-        justify="center"
-        align="center">
-        {!showingSearchResults && (
+    <>
+      {!showingSearchResults && (
+        <BelowNavigationHeaderPanel>
           <FacilitySearchPanel
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -178,40 +172,55 @@ export const FacilitiesPage = () => {
             setFacilityMainActivityCode={setFacilityMainActivityCode}
             handleSubmit={setUrlSearchParams}
           />
-        )}
-        {facilities && (
-          <>
-            {showingSearchResults && (
-              <FacilitySearchResultInfo
-                urlSearchTerm={urlSearchTerm}
-                resultCount={facilities.length}
-                handleExitResults={returnToMainList}
-              />
-            )}
-            <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
-              <ResultPageSelector
-                pageItemCount={pageItemCount}
-                activeRowRange={activeRowRange}
-                facilityCount={facilities.length}
-                history={history}
-              />
-            </Flex>
-            <Flex wrap="wrap" justify="center" maxWidth="100%">
-              <FacilityList
-                facilities={facilities}
-                activeRowRange={activeRowRange}
-                handleExitResults={returnToMainList}
-              />
-              <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
-                <OlMap
-                  facilities={facilities}
-                  zoomToInitialExtent={!urlSearchTerm}
+        </BelowNavigationHeaderPanel>
+      )}
+      {facilities && showingSearchResults && (
+        <BelowNavigationHeaderPanel withYPadding>
+          <FacilitySearchResultInfo
+            urlSearchTerm={urlSearchTerm}
+            resultCount={facilities.length}
+            handleExitResults={returnToMainList}
+          />
+        </BelowNavigationHeaderPanel>
+      )}
+      <Flex direction="column" maxWidth="100%" align="center">
+        <Flex
+          maxWidth="100%"
+          direction="column"
+          p={{ base: 1, md: 4 }}
+          paddingTop={4}
+          display="inline-flex"
+          width="fit-content"
+          flexWrap="wrap"
+          justify="center"
+          align="center">
+          {facilities && (
+            <>
+              <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
+                <ResultPageSelector
+                  pageItemCount={pageItemCount}
+                  activeRowRange={activeRowRange}
+                  facilityCount={facilities.length}
+                  history={history}
                 />
-              </Box>
-            </Flex>
-          </>
-        )}
+              </Flex>
+              <Flex wrap="wrap" justify="center" maxWidth="100%">
+                <FacilityList
+                  facilities={facilities}
+                  activeRowRange={activeRowRange}
+                  handleExitResults={returnToMainList}
+                />
+                <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
+                  <OlMap
+                    facilities={facilities}
+                    zoomToInitialExtent={!urlSearchTerm}
+                  />
+                </Box>
+              </Flex>
+            </>
+          )}
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   )
 }
