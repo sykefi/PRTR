@@ -14,10 +14,10 @@ const FacilityReleaseTable = ({
 }) => {
   const { t } = useTranslation()
   return (
-    <Table variant="simple" m={3} marginY={4}>
+    <Table variant="simple" marginX={1} marginY={4} boxSizing="border-box">
       <Thead>
         <Tr>
-          <Th p={1} paddingRight={2}>
+          <Th p={1} paddingRight={3}>
             Year
           </Th>
           <Th p={1}>Amount (kg)</Th>
@@ -26,35 +26,33 @@ const FacilityReleaseTable = ({
         </Tr>
       </Thead>
       <Tbody>
-        {releases
-          .sort((a, b) => b.reportingYear - a.reportingYear)
-          .map(r => {
-            return (
-              <Tr key={r.id}>
-                <Td p={1} paddingRight={2}>
-                  {r.reportingYear}
-                </Td>
-                <Td p={1}>
-                  {(
-                    r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
-                  ).toLocaleString('fi')}
-                </Td>
-                <Td p={1} maxWidth={120}>
-                  {r.pollutantCode}
-                </Td>
-                <Td p={1}>
-                  <Badge
-                    colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
-                    {t(
-                      r.medium === Medium.AIR
-                        ? 'releases.releaseToAir'
-                        : 'releases.releaseToWater'
-                    )}
-                  </Badge>
-                </Td>
-              </Tr>
-            )
-          })}
+        {releases.map(r => {
+          return (
+            <Tr key={r.id}>
+              <Td p={1} paddingRight={3}>
+                {r.reportingYear}
+              </Td>
+              <Td p={1}>
+                {(
+                  r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
+                ).toLocaleString('fi')}
+              </Td>
+              <Td p={1} maxWidth={120}>
+                {r.pollutantCode}
+              </Td>
+              <Td p={1}>
+                <Badge
+                  colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
+                  {t(
+                    r.medium === Medium.AIR
+                      ? 'releases.releaseToAir'
+                      : 'releases.releaseToWater'
+                  )}
+                </Badge>
+              </Td>
+            </Tr>
+          )
+        })}
       </Tbody>
     </Table>
   )
@@ -96,7 +94,8 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
   return (
     <Box
       data-cy="facility-release-info"
-      minWidth={{ base: 250, md: 450 }}
+      width={450}
+      minWidth={250}
       maxWidth="100%"
       m={2}
       paddingX={5}

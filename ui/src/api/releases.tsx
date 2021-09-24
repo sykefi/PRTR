@@ -51,5 +51,5 @@ export const getReleases = async (
     PollutantRelease,
     'id'
   >[]
-  return data.map(withId)
+  return data.map(withId).sort((a, b) => b.reportingYear - a.reportingYear)
 }

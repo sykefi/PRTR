@@ -49,7 +49,7 @@ export const FacilityPage = () => {
   return (
     <>
       <Flex data-cy="facility-page-title" w="100%" justify="center">
-        <Heading as="h3" size="md" marginBottom={3}>
+        <Heading as="h3" size="md" marginBottom={3} marginTop={1}>
           {facility?.nameOfFeature}
         </Heading>
         {loading && (
