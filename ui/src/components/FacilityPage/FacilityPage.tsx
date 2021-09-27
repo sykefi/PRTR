@@ -54,6 +54,28 @@ export const FacilityPage = () => {
   const previousPathIsFacilityList =
     !!location.state && location.state.from?.includes('facilities')
 
+  const previousPathIsReleaseList =
+    !!location.state && location.state.from?.includes('releases')
+
+  const handleExit = () => {
+    if (
+      // go back to search page if we came from there
+      previousPathIsFacilityList ||
+      previousPathIsReleaseList
+    ) {
+      history.goBack()
+    } else {
+      // go back to facility list if previous location is unknown
+      history.push('/facilities')
+    }
+  }
+
+  const exitLabel = t(
+    previousPathIsReleaseList
+      ? 'translation:facilities.goBackToReleasesSearch'
+      : 'translation:facilities.goBackToFacilitySearch'
+  )
+
   return (
     <>
       <BelowNavigationHeaderPanel withYPadding>
@@ -64,18 +86,8 @@ export const FacilityPage = () => {
                 data-cy="exit-results-btn"
                 size="sm"
                 colorScheme="blue"
-                onClick={() => {
-                  if (
-                    // go back to search page if we came from there
-                    previousPathIsFacilityList
-                  ) {
-                    history.goBack()
-                  } else {
-                    // go back to facility list if previous location is unknown
-                    history.push('/facilities')
-                  }
-                }}>
-                {t('translation:facilities.goBackToFacilitySearch')}
+                onClick={handleExit}>
+                {exitLabel}
               </Button>
             </Box>
             <Heading as="h3" size="md" data-cy="facility-page-title">

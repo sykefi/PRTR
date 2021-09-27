@@ -6,12 +6,14 @@ import { Medium } from '../../api/models/Medium'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { getReleases } from '../../api/releases'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
+import { usePollutantLabel } from '../../hooks/usePollutantLabel'
 
 const FacilityReleaseTable = ({
   releases
 }: {
   releases: PollutantRelease[]
 }) => {
+  const getPollutantLabel = usePollutantLabel()
   const { t } = useTranslation([
     'translation',
     'pollutantName',
@@ -22,12 +24,18 @@ const FacilityReleaseTable = ({
     <Table variant="simple" marginY={4} boxSizing="border-box">
       <Thead>
         <Tr>
-          <Th p={1} paddingRight={3}>
+          <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
             {t('translation:common.year')}
           </Th>
-          <Th p={1}>{t('translation:releases.quantity')} (kg)</Th>
-          <Th p={1}>{t('translation:releases.pollutant')}</Th>
-          <Th p={1}>{t('translation:releases.releaseMediumType')}</Th>
+          <Th p={1} color="gray.800" fontSize="smaller">
+            {t('translation:releases.quantity')} (kg)
+          </Th>
+          <Th p={1} color="gray.800" fontSize="smaller">
+            {t('translation:releases.pollutant')}
+          </Th>
+          <Th p={1} color="gray.800" fontSize="smaller">
+            {t('translation:releases.releaseMediumType')}
+          </Th>
         </Tr>
       </Thead>
       <Tbody>
@@ -43,11 +51,11 @@ const FacilityReleaseTable = ({
                 ).toLocaleString('fi')}
               </Td>
               <Td p={1} maxWidth={120} paddingRight={2}>
-                {t(`pollutantAbbreviation:${r.pollutantCode}`) ||
-                  t(`pollutantName:${r.pollutantCode}`)}
+                {getPollutantLabel(r.pollutantCode)}
               </Td>
               <Td p={1}>
                 <Badge
+                  whiteSpace={{ base: 'unset', sm: 'nowrap' }}
                   colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
                   {t(
                     r.medium === Medium.AIR

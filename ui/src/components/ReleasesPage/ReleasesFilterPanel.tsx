@@ -9,15 +9,7 @@ import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
-
-const usePollutantLabel = () => {
-  const { t } = useTranslation(['pollutantName', 'pollutantAbbreviation'])
-  return (pollutant: PollutantCode) => {
-    const name = t(`pollutantName:${pollutant}`)
-    const abbr = t(`pollutantAbbreviation:${pollutant}`)
-    return `${abbr}${abbr && name && ' - '} ${name}`
-  }
-}
+import { usePollutantLabel } from '../../hooks/usePollutantLabel'
 
 const usePollutantNameOptions = (): OptionType<PollutantCode>[] => {
   const getPollutantLabel = usePollutantLabel()

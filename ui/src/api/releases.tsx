@@ -4,6 +4,7 @@ import { apiBasePath } from './conf'
 import { serializeQueryParams } from './utils'
 import { ReleaseQueryParams } from './models/ReleaseQueryParams'
 import { PollutantRelease, withId } from './models/PollutantRelease'
+import { PollutantReleaseWithFacilityInfo } from './models/PollutantReleaseWithFacilityInfo'
 
 const getData = async <T,>(
   url: string,
@@ -35,10 +36,11 @@ const getData = async <T,>(
   }
 }
 
-export const getReleases = async (
+export const handleGetReleases = async <T extends PollutantRelease>(
   controller: AbortController,
-  queryParams: ReleaseQueryParams = {}
-): Promise<PollutantRelease[]> => {
+  queryParams: ReleaseQueryParams,
+  withFacilityInfo: boolean
+): Promise<T[]> => {
   const allQueryParams: ReleaseQueryParams = {
     limit: releasesResultLimit,
     ...queryParams
@@ -46,10 +48,31 @@ export const getReleases = async (
   const queryString = serializeQueryParams(
     allQueryParams as Record<string, string | number>
   )
-  const url = `${apiBasePath}/releases?` + queryString
-  const data = (await getData(url, controller)) as Omit<
-    PollutantRelease,
-    'id'
-  >[]
-  return data.map(withId).sort((a, b) => b.reportingYear - a.reportingYear)
+  const url =
+    apiBasePath +
+    (withFacilityInfo ? '/releases-facilities?' : '/releases?') +
+    queryString
+
+  const data = (await getData(url, controller)) as Omit<T, 'id'>[]
+  return data
+    .map(withId)
+    .sort((a, b) => b.reportingYear - a.reportingYear) as T[]
+}
+
+export const getReleases = async (
+  controller: AbortController,
+  queryParams: ReleaseQueryParams = {}
+): Promise<PollutantRelease[]> => {
+  return await handleGetReleases(controller, queryParams, false)
+}
+
+export const getReleasesWithFacilityInfo = async (
+  controller: AbortController,
+  queryParams: ReleaseQueryParams = {}
+): Promise<PollutantReleaseWithFacilityInfo[]> => {
+  return (await handleGetReleases<PollutantReleaseWithFacilityInfo>(
+    controller,
+    queryParams,
+    true
+  )) as PollutantReleaseWithFacilityInfo[]
 }

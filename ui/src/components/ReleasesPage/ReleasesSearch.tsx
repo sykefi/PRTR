@@ -5,6 +5,7 @@ import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
+import { PollutantReleaseWithFacilityInfo } from '../../api/models/PollutantReleaseWithFacilityInfo'
 import { useURLSearchParam } from '../../hooks/useURLSearchParams'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
@@ -16,7 +17,9 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   const [searchState, setSearchState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
-  const [releases, setReleases] = useState<PollutantRelease[] | []>([])
+  const [releases, setReleases] = useState<
+    PollutantReleaseWithFacilityInfo[] | []
+  >([])
 
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
     ReleaseSearchURLParamName.PollutantCode
@@ -28,7 +31,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     const controller = new AbortController()
     const getReleases = async () => {
       try {
-        const data = await api.getReleases(controller, {
+        const data = await api.getReleasesWithFacilityInfo(controller, {
           pollutant_code: urlPollutantCode,
           medium: props.medium,
           limit: 50

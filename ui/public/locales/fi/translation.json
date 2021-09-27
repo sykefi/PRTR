@@ -12,6 +12,7 @@
     "goBackToSearch": "Palaa hakuun",
     "streetAddress": "Katuosoite",
     "telephoneNumber": "Puhelinnumero",
+    "facility": "Laitos",
     "goBack": "Palaa",
     "toGoBack": "Paluu",
     "search": "Etsi",
@@ -31,7 +32,8 @@
     "couldNotFindFacilityReleases": "Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
     "facilityReleaseInfo": "Päästötiedot",
-    "goBackToFacilitySearch": "Palaa laitoshakuun"
+    "goBackToFacilitySearch": "Palaa laitoshakuun",
+    "goBackToReleasesSearch": "Palaa päästöhakuun"
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",

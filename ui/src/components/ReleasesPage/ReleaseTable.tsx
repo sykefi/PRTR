@@ -1,14 +1,18 @@
-import { Badge, Box } from '@chakra-ui/layout'
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
+import { useLocation } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { Box, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { Medium } from '../../api/models/Medium'
-import { PollutantRelease } from '../../api/models/PollutantRelease'
+import { PollutantReleaseWithFacilityInfo } from '../../api/models/PollutantReleaseWithFacilityInfo'
+import { usePollutantLabel } from '../../hooks/usePollutantLabel'
 
 export const ReleaseTable = ({
   releases
 }: {
-  releases: PollutantRelease[]
+  releases: PollutantReleaseWithFacilityInfo[]
 }) => {
+  const location = useLocation()
+  const getPollutantLabel = usePollutantLabel()
   const { t } = useTranslation([
     'translation',
     'pollutantName',
@@ -18,7 +22,7 @@ export const ReleaseTable = ({
   return (
     <Box
       data-cy="releases-table"
-      width={450}
+      width={750}
       minWidth={250}
       maxWidth="100%"
       paddingX={5}
@@ -33,11 +37,18 @@ export const ReleaseTable = ({
       <Table variant="simple" marginY={4} boxSizing="border-box">
         <Thead>
           <Tr>
-            <Th p={1} paddingRight={3}>
+            <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
               {t('translation:common.year')}
             </Th>
-            <Th p={1}>{t('translation:releases.quantity')} (kg)</Th>
-            <Th p={1}>{t('translation:releases.pollutant')}</Th>
+            <Th p={1} color="gray.800" fontSize="smaller">
+              {t('translation:releases.quantity')} (kg)
+            </Th>
+            <Th p={1} color="gray.800" fontSize="smaller">
+              {t('translation:releases.pollutant')}
+            </Th>
+            <Th p={1} color="gray.800" fontSize="smaller">
+              {t('translation:common.facility')}
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -52,9 +63,22 @@ export const ReleaseTable = ({
                     r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
                   ).toLocaleString('fi')}
                 </Td>
-                <Td p={1} maxWidth={120} paddingRight={2}>
-                  {t(`pollutantAbbreviation:${r.pollutantCode}`) ||
-                    t(`pollutantName:${r.pollutantCode}`)}
+                <Td p={1} maxWidth={140} paddingRight={3}>
+                  {getPollutantLabel(r.pollutantCode)}
+                </Td>
+                <Td p={1} maxWidth={240}>
+                  <Link
+                    as={ReactRouterLink}
+                    lineHeight="tight"
+                    overflowWrap="normal"
+                    whiteSpace="unset"
+                    overflow="hidden"
+                    to={{
+                      pathname: '/facilities/' + r.facilityId,
+                      state: { from: location.pathname } // store the current (i.e. previous) path in location.state.from
+                    }}>
+                    {r.nameOfFeature}
+                  </Link>
                 </Td>
               </Tr>
             )
