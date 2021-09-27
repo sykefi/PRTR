@@ -1,4 +1,4 @@
-export enum FacilityURLSearchParamName {
+export enum FacilitySearchURLParamName {
   SearchTerm = 'searchTerm',
   ActiveRangeLowerLimit = 'listLowerLimit',
   ActiveRangeUpperLimit = 'listUpperLimit',

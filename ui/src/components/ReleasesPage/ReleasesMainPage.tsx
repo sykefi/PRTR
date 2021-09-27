@@ -1,9 +1,9 @@
 import { Flex, HStack } from '@chakra-ui/layout'
 import { useRouteMatch } from 'react-router'
+import { Medium } from '../../api/models/Medium'
 import { NavigationItem, RoutePath } from '../../models'
-import { BelowNavigationHeaderPanel } from '../Common'
 import { NavLink } from '../Navigation'
-import { ReleaseSelectorPanel } from './ReleasesSelectorPanel'
+import { ReleasesSearch } from './ReleasesSearch'
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.releasesToAir', path: RoutePath.ReleasesToAir },
@@ -11,7 +11,9 @@ const navigationItems: NavigationItem[] = [
 ]
 
 export const ReleasesMainPage = () => {
-  const match = useRouteMatch('/' + RoutePath.Releases)
+  const matchReleases = useRouteMatch('/' + RoutePath.Releases)
+  const matchReleasesToAir = useRouteMatch('/' + RoutePath.ReleasesToAir)
+  const matchReleasesToWater = useRouteMatch('/' + RoutePath.ReleasesToWater)
 
   return (
     <>
@@ -38,10 +40,9 @@ export const ReleasesMainPage = () => {
           </HStack>
         </Flex>
       </Flex>
-      {!match?.isExact && (
-        <BelowNavigationHeaderPanel>
-          <ReleaseSelectorPanel />
-        </BelowNavigationHeaderPanel>
+      {!matchReleasesToAir?.isExact && <ReleasesSearch medium={Medium.AIR} />}
+      {!matchReleasesToWater?.isExact && (
+        <ReleasesSearch medium={Medium.WATER} />
       )}
     </>
   )

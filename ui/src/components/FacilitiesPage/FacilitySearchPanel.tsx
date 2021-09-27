@@ -1,3 +1,4 @@
+import { FormEvent } from 'react'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
@@ -50,7 +51,7 @@ export const FacilitySearchPanel = ({
   setFacilityMainActivityCode: (
     code: FacilityMainActivityCode | undefined
   ) => void
-  handleSubmit: () => void
+  handleSubmit: (e: FormEvent) => void
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()

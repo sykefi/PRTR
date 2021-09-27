@@ -3,7 +3,7 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { History } from 'history'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
-import { FacilityURLSearchParamName } from '../../models/FacilityURLSearchParamName'
+import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
 
 export const ResultPageSelector = ({
   pageItemCount,
@@ -34,11 +34,11 @@ export const ResultPageSelector = ({
 
   const updateActiveRowRage = (limits: [number, number]) => {
     urlSearchParams.set(
-      FacilityURLSearchParamName.ActiveRangeLowerLimit,
+      FacilitySearchURLParamName.ActiveRangeLowerLimit,
       limits[0].toString()
     )
     urlSearchParams.set(
-      FacilityURLSearchParamName.ActiveRangeUpperLimit,
+      FacilitySearchURLParamName.ActiveRangeUpperLimit,
       limits[1].toString()
     )
     history.push({
