@@ -39,6 +39,8 @@
     "pollutant": "Yhdiste",
     "quantity": "Määrä",
     "releaseMediumType": "Tyyppi",
-    "selectPollutant": "Valitse yhdiste"
+    "selectPollutant": "Valitse yhdiste",
+    "noReleasesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
+    "releasesFetchErrorInfo": "Päästöjen haku epäonnistui, yritä myöhemmin uudestaan."
   }
 }

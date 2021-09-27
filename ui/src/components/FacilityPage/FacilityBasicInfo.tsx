@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/button'
 import { Box, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { Facility } from '../../api/models/Facility'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 

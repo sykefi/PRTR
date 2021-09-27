@@ -38,7 +38,6 @@ export const ReleaseTable = ({
             </Th>
             <Th p={1}>{t('translation:releases.quantity')} (kg)</Th>
             <Th p={1}>{t('translation:releases.pollutant')}</Th>
-            <Th p={1}>{t('translation:releases.releaseMediumType')}</Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -56,16 +55,6 @@ export const ReleaseTable = ({
                 <Td p={1} maxWidth={120} paddingRight={2}>
                   {t(`pollutantAbbreviation:${r.pollutantCode}`) ||
                     t(`pollutantName:${r.pollutantCode}`)}
-                </Td>
-                <Td p={1}>
-                  <Badge
-                    colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
-                    {t(
-                      r.medium === Medium.AIR
-                        ? 'translation:releases.releaseToAir'
-                        : 'translation:releases.releaseToWater'
-                    )}
-                  </Badge>
                 </Td>
               </Tr>
             )

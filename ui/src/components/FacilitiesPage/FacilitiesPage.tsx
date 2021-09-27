@@ -127,6 +127,7 @@ export const FacilitiesPage = () => {
     getFacilities()
 
     return () => {
+      setFacilities([])
       controller.abort()
     }
   }, [urlSearchTerm, urlFacilityMainActivityCode])

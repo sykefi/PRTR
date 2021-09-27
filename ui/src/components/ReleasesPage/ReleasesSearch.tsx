@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/layout'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
@@ -20,6 +21,8 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
     ReleaseSearchURLParamName.PollutantCode
   )
+
+  const { t } = useTranslation()
 
   useEffect(() => {
     const controller = new AbortController()
@@ -43,6 +46,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     getReleases()
 
     return () => {
+      setReleases([])
       controller.abort()
     }
   }, [urlPollutantCode, props.medium])
@@ -59,9 +63,19 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         sx={{ gap: 'var(--chakra-space-3)' }}
         padding={3}
         data-cy="releases-container">
-        {searchState === 'loading' && (
+        {(searchState === 'loading' || searchState === 'initial') && (
           <Box p={2} data-cy="releases-load-animation">
             <LoadAnimation sizePx={30} />
+          </Box>
+        )}
+        {searchState === 'done' && releases.length === 0 && (
+          <Box marginY={2.0} fontWeight="semibold">
+            {t('releases.noReleasesFoundFromSearch')}
+          </Box>
+        )}
+        {searchState === 'error' && (
+          <Box marginY={2.0} fontWeight="semibold">
+            {t('releases.releasesFetchErrorInfo')}
           </Box>
         )}
         {releases.length > 0 && <ReleaseTable releases={releases} />}

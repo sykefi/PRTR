@@ -1,5 +1,5 @@
 import { Flex, HStack } from '@chakra-ui/layout'
-import { useRouteMatch } from 'react-router'
+import { useRouteMatch } from 'react-router-dom'
 import { Medium } from '../../api/models/Medium'
 import { NavigationItem, RoutePath } from '../../models'
 import { NavLink } from '../Navigation'
@@ -13,6 +13,12 @@ const navigationItems: NavigationItem[] = [
 export const ReleasesMainPage = () => {
   const matchReleasesToAir = useRouteMatch('/' + RoutePath.ReleasesToAir)
   const matchReleasesToWater = useRouteMatch('/' + RoutePath.ReleasesToWater)
+
+  const medium = matchReleasesToAir?.isExact
+    ? Medium.AIR
+    : matchReleasesToWater?.isExact
+    ? Medium.WATER
+    : undefined
 
   return (
     <>
@@ -33,16 +39,14 @@ export const ReleasesMainPage = () => {
                   key={item.path}
                   navigationItem={item}
                   hideUnderlineOnMobile={false}
+                  preserveSearch
                 />
               ))}
             </HStack>
           </HStack>
         </Flex>
       </Flex>
-      {matchReleasesToAir?.isExact && <ReleasesSearch medium={Medium.AIR} />}
-      {matchReleasesToWater?.isExact && (
-        <ReleasesSearch medium={Medium.WATER} />
-      )}
+      {!!medium && <ReleasesSearch medium={medium} />}
     </>
   )
 }
