@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/layout'
+import { Box, Flex } from '@chakra-ui/layout'
 import { useEffect, useState } from 'react'
 import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
@@ -7,6 +7,7 @@ import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { useURLSearchParam } from '../../hooks/useURLSearchParams'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
+import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { ReleasesFilterPanel } from './ReleasesFilterPanel'
 import { ReleaseTable } from './ReleaseTable'
 
@@ -22,7 +23,6 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
 
   useEffect(() => {
     const controller = new AbortController()
-
     const getReleases = async () => {
       try {
         const data = await api.getReleases(controller, {
@@ -45,7 +45,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     return () => {
       controller.abort()
     }
-  }, [urlPollutantCode])
+  }, [urlPollutantCode, props.medium])
 
   return (
     <>
@@ -59,6 +59,11 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         sx={{ gap: 'var(--chakra-space-3)' }}
         padding={3}
         data-cy="releases-container">
+        {searchState === 'loading' && (
+          <Box p={2} data-cy="releases-load-animation">
+            <LoadAnimation sizePx={30} />
+          </Box>
+        )}
         {releases.length > 0 && <ReleaseTable releases={releases} />}
       </Flex>
     </>

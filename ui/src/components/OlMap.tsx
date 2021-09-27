@@ -58,8 +58,6 @@ const facilityLayer = new VectorLayer({
   })
 })
 
-let renderDelay: null | ReturnType<typeof setTimeout> = null
-
 const olMap = new Map({
   target: undefined,
   layers: [baseLayer, facilityLayer],
@@ -83,6 +81,7 @@ export const OlMap = (props: Props) => {
   const [mapIsRendered, setMapIsRendered] = useState(false)
 
   useEffect(() => {
+    let renderDelay: null | ReturnType<typeof setTimeout> = null
     // mount and unmount map with the component
     if (!olMap.getTarget()) {
       olMap.setTarget('map')

@@ -17,7 +17,7 @@ export const ReleaseTable = ({
 
   return (
     <Box
-      data-cy="facility-release-info"
+      data-cy="releases-table"
       width={450}
       minWidth={250}
       maxWidth="100%"

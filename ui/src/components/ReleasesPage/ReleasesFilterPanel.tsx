@@ -84,7 +84,7 @@ export const ReleasesFilterPanel = () => {
   }
 
   return (
-    <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
+    <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">
       <Flex display="flex" flexWrap="wrap" justify="center">
         <FormControl
           marginTop={1.0}
@@ -103,7 +103,7 @@ export const ReleasesFilterPanel = () => {
             />
           </Box>
           <Button
-            data-cy="search-facilities-btn"
+            data-cy="filter-releases-btn"
             type="submit"
             marginY={1.0}
             marginLeft={1.0}
