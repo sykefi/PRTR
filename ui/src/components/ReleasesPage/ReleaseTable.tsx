@@ -4,7 +4,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { Box, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { PollutantReleaseWithFacilityInfo } from '../../api/models/PollutantReleaseWithFacilityInfo'
-import { usePollutantLabel } from '../../hooks/usePollutantLabel'
+import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 
 export const ReleaseTable = ({
   releases
@@ -12,7 +12,7 @@ export const ReleaseTable = ({
   releases: PollutantReleaseWithFacilityInfo[]
 }) => {
   const location = useLocation()
-  const getPollutantLabel = usePollutantLabel()
+  const getPollutantLabel = useGetPollutantLabel()
   const { t } = useTranslation([
     'translation',
     'pollutantName',

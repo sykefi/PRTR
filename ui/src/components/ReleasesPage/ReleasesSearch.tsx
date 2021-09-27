@@ -57,7 +57,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   return (
     <>
       <BelowNavigationHeaderPanel>
-        <ReleasesFilterPanel />
+        <ReleasesFilterPanel urlPollutantCode={urlPollutantCode} />
       </BelowNavigationHeaderPanel>
       <Flex
         wrap="wrap"

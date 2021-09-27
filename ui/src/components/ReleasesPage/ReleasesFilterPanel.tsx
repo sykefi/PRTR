@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { Box, Flex } from '@chakra-ui/layout'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -9,10 +9,10 @@ import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
-import { usePollutantLabel } from '../../hooks/usePollutantLabel'
+import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 
 const usePollutantNameOptions = (): OptionType<PollutantCode>[] => {
-  const getPollutantLabel = usePollutantLabel()
+  const getPollutantLabel = useGetPollutantLabel()
 
   return Object.values(PollutantCode)
     .reduce((prev, curr) => {
@@ -35,11 +35,25 @@ const usePollutantNameOptions = (): OptionType<PollutantCode>[] => {
     })
 }
 
+const asOption = <T extends string>(
+  v: T | undefined,
+  getLabel: (v: T) => string
+): OptionType<T> | undefined => {
+  return v
+    ? {
+        value: v,
+        label: getLabel(v)
+      }
+    : undefined
+}
+
 const Form = styled.form`
   max-width: 100%;
 `
 
-export const ReleasesFilterPanel = () => {
+export const ReleasesFilterPanel = (props: {
+  urlPollutantCode: PollutantCode | undefined
+}) => {
   const { t } = useTranslation()
   const history = useHistory()
   const location = useLocation()
@@ -47,18 +61,13 @@ export const ReleasesFilterPanel = () => {
     undefined
   )
 
-  // console.log('location', location)
-  // console.log('history', history)
-
-  const getPollutantLabel = usePollutantLabel()
+  const getPollutantLabel = useGetPollutantLabel()
   const pollutantOptions = usePollutantNameOptions()
 
-  const selectedPollutant = pollutantCode
-    ? {
-        value: pollutantCode,
-        label: getPollutantLabel(pollutantCode)
-      }
-    : undefined
+  useEffect(() => {
+    // initialize selected pollutant from url search param
+    setPollutantCode(props.urlPollutantCode)
+  }, [props.urlPollutantCode])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
@@ -88,7 +97,7 @@ export const ReleasesFilterPanel = () => {
               isClearable
               closeMenuOnSelect
               name="releasesPollutantCode"
-              value={selectedPollutant}
+              value={asOption(pollutantCode, getPollutantLabel)}
               options={pollutantOptions}
               placeholder={t('releases.selectPollutant')}
               onChange={e => setPollutantCode(e?.value)}

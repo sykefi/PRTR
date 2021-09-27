@@ -6,14 +6,14 @@ import { Medium } from '../../api/models/Medium'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { getReleases } from '../../api/releases'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
-import { usePollutantLabel } from '../../hooks/usePollutantLabel'
+import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 
 const FacilityReleaseTable = ({
   releases
 }: {
   releases: PollutantRelease[]
 }) => {
-  const getPollutantLabel = usePollutantLabel()
+  const getPollutantLabel = useGetPollutantLabel()
   const { t } = useTranslation([
     'translation',
     'pollutantName',
