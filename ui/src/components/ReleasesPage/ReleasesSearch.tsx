@@ -10,7 +10,7 @@ import { BelowNavigationHeaderPanel } from '../Common'
 import { ReleasesFilterPanel } from './ReleasesFilterPanel'
 import { ReleaseTable } from './ReleaseTable'
 
-export const ReleasesSearch = ({ medium }: { medium: Medium }) => {
+export const ReleasesSearch = (props: { medium: Medium }) => {
   const [searchState, setSearchState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
@@ -27,6 +27,7 @@ export const ReleasesSearch = ({ medium }: { medium: Medium }) => {
       try {
         const data = await api.getReleases(controller, {
           pollutant_code: urlPollutantCode,
+          medium: props.medium,
           limit: 50
         })
         setReleases(data)

@@ -11,7 +11,6 @@ const navigationItems: NavigationItem[] = [
 ]
 
 export const ReleasesMainPage = () => {
-  const matchReleases = useRouteMatch('/' + RoutePath.Releases)
   const matchReleasesToAir = useRouteMatch('/' + RoutePath.ReleasesToAir)
   const matchReleasesToWater = useRouteMatch('/' + RoutePath.ReleasesToWater)
 
@@ -40,8 +39,8 @@ export const ReleasesMainPage = () => {
           </HStack>
         </Flex>
       </Flex>
-      {!matchReleasesToAir?.isExact && <ReleasesSearch medium={Medium.AIR} />}
-      {!matchReleasesToWater?.isExact && (
+      {matchReleasesToAir?.isExact && <ReleasesSearch medium={Medium.AIR} />}
+      {matchReleasesToWater?.isExact && (
         <ReleasesSearch medium={Medium.WATER} />
       )}
     </>

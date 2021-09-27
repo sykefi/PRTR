@@ -1,4 +1,4 @@
-from models.enums import MainActivityCode, PollutantCode
+from models.enums import MainActivityCode, Medium, PollutantCode
 from models.models import (
     PollutantRelease, PollutantReleaseWithFacilityInfo,
     ProductionFacility, with_facility_info
@@ -63,6 +63,7 @@ def _filter_releases(
     skip: int,
     limit: int,
     reporting_year: Union[int, None],
+    medium: Union[Medium, None],
     pollutant_code: Union[PollutantCode, None],
     releases_data: Union[
         List[PollutantRelease], List[PollutantReleaseWithFacilityInfo]
@@ -75,8 +76,9 @@ def _filter_releases(
         r for r in releases_data
         if (
             (not facility_id or r.facilityId == facility_id) and
-            (not pollutant_code or r.pollutantCode == pollutant_code) and
-            (not reporting_year or r.reportingYear == reporting_year)
+            (not reporting_year or r.reportingYear == reporting_year) and
+            (not medium or r.medium == medium) and
+            (not pollutant_code or r.pollutantCode == pollutant_code)
         )
     ]
     return match[skip:skip + limit]
@@ -87,6 +89,7 @@ def get_releases(
     skip: int,
     limit: int,
     reporting_year: Union[int, None],
+    medium: Union[Medium, None],
     pollutant_code: Union[PollutantCode, None],
     with_facility_info: bool = False
 ) -> Union[
@@ -99,6 +102,7 @@ def get_releases(
         skip,
         limit,
         reporting_year,
+        medium,
         pollutant_code
     )
     if not with_facility_info:

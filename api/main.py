@@ -1,4 +1,4 @@
-from models.enums import MainActivityCode, PollutantCode
+from models.enums import MainActivityCode, Medium, PollutantCode
 from models.models import (
     PollutantRelease, PollutantReleaseWithFacilityInfo, ProductionFacility
 )
@@ -55,6 +55,7 @@ def read_pollutant_releases(
     skip: int = 0,
     limit: int = 10,
     reporting_year: int = None,
+    medium: Medium = None,
     pollutant_code: PollutantCode = None
 ):
     match = prtr_data.get_releases(
@@ -62,6 +63,7 @@ def read_pollutant_releases(
         skip,
         limit,
         reporting_year,
+        medium,
         pollutant_code,
         with_facility_info=False
     )
@@ -86,6 +88,7 @@ def read_pollutant_releases_with_facility_info(
     skip: int = 0,
     limit: int = 10,
     reporting_year: int = None,
+    medium: Medium = None,
     pollutant_code: PollutantCode = None
 ):
     match = prtr_data.get_releases(
@@ -93,6 +96,7 @@ def read_pollutant_releases_with_facility_info(
         skip,
         limit,
         reporting_year,
+        medium,
         pollutant_code,
         with_facility_info=True
     )

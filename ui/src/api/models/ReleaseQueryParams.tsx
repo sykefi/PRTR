@@ -1,3 +1,4 @@
+import { Medium } from './Medium'
 import { PollutantCode } from './PollutantCode'
 
 export interface ReleaseQueryParams {
@@ -5,5 +6,6 @@ export interface ReleaseQueryParams {
   skip?: number
   limit?: number
   reporting_year?: number
+  medium?: Medium
   pollutant_code?: PollutantCode
 }
