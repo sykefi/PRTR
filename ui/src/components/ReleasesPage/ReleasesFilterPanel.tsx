@@ -10,6 +10,7 @@ import { OptionType } from '../../models/OptionType'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
+import { Medium } from '../../api/models/Medium'
 
 const usePollutantNameOptions = (): OptionType<PollutantCode>[] => {
   const getPollutantLabel = useGetPollutantLabel()
@@ -52,6 +53,7 @@ const Form = styled.form`
 `
 
 export const ReleasesFilterPanel = (props: {
+  medium: Medium
   urlPollutantCode: PollutantCode | undefined
 }) => {
   const { t } = useTranslation()
@@ -65,9 +67,9 @@ export const ReleasesFilterPanel = (props: {
   const pollutantOptions = usePollutantNameOptions()
 
   useEffect(() => {
-    // initialize selected pollutant from url search param
+    // initialize selected pollutant from url search param on page load or medium tab switch
     setPollutantCode(props.urlPollutantCode)
-  }, [props.urlPollutantCode])
+  }, [props.medium, props.urlPollutantCode])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
