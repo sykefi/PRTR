@@ -108,7 +108,6 @@ export const ReleasesFilterPanel = (props: {
             type="submit"
             marginY={1.0}
             marginLeft={1.0}
-            disabled={!pollutantCode}
             colorScheme="green">
             {t('common.search')}
           </Button>
