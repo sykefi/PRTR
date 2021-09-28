@@ -5,12 +5,18 @@ import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import { PollutantReleaseWithFacilityInfo } from '../../api/models/PollutantReleaseWithFacilityInfo'
-import { useURLSearchParam } from '../../hooks/useURLSearchParams'
+import {
+  useURLSearchParam,
+  useURLSearchParamInt
+} from '../../hooks/useURLSearchParams'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { ReleasesFilterPanel } from './ReleasesFilterPanel'
+import { ReleasesPageSelector } from './ReleasesPageSelector'
 import { ReleaseTable } from './ReleaseTable'
+
+const pageItemLimit = 40
 
 export const ReleasesSearch = (props: { medium: Medium }) => {
   const [searchState, setSearchState] = useState<
@@ -20,11 +26,13 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     PollutantReleaseWithFacilityInfo[] | []
   >([])
 
+  const { t } = useTranslation()
+
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
     ReleaseSearchURLParamName.PollutantCode
   )
-
-  const { t } = useTranslation()
+  const urlFirstItemIdx =
+    useURLSearchParamInt(ReleaseSearchURLParamName.FirstItemIdx) || 0
 
   useEffect(() => {
     const controller = new AbortController()
@@ -33,7 +41,8 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         const data = await api.getReleasesWithFacilityInfo(controller, {
           pollutant_code: urlPollutantCode,
           medium: props.medium,
-          limit: 50
+          skip: urlFirstItemIdx,
+          limit: pageItemLimit
         })
         setReleases(data)
         setSearchState('done')
@@ -51,7 +60,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
       setReleases([])
       controller.abort()
     }
-  }, [urlPollutantCode, props.medium])
+  }, [props.medium, urlPollutantCode, urlFirstItemIdx])
 
   return (
     <>
@@ -63,11 +72,22 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
       </BelowNavigationHeaderPanel>
       <Flex
         wrap="wrap"
-        justify="center"
+        align="center"
+        direction="column"
         maxWidth="100%"
         sx={{ gap: 'var(--chakra-space-3)' }}
         padding={3}
         data-cy="releases-container">
+        {(searchState === 'loading' ||
+          searchState === 'error' ||
+          releases.length > 0) && (
+          <ReleasesPageSelector
+            pageItemLimit={pageItemLimit}
+            firstItemIdx={urlFirstItemIdx}
+            pageItemCount={releases.length}
+            totalItemCount={500}
+          />
+        )}
         {(searchState === 'loading' || searchState === 'initial') && (
           <Box p={2} data-cy="releases-load-animation">
             <LoadAnimation sizePx={30} />

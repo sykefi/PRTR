@@ -9,3 +9,8 @@ export const useURLSearchParam = <T extends string>(
 ): T | undefined => {
   return (useURLSearchParams().get(name) || undefined) as T | undefined
 }
+
+export const useURLSearchParamInt = (name: string): number | undefined => {
+  const num = useURLSearchParam(name)
+  return num !== undefined ? parseInt(num) : undefined
+}

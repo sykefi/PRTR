@@ -1,3 +1,4 @@
 export enum ReleaseSearchURLParamName {
-  PollutantCode = 'pollutant'
+  PollutantCode = 'pollutant',
+  FirstItemIdx = 'first'
 }
