@@ -2,8 +2,15 @@ from pydantic.error_wrappers import ValidationError
 from models.enums import (
     MainActivityCode, Medium, MethodCode, PollutantCode
 )
-from typing import Optional, TypedDict
+from typing import List, Optional, TypedDict
 from pydantic import BaseModel
+
+
+class PrtrMetadata(BaseModel):
+    available_reporting_years: List[int]
+    present_pollutant_codes: List[PollutantCode]
+    present_cities: List[str]
+    present_main_activity_codes: List[MainActivityCode]
 
 
 class ProductionFacilityCsvDict(TypedDict):

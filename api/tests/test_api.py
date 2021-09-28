@@ -28,6 +28,20 @@ def test_root_response():
     }
 
 
+def test_get_metadata():
+    response = client.get(f'{root_path}/prtr-metadata')
+    assert response.status_code == 200
+    body = response.json()
+    assert len(body['available_reporting_years']) > 5
+    assert body['available_reporting_years'][0] > 1900
+    assert len(body['present_pollutant_codes']) > 40
+    assert isinstance(body['present_pollutant_codes'][0], str)
+    assert len(body['present_main_activity_codes']) > 40
+    assert isinstance(body['present_main_activity_codes'][0], str)
+    assert len(body['present_cities']) > 300
+    assert isinstance(body['present_cities'][0], str)
+
+
 def test_get_facilities():
     response = client.get(f'{root_path}/facilities')
     assert response.status_code == 200

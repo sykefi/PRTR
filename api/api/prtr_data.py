@@ -1,7 +1,7 @@
 from models.enums import MainActivityCode, Medium, PollutantCode
 from models.models import (
     PollutantRelease, PollutantReleaseWithFacilityInfo,
-    ProductionFacility, with_facility_info
+    ProductionFacility, PrtrMetadata, with_facility_info
 )
 from functools import partial
 from typing import List, Union
@@ -20,6 +20,21 @@ _releases_with_facility_info: List[PollutantReleaseWithFacilityInfo] = [
     for r in _releases
     if r.facilityId in _facility_by_id
 ]
+
+_metadata = PrtrMetadata(
+    available_reporting_years=list(set([r.reportingYear for r in _releases])),
+    present_pollutant_codes=list(set([r.pollutantCode for r in _releases])),
+    present_cities=list(set([
+        f.city for f in _facilities if f.city is not None
+    ])),
+    present_main_activity_codes=list(set([
+        f.mainActivityCode for f in _facilities
+    ])),
+)
+
+
+def get_metadata() -> PrtrMetadata:
+    return _metadata
 
 
 def get_facilities(

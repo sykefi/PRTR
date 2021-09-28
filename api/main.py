@@ -1,6 +1,7 @@
 from models.enums import MainActivityCode, Medium, PollutantCode
 from models.models import (
-    PollutantRelease, PollutantReleaseWithFacilityInfo, ProductionFacility
+    PollutantRelease, PollutantReleaseWithFacilityInfo,
+    ProductionFacility, PrtrMetadata
 )
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
@@ -43,6 +44,15 @@ def root():
 
 
 root_path = f'/api/{conf.api_version}'
+
+
+@app.get(
+    f'{root_path}/prtr-metadata',
+    response_model=PrtrMetadata,
+    summary='Get metadata of the available PRTR data'
+)
+def read_metadata():
+    return prtr_data.get_metadata()
 
 
 @app.get(
