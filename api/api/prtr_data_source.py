@@ -1,7 +1,7 @@
 from pydantic.error_wrappers import ValidationError
 import csv
 from models.models import (
-    PollutantRelease, ProductionFacility,
+    BarePollutantRelease, ProductionFacility,
     facility_csv_dict_2_facility, release_csv_dict_2_release
 )
 from typing import Callable, List, Union
@@ -15,9 +15,9 @@ def _dict_to_model_or_none(
     data: dict,
     converter: Union[
         Callable[[dict], ProductionFacility],
-        Callable[[dict], PollutantRelease]
+        Callable[[dict], BarePollutantRelease]
     ]
-) -> Union[Union[ProductionFacility, PollutantRelease], None]:
+) -> Union[Union[ProductionFacility, BarePollutantRelease], None]:
     try:
         return converter(data)
     except ValidationError as e:
@@ -27,7 +27,7 @@ def _dict_to_model_or_none(
 
 def _log_import_errors(
     data: Union[
-        List[Union[PollutantRelease, None]],
+        List[Union[BarePollutantRelease, None]],
         List[Union[ProductionFacility, None]]
     ],
     data_name: str
@@ -54,7 +54,7 @@ def load_facilities(facilities_fp: str) -> List[ProductionFacility]:
     return [f for f in facilities if f]
 
 
-def load_releases(releases_fp: str) -> List[PollutantRelease]:
+def load_releases(releases_fp: str) -> List[BarePollutantRelease]:
     releases = [
         _dict_to_model_or_none(
             _replace_empty_strings_with_none(d),

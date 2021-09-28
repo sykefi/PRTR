@@ -2,8 +2,9 @@ from pydantic.error_wrappers import ValidationError
 from models.enums import (
     MainActivityCode, Medium, MethodCode, PollutantCode
 )
-from typing import List, Optional, TypedDict
+from typing import List, Optional, TypedDict, Generic, TypeVar
 from pydantic import BaseModel
+from pydantic.generics import GenericModel
 
 
 class PrtrMetadata(BaseModel):
@@ -11,6 +12,16 @@ class PrtrMetadata(BaseModel):
     present_pollutant_codes: List[PollutantCode]
     present_cities: List[str]
     present_main_activity_codes: List[MainActivityCode]
+
+
+ResponseItemType = TypeVar('ResponseItemType')
+
+
+class PRTRListResponse(GenericModel, Generic[ResponseItemType]):
+    data: List[ResponseItemType]
+    count: int
+    skipped: int
+    limit: int
 
 
 class ProductionFacilityCsvDict(TypedDict):
@@ -89,7 +100,7 @@ class PollutantReleaseCsvDict(TypedDict):
     methodName: str
 
 
-class PollutantRelease(BaseModel):
+class BarePollutantRelease(BaseModel):
     facilityId: str
     reportingYear: int
     pollutantCode: PollutantCode
@@ -101,9 +112,9 @@ class PollutantRelease(BaseModel):
 
 def release_csv_dict_2_release(
     csv_release: PollutantReleaseCsvDict
-) -> PollutantRelease:
+) -> BarePollutantRelease:
     try:
-        return PollutantRelease(
+        return BarePollutantRelease(
             facilityId=csv_release['facilityId'],
             reportingYear=csv_release['reportingYear'],
             pollutantCode=csv_release['pollutantCode'],
@@ -122,7 +133,7 @@ def release_csv_dict_2_release(
         raise e
 
 
-class PollutantReleaseWithFacilityInfo(PollutantRelease):
+class PollutantRelease(BarePollutantRelease):
     parentCompanyName: str
     nameOfFeature: str
     city: Optional[str] = None
@@ -131,10 +142,10 @@ class PollutantReleaseWithFacilityInfo(PollutantRelease):
 
 
 def with_facility_info(
-    release: PollutantRelease,
+    release: BarePollutantRelease,
     facility: ProductionFacility
-) -> PollutantReleaseWithFacilityInfo:
-    return PollutantReleaseWithFacilityInfo(
+) -> PollutantRelease:
+    return PollutantRelease(
         **release.dict(),
         parentCompanyName=facility.parentCompanyName,
         nameOfFeature=facility.nameOfFeature,

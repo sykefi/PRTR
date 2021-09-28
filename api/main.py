@@ -1,12 +1,11 @@
 from models.enums import MainActivityCode, Medium, PollutantCode
 from models.models import (
-    PollutantRelease, PollutantReleaseWithFacilityInfo,
+    PRTRListResponse, PollutantRelease,
     ProductionFacility, PrtrMetadata
 )
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from typing import List
 import api.prtr_data as prtr_data
 
 
@@ -57,7 +56,7 @@ def read_metadata():
 
 @app.get(
     f'{root_path}/facilities',
-    response_model=List[ProductionFacility],
+    response_model=PRTRListResponse[ProductionFacility],
     summary='Get production facilities'
 )
 def read_facilities(
@@ -74,7 +73,7 @@ def read_facilities(
         name_search_str,
         main_activity_code
     )
-    if not match:
+    if not match.data:
         raise HTTPException(
             status.HTTP_404_NOT_FOUND,
             'No production facilities found'
@@ -85,7 +84,7 @@ def read_facilities(
 
 @app.get(
     f'{root_path}/releases',
-    response_model=List[PollutantRelease],
+    response_model=PRTRListResponse[PollutantRelease],
     summary='Get pollutant releases'
 )
 def read_pollutant_releases(
@@ -96,51 +95,11 @@ def read_pollutant_releases(
     medium: Medium = None,
     pollutant_code: PollutantCode = None
 ):
-    match = prtr_data.get_releases(
+    return prtr_data.get_releases(
         facility_id,
         skip,
         limit,
         reporting_year,
         medium,
-        pollutant_code,
-        with_facility_info=False
+        pollutant_code
     )
-    if not match:
-        raise HTTPException(
-            status.HTTP_404_NOT_FOUND,
-            'No pollutant releases found'
-        )
-    return match
-
-
-@app.get(
-    f'{root_path}/releases-facilities',
-    response_model=List[PollutantReleaseWithFacilityInfo],
-    summary=(
-        'Get pollutant releases with related '
-        'production facility infomation'
-    )
-)
-def read_pollutant_releases_with_facility_info(
-    facility_id: str = None,
-    skip: int = 0,
-    limit: int = 10,
-    reporting_year: int = None,
-    medium: Medium = None,
-    pollutant_code: PollutantCode = None
-):
-    match = prtr_data.get_releases(
-        facility_id,
-        skip,
-        limit,
-        reporting_year,
-        medium,
-        pollutant_code,
-        with_facility_info=True
-    )
-    if not match:
-        raise HTTPException(
-            status.HTTP_404_NOT_FOUND,
-            'No pollutant releases found'
-        )
-    return match

@@ -7,12 +7,12 @@ from api.conf import conf
 client = TestClient(app)
 
 
-def _is_facility(data: dict) -> bool:
+def _has_facility_fields(data: dict) -> bool:
     parent_company_name = data.get('parentCompanyName', None)
     return parent_company_name is not None
 
 
-def _is_release(data: dict) -> bool:
+def _has_release_fields(data: dict) -> bool:
     pollutantCode = data.get('pollutantCode', None)
     return pollutantCode is not None
 
@@ -45,10 +45,10 @@ def test_get_metadata():
 def test_get_facilities():
     response = client.get(f'{root_path}/facilities')
     assert response.status_code == 200
-    body = response.json()
-    assert len(body) > 1
-    for facility in body:
-        assert _is_facility(facility)
+    data = response.json()['data']
+    assert len(data) > 1
+    for facility in data:
+        assert _has_facility_fields(facility)
 
 
 def test_get_facility_by_id():
@@ -57,11 +57,11 @@ def test_get_facility_by_id():
         f'{root_path}/facilities?facility_id={facility_id}'
     )
     assert response.status_code == 200
-    body = response.json()
-    assert len(body) == 1
-    for facility in body:
+    data = response.json()['data']
+    assert len(data) == 1
+    for facility in data:
         assert facility['facilityId'] == facility_id
-        assert _is_facility(facility)
+        assert _has_facility_fields(facility)
 
 
 def test_get_facility_by_name():
@@ -70,9 +70,9 @@ def test_get_facility_by_name():
         f'{root_path}/facilities?name_search_str={name_search}'
     )
     assert response.status_code == 200
-    body = response.json()
-    assert len(body) == 1
-    for facility in body:
+    data = response.json()['data']
+    assert len(data) == 1
+    for facility in data:
         assert name_search in facility['nameOfFeature']
 
 
@@ -82,19 +82,20 @@ def test_get_facility_by_main_activity_type():
         f'{root_path}/facilities?main_activity_code={main_activity.value}'
     )
     assert response.status_code == 200
-    body = response.json()
-    assert len(body) > 1
-    for facility in body:
+    data = response.json()['data']
+    assert len(data) > 1
+    for facility in data:
         assert facility['mainActivityCode'] == main_activity.value
 
 
 def test_get_releases():
     response = client.get(f'{root_path}/releases')
     assert response.status_code == 200
-    body = response.json()
-    assert len(body) > 1
-    for release in body:
-        assert _is_release(release)
+    data = response.json()['data']
+    assert len(data) > 1
+    for release in data:
+        assert _has_release_fields(release)
+        assert _has_facility_fields(release)
 
 
 def test_get_releases_by_facility_id():
@@ -103,54 +104,31 @@ def test_get_releases_by_facility_id():
         f'{root_path}/releases?facility_id={facility_id}'
     )
     assert response.status_code == 200
-    body = response.json()
-    assert len(body) == 8
-    for release in body:
+    data = response.json()['data']
+    assert len(data) == 8
+    for release in data:
         assert release['facilityId'] == facility_id
-        assert _is_release(release)
-
-
-def test_get_releases_with_facility_info():
-    response = client.get(f'{root_path}/releases-facilities')
-    assert response.status_code == 200
-    body = response.json()
-    assert len(body) > 1
-    for release in body:
-        assert _is_release(release)
-        assert _is_facility(release)
-
-
-def test_get_releases_with_facility_info_by_facility_id():
-    facility_id = 'FI_EEA_11035'
-    response = client.get(
-        f'{root_path}/releases-facilities?facility_id={facility_id}'
-    )
-    assert response.status_code == 200
-    body = response.json()
-    assert len(body) == 8
-    for release in body:
-        assert release['facilityId'] == facility_id
-        assert _is_release(release)
-        assert _is_facility(release)
+        assert _has_release_fields(release)
+        assert _has_facility_fields(release)
 
 
 def test_get_releases_by_year():
     year = 2010
     response = client.get(
-        f'{root_path}/releases-facilities?reporting_year={year}'
+        f'{root_path}/releases?reporting_year={year}'
     )
-    body = response.json()
-    assert len(body) > 1
-    for release in body:
+    data = response.json()['data']
+    assert len(data) > 1
+    for release in data:
         assert release['reportingYear'] == year
 
 
 def test_get_releases_by_pollutant_code():
     pollutant_code = 'CH4'
     response = client.get(
-        f'{root_path}/releases-facilities?pollutant_code={pollutant_code}'
+        f'{root_path}/releases?pollutant_code={pollutant_code}'
     )
-    body = response.json()
-    assert len(body) > 1
-    for release in body:
+    data = response.json()['data']
+    assert len(data) > 1
+    for release in data:
         assert release['pollutantCode'] == pollutant_code
