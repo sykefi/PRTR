@@ -11,21 +11,20 @@ import {
 } from '@chakra-ui/react'
 import { GiFactory } from 'react-icons/gi'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { NavLink as RrLink, useLocation } from 'react-router-dom'
+import { NavLink as RrLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { NavigationItem, RoutePath } from '../models'
 
 export const NavLink = ({
   navigationItem,
   hideUnderlineOnMobile,
-  preserveSearch
+  search
 }: {
   navigationItem: NavigationItem
   hideUnderlineOnMobile: boolean
-  preserveSearch: boolean
+  search?: string
 }) => {
   const { t } = useTranslation()
-  const location = useLocation()
   const displayText = t(navigationItem.tKey)
 
   return (
@@ -33,7 +32,7 @@ export const NavLink = ({
       as={RrLink}
       to={{
         pathname: '/' + navigationItem.path,
-        search: preserveSearch ? location.search : undefined
+        search
       }}
       exact={navigationItem.path === RoutePath.FrontPage}
       px={2}
@@ -86,8 +85,7 @@ export const NavLink = ({
 }
 
 NavLink.defaultProps = {
-  hideUnderlineOnMobile: true,
-  preserveSearch: false
+  hideUnderlineOnMobile: true
 }
 
 const Navigation = ({

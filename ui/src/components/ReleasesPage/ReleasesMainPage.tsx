@@ -1,7 +1,9 @@
 import { Flex, HStack } from '@chakra-ui/layout'
 import { useRouteMatch } from 'react-router-dom'
 import { Medium } from '../../api/models/Medium'
+import { useURLSearchParams } from '../../hooks/useURLSearchParams'
 import { NavigationItem, RoutePath } from '../../models'
+import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { NavLink } from '../Navigation'
 import { ReleasesSearch } from './ReleasesSearch'
 
@@ -13,6 +15,8 @@ const navigationItems: NavigationItem[] = [
 export const ReleasesMainPage = () => {
   const matchReleasesToAir = useRouteMatch('/' + RoutePath.ReleasesToAir)
   const matchReleasesToWater = useRouteMatch('/' + RoutePath.ReleasesToWater)
+  const urlSearch = useURLSearchParams()
+  urlSearch.delete(ReleaseSearchURLParamName.FirstItemIdx)
 
   const medium = matchReleasesToAir?.isExact
     ? Medium.AIR
@@ -39,7 +43,7 @@ export const ReleasesMainPage = () => {
                   key={item.path}
                   navigationItem={item}
                   hideUnderlineOnMobile={false}
-                  preserveSearch
+                  search={urlSearch.toString()}
                 />
               ))}
             </HStack>

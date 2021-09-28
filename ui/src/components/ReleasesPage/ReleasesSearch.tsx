@@ -5,6 +5,7 @@ import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
+import { PRTRListResponse } from '../../api/models/PRTRListResponse'
 import {
   useURLSearchParam,
   useURLSearchParamInt
@@ -22,7 +23,8 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   const [searchState, setSearchState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
-  const [releases, setReleases] = useState<PollutantRelease[] | []>([])
+  const [releasesData, setReleasesData] =
+    useState<PRTRListResponse<PollutantRelease> | null>(null)
 
   const { t } = useTranslation()
 
@@ -42,7 +44,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
           skip: urlFirstItemIdx,
           limit: pageItemLimit
         })
-        setReleases(body.data)
+        setReleasesData(body)
         setSearchState('done')
       } catch (e) {
         if (!controller.signal.aborted) {
@@ -55,7 +57,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     getReleases()
 
     return () => {
-      setReleases([])
+      setReleasesData(null)
       controller.abort()
     }
   }, [props.medium, urlPollutantCode, urlFirstItemIdx])
@@ -78,12 +80,14 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         data-cy="releases-container">
         {(searchState === 'loading' ||
           searchState === 'error' ||
-          releases.length > 0) && (
+          (releasesData && releasesData.data.length > 0)) && (
           <ReleasesPageSelector
             pageItemLimit={pageItemLimit}
             firstItemIdx={urlFirstItemIdx}
-            pageItemCount={releases.length}
-            totalItemCount={500}
+            pageItemCount={releasesData?.data.length}
+            totalItemCount={releasesData?.count}
+            loading={searchState === 'loading'}
+            setSearchStateLoading={() => setSearchState('loading')}
           />
         )}
         {(searchState === 'loading' || searchState === 'initial') && (
@@ -91,17 +95,21 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
             <LoadAnimation sizePx={30} />
           </Box>
         )}
-        {searchState === 'done' && releases.length === 0 && (
-          <Box marginY={2.0} fontWeight="semibold">
-            {t('releases.noReleasesFoundFromSearch')}
-          </Box>
-        )}
+        {searchState === 'done' &&
+          releasesData &&
+          releasesData.data.length === 0 && (
+            <Box marginY={2.0} fontWeight="semibold">
+              {t('releases.noReleasesFoundFromSearch')}
+            </Box>
+          )}
         {searchState === 'error' && (
           <Box marginY={2.0} fontWeight="semibold">
             {t('releases.releasesFetchErrorInfo')}
           </Box>
         )}
-        {releases.length > 0 && <ReleaseTable releases={releases} />}
+        {releasesData && releasesData.data.length > 0 && (
+          <ReleaseTable releases={releasesData.data} />
+        )}
       </Flex>
     </>
   )
