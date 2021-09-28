@@ -25,7 +25,7 @@
   },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
-    "facilitySearchResult": "Haulla löytyi {{resultCount}} kohdetta.",
+    "facilitySearchResult": "Haulla löytyi {{resultCount}} laitosta.",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
     "selectFacilityMainActivityCode": "Valitse laitoksen toimiala",
     "couldNotFindFacilityWithId": "Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.",

@@ -29,6 +29,7 @@ export const ReleaseTable = ({
       paddingY={2}
       height="max-content"
       maxHeight={{ base: 'initial', sm: 'max(600px, calc(100vh - 345px))' }}
+      minHeight={300}
       overflowY={{ base: 'initial', sm: 'auto' }}
       overflowX="auto"
       background="white"
