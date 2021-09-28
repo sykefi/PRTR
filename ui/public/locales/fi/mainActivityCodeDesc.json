@@ -81,5 +81,6 @@
   "9(b)": "Nahanparkituslaitokset, joiden käsittelykapasiteetti on vähintään 12 t lopputuotteita/d",
   "9(c)": "Aineiden, esineiden ja tuotteiden pintakäsittelylaitokset, erityisesti tasoitusta, painatusta, pinnoitusta, rasvanpoistoa, vedenkestokäsittelyä, liimausta, maalausta, puhdistusta tai kyllästystä orgaanisten liuottimien avulla suorittavat laitokset, joiden liuottimen kulutuskapasiteetti on vähintään 150 kg/h tai 200 t/a",
   "9(d)": "Kovahiilen tai sähkögrafiitin tuotantolaitokset, joissa käytetään polttoa tai grafitointia",
-  "9(e)": "Laitokset, joissa rakennetaan ja maalataan laivoja tai poistetaan niistä maali ja joilla on kyky käsitellä vähintään 100 m pitkiä aluksia"
+  "9(e)": "Laitokset, joissa rakennetaan ja maalataan laivoja tai poistetaan niistä maali ja joilla on kyky käsitellä vähintään 100 m pitkiä aluksia",
+  "MISSING": "Ei tiedossa"
 }

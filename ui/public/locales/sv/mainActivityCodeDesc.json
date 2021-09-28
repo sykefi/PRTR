@@ -81,5 +81,6 @@
   "9(b)": "Garverier",
   "9(c)": "Anläggningar för ytbehandling av material, föremål eller produkter med organiska lösningsmedel, i synnerhet för appretering, tryckning, bestrykning, avfettning, vattenskyddsbehandling, limning, målning, rengöring eller impregnering",
   "9(d)": "Anläggningar för framställning av kol (hårdbränd kol) eller av grafitelektroder genom förbränning eller grafitisering",
-  "9(e)": "Anläggningar för att bygga fartyg och för att måla eller ta bort färg på dessa"
+  "9(e)": "Anläggningar för att bygga fartyg och för att måla eller ta bort färg på dessa",
+  "MISSING": ""
 }

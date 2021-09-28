@@ -55,5 +55,6 @@ export enum FacilityMainActivityCode {
   EIGHT_C = '8(c)',
   NINE_A = '9(a)',
   NINE_C = '9(c)',
-  NINE_E = '9(e)'
+  NINE_E = '9(e)',
+  MISSING = 'MISSING'
 }
