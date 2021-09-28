@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Box, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { PollutantReleaseWithFacilityInfo } from '../../api/models/PollutantReleaseWithFacilityInfo'
+import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 
 export const ReleaseTable = ({
   releases
 }: {
-  releases: PollutantReleaseWithFacilityInfo[]
+  releases: PollutantRelease[]
 }) => {
   const location = useLocation()
   const getPollutantLabel = useGetPollutantLabel()

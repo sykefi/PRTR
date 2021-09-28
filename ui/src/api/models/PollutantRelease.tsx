@@ -1,16 +1,11 @@
-import { Medium } from './Medium'
-import { MethodCode } from './MethodCode'
-import { PollutantCode } from './PollutantCode'
+import { BarePollutantRelease } from './BarePollutantRelease'
 
-export interface PollutantRelease {
-  id: string
-  facilityId: string
-  reportingYear: number
-  pollutantCode: PollutantCode
-  medium: Medium
-  totalPollutantQuantityKg: number
-  AccidentalPollutantQuantityKG: number
-  methodCode: MethodCode
+export interface PollutantRelease extends BarePollutantRelease {
+  parentCompanyName: string
+  nameOfFeature: string
+  city: string | null
+  x: number
+  y: number
 }
 
 export const withId = (r: Omit<PollutantRelease, 'id'>): PollutantRelease => {

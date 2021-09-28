@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
-import { PollutantReleaseWithFacilityInfo } from '../../api/models/PollutantReleaseWithFacilityInfo'
+import { PollutantRelease } from '../../api/models/PollutantRelease'
 import {
   useURLSearchParam,
   useURLSearchParamInt
@@ -22,9 +22,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   const [searchState, setSearchState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
-  const [releases, setReleases] = useState<
-    PollutantReleaseWithFacilityInfo[] | []
-  >([])
+  const [releases, setReleases] = useState<PollutantRelease[] | []>([])
 
   const { t } = useTranslation()
 
@@ -38,13 +36,13 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     const controller = new AbortController()
     const getReleases = async () => {
       try {
-        const data = await api.getReleasesWithFacilityInfo(controller, {
+        const body = await api.getReleases(controller, {
           pollutant_code: urlPollutantCode,
           medium: props.medium,
           skip: urlFirstItemIdx,
           limit: pageItemLimit
         })
-        setReleases(data)
+        setReleases(body.data)
         setSearchState('done')
       } catch (e) {
         if (!controller.signal.aborted) {

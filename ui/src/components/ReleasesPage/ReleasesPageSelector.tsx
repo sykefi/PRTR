@@ -51,7 +51,7 @@ export const ReleasesPageSelector = ({
       justify="center"
       wrap="wrap">
       <Box fontWeight="bold" marginRight={3} marginY={1.5}>
-        {t('common.showingItems')} {firstItemIdx + 1}-{lastItemIdxToShow} (
+        {t('common.showingRows')} {firstItemIdx + 1}-{lastItemIdxToShow} (
         {totalItemCount})
       </Box>
       <ButtonGroup>

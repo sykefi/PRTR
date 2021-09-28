@@ -87,8 +87,8 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
     const getFacilityData = async () => {
       setInfoState('loading')
       try {
-        const data = await getReleases(controller, { facility_id: facilityId })
-        setReleases(data)
+        const body = await getReleases(controller, { facility_id: facilityId })
+        setReleases(body.data)
         setInfoState('done')
       } catch (e) {
         if (!controller.signal.aborted) {

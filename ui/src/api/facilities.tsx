@@ -4,6 +4,7 @@ import { apiBasePath } from './conf'
 import { Facility } from './models/Facility'
 import { FacilityQueryParams } from './models/FacilityQueryParams'
 import { serializeQueryParams } from './utils'
+import { FacilitiesResponse } from './models/FacilitiesResponse'
 
 const cache = new Map<string, Facility[]>()
 
@@ -60,14 +61,15 @@ export const getFacilities = async (
     if (cached) return cached
   }
 
-  const data = (await getData(url, controller)) as Facility[]
+  const body = await getData<FacilitiesResponse>(url, controller)
+  if (Array.isArray(body)) return body
 
   // set facilities to cache if they were not filtered
   if (!Object.values(queryParams).some(v => !!v)) {
-    cache.set(CacheKey.AllFacilities, data)
+    cache.set(CacheKey.AllFacilities, body.data)
   }
 
-  return data
+  return body.data
 }
 
 export const getFacility = async (
@@ -87,12 +89,12 @@ export const getFacility = async (
     queryParams as Record<string, string | number>
   )
   const url = `${apiBasePath}/facilities?` + queryString
-  const data = (await getData(url, controller)) as Facility[]
+  const body = await getData<FacilitiesResponse>(url, controller)
 
-  if (data.length === 0) {
+  if (Array.isArray(body) || body.data.length === 0) {
     throw new APIError({
       message: 'No facilities found with ID: ' + facilityId
     })
   }
-  return data[0]
+  return body.data[0]
 }
