@@ -2,7 +2,7 @@
   "common": {
     "welcomeMessage": "Tervetuloa FIN-PRTR palvelun kehitysversioon!",
     "frontPage": "Etusivu",
-    "facilities": "Laitokset",
+    "facilitySearch": "Laitoshaku",
     "pollutantReleases": "Päästöt",
     "releasesToAir": "Päästöt ilmaan",
     "releasesToWater": "Päästöt veteen",

@@ -12,7 +12,7 @@ import { handleCheckForMissingTranslations } from './utils'
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.frontPage', path: RoutePath.FrontPage },
-  { tKey: 'common.facilities', path: RoutePath.Facilities },
+  { tKey: 'common.facilitySearch', path: RoutePath.Facilities },
   { tKey: 'common.pollutantReleases', path: RoutePath.Releases }
 ]
 
