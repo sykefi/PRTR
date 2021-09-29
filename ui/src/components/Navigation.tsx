@@ -29,7 +29,7 @@ export const NavLink = ({
     <Link
       as={RrLink}
       to={{
-        pathname: '/' + navigationItem.path,
+        pathname: navigationItem.path,
         search
       }}
       exact={navigationItem.path === RoutePath.FrontPage}

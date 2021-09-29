@@ -36,19 +36,19 @@ const App = () => {
         <Router>
           <Navigation navigationItems={navigationItems} />
           <Switch>
-            <Route path={`/${RoutePath.Facilities}/:facilityId`}>
+            <Route path={`${RoutePath.Facilities}/:facilityId`}>
               <FacilityPage />
             </Route>
-            <Route path={`/${RoutePath.Facilities}`}>
+            <Route path={RoutePath.Facilities}>
               <FacilitiesSearch />
             </Route>
-            <Route path={`/${RoutePath.ReleasesToAir}`}>
+            <Route path={RoutePath.ReleasesToAir}>
               <ReleasesSearch medium={Medium.AIR} />
             </Route>
-            <Route path={`/${RoutePath.ReleasesToWater}`}>
+            <Route path={RoutePath.ReleasesToWater}>
               <ReleasesSearch medium={Medium.WATER} />
             </Route>
-            <Route exact path="/">
+            <Route exact path={RoutePath.FrontPage}>
               <FrontPage />
             </Route>
           </Switch>
