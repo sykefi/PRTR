@@ -15,8 +15,10 @@ describe('Navigation', () => {
     cy.get('[data-cy=navigation-panel]').within(() => {
       cy.contains('Laitoshaku').click()
       cy.url().should('eq', 'http://localhost:3000/facilities')
-      cy.contains('Päästöt').click()
-      cy.url().should('eq', 'http://localhost:3000/releases')
+      cy.contains('Päästöt ilmaan').click()
+      cy.url().should('eq', 'http://localhost:3000/releases/toAir')
+      cy.contains('Päästöt veteen').click()
+      cy.url().should('eq', 'http://localhost:3000/releases/toWater')
       cy.contains('Etusivu').click()
       cy.url().should('eq', 'http://localhost:3000/')
     })
