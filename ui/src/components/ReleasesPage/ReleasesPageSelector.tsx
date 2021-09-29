@@ -8,17 +8,13 @@ import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamNam
 export const ReleasesPageSelector = ({
   pageItemLimit,
   firstItemIdx,
-  pageItemCount,
   totalItemCount,
-  loading,
-  setSearchStateLoading
+  loading
 }: {
   pageItemLimit: number
   firstItemIdx: number
-  pageItemCount: number | undefined
-  totalItemCount: number | undefined
+  totalItemCount: number
   loading: boolean
-  setSearchStateLoading: () => void
 }) => {
   const { t } = useTranslation()
   const urlSearchParams = useURLSearchParams()
@@ -33,7 +29,6 @@ export const ReleasesPageSelector = ({
     : firstItemIdx
 
   const updateActiveRowRage = (newFirstIdx: number) => {
-    setSearchStateLoading()
     urlSearchParams.set(
       ReleaseSearchURLParamName.FirstItemIdx,
       newFirstIdx.toString()
@@ -44,8 +39,12 @@ export const ReleasesPageSelector = ({
     })
   }
 
-  const lastItemIdxToShow =
-    firstItemIdx + (pageItemCount ? pageItemCount : pageItemLimit)
+  const computedPageItemCount =
+    firstItemIdx + pageItemLimit < totalItemCount
+      ? pageItemLimit
+      : totalItemCount - firstItemIdx
+
+  const lastItemIdxToShow = firstItemIdx + computedPageItemCount
 
   return (
     <Flex
@@ -72,7 +71,7 @@ export const ReleasesPageSelector = ({
             {t('common.previousPage')}
           </Button>
         )}
-        {(nextFirstIdx !== firstItemIdx || loading) && (
+        {nextFirstIdx !== firstItemIdx && (
           <Button
             data-cy="next-page-btn"
             colorScheme="blue"

@@ -20,19 +20,27 @@ import { ReleaseTable } from './ReleaseTable'
 const pageItemLimit = 40
 
 export const ReleasesSearch = (props: { medium: Medium }) => {
-  const [searchState, setSearchState] = useState<
-    'initial' | 'loading' | 'error' | 'done'
-  >('initial')
+  const [searchState, setSearchState] = useState<'loading' | 'error' | 'done'>(
+    'loading'
+  )
+  const { t } = useTranslation()
+
   const [releasesData, setReleasesData] =
     useState<PRTRListResponse<PollutantRelease> | null>(null)
-
-  const { t } = useTranslation()
+  const hasReleases = !!releasesData && releasesData.data.length > 0
 
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
     ReleaseSearchURLParamName.PollutantCode
   )
   const urlFirstItemIdx =
     useURLSearchParamInt(ReleaseSearchURLParamName.FirstItemIdx) || 0
+
+  useEffect(() => {
+    // clear old data if a search param other than active page changed
+    return () => {
+      setReleasesData(null)
+    }
+  }, [props.medium, urlPollutantCode])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -50,6 +58,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         if (!controller.signal.aborted) {
           console.error(e)
           setSearchState('error')
+          setReleasesData(null)
         }
       }
     }
@@ -57,7 +66,6 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     getReleases()
 
     return () => {
-      setReleasesData(null)
       controller.abort()
     }
   }, [props.medium, urlPollutantCode, urlFirstItemIdx])
@@ -78,36 +86,30 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         sx={{ gap: 'var(--chakra-space-3)' }}
         padding={3}
         data-cy="releases-container">
-        {(searchState === 'loading' ||
-          searchState === 'error' ||
-          (releasesData && releasesData.data.length > 0)) && (
+        {hasReleases && (
           <ReleasesPageSelector
             pageItemLimit={pageItemLimit}
             firstItemIdx={urlFirstItemIdx}
-            pageItemCount={releasesData?.data.length}
-            totalItemCount={releasesData?.count}
+            totalItemCount={releasesData.count}
             loading={searchState === 'loading'}
-            setSearchStateLoading={() => setSearchState('loading')}
           />
         )}
-        {(searchState === 'loading' || searchState === 'initial') && (
+        {searchState === 'loading' && (
           <Box p={2} data-cy="releases-load-animation">
             <LoadAnimation sizePx={30} />
           </Box>
         )}
-        {searchState === 'done' &&
-          releasesData &&
-          releasesData.data.length === 0 && (
-            <Box marginY={2.0} fontWeight="semibold">
-              {t('releases.noReleasesFoundFromSearch')}
-            </Box>
-          )}
+        {searchState === 'done' && !hasReleases && (
+          <Box marginY={2.0} fontWeight="semibold">
+            {t('releases.noReleasesFoundFromSearch')}
+          </Box>
+        )}
         {searchState === 'error' && (
           <Box marginY={2.0} fontWeight="semibold">
             {t('releases.releasesFetchErrorInfo')}
           </Box>
         )}
-        {releasesData && releasesData.data.length > 0 && (
+        {searchState === 'done' && hasReleases && (
           <ReleaseTable releases={releasesData.data} />
         )}
       </Flex>
