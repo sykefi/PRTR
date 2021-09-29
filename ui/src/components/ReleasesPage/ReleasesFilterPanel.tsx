@@ -80,6 +80,7 @@ export const ReleasesFilterPanel = (props: {
         pollutantCode
       )
     }
+    newUrlSearchParams.set(ReleaseSearchURLParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
       search: '?' + newUrlSearchParams.toString()

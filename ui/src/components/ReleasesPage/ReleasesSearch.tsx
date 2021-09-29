@@ -32,8 +32,9 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
     ReleaseSearchURLParamName.PollutantCode
   )
-  const urlFirstItemIdx =
-    useURLSearchParamInt(ReleaseSearchURLParamName.FirstItemIdx) || 0
+  const urlFirstItemIdx = useURLSearchParamInt(
+    ReleaseSearchURLParamName.FirstItemIdx
+  )
 
   useEffect(() => {
     // clear old data if a search param other than active page changed
@@ -62,8 +63,10 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         }
       }
     }
-    setSearchState('loading')
-    getReleases()
+    if (urlFirstItemIdx !== undefined) {
+      setSearchState('loading')
+      getReleases()
+    }
 
     return () => {
       controller.abort()
@@ -86,31 +89,35 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         sx={{ gap: 'var(--chakra-space-3)' }}
         padding={3}
         data-cy="releases-container">
-        {hasReleases && (
-          <ReleasesPageSelector
-            pageItemLimit={pageItemLimit}
-            firstItemIdx={urlFirstItemIdx}
-            totalItemCount={releasesData.count}
-            loading={searchState === 'loading'}
-          />
-        )}
-        {searchState === 'loading' && (
-          <Box p={2} data-cy="releases-load-animation">
-            <LoadAnimation sizePx={30} />
-          </Box>
-        )}
-        {searchState === 'done' && !hasReleases && (
-          <Box marginY={2.0} fontWeight="semibold">
-            {t('releases.noReleasesFoundFromSearch')}
-          </Box>
-        )}
-        {searchState === 'error' && (
-          <Box marginY={2.0} fontWeight="semibold">
-            {t('releases.releasesFetchErrorInfo')}
-          </Box>
-        )}
-        {searchState === 'done' && hasReleases && (
-          <ReleaseTable releases={releasesData.data} />
+        {urlFirstItemIdx !== undefined && (
+          <>
+            {hasReleases && (
+              <ReleasesPageSelector
+                pageItemLimit={pageItemLimit}
+                firstItemIdx={urlFirstItemIdx}
+                totalItemCount={releasesData.count}
+                loading={searchState === 'loading'}
+              />
+            )}
+            {searchState === 'loading' && (
+              <Box p={2} data-cy="releases-load-animation">
+                <LoadAnimation sizePx={30} />
+              </Box>
+            )}
+            {searchState === 'done' && !hasReleases && (
+              <Box marginY={2.0} fontWeight="semibold">
+                {t('releases.noReleasesFoundFromSearch')}
+              </Box>
+            )}
+            {searchState === 'error' && (
+              <Box marginY={2.0} fontWeight="semibold">
+                {t('releases.releasesFetchErrorInfo')}
+              </Box>
+            )}
+            {searchState === 'done' && hasReleases && (
+              <ReleaseTable releases={releasesData.data} />
+            )}
+          </>
         )}
       </Flex>
     </>
