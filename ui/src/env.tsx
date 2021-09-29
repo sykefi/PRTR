@@ -23,3 +23,7 @@ export const facilityResultLimit = parseInt(
 export const releasesResultLimit = parseInt(
   getEnvVarOr('REACT_APP_RELEASES_RESULT_LIMIT', '2000')
 )
+
+export const prtrDataCacheTime = parseInt(
+  getEnvVarOr('REACT_APP_PRTR_DATA_CACHE_TIME', '60000')
+)

@@ -1,14 +1,17 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { Box, Link } from '@chakra-ui/layout'
+import { Box, Flex, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
+import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 
 export const ReleaseTable = ({
+  loading,
   releases
 }: {
+  loading: boolean
   releases: PollutantRelease[]
 }) => {
   const location = useLocation()
@@ -29,12 +32,16 @@ export const ReleaseTable = ({
       paddingY={2}
       height="max-content"
       maxHeight={{ base: 'initial', sm: 'max(600px, calc(100vh - 345px))' }}
-      minHeight={300}
       overflowY={{ base: 'initial', sm: 'auto' }}
       overflowX="auto"
       background="white"
       borderRadius="md"
       boxShadow="md">
+      {loading && releases.length > 2 && (
+        <Flex margin={3} justify="center" data-cy="releases-load-animation">
+          <LoadAnimation sizePx={30} />
+        </Flex>
+      )}
       <Table variant="simple" marginY={4} boxSizing="border-box">
         <Thead>
           <Tr>
@@ -86,6 +93,11 @@ export const ReleaseTable = ({
           })}
         </Tbody>
       </Table>
+      {loading && releases.length <= 2 && (
+        <Flex margin={3} justify="center" data-cy="releases-load-animation">
+          <LoadAnimation sizePx={30} />
+        </Flex>
+      )}
     </Box>
   )
 }

@@ -2,15 +2,16 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
 import * as api from '../../api'
+import * as env from '../../env'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import {
   useURLSearchParam,
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
+import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
-import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { ReleasesFilterPanel } from './ReleasesFilterPanel'
 import { ReleasesPageSelector } from './ReleasesPageSelector'
 import { ReleaseTable } from './ReleaseTable'
@@ -27,7 +28,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     ReleaseSearchURLParamName.FirstItemIdx
   )
 
-  const { isLoading, isError, isSuccess, data } = useQuery(
+  const { isFetching, isError, isSuccess, data } = useQuery(
     ['releases', props.medium, urlPollutantCode, urlFirstItemIdx],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
@@ -38,7 +39,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         limit: pageItemLimit
       })
     },
-    { keepPreviousData: true, staleTime: 60000 }
+    { keepPreviousData: true, staleTime: env.prtrDataCacheTime }
   )
   const hasReleases = !!data && data.data.length > 0
 
@@ -65,25 +66,22 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
                 pageItemLimit={pageItemLimit}
                 firstItemIdx={urlFirstItemIdx}
                 totalItemCount={data.count}
-                loading={isLoading}
+                loading={isFetching}
               />
             )}
-            {isLoading && (
-              <Box p={2} data-cy="releases-load-animation">
-                <LoadAnimation sizePx={30} />
-              </Box>
-            )}
-            {isSuccess && !hasReleases && (
+            {!isFetching && isSuccess && !hasReleases && (
               <Box marginY={2.0} fontWeight="semibold">
                 {t('releases.noReleasesFoundFromSearch')}
               </Box>
             )}
-            {isError && (
+            {!isFetching && isError && (
               <Box marginY={2.0} fontWeight="semibold">
                 {t('releases.releasesFetchErrorInfo')}
               </Box>
             )}
-            {isSuccess && hasReleases && <ReleaseTable releases={data.data} />}
+            {(isFetching || (isSuccess && hasReleases)) && (
+              <ReleaseTable loading={isFetching} releases={data?.data || []} />
+            )}
           </>
         )}
       </Flex>
