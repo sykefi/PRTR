@@ -12,9 +12,9 @@ import { ChakraSelect } from '../ChakraReactSelect'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { Medium } from '../../api/models/Medium'
 
-const usePollutantNameOptions = (): OptionType<PollutantCode>[] => {
-  const getPollutantLabel = useGetPollutantLabel()
-
+const usePollutantNameOptions = (
+  getPollutantLabel: (p: PollutantCode) => string
+): OptionType<PollutantCode>[] => {
   return Object.values(PollutantCode)
     .reduce((prev, curr) => {
       const label = getPollutantLabel(curr)
@@ -39,13 +39,13 @@ const usePollutantNameOptions = (): OptionType<PollutantCode>[] => {
 const asOption = <T extends string>(
   v: T | undefined,
   getLabel: (v: T) => string
-): OptionType<T> | undefined => {
+): OptionType<T> | null => {
   return v
     ? {
         value: v,
         label: getLabel(v)
       }
-    : undefined
+    : null
 }
 
 const Form = styled.form`
@@ -64,7 +64,7 @@ export const ReleasesFilterPanel = (props: {
   )
 
   const getPollutantLabel = useGetPollutantLabel()
-  const pollutantOptions = usePollutantNameOptions()
+  const pollutantOptions = usePollutantNameOptions(getPollutantLabel)
 
   useEffect(() => {
     // initialize selected pollutant from url search param on page load or medium tab switch

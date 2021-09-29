@@ -9,7 +9,6 @@ import {
   useURLSearchParam,
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
-import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
 import { ReleasesFilterPanel } from './ReleasesFilterPanel'

@@ -17,11 +17,9 @@ import { NavigationItem, RoutePath } from '../models'
 
 export const NavLink = ({
   navigationItem,
-  hideUnderlineOnMobile,
   search
 }: {
   navigationItem: NavigationItem
-  hideUnderlineOnMobile: boolean
   search?: string
 }) => {
   const { t } = useTranslation()
@@ -68,8 +66,8 @@ export const NavLink = ({
       {displayText}
       <Box
         visibility={{
-          base: hideUnderlineOnMobile ? 'hidden' : 'initial',
-          sm: 'initial'
+          base: 'hidden',
+          md: 'initial'
         }}
         position="relative"
         top="21px"
@@ -82,10 +80,6 @@ export const NavLink = ({
       />
     </Link>
   )
-}
-
-NavLink.defaultProps = {
-  hideUnderlineOnMobile: true
 }
 
 const Navigation = ({
@@ -110,7 +104,7 @@ const Navigation = ({
             marginX={4}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}
-            display={{ sm: 'none' }}
+            display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} align="center">
@@ -133,7 +127,7 @@ const Navigation = ({
             <HStack
               as={'nav'}
               spacing={4}
-              display={{ base: 'none', sm: 'flex' }}>
+              display={{ base: 'none', md: 'flex' }}>
               {navigationItems.map(item => (
                 <NavLink key={item.path} navigationItem={item} />
               ))}
@@ -142,7 +136,7 @@ const Navigation = ({
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ sm: 'none' }}>
+          <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {navigationItems.map(item => (
                 <NavLink key={item.path} navigationItem={item} />

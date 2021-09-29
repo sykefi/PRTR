@@ -4,19 +4,21 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { FrontPage } from './components/FrontPage'
 import { FacilitiesPage } from './components/FacilitiesPage/FacilitiesPage'
-import { ReleasesMainPage } from './components/ReleasesPage/ReleasesMainPage'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
 import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { isDevOrTestEnv } from './env'
 import { handleCheckForMissingTranslations } from './utils'
+import { ReleasesSearch } from './components/ReleasesPage/ReleasesSearch'
+import { Medium } from './api/models/Medium'
 
 const queryClient = new QueryClient()
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.frontPage', path: RoutePath.FrontPage },
   { tKey: 'common.facilitySearch', path: RoutePath.Facilities },
-  { tKey: 'common.pollutantReleases', path: RoutePath.Releases }
+  { tKey: 'common.releasesToAir', path: RoutePath.ReleasesToAir },
+  { tKey: 'common.releasesToWater', path: RoutePath.ReleasesToWater }
 ]
 
 const App = () => {
@@ -40,8 +42,11 @@ const App = () => {
             <Route path={`/${RoutePath.Facilities}`}>
               <FacilitiesPage />
             </Route>
-            <Route path={`/${RoutePath.Releases}`}>
-              <ReleasesMainPage />
+            <Route path={`/${RoutePath.ReleasesToAir}`}>
+              <ReleasesSearch medium={Medium.AIR} />
+            </Route>
+            <Route path={`/${RoutePath.ReleasesToWater}`}>
+              <ReleasesSearch medium={Medium.WATER} />
             </Route>
             <Route exact path="/">
               <FrontPage />
