@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { FrontPage } from './components/FrontPage'
 import { FacilitiesPage } from './components/FacilitiesPage/FacilitiesPage'
@@ -9,6 +10,8 @@ import { NavigationItem, RoutePath } from './models'
 import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { isDevOrTestEnv } from './env'
 import { handleCheckForMissingTranslations } from './utils'
+
+const queryClient = new QueryClient()
 
 const navigationItems: NavigationItem[] = [
   { tKey: 'common.frontPage', path: RoutePath.FrontPage },
@@ -27,23 +30,25 @@ const App = () => {
 
   return (
     <div data-cy="app-container">
-      <Router>
-        <Navigation navigationItems={navigationItems} />
-        <Switch>
-          <Route path={`/${RoutePath.Facilities}/:facilityId`}>
-            <FacilityPage />
-          </Route>
-          <Route path={`/${RoutePath.Facilities}`}>
-            <FacilitiesPage />
-          </Route>
-          <Route path={`/${RoutePath.Releases}`}>
-            <ReleasesMainPage />
-          </Route>
-          <Route exact path="/">
-            <FrontPage />
-          </Route>
-        </Switch>
-      </Router>
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <Navigation navigationItems={navigationItems} />
+          <Switch>
+            <Route path={`/${RoutePath.Facilities}/:facilityId`}>
+              <FacilityPage />
+            </Route>
+            <Route path={`/${RoutePath.Facilities}`}>
+              <FacilitiesPage />
+            </Route>
+            <Route path={`/${RoutePath.Releases}`}>
+              <ReleasesMainPage />
+            </Route>
+            <Route exact path="/">
+              <FrontPage />
+            </Route>
+          </Switch>
+        </Router>
+      </QueryClientProvider>
     </div>
   )
 }

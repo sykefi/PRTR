@@ -1,11 +1,9 @@
 import { Box, Flex } from '@chakra-ui/layout'
-import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useQuery } from 'react-query'
 import * as api from '../../api'
 import { Medium } from '../../api/models/Medium'
 import { PollutantCode } from '../../api/models/PollutantCode'
-import { PollutantRelease } from '../../api/models/PollutantRelease'
-import { PRTRListResponse } from '../../api/models/PRTRListResponse'
 import {
   useURLSearchParam,
   useURLSearchParamInt
@@ -20,14 +18,7 @@ import { ReleaseTable } from './ReleaseTable'
 const pageItemLimit = 40
 
 export const ReleasesSearch = (props: { medium: Medium }) => {
-  const [searchState, setSearchState] = useState<'loading' | 'error' | 'done'>(
-    'loading'
-  )
   const { t } = useTranslation()
-
-  const [releasesData, setReleasesData] =
-    useState<PRTRListResponse<PollutantRelease> | null>(null)
-  const hasReleases = !!releasesData && releasesData.data.length > 0
 
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
     ReleaseSearchURLParamName.PollutantCode
@@ -36,42 +27,20 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
     ReleaseSearchURLParamName.FirstItemIdx
   )
 
-  useEffect(() => {
-    // clear old data if a search param other than active page changed
-    return () => {
-      setReleasesData(null)
-    }
-  }, [props.medium, urlPollutantCode])
-
-  useEffect(() => {
-    const controller = new AbortController()
-    const getReleases = async () => {
-      try {
-        const body = await api.getReleases(controller, {
-          pollutant_code: urlPollutantCode,
-          medium: props.medium,
-          skip: urlFirstItemIdx,
-          limit: pageItemLimit
-        })
-        setReleasesData(body)
-        setSearchState('done')
-      } catch (e) {
-        if (!controller.signal.aborted) {
-          console.error(e)
-          setSearchState('error')
-          setReleasesData(null)
-        }
-      }
-    }
-    if (urlFirstItemIdx !== undefined) {
-      setSearchState('loading')
-      getReleases()
-    }
-
-    return () => {
-      controller.abort()
-    }
-  }, [props.medium, urlPollutantCode, urlFirstItemIdx])
+  const { isLoading, isError, isSuccess, data } = useQuery(
+    ['releases', props.medium, urlPollutantCode, urlFirstItemIdx],
+    async () => {
+      if (urlFirstItemIdx === undefined) return undefined
+      return await api.getReleases({
+        pollutant_code: urlPollutantCode,
+        medium: props.medium,
+        skip: urlFirstItemIdx,
+        limit: pageItemLimit
+      })
+    },
+    { keepPreviousData: true, staleTime: 60000 }
+  )
+  const hasReleases = !!data && data.data.length > 0
 
   return (
     <>
@@ -95,28 +64,26 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
               <ReleasesPageSelector
                 pageItemLimit={pageItemLimit}
                 firstItemIdx={urlFirstItemIdx}
-                totalItemCount={releasesData.count}
-                loading={searchState === 'loading'}
+                totalItemCount={data.count}
+                loading={isLoading}
               />
             )}
-            {searchState === 'loading' && (
+            {isLoading && (
               <Box p={2} data-cy="releases-load-animation">
                 <LoadAnimation sizePx={30} />
               </Box>
             )}
-            {searchState === 'done' && !hasReleases && (
+            {isSuccess && !hasReleases && (
               <Box marginY={2.0} fontWeight="semibold">
                 {t('releases.noReleasesFoundFromSearch')}
               </Box>
             )}
-            {searchState === 'error' && (
+            {isError && (
               <Box marginY={2.0} fontWeight="semibold">
                 {t('releases.releasesFetchErrorInfo')}
               </Box>
             )}
-            {searchState === 'done' && hasReleases && (
-              <ReleaseTable releases={releasesData.data} />
-            )}
+            {isSuccess && hasReleases && <ReleaseTable releases={data.data} />}
           </>
         )}
       </Flex>

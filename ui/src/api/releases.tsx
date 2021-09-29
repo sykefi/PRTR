@@ -7,12 +7,9 @@ import { PollutantRelease, withId } from './models/PollutantRelease'
 import { ReleasesResponse } from './models/ReleasesResponse'
 import { PRTRListResponse } from './models/PRTRListResponse'
 
-const getData = async <T,>(
-  url: string,
-  controller: AbortController
-): Promise<T> => {
+const getData = async <T,>(url: string, signal?: AbortSignal): Promise<T> => {
   try {
-    const res = await fetch(url, { signal: controller.signal })
+    const res = await fetch(url, { signal })
     if (!res.ok) {
       let errorBody
       try {
@@ -34,8 +31,8 @@ const getData = async <T,>(
 }
 
 export const getReleases = async (
-  controller: AbortController,
-  queryParams: ReleaseQueryParams
+  queryParams: ReleaseQueryParams,
+  signal?: AbortSignal
 ): Promise<PRTRListResponse<PollutantRelease>> => {
   const allQueryParams: ReleaseQueryParams = {
     limit: releasesResultLimit,
@@ -45,7 +42,7 @@ export const getReleases = async (
     allQueryParams as Record<string, string | number>
   )
   const url = apiBasePath + '/releases?' + queryString
-  const body = await getData<ReleasesResponse>(url, controller)
+  const body = await getData<ReleasesResponse>(url, signal)
 
   return {
     ...body,

@@ -87,7 +87,10 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
     const getFacilityData = async () => {
       setInfoState('loading')
       try {
-        const body = await getReleases(controller, { facility_id: facilityId })
+        const body = await getReleases(
+          { facility_id: facilityId },
+          controller.signal
+        )
         setReleases(body.data)
         setInfoState('done')
       } catch (e) {
