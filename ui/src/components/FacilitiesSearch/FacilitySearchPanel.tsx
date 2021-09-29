@@ -57,22 +57,22 @@ export const FacilitySearchPanel = ({
   urlFacilityMainActivityCode
 }: {
   urlSearchTerm: string | undefined
-  urlFacilityMainActivityCode: string | undefined
+  urlFacilityMainActivityCode: FacilityMainActivityCode | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
 
-  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
-
   const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
+
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
   const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
     FacilityMainActivityCode | undefined
   >(undefined)
 
   useEffect(() => {
-    // reset the inputs after reload if necessary
-    !urlFacilityMainActivityCode && setFacilityMainActivityCode(undefined)
-    !urlSearchTerm && setSearchTerm(undefined)
+    // initialize inputs from URL search params
+    setFacilityMainActivityCode(urlFacilityMainActivityCode)
+    setSearchTerm(urlSearchTerm)
   }, [urlFacilityMainActivityCode, urlSearchTerm])
 
   /**
@@ -96,6 +96,10 @@ export const FacilitySearchPanel = ({
       search: '?' + newUrlSearchParams.toString()
     })
   }
+
+  const searchInputsChanged =
+    urlSearchTerm !== searchTerm ||
+    urlFacilityMainActivityCode !== facilityMainActivityCode
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
@@ -139,9 +143,9 @@ export const FacilitySearchPanel = ({
           <Button
             data-cy="search-facilities-btn"
             type="submit"
+            disabled={!searchInputsChanged}
             marginY={1.0}
             marginLeft={1.0}
-            disabled={!searchTerm && !facilityMainActivityCode}
             colorScheme="green">
             {t('translation:common.search')}
           </Button>

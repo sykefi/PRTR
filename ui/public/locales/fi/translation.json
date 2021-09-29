@@ -28,6 +28,7 @@
     "facilityTypeCode": "Toimialaluokitus",
     "facilitySearchResult": "Haulla löytyi {{resultCount}} laitosta.",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
+    "noFacilitiesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
     "selectFacilityMainActivityCode": "Valitse laitoksen toimiala",
     "couldNotFindFacilityWithId": "Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "couldNotFindFacilityReleases": "Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.",

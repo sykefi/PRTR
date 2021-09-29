@@ -97,19 +97,9 @@ describe('Facilities', () => {
   })
 
   it('Shows 10 results after search', () => {
-    cy.get('[data-cy=search-result-info]').should('exist')
     cy.get('[data-cy=facility-list]')
       .children()
       .its('length')
       .should('be.eq', 10)
-  })
-
-  it('Goes back to initial facility list from "Palaa"', () => {
-    cy.get('[data-cy=exit-results-btn]').click()
-    cy.get('[data-cy=facilities-load-animation]').should('not.exist')
-    cy.get('[data-cy=facility-list]')
-      .children()
-      .its('length')
-      .should('be.gt', 10)
   })
 })
