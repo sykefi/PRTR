@@ -37,7 +37,7 @@ describe('Facilities', () => {
   it('Shows page selector', () => {
     cy.get('[data-cy=result-page-selector]').should('exist')
     cy.get('[data-cy=result-page-selector]').within(() => {
-      cy.contains('1-20')
+      cy.contains('1-40')
     })
   })
 
@@ -66,7 +66,7 @@ describe('Facilities', () => {
   it('Opens next page of the reslts', () => {
     cy.get('[data-cy=next-page-btn').click()
     cy.get('[data-cy=result-page-selector]').within(() => {
-      cy.contains('21-40')
+      cy.contains('41-80')
     })
     cy.get('[data-cy=facility-list]')
       .children()

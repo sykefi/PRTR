@@ -1,6 +1,5 @@
 export enum FacilitySearchURLParamName {
   SearchTerm = 'searchTerm',
-  ActiveRangeLowerLimit = 'listLowerLimit',
-  ActiveRangeUpperLimit = 'listUpperLimit',
+  FirstItemIdx = 'first',
   FacilityMainActivityCode = 'facilityType'
 }

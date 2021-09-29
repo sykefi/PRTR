@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { FrontPage } from './components/FrontPage'
-import { FacilitiesPage } from './components/FacilitiesPage/FacilitiesPage'
+import { FacilitiesSearch } from './components/FacilitiesSearch/FacilitiesSearch'
 import Navigation from './components/Navigation'
 import { NavigationItem, RoutePath } from './models'
 import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { isDevOrTestEnv } from './env'
 import { handleCheckForMissingTranslations } from './utils'
-import { ReleasesSearch } from './components/ReleasesPage/ReleasesSearch'
+import { ReleasesSearch } from './components/ReleasesSearch/ReleasesSearch'
 import { Medium } from './api/models/Medium'
 
 const queryClient = new QueryClient()
@@ -40,7 +40,7 @@ const App = () => {
               <FacilityPage />
             </Route>
             <Route path={`/${RoutePath.Facilities}`}>
-              <FacilitiesPage />
+              <FacilitiesSearch />
             </Route>
             <Route path={`/${RoutePath.ReleasesToAir}`}>
               <ReleasesSearch medium={Medium.AIR} />

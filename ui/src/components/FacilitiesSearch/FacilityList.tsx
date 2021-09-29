@@ -5,26 +5,27 @@ import { FacilityListItem } from './FacilityListItem'
 
 export const FacilityList = ({
   facilities,
-  activeRowRange,
+  firstItemIdx,
+  pageItemLimit,
   handleExitResults
 }: {
   facilities: Facility[]
-  activeRowRange: [number, number]
+  firstItemIdx: number
+  pageItemLimit: number
   handleExitResults: () => void
 }) => {
   useEffect(() => {
     // redirect back to /facilities if the requested activeRowRange is not initial and has no rows
-    // (i.e. URL contains )
     if (
-      facilities.slice(activeRowRange[0], activeRowRange[1]).length === 0 &&
-      activeRowRange[0] !== 0
+      firstItemIdx !== 0 &&
+      facilities.slice(firstItemIdx, firstItemIdx + pageItemLimit).length === 0
     ) {
       console.warn(
         'No facilities found with the current activeRowRange, redirecting to default facility list'
       )
       handleExitResults()
     }
-  }, [activeRowRange, facilities, handleExitResults])
+  }, [facilities, firstItemIdx, pageItemLimit, handleExitResults])
 
   return (
     <Box
@@ -37,9 +38,11 @@ export const FacilityList = ({
       marginTop={1}
       marginBottom={2}
       overflowY="auto">
-      {facilities.slice(activeRowRange[0], activeRowRange[1]).map((f, idx) => (
-        <FacilityListItem idx={idx} key={f.facilityId} f={f} />
-      ))}
+      {facilities
+        .slice(firstItemIdx, firstItemIdx + pageItemLimit)
+        .map((f, idx) => (
+          <FacilityListItem idx={idx} key={f.facilityId} f={f} />
+        ))}
     </Box>
   )
 }

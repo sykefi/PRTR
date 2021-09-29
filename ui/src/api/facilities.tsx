@@ -14,10 +14,10 @@ enum CacheKey {
 
 const getData = async <T,>(
   url: string,
-  controller: AbortController
+  signal?: AbortSignal
 ): Promise<T | []> => {
   try {
-    const res = await fetch(url, { signal: controller.signal })
+    const res = await fetch(url, { signal })
     if (!res.ok) {
       let errorBody
       try {
@@ -43,8 +43,8 @@ const getData = async <T,>(
 }
 
 export const getFacilities = async (
-  controller: AbortController,
-  queryParams: FacilityQueryParams = {}
+  queryParams: FacilityQueryParams = {},
+  abortSignal?: AbortSignal
 ): Promise<Facility[]> => {
   const allQueryParams: FacilityQueryParams = {
     limit: facilityResultLimit,
@@ -61,7 +61,7 @@ export const getFacilities = async (
     if (cached) return cached
   }
 
-  const body = await getData<FacilitiesResponse>(url, controller)
+  const body = await getData<FacilitiesResponse>(url, abortSignal)
   if (Array.isArray(body)) return body
 
   // set facilities to cache if they were not filtered
@@ -73,8 +73,8 @@ export const getFacilities = async (
 }
 
 export const getFacility = async (
-  controller: AbortController,
-  facilityId: string
+  facilityId: string,
+  abortSignal?: AbortSignal
 ): Promise<Facility> => {
   const allFacilities = cache.get(CacheKey.AllFacilities)
   if (allFacilities) {
@@ -89,7 +89,7 @@ export const getFacility = async (
     queryParams as Record<string, string | number>
   )
   const url = `${apiBasePath}/facilities?` + queryString
-  const body = await getData<FacilitiesResponse>(url, controller)
+  const body = await getData<FacilitiesResponse>(url, abortSignal)
 
   if (Array.isArray(body) || body.data.length === 0) {
     throw new APIError({

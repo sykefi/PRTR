@@ -1,13 +1,15 @@
-import { FormEvent } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
+import { useHistory } from 'react-router'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
+import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
 
 const useFacilityMainActivityOptions =
   (): OptionType<FacilityMainActivityCode>[] => {
@@ -34,34 +36,66 @@ const useFacilityMainActivityOptions =
       })
   }
 
+const asOption = <T extends string>(
+  v: T | undefined,
+  getLabel: (v: T) => string
+): OptionType<T> | null => {
+  return v
+    ? {
+        value: v,
+        label: getLabel(v)
+      }
+    : null
+}
+
 const Form = styled.form`
   max-width: 100%;
 `
 
 export const FacilitySearchPanel = ({
-  searchTerm,
-  facilityMainActivityCode,
-  setSearchTerm,
-  setFacilityMainActivityCode,
-  handleSubmit
+  urlSearchTerm,
+  urlFacilityMainActivityCode
 }: {
-  searchTerm: string | undefined
-  facilityMainActivityCode: FacilityMainActivityCode | undefined
-  setSearchTerm: (term: string) => void
-  setFacilityMainActivityCode: (
-    code: FacilityMainActivityCode | undefined
-  ) => void
-  handleSubmit: (e: FormEvent) => void
+  urlSearchTerm: string | undefined
+  urlFacilityMainActivityCode: string | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
-  const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
+  const history = useHistory()
 
-  const initialOption = facilityMainActivityCode
-    ? {
-        value: facilityMainActivityCode,
-        label: t(`mainActivityCodeDesc:${facilityMainActivityCode}`)
-      }
-    : undefined
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
+
+  const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
+  const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
+    FacilityMainActivityCode | undefined
+  >(undefined)
+
+  useEffect(() => {
+    // reset the inputs after reload if necessary
+    !urlFacilityMainActivityCode && setFacilityMainActivityCode(undefined)
+    !urlSearchTerm && setSearchTerm(undefined)
+  }, [urlFacilityMainActivityCode, urlSearchTerm])
+
+  /**
+   * Resets current URL search parameters (including active row ranges)
+   * and sets new ones (if some of them changed). This will trigger
+   * the facility list update.
+   */
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault() // prevent reload on submit
+    const newUrlSearchParams = new URLSearchParams()
+    if (searchTerm)
+      newUrlSearchParams.set(FacilitySearchURLParamName.SearchTerm, searchTerm)
+    if (facilityMainActivityCode) {
+      newUrlSearchParams.set(
+        FacilitySearchURLParamName.FacilityMainActivityCode,
+        facilityMainActivityCode
+      )
+    }
+    history.push({
+      pathname: '/facilities',
+      search: '?' + newUrlSearchParams.toString()
+    })
+  }
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
@@ -75,7 +109,9 @@ export const FacilitySearchPanel = ({
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              value={initialOption}
+              value={asOption(facilityMainActivityCode, v =>
+                t(`mainActivityCodeDesc:${v}`)
+              )}
               name="facilityMainActivityCode"
               options={facilityMainActivityCodeOptions}
               placeholder={t(

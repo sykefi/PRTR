@@ -1,5 +1,5 @@
 import { Box, Button, Flex } from '@chakra-ui/react'
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
@@ -8,7 +8,10 @@ import { BelowNavigationHeaderPanel } from '../Common'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { OlMap } from '../OlMap'
-import { useURLSearchParam } from '../../hooks/useURLSearchParams'
+import {
+  useURLSearchParam,
+  useURLSearchParamInt
+} from '../../hooks/useURLSearchParams'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
 import { ResultPageSelector } from './ResultPageSelector'
@@ -16,7 +19,7 @@ import { FacilitySearchPanel } from './FacilitySearchPanel'
 import { FacilitySearchResultInfo } from './FacilitySearchResultInfo'
 import { FacilityList } from './FacilityList'
 
-const pageItemCount = 20
+const pageItemLimit = 40
 
 const getQueryParams = (
   urlSearchTerm: string | undefined,
@@ -28,102 +31,51 @@ const getQueryParams = (
   }
 }
 
-export const FacilitiesPage = () => {
-  const [listState, setListState] = useState<
+export const FacilitiesSearch = () => {
+  const [searchState, setSearchState] = useState<
     'initial' | 'loading' | 'error' | 'done'
   >('initial')
   const history = useHistory()
   const { t } = useTranslation()
+
+  const [facilities, setFacilities] = useState<Facility[] | null>(null)
 
   const urlSearchTerm = useURLSearchParam(FacilitySearchURLParamName.SearchTerm)
   const urlFacilityMainActivityCode = useURLSearchParam(
     FacilitySearchURLParamName.FacilityMainActivityCode
   ) as FacilityMainActivityCode | undefined
 
-  const urlActiveRangeLowerLimit =
-    useURLSearchParam(FacilitySearchURLParamName.ActiveRangeLowerLimit) || '0'
-  const urlActiveRangeUpperLimit =
-    useURLSearchParam(FacilitySearchURLParamName.ActiveRangeUpperLimit) ||
-    pageItemCount.toString()
-
-  const [facilities, setFacilities] = useState<Facility[] | null>(null)
-  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
-  const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
-    FacilityMainActivityCode | undefined
-  >(undefined)
-
-  const activeRowRange = [
-    urlActiveRangeLowerLimit,
-    urlActiveRangeUpperLimit
-  ].map(v => parseInt(v)) as [number, number]
+  const urlFirstItemIdx =
+    useURLSearchParamInt(FacilitySearchURLParamName.FirstItemIdx) || 0
 
   const showingSearchResults = !!urlSearchTerm || !!urlFacilityMainActivityCode
 
   const returnToMainList = () => {
     if (urlSearchTerm) {
-      setListState('initial')
+      setSearchState('initial')
     }
     history.push('/facilities')
   }
 
-  /**
-   * Resets current URL search parameters (including active row ranges)
-   * and sets new ones (if some of them changed). This will trigger
-   * the facility list update.
-   */
-  const setUrlSearchParams = (e: FormEvent) => {
-    e.preventDefault() // prevent reload on submit
-    if (
-      urlSearchTerm !== searchTerm ||
-      urlFacilityMainActivityCode !== facilityMainActivityCode
-    ) {
-      setListState('loading')
-    } else {
-      return
-    }
-    const newUrlSearchParams = new URLSearchParams()
-    if (searchTerm)
-      newUrlSearchParams.set(FacilitySearchURLParamName.SearchTerm, searchTerm)
-    if (facilityMainActivityCode) {
-      newUrlSearchParams.set(
-        FacilitySearchURLParamName.FacilityMainActivityCode,
-        facilityMainActivityCode
-      )
-    }
-    history.push({
-      pathname: '/facilities',
-      search: '?' + newUrlSearchParams.toString()
-    })
-  }
-
   useEffect(() => {
     // fetch facilities after URL search parameters are changed
-    console.log(
-      'update facility list with query params:',
-      urlSearchTerm,
-      urlFacilityMainActivityCode
-    )
-    // we need to reset the form state when user navigates back to search
-    !urlFacilityMainActivityCode && setFacilityMainActivityCode(undefined)
-    !urlSearchTerm && setSearchTerm(undefined)
-
     const controller = new AbortController()
     const getFacilities = async () => {
       try {
         const data = await api.getFacilities(
-          controller,
-          getQueryParams(urlSearchTerm, urlFacilityMainActivityCode)
+          getQueryParams(urlSearchTerm, urlFacilityMainActivityCode),
+          controller.signal
         )
         setFacilities(data)
-        setListState('done')
+        setSearchState('done')
       } catch (e) {
         if (!controller.signal.aborted) {
           console.error(e)
-          setListState('error')
+          setSearchState('error')
         }
       }
     }
-    setListState('loading')
+    setSearchState('loading')
     getFacilities()
 
     return () => {
@@ -132,7 +84,7 @@ export const FacilitiesPage = () => {
     }
   }, [urlSearchTerm, urlFacilityMainActivityCode])
 
-  if (listState === 'initial' || listState === 'loading') {
+  if (searchState === 'initial' || searchState === 'loading') {
     return (
       <BelowNavigationHeaderPanel withYPadding>
         <Box data-cy="facilities-load-animation">
@@ -142,7 +94,7 @@ export const FacilitiesPage = () => {
     )
   }
 
-  if (listState === 'error') {
+  if (searchState === 'error') {
     return (
       <Box margin={1.0} marginY={2.0} fontWeight="bold">
         <Box>
@@ -169,11 +121,8 @@ export const FacilitiesPage = () => {
       {!showingSearchResults && (
         <BelowNavigationHeaderPanel>
           <FacilitySearchPanel
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            facilityMainActivityCode={facilityMainActivityCode}
-            setFacilityMainActivityCode={setFacilityMainActivityCode}
-            handleSubmit={setUrlSearchParams}
+            urlSearchTerm={urlSearchTerm}
+            urlFacilityMainActivityCode={urlFacilityMainActivityCode}
           />
         </BelowNavigationHeaderPanel>
       )}
@@ -199,17 +148,20 @@ export const FacilitiesPage = () => {
           {facilities && (
             <>
               <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
-                <ResultPageSelector
-                  pageItemCount={pageItemCount}
-                  activeRowRange={activeRowRange}
-                  facilityCount={facilities.length}
-                  history={history}
-                />
+                {facilities.length > 0 && (
+                  <ResultPageSelector
+                    pageItemLimit={pageItemLimit}
+                    firstItemIdx={urlFirstItemIdx}
+                    totalItemCount={facilities.length}
+                    loading={false}
+                  />
+                )}
               </Flex>
               <Flex wrap="wrap" justify="center" maxWidth="100%">
                 <FacilityList
                   facilities={facilities}
-                  activeRowRange={activeRowRange}
+                  firstItemIdx={urlFirstItemIdx}
+                  pageItemLimit={pageItemLimit}
                   handleExitResults={returnToMainList}
                 />
                 <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">

@@ -33,7 +33,7 @@ export const FacilityPage = () => {
     const getFacilityData = async () => {
       setInfoState('loading')
       try {
-        const data = await getFacility(controller, facilityId)
+        const data = await getFacility(facilityId, controller.signal)
         setFacility(data)
         setInfoState('done')
       } catch (e) {

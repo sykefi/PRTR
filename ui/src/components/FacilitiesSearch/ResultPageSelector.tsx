@@ -3,9 +3,9 @@ import { Button, ButtonGroup } from '@chakra-ui/button'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
-import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
+import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
 
-export const ReleasesPageSelector = ({
+export const ResultPageSelector = ({
   pageItemLimit,
   firstItemIdx,
   totalItemCount,
@@ -28,9 +28,9 @@ export const ReleasesPageSelector = ({
       : firstItemIdx
     : firstItemIdx
 
-  const updateActiveRowRage = (newFirstIdx: number) => {
+  const updateFirstItemIdx = (newFirstIdx: number) => {
     urlSearchParams.set(
-      ReleaseSearchURLParamName.FirstItemIdx,
+      FacilitySearchURLParamName.FirstItemIdx,
       newFirstIdx.toString()
     )
     history.push({
@@ -67,7 +67,7 @@ export const ReleasesPageSelector = ({
             size="sm"
             disabled={loading}
             _disabled={{ cursor: 'default' }}
-            onClick={() => updateActiveRowRage(previousFirstIdx)}>
+            onClick={() => updateFirstItemIdx(previousFirstIdx)}>
             {t('common.previousPage')}
           </Button>
         )}
@@ -78,7 +78,7 @@ export const ReleasesPageSelector = ({
             size="sm"
             disabled={loading}
             _disabled={{ cursor: 'default' }}
-            onClick={() => updateActiveRowRage(nextFirstIdx)}>
+            onClick={() => updateFirstItemIdx(nextFirstIdx)}>
             {t('common.nextPage')}
           </Button>
         )}
