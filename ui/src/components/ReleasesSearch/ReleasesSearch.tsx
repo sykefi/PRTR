@@ -38,7 +38,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         limit: pageItemLimit
       })
     },
-    { keepPreviousData: true, staleTime: env.prtrDataCacheTime }
+    { keepPreviousData: true, staleTime: env.prtrDataCacheTime, retry: 2 }
   )
   const hasReleases = !!data && data.data.length > 0
 

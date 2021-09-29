@@ -56,7 +56,7 @@ export const ResultPageSelector = ({
       justify="center"
       wrap="wrap">
       <Box fontWeight="bold" marginRight={3} marginY={1.5}>
-        {t('common.showingRows')} {firstItemIdx + 1}-{lastItemIdxToShow}
+        {t('common.showingItems')} {firstItemIdx + 1}-{lastItemIdxToShow}
         {totalItemCount && ` (${totalItemCount})`}
       </Box>
       <ButtonGroup>

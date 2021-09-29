@@ -37,7 +37,7 @@ export const ReleaseTable = ({
       background="white"
       borderRadius="md"
       boxShadow="md">
-      {loading && releases.length > 2 && (
+      {loading && releases.length > 5 && (
         <Flex margin={3} justify="center" data-cy="releases-load-animation">
           <LoadAnimation sizePx={30} />
         </Flex>
@@ -93,7 +93,7 @@ export const ReleaseTable = ({
           })}
         </Tbody>
       </Table>
-      {loading && releases.length <= 2 && (
+      {loading && releases.length <= 5 && (
         <Flex margin={3} justify="center" data-cy="releases-load-animation">
           <LoadAnimation sizePx={30} />
         </Flex>

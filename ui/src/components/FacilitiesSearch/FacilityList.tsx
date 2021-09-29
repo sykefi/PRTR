@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useHistory } from 'react-router'
 import { Box } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
 import { FacilityListItem } from './FacilityListItem'
@@ -6,14 +7,13 @@ import { FacilityListItem } from './FacilityListItem'
 export const FacilityList = ({
   facilities,
   firstItemIdx,
-  pageItemLimit,
-  handleExitResults
+  pageItemLimit
 }: {
   facilities: Facility[]
   firstItemIdx: number
   pageItemLimit: number
-  handleExitResults: () => void
 }) => {
+  const history = useHistory()
   useEffect(() => {
     // redirect back to /facilities if the requested activeRowRange is not initial and has no rows
     if (
@@ -23,9 +23,9 @@ export const FacilityList = ({
       console.warn(
         'No facilities found with the current activeRowRange, redirecting to default facility list'
       )
-      handleExitResults()
+      history.push('/facilities')
     }
-  }, [facilities, firstItemIdx, pageItemLimit, handleExitResults])
+  }, [facilities, firstItemIdx, pageItemLimit, history])
 
   return (
     <Box

@@ -1,12 +1,10 @@
 import { Box, Button, Flex } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
-import { Facility } from '../../api/models/Facility'
 import { BelowNavigationHeaderPanel } from '../Common'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
-import { FacilityQueryParams } from '../../api/models/FacilityQueryParams'
 import { OlMap } from '../OlMap'
 import {
   useURLSearchParam,
@@ -21,24 +19,9 @@ import { FacilityList } from './FacilityList'
 
 const pageItemLimit = 40
 
-const getQueryParams = (
-  urlSearchTerm: string | undefined,
-  mainActivityCode: FacilityMainActivityCode | undefined
-): FacilityQueryParams | undefined => {
-  return {
-    name_search_str: urlSearchTerm,
-    main_activity_code: mainActivityCode
-  }
-}
-
 export const FacilitiesSearch = () => {
-  const [searchState, setSearchState] = useState<
-    'initial' | 'loading' | 'error' | 'done'
-  >('initial')
   const history = useHistory()
   const { t } = useTranslation()
-
-  const [facilities, setFacilities] = useState<Facility[] | null>(null)
 
   const urlSearchTerm = useURLSearchParam(FacilitySearchURLParamName.SearchTerm)
   const urlFacilityMainActivityCode = useURLSearchParam(
@@ -50,57 +33,24 @@ export const FacilitiesSearch = () => {
 
   const showingSearchResults = !!urlSearchTerm || !!urlFacilityMainActivityCode
 
-  const returnToMainList = () => {
-    if (urlSearchTerm) {
-      setSearchState('initial')
-    }
-    history.push('/facilities')
-  }
+  const { isLoading, isError, data } = useQuery(
+    ['facilities', urlSearchTerm, urlFacilityMainActivityCode],
+    async () => {
+      return api.getFacilities({
+        name_search_str: urlSearchTerm,
+        main_activity_code: urlFacilityMainActivityCode
+      })
+    },
+    { retry: false }
+  )
 
-  useEffect(() => {
-    // fetch facilities after URL search parameters are changed
-    const controller = new AbortController()
-    const getFacilities = async () => {
-      try {
-        const data = await api.getFacilities(
-          getQueryParams(urlSearchTerm, urlFacilityMainActivityCode),
-          controller.signal
-        )
-        setFacilities(data)
-        setSearchState('done')
-      } catch (e) {
-        if (!controller.signal.aborted) {
-          console.error(e)
-          setSearchState('error')
-        }
-      }
-    }
-    setSearchState('loading')
-    getFacilities()
-
-    return () => {
-      setFacilities([])
-      controller.abort()
-    }
-  }, [urlSearchTerm, urlFacilityMainActivityCode])
-
-  if (searchState === 'initial' || searchState === 'loading') {
+  if (isError) {
     return (
-      <BelowNavigationHeaderPanel withYPadding>
-        <Box data-cy="facilities-load-animation">
-          <LoadAnimation sizePx={30} />
-        </Box>
-      </BelowNavigationHeaderPanel>
-    )
-  }
-
-  if (searchState === 'error') {
-    return (
-      <Box margin={1.0} marginY={2.0} fontWeight="bold">
+      <Flex margin={5.0} align="center" direction="column" fontWeight="bold">
         <Box>
           {t('facilities.loadFacilitiesErroredText', {
             searchTerm: urlSearchTerm,
-            resultCount: facilities ? facilities.length : 0
+            resultCount: data ? data.length : 0
           })}
         </Box>
         <Box>
@@ -112,7 +62,17 @@ export const FacilitiesSearch = () => {
             {t('common.goBack')}
           </Button>
         </Box>
-      </Box>
+      </Flex>
+    )
+  }
+
+  if (isLoading) {
+    return (
+      <BelowNavigationHeaderPanel withYPadding>
+        <Box data-cy="facilities-load-animation">
+          <LoadAnimation sizePx={30} />
+        </Box>
+      </BelowNavigationHeaderPanel>
     )
   }
 
@@ -126,13 +86,9 @@ export const FacilitiesSearch = () => {
           />
         </BelowNavigationHeaderPanel>
       )}
-      {facilities && showingSearchResults && (
+      {data && showingSearchResults && (
         <BelowNavigationHeaderPanel withYPadding>
-          <FacilitySearchResultInfo
-            urlSearchTerm={urlSearchTerm}
-            resultCount={facilities.length}
-            handleExitResults={returnToMainList}
-          />
+          <FacilitySearchResultInfo resultCount={data.length} />
         </BelowNavigationHeaderPanel>
       )}
       <Flex direction="column" maxWidth="100%" align="center">
@@ -145,28 +101,27 @@ export const FacilitiesSearch = () => {
           flexWrap="wrap"
           justify="center"
           align="center">
-          {facilities && (
+          {data && (
             <>
               <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
-                {facilities.length > 0 && (
+                {data.length > 0 && (
                   <ResultPageSelector
                     pageItemLimit={pageItemLimit}
                     firstItemIdx={urlFirstItemIdx}
-                    totalItemCount={facilities.length}
+                    totalItemCount={data.length}
                     loading={false}
                   />
                 )}
               </Flex>
               <Flex wrap="wrap" justify="center" maxWidth="100%">
                 <FacilityList
-                  facilities={facilities}
+                  facilities={data}
                   firstItemIdx={urlFirstItemIdx}
                   pageItemLimit={pageItemLimit}
-                  handleExitResults={returnToMainList}
                 />
                 <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
                   <OlMap
-                    facilities={facilities}
+                    facilities={data}
                     zoomToInitialExtent={!urlSearchTerm}
                   />
                 </Box>

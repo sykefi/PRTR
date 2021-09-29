@@ -1,17 +1,15 @@
 import { Button } from '@chakra-ui/button'
 import { Box } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router'
 
 export const FacilitySearchResultInfo = ({
-  urlSearchTerm,
-  resultCount,
-  handleExitResults
+  resultCount
 }: {
-  urlSearchTerm: string | undefined
   resultCount: number
-  handleExitResults: () => void
 }) => {
   const { t } = useTranslation()
+  const history = useHistory()
 
   return (
     <Box data-cy="search-result-info">
@@ -26,7 +24,7 @@ export const FacilitySearchResultInfo = ({
           marginTop={2.0}
           size="sm"
           colorScheme="orange"
-          onClick={handleExitResults}>
+          onClick={() => history.push('/facilities')}>
           {t('common.goBack')}
         </Button>
       </Box>
