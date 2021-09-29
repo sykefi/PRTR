@@ -12,7 +12,11 @@ _facilities = prtr_data_source.load_facilities(conf.facilities_csv_fp)
 
 _facility_by_id = {f.facilityId: f for f in _facilities}
 
-_bare_releases = prtr_data_source.load_releases(conf.releases_csv_fp)
+_bare_releases = sorted(
+    prtr_data_source.load_releases(conf.releases_csv_fp),
+    key=lambda r: r.reportingYear,
+    reverse=True
+)
 
 fuzzy_releases_count = len([
     r for r in _bare_releases if r.facilityId not in _facility_by_id
@@ -27,7 +31,10 @@ _releases: List[PollutantRelease] = [
 ]
 
 _metadata = PrtrMetadata(
-    available_reporting_years=list(set([r.reportingYear for r in _releases])),
+    available_reporting_years=sorted(
+        list(set([r.reportingYear for r in _releases])),
+        reverse=True
+    ),
     present_pollutant_codes=list(set([r.pollutantCode for r in _releases])),
     present_cities=list(set([
         f.city for f in _facilities if f.city is not None
