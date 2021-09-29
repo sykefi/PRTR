@@ -13,7 +13,7 @@ describe('Navigation', () => {
 
   it('Routes to URL paths of the pages from the navigation menu', () => {
     cy.get('[data-cy=navigation-panel]').within(() => {
-      cy.contains('Laitokset').click()
+      cy.contains('Laitoshaku').click()
       cy.url().should('eq', 'http://localhost:3000/facilities')
       cy.contains('Päästöt').click()
       cy.url().should('eq', 'http://localhost:3000/releases')

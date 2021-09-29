@@ -19,7 +19,7 @@ describe('Facilities', () => {
       }
     )
     cy.get('[data-cy=navigation-panel]').within(() => {
-      cy.contains('Laitokset').click()
+      cy.contains('Laitoshaku').click()
       cy.url().should('eq', 'http://localhost:3000/facilities')
     })
     cy.get('[data-cy=facilities-load-animation]').should('exist')
