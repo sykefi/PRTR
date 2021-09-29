@@ -52,7 +52,7 @@ const Form = styled.form`
   max-width: 100%;
 `
 
-export const FacilitySearchPanel = ({
+export const FacilityFilterPanel = ({
   urlSearchTerm,
   urlFacilityMainActivityCode
 }: {

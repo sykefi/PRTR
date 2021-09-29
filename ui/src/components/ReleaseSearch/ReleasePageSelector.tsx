@@ -3,9 +3,9 @@ import { Button, ButtonGroup } from '@chakra-ui/button'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
-import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
+import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 
-export const ResultPageSelector = ({
+export const ReleasePageSelector = ({
   pageItemLimit,
   firstItemIdx,
   totalItemCount,
@@ -30,7 +30,7 @@ export const ResultPageSelector = ({
 
   const updateFirstItemIdx = (newFirstIdx: number) => {
     urlSearchParams.set(
-      FacilitySearchURLParamName.FirstItemIdx,
+      ReleaseSearchURLParamName.FirstItemIdx,
       newFirstIdx.toString()
     )
     history.push({
@@ -56,7 +56,7 @@ export const ResultPageSelector = ({
       justify="center"
       wrap="wrap">
       <Box fontWeight="bold" marginRight={3} marginY={1.5}>
-        {t('common.showingItems')} {firstItemIdx + 1}-{lastItemIdxToShow}
+        {t('common.showingRows')} {firstItemIdx + 1}-{lastItemIdxToShow}
         {totalItemCount && ` (${totalItemCount})`}
       </Box>
       <ButtonGroup>

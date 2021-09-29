@@ -35,7 +35,7 @@
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
     "facilityReleaseInfo": "Päästötiedot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
-    "goBackToReleasesSearch": "Palaa päästöhakuun"
+    "goBackToReleaseSearch": "Palaa päästöhakuun"
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",

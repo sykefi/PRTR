@@ -52,7 +52,7 @@ const Form = styled.form`
   max-width: 100%;
 `
 
-export const ReleasesFilterPanel = (props: {
+export const ReleaseFilterPanel = (props: {
   medium: Medium
   urlPollutantCode: PollutantCode | undefined
 }) => {

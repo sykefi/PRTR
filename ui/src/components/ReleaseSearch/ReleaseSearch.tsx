@@ -11,13 +11,13 @@ import {
 } from '../../hooks/useURLSearchParams'
 import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
-import { ReleasesFilterPanel } from './ReleasesFilterPanel'
-import { ReleasesPageSelector } from './ReleasesPageSelector'
+import { ReleaseFilterPanel } from './ReleaseFilterPanel'
+import { ReleasePageSelector } from './ReleasePageSelector'
 import { ReleaseTable } from './ReleaseTable'
 
 const pageItemLimit = 40
 
-export const ReleasesSearch = (props: { medium: Medium }) => {
+export const ReleaseSearch = (props: { medium: Medium }) => {
   const { t } = useTranslation()
 
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
@@ -45,7 +45,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
   return (
     <>
       <BelowNavigationHeaderPanel>
-        <ReleasesFilterPanel
+        <ReleaseFilterPanel
           medium={props.medium}
           urlPollutantCode={urlPollutantCode}
         />
@@ -61,7 +61,7 @@ export const ReleasesSearch = (props: { medium: Medium }) => {
         {urlFirstItemIdx !== undefined && (
           <>
             {hasReleases && (
-              <ReleasesPageSelector
+              <ReleasePageSelector
                 pageItemLimit={pageItemLimit}
                 firstItemIdx={urlFirstItemIdx}
                 totalItemCount={data.count}

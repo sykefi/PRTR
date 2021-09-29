@@ -13,13 +13,13 @@ import {
 } from '../../hooks/useURLSearchParams'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
-import { ResultPageSelector } from './ResultPageSelector'
-import { FacilitySearchPanel } from './FacilitySearchPanel'
+import { FacilityPageSelector } from './FacilityPageSelector'
+import { FacilityFilterPanel } from './FacilityFilterPanel'
 import { FacilityList } from './FacilityList'
 
 const pageItemLimit = 40
 
-export const FacilitiesSearch = () => {
+export const FacilitySearch = () => {
   const history = useHistory()
   const { t } = useTranslation()
 
@@ -50,7 +50,7 @@ export const FacilitiesSearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
-        <FacilitySearchPanel
+        <FacilityFilterPanel
           urlSearchTerm={urlSearchTerm}
           urlFacilityMainActivityCode={urlFacilityMainActivityCode}
         />
@@ -93,7 +93,7 @@ export const FacilitiesSearch = () => {
           {gotFacilities && (
             <>
               <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
-                <ResultPageSelector
+                <FacilityPageSelector
                   pageItemLimit={pageItemLimit}
                   firstItemIdx={urlFirstItemIdx}
                   totalItemCount={data.length}

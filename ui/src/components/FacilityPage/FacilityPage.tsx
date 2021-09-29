@@ -72,7 +72,7 @@ export const FacilityPage = () => {
 
   const exitLabel = t(
     previousPathIsReleaseList
-      ? 'translation:facilities.goBackToReleasesSearch'
+      ? 'translation:facilities.goBackToReleaseSearch'
       : 'translation:facilities.goBackToFacilitySearch'
   )
 
