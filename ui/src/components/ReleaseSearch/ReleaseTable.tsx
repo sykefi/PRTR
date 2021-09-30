@@ -1,11 +1,15 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { Box, Flex, Link } from '@chakra-ui/layout'
+import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
+import {
+  colorSchemeByMethodCode,
+  translationKeyByMethodCode
+} from '../../constants'
 
 export const ReleaseTable = ({
   loading,
@@ -57,6 +61,9 @@ export const ReleaseTable = ({
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:common.facility')}
             </Th>
+            <Th p={1} color="gray.800" fontSize="smaller">
+              {t('translation:releases.method.title')}
+            </Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -87,6 +94,17 @@ export const ReleaseTable = ({
                     }}>
                     {r.nameOfFeature}
                   </Link>
+                </Td>
+                <Td p={1}>
+                  <Badge
+                    whiteSpace={{ base: 'unset', sm: 'nowrap' }}
+                    colorScheme={colorSchemeByMethodCode[r.methodCode]}>
+                    {t(
+                      `translation:releases.method.${
+                        translationKeyByMethodCode[r.methodCode]
+                      }`
+                    )}
+                  </Badge>
                 </Td>
               </Tr>
             )

@@ -3,11 +3,16 @@ import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import * as env from '../../env'
-import { Medium } from '../../api/models/Medium'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { getReleases } from '../../api/releases'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
+import {
+  colorSchemeByMedium,
+  colorSchemeByMethodCode,
+  translationKeyByMedium,
+  translationKeyByMethodCode
+} from '../../constants'
 
 const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
   const getPollutantLabel = useGetPollutantLabel()
@@ -21,8 +26,11 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
     <Table variant="simple" marginY={4} boxSizing="border-box">
       <Thead>
         <Tr>
-          <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
+          <Th p={1} paddingRight={2} color="gray.800" fontSize="smaller">
             {t('translation:common.year')}
+          </Th>
+          <Th p={1} color="gray.800" fontSize="smaller">
+            {t('translation:releases.releaseMediumType')}
           </Th>
           <Th p={1} color="gray.800" fontSize="smaller">
             {t('translation:releases.quantity')} (kg)
@@ -31,7 +39,7 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
             {t('translation:releases.pollutant')}
           </Th>
           <Th p={1} color="gray.800" fontSize="smaller">
-            {t('translation:releases.releaseMediumType')}
+            {t('translation:releases.method.title')}
           </Th>
         </Tr>
       </Thead>
@@ -42,7 +50,16 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
               <Td p={1} paddingRight={3}>
                 {r.reportingYear}
               </Td>
-              <Td p={1} paddingRight={3}>
+              <Td p={1}>
+                <Badge
+                  whiteSpace={{ base: 'unset', sm: 'nowrap' }}
+                  colorScheme={colorSchemeByMedium[r.medium]}>
+                  {t(
+                    `translation:releases.${translationKeyByMedium[r.medium]}`
+                  )}
+                </Badge>
+              </Td>
+              <Td p={1} paddingRight={2}>
                 {(
                   r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
                 ).toLocaleString('fi')}
@@ -53,11 +70,11 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
               <Td p={1}>
                 <Badge
                   whiteSpace={{ base: 'unset', sm: 'nowrap' }}
-                  colorScheme={r.medium === Medium.AIR ? 'orange' : 'blue'}>
+                  colorScheme={colorSchemeByMethodCode[r.methodCode]}>
                   {t(
-                    r.medium === Medium.AIR
-                      ? 'translation:releases.releaseToAir'
-                      : 'translation:releases.releaseToWater'
+                    `translation:releases.method.${
+                      translationKeyByMethodCode[r.methodCode]
+                    }`
                   )}
                 </Badge>
               </Td>
@@ -94,7 +111,7 @@ export const FacilityReleaseTable = ({
   return (
     <Box
       data-cy="facility-release-info"
-      width={450}
+      width={560}
       minWidth={250}
       maxWidth="100%"
       paddingX={5}

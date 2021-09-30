@@ -44,6 +44,12 @@
     "pollutant": "Yhdiste",
     "quantity": "Määrä",
     "releaseMediumType": "Tyyppi",
+    "method": {
+      "title": "Laskentatapa",
+      "measured": "Mitattu",
+      "calculated": "Laskennallinen",
+      "estimated": "Arvioitu"
+    },
     "selectPollutant": "Valitse yhdiste",
     "selectYear": "Valitse vuosi",
     "noReleasesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
