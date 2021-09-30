@@ -10,6 +10,7 @@ import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityC
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
+import { asOption } from '../../utils'
 
 const useFacilityMainActivityOptions =
   (): OptionType<FacilityMainActivityCode>[] => {
@@ -35,18 +36,6 @@ const useFacilityMainActivityOptions =
         return 0
       })
   }
-
-const asOption = <T extends string>(
-  v: T | undefined,
-  getLabel: (v: T) => string
-): OptionType<T> | null => {
-  return v
-    ? {
-        value: v,
-        label: getLabel(v)
-      }
-    : null
-}
 
 const Form = styled.form`
   max-width: 100%;

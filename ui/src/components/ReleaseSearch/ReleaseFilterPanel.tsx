@@ -15,18 +15,7 @@ import { ChakraSelect } from '../ChakraReactSelect'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { Medium } from '../../api/models/Medium'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
-
-const asOption = <T extends string | number>(
-  v: T | undefined,
-  getLabel?: (v: T) => string
-): OptionType<T> | null => {
-  return v
-    ? {
-        value: v,
-        label: getLabel ? getLabel(v) : v.toString()
-      }
-    : null
-}
+import { asOption } from '../../utils'
 
 const usePollutantNameOptions = (
   getPollutantLabel: (p: PollutantCode) => string
