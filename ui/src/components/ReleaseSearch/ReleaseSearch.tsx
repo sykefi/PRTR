@@ -9,7 +9,7 @@ import {
   useURLSearchParam,
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
-import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
+import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { BelowNavigationHeaderPanel } from '../Common'
 import { ReleaseFilterPanel } from './ReleaseFilterPanel'
 import { ReleasePageSelector } from './ReleasePageSelector'
@@ -21,19 +21,19 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   const { t } = useTranslation()
 
   const urlPollutantCode = useURLSearchParam<PollutantCode>(
-    ReleaseSearchURLParamName.PollutantCode
+    URLSearchParamName.PollutantCode
   )
-  const urlFirstItemIdx = useURLSearchParamInt(
-    ReleaseSearchURLParamName.FirstItemIdx
-  )
+  const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
+  const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['releases', props.medium, urlPollutantCode, urlFirstItemIdx],
+    ['releases', props.medium, urlPollutantCode, urlFirstItemIdx, urlYear],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getReleases({
         pollutant_code: urlPollutantCode,
         medium: props.medium,
+        reporting_year: urlYear,
         skip: urlFirstItemIdx,
         limit: pageItemLimit
       })
@@ -49,6 +49,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
         <ReleaseFilterPanel
           medium={props.medium}
           urlPollutantCode={urlPollutantCode}
+          urlYear={urlYear}
         />
       </BelowNavigationHeaderPanel>
       <Flex

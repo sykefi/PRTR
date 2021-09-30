@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from '@chakra-ui/button'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
-import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
+import { URLSearchParamName } from '../../models/URLSearchParamName'
 
 export const FacilityPageSelector = ({
   pageItemLimit,
@@ -29,10 +29,7 @@ export const FacilityPageSelector = ({
     : firstItemIdx
 
   const updateFirstItemIdx = (newFirstIdx: number) => {
-    urlSearchParams.set(
-      FacilitySearchURLParamName.FirstItemIdx,
-      newFirstIdx.toString()
-    )
+    urlSearchParams.set(URLSearchParamName.FirstItemIdx, newFirstIdx.toString())
     history.push({
       pathname: location.pathname,
       search: '?' + urlSearchParams.toString()

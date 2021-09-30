@@ -11,7 +11,7 @@ import {
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
-import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
+import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { FacilityPageSelector } from './FacilityPageSelector'
 import { FacilityFilterPanel } from './FacilityFilterPanel'
 import { FacilityList } from './FacilityList'
@@ -21,13 +21,13 @@ const pageItemLimit = 40
 export const FacilitySearch = () => {
   const { t } = useTranslation()
 
-  const urlSearchTerm = useURLSearchParam(FacilitySearchURLParamName.SearchTerm)
+  const urlSearchTerm = useURLSearchParam(URLSearchParamName.SearchTerm)
   const urlFacilityMainActivityCode = useURLSearchParam(
-    FacilitySearchURLParamName.FacilityMainActivityCode
+    URLSearchParamName.FacilityMainActivityCode
   ) as FacilityMainActivityCode | undefined
 
   const urlFirstItemIdx =
-    useURLSearchParamInt(FacilitySearchURLParamName.FirstItemIdx) || 0
+    useURLSearchParamInt(URLSearchParamName.FirstItemIdx) || 0
 
   const { isLoading, isError, isSuccess, data } = useQuery(
     ['facilities', urlSearchTerm, urlFacilityMainActivityCode],

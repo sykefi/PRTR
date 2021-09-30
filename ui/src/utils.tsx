@@ -7,6 +7,7 @@ import {
   GeoJSONPointFeature,
   GeoJSONPointFeatureCollection
 } from './models/GeoJSON'
+import { OptionType } from './models/OptionType'
 
 export const facilityAsGeoJSONFeature = (f: Facility): GeoJSONPointFeature => {
   return {
@@ -59,4 +60,16 @@ export const handleCheckForMissingTranslations = () => {
     Object.values(FacilityMainActivityCode)
   )
   checkForMissingTranslations('pollutantName', Object.values(PollutantCode))
+}
+
+export const asOption = <T extends string | number>(
+  v: T | undefined,
+  getLabel?: (v: T) => string
+): OptionType<T> | null => {
+  return v
+    ? {
+        value: v,
+        label: getLabel ? getLabel(v) : v.toString()
+      }
+    : null
 }

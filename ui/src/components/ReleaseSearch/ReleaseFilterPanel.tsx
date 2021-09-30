@@ -1,3 +1,4 @@
+import { useQuery } from 'react-query'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { Box, Flex } from '@chakra-ui/layout'
@@ -5,12 +6,16 @@ import { FormEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import * as api from '../../api'
+import * as env from '../../env'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
-import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
+import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { Medium } from '../../api/models/Medium'
+import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
+import { asOption } from '../../utils'
 
 const usePollutantNameOptions = (
   getPollutantLabel: (p: PollutantCode) => string
@@ -36,16 +41,14 @@ const usePollutantNameOptions = (
     })
 }
 
-const asOption = <T extends string>(
-  v: T | undefined,
-  getLabel: (v: T) => string
-): OptionType<T> | null => {
-  return v
-    ? {
-        value: v,
-        label: getLabel(v)
-      }
-    : null
+const useYearOptions = (
+  metadata: PRTRApiMetadata | undefined
+): OptionType<number>[] => {
+  return metadata
+    ? metadata.available_reporting_years
+        .map(y => asOption(y))
+        .filter((o): o is OptionType<number> => Boolean(o))
+    : []
 }
 
 const Form = styled.form`
@@ -55,6 +58,7 @@ const Form = styled.form`
 export const ReleaseFilterPanel = (props: {
   medium: Medium
   urlPollutantCode: PollutantCode | undefined
+  urlYear: number | undefined
 }) => {
   const { t } = useTranslation()
   const history = useHistory()
@@ -62,25 +66,34 @@ export const ReleaseFilterPanel = (props: {
   const [pollutantCode, setPollutantCode] = useState<PollutantCode | undefined>(
     undefined
   )
+  const [year, setYear] = useState<number | undefined>(undefined)
 
   const getPollutantLabel = useGetPollutantLabel()
   const pollutantOptions = usePollutantNameOptions(getPollutantLabel)
 
+  const apiMetadata = useQuery(
+    ['prtrApiMetadata'],
+    () => api.getApiMetadata(),
+    env.rqCacheSettings
+  )
+  const yearOptions = useYearOptions(apiMetadata.data)
+
   useEffect(() => {
-    // initialize selected pollutant from url search param on page load or medium tab switch
+    // initialize select inputs from url search params on page load
     setPollutantCode(props.urlPollutantCode)
-  }, [props.medium, props.urlPollutantCode])
+    setYear(props.urlYear)
+  }, [props.medium, props.urlPollutantCode, props.urlYear])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (pollutantCode) {
-      newUrlSearchParams.set(
-        ReleaseSearchURLParamName.PollutantCode,
-        pollutantCode
-      )
+      newUrlSearchParams.set(URLSearchParamName.PollutantCode, pollutantCode)
     }
-    newUrlSearchParams.set(ReleaseSearchURLParamName.FirstItemIdx, '0')
+    if (year) {
+      newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
+    }
+    newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
       search: '?' + newUrlSearchParams.toString()
@@ -89,13 +102,17 @@ export const ReleaseFilterPanel = (props: {
 
   return (
     <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">
-      <Flex display="flex" flexWrap="wrap" justify="center">
-        <FormControl
-          marginTop={1.0}
-          marginBottom={2.0}
-          width={550}
-          minWidth={250}>
-          <Box marginY={1.0}>
+      <FormControl
+        display="flex"
+        flexWrap="wrap"
+        flexDirection="column"
+        justify="center"
+        sx={{ gap: 'var(--chakra-space-3)' }} //flex gap
+        marginTop={1.0}
+        marginBottom={2.0}
+        width="100%">
+        <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
+          <Box width={350} minWidth={200}>
             <ChakraSelect
               isClearable
               closeMenuOnSelect
@@ -106,16 +123,28 @@ export const ReleaseFilterPanel = (props: {
               onChange={e => setPollutantCode(e?.value)}
             />
           </Box>
-          <Button
-            data-cy="filter-releases-btn"
-            type="submit"
-            marginY={1.0}
-            marginLeft={1.0}
-            colorScheme="green">
-            {t('common.fetch')}
-          </Button>
-        </FormControl>
-      </Flex>
+          <Box width={250} minWidth={200}>
+            <ChakraSelect
+              isClearable
+              closeMenuOnSelect
+              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              name="releasesYear"
+              value={asOption(year)}
+              options={yearOptions}
+              placeholder={t('releases.selectYear')}
+              onChange={e => setYear(e?.value)}
+            />
+          </Box>
+        </Flex>
+        <Button
+          width="max-content"
+          data-cy="filter-releases-btn"
+          type="submit"
+          marginBottom={0.5}
+          colorScheme="green">
+          {t('common.fetch')}
+        </Button>
+      </FormControl>
     </Form>
   )
 }
