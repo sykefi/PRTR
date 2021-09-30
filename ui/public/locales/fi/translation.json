@@ -33,7 +33,7 @@
     "couldNotFindFacilityWithId": "Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "couldNotFindFacilityReleases": "Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
-    "facilityReleaseInfo": "Päästötiedot",
+    "facilityReleaseTable": "Päästötiedot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
     "goBackToReleaseSearch": "Palaa päästöhakuun"
   },

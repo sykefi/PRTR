@@ -1,18 +1,15 @@
-import { Badge, Box, Heading } from '@chakra-ui/layout'
+import { Badge, Box, Flex, Heading } from '@chakra-ui/layout'
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
-import { useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
+import * as env from '../../env'
 import { Medium } from '../../api/models/Medium'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { getReleases } from '../../api/releases'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 
-const FacilityReleaseTable = ({
-  releases
-}: {
-  releases: PollutantRelease[]
-}) => {
+const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
   const getPollutantLabel = useGetPollutantLabel()
   const { t } = useTranslation([
     'translation',
@@ -72,41 +69,27 @@ const FacilityReleaseTable = ({
   )
 }
 
-export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
+export const FacilityReleaseTable = ({
+  basicInfoIsLoading,
+  basicInfoIsError,
+  facilityId
+}: {
+  basicInfoIsLoading: boolean
+  basicInfoIsError: boolean
+  facilityId: string
+}) => {
   const { t } = useTranslation(['translation'])
-  const [releases, setReleases] = useState<PollutantRelease[] | []>([])
-  const [infoState, setInfoState] = useState<
-    'initial' | 'loading' | 'error' | 'done'
-  >('initial')
-  const loading = infoState === 'initial' || infoState === 'loading'
 
-  useEffect(() => {
-    console.log('fetching releases for', facilityId)
-    const controller = new AbortController()
-
-    const getFacilityData = async () => {
-      setInfoState('loading')
-      try {
-        const body = await getReleases(
-          { facility_id: facilityId },
-          controller.signal
-        )
-        setReleases(body.data)
-        setInfoState('done')
-      } catch (e) {
-        if (!controller.signal.aborted) {
-          console.error(e)
-          setInfoState('error')
-        }
-      }
+  const { isLoading, isError, isSuccess, data } = useQuery(
+    ['facilityReleases', facilityId],
+    () => getReleases({ facility_id: facilityId }),
+    {
+      // let's fetch the list of releases only if basic info fetch succeeded
+      enabled: !basicInfoIsLoading && !basicInfoIsError,
+      retry: 2,
+      ...env.rqCacheSettings
     }
-
-    getFacilityData()
-
-    return () => {
-      controller.abort()
-    }
-  }, [facilityId])
+  )
 
   return (
     <Box
@@ -123,20 +106,20 @@ export const FacilityReleaseInfo = ({ facilityId }: { facilityId: string }) => {
       borderRadius="md"
       boxShadow="md">
       <Heading as="h3" size="md" fontWeight="semibold" marginY={3}>
-        {t('translation:facilities.facilityReleaseInfo')}
+        {t('translation:facilities.facilityReleaseTable')}
       </Heading>
-      {releases.length > 0 && <FacilityReleaseTable releases={releases} />}
-      {loading && (
-        <Box p={2} data-cy="facility-releases-load-animation">
+      {data && data.data.length > 0 && <ReleaseTable releases={data.data} />}
+      {(basicInfoIsLoading || isLoading) && (
+        <Flex p={2} justify="center" data-cy="facility-releases-load-animation">
           <LoadAnimation sizePx={30} />
-        </Box>
+        </Flex>
       )}
-      {infoState === 'done' && releases.length === 0 && (
+      {data && isSuccess && data.data.length === 0 && (
         <Box marginY={2.0}>
           {t('translation:facilities.noReleasesFoundForFacility')}
         </Box>
       )}
-      {infoState === 'error' && (
+      {(basicInfoIsError || isError) && (
         <Box marginY={2.0}>
           {t('translation:facilities.couldNotFindFacilityReleases')}
         </Box>

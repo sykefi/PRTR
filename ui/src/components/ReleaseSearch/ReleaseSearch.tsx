@@ -27,7 +27,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
     ReleaseSearchURLParamName.FirstItemIdx
   )
 
-  const { isFetching, isError, isSuccess, data } = useQuery(
+  const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
     ['releases', props.medium, urlPollutantCode, urlFirstItemIdx],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
@@ -38,8 +38,9 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
         limit: pageItemLimit
       })
     },
-    { keepPreviousData: true, staleTime: env.prtrDataCacheTime, retry: 2 }
+    { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
   )
+  const loading = isLoading || isFetching
   const hasReleases = !!data && data.data.length > 0
 
   return (
@@ -65,21 +66,21 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
                 pageItemLimit={pageItemLimit}
                 firstItemIdx={urlFirstItemIdx}
                 totalItemCount={data.count}
-                loading={isFetching}
+                loading={loading}
               />
             )}
-            {!isFetching && isSuccess && !hasReleases && (
+            {!loading && isSuccess && !hasReleases && (
               <Box marginY={2.0} fontWeight="semibold">
                 {t('releases.noReleasesFoundFromSearch')}
               </Box>
             )}
-            {!isFetching && isError && (
+            {!loading && isError && (
               <Box marginY={2.0} fontWeight="semibold">
                 {t('releases.releasesFetchErrorInfo')}
               </Box>
             )}
-            {(isFetching || (isSuccess && hasReleases)) && (
-              <ReleaseTable loading={isFetching} releases={data?.data || []} />
+            {(loading || (isSuccess && hasReleases)) && (
+              <ReleaseTable loading={loading} releases={data?.data || []} />
             )}
           </>
         )}

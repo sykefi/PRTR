@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/button'
-import { Box, Heading } from '@chakra-ui/layout'
+import { Box, Flex, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useHistory } from 'react-router-dom'
 import { Facility } from '../../api/models/Facility'
@@ -27,7 +27,7 @@ export const FacilityBasicInfo = ({
   loading,
   error
 }: {
-  facility: Facility | null
+  facility: Facility | undefined
   loading: boolean
   error: boolean
 }) => {
@@ -77,11 +77,11 @@ export const FacilityBasicInfo = ({
         </>
       )}
       {loading && (
-        <Box p={2} data-cy="facility-info-load-animation">
+        <Flex p={2} justify="center" data-cy="facility-info-load-animation">
           <LoadAnimation sizePx={30} />
-        </Box>
+        </Flex>
       )}
-      {error && (
+      {!facility && error && (
         <>
           <Box marginTop={2.0}>
             <Box>{t('translation:facilities.couldNotFindFacilityWithId')}</Box>

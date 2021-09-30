@@ -1,7 +1,6 @@
-import { Box, Button, Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
 import * as api from '../../api'
 import * as env from '../../env'
 import { BelowNavigationHeaderPanel } from '../Common'
@@ -20,7 +19,6 @@ import { FacilityList } from './FacilityList'
 const pageItemLimit = 40
 
 export const FacilitySearch = () => {
-  const history = useHistory()
   const { t } = useTranslation()
 
   const urlSearchTerm = useURLSearchParam(FacilitySearchURLParamName.SearchTerm)
@@ -32,7 +30,7 @@ export const FacilitySearch = () => {
     useURLSearchParamInt(FacilitySearchURLParamName.FirstItemIdx) || 0
 
   const { isLoading, isError, isSuccess, data } = useQuery(
-    ['facilities', urlSearchTerm || '', urlFacilityMainActivityCode || ''],
+    ['facilities', urlSearchTerm, urlFacilityMainActivityCode],
     async () => {
       return api.getFacilities({
         name_search_str: urlSearchTerm,
@@ -41,8 +39,7 @@ export const FacilitySearch = () => {
     },
     {
       retry: false,
-      staleTime: env.prtrDataCacheTime,
-      cacheTime: env.prtrDataCacheTime
+      ...env.rqCacheSettings
     }
   )
   const gotFacilities = !!data && data.length > 0
@@ -58,23 +55,16 @@ export const FacilitySearch = () => {
 
       <Flex direction="column" maxWidth="100%" align="center">
         {isError && (
-          <Box margin={5.0} align="center" direction="column" fontWeight="bold">
-            <Box>
-              {t('facilities.loadFacilitiesErroredText', {
-                searchTerm: urlSearchTerm,
-                resultCount: data ? data.length : 0
-              })}
-            </Box>
-            <Box>
-              <Button
-                marginY={2.0}
-                size="sm"
-                colorScheme="blue"
-                onClick={() => history.push('/')}>
-                {t('common.goBack')}
-              </Button>
-            </Box>
-          </Box>
+          <Flex
+            margin={5.0}
+            align="center"
+            direction="column"
+            fontWeight="bold">
+            {t('facilities.loadFacilitiesErroredText', {
+              searchTerm: urlSearchTerm,
+              resultCount: data ? data.length : 0
+            })}
+          </Flex>
         )}
         {isLoading && (
           <Box m={5} data-cy="facilities-load-animation">
