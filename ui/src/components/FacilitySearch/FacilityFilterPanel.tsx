@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
-import { FacilitySearchURLParamName } from '../../models/FacilitySearchURLParamName'
+import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../utils'
 
 const useFacilityMainActivityOptions =
@@ -73,10 +73,10 @@ export const FacilityFilterPanel = ({
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (searchTerm)
-      newUrlSearchParams.set(FacilitySearchURLParamName.SearchTerm, searchTerm)
+      newUrlSearchParams.set(URLSearchParamName.SearchTerm, searchTerm)
     if (facilityMainActivityCode) {
       newUrlSearchParams.set(
-        FacilitySearchURLParamName.FacilityMainActivityCode,
+        URLSearchParamName.FacilityMainActivityCode,
         facilityMainActivityCode
       )
     }
