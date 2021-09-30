@@ -10,7 +10,7 @@ import * as api from '../../api'
 import * as env from '../../env'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
-import { ReleaseSearchURLParamName } from '../../models/ReleaseSearchURLParamName'
+import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { Medium } from '../../api/models/Medium'
@@ -58,6 +58,7 @@ const Form = styled.form`
 export const ReleaseFilterPanel = (props: {
   medium: Medium
   urlPollutantCode: PollutantCode | undefined
+  urlYear: number | undefined
 }) => {
   const { t } = useTranslation()
   const history = useHistory()
@@ -78,20 +79,21 @@ export const ReleaseFilterPanel = (props: {
   const yearOptions = useYearOptions(apiMetadata.data)
 
   useEffect(() => {
-    // initialize selected pollutant from url search param on page load or medium tab switch
+    // initialize select inputs from url search params on page load
     setPollutantCode(props.urlPollutantCode)
-  }, [props.medium, props.urlPollutantCode])
+    setYear(props.urlYear)
+  }, [props.medium, props.urlPollutantCode, props.urlYear])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (pollutantCode) {
-      newUrlSearchParams.set(
-        ReleaseSearchURLParamName.PollutantCode,
-        pollutantCode
-      )
+      newUrlSearchParams.set(URLSearchParamName.PollutantCode, pollutantCode)
     }
-    newUrlSearchParams.set(ReleaseSearchURLParamName.FirstItemIdx, '0')
+    if (year) {
+      newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
+    }
+    newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
       search: '?' + newUrlSearchParams.toString()
@@ -127,7 +129,7 @@ export const ReleaseFilterPanel = (props: {
               closeMenuOnSelect
               isLoading={apiMetadata.isLoading || apiMetadata.isError}
               name="releasesYear"
-              value={undefined}
+              value={asOption(year)}
               options={yearOptions}
               placeholder={t('releases.selectYear')}
               onChange={e => setYear(e?.value)}
