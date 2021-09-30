@@ -112,7 +112,7 @@ export const ReleaseFilterPanel = (props: {
             marginY={1.0}
             marginLeft={1.0}
             colorScheme="green">
-            {t('common.search')}
+            {t('common.fetch')}
           </Button>
         </FormControl>
       </Flex>

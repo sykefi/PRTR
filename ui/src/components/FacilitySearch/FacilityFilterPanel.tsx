@@ -147,7 +147,7 @@ export const FacilityFilterPanel = ({
             marginY={1.0}
             marginLeft={1.0}
             colorScheme="green">
-            {t('translation:common.search')}
+            {t('translation:common.fetch')}
           </Button>
         </FormControl>
       </Flex>
