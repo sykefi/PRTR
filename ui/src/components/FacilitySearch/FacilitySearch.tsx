@@ -22,6 +22,7 @@ export const FacilitySearch = () => {
   const { t } = useTranslation()
 
   const urlSearchTerm = useURLSearchParam(URLSearchParamName.SearchTerm)
+  const urlMunicipality = useURLSearchParam(URLSearchParamName.Municipality)
   const urlFacilityMainActivityCode = useURLSearchParam(
     URLSearchParamName.FacilityMainActivityCode
   ) as FacilityMainActivityCode | undefined
@@ -49,6 +50,7 @@ export const FacilitySearch = () => {
       <BelowNavigationHeaderPanel>
         <FacilityFilterPanel
           urlSearchTerm={urlSearchTerm}
+          urlMunicipality={urlMunicipality}
           urlFacilityMainActivityCode={urlFacilityMainActivityCode}
         />
       </BelowNavigationHeaderPanel>

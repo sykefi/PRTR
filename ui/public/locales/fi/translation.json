@@ -27,6 +27,8 @@
   },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
+    "searchWithName": "Hae laitoksen nimellä...",
+    "searchWithMunicipality": "Hae paikkakunnalla...",
     "facilitySearchResult": "Haulla löytyi {{resultCount}} laitosta.",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
     "noFacilitiesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",

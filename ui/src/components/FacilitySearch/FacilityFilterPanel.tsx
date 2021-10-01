@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react'
+import { useQuery } from 'react-query'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
@@ -6,11 +7,14 @@ import { useHistory } from 'react-router'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
+import * as api from '../../api'
+import * as env from '../../env'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../utils'
+import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 
 const useFacilityMainActivityOptions =
   (): OptionType<FacilityMainActivityCode>[] => {
@@ -37,15 +41,27 @@ const useFacilityMainActivityOptions =
       })
   }
 
+const useMunicipalityOptions = (
+  metadata: PRTRApiMetadata | undefined
+): OptionType<string>[] => {
+  return metadata
+    ? metadata.present_cities
+        .map(c => asOption(c))
+        .filter((o): o is OptionType<string> => Boolean(o))
+    : []
+}
+
 const Form = styled.form`
   max-width: 100%;
 `
 
 export const FacilityFilterPanel = ({
   urlSearchTerm,
+  urlMunicipality,
   urlFacilityMainActivityCode
 }: {
   urlSearchTerm: string | undefined
+  urlMunicipality: string | undefined
   urlFacilityMainActivityCode: FacilityMainActivityCode | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
@@ -54,15 +70,26 @@ export const FacilityFilterPanel = ({
   const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
 
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
+  const [municipality, setMunicipality] = useState<string | undefined>(
+    undefined
+  )
   const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
     FacilityMainActivityCode | undefined
   >(undefined)
+
+  const apiMetadata = useQuery(
+    ['prtrApiMetadata'],
+    () => api.getApiMetadata(),
+    env.rqCacheSettings
+  )
+  const municipalityOptions = useMunicipalityOptions(apiMetadata.data)
 
   useEffect(() => {
     // initialize inputs from URL search params
     setFacilityMainActivityCode(urlFacilityMainActivityCode)
     setSearchTerm(urlSearchTerm)
-  }, [urlFacilityMainActivityCode, urlSearchTerm])
+    setMunicipality(urlMunicipality)
+  }, [urlFacilityMainActivityCode, urlSearchTerm, urlMunicipality])
 
   /**
    * Resets current URL search parameters (including active row ranges)
@@ -80,6 +107,9 @@ export const FacilityFilterPanel = ({
         facilityMainActivityCode
       )
     }
+    if (municipality) {
+      newUrlSearchParams.set(URLSearchParamName.Municipality, municipality)
+    }
     history.push({
       pathname: '/facilities',
       search: '?' + newUrlSearchParams.toString()
@@ -88,6 +118,7 @@ export const FacilityFilterPanel = ({
 
   const searchInputsChanged =
     urlSearchTerm !== searchTerm ||
+    urlMunicipality !== municipality ||
     urlFacilityMainActivityCode !== facilityMainActivityCode
 
   return (
@@ -122,7 +153,7 @@ export const FacilityFilterPanel = ({
             type="text"
             bgColor="white"
             minWidth={200}
-            width={450}
+            width={350}
             colorScheme="red"
             borderColor="var(--chakra-colors-gray-500)"
             _hover={{
@@ -131,8 +162,20 @@ export const FacilityFilterPanel = ({
             maxWidth="100%"
             value={searchTerm || ''}
             onChange={e => setSearchTerm(e.target.value)}
-            placeholder={t('translation:common.searchTerm')}
+            placeholder={t('translation:facilities.searchWithName')}
           />
+          <Box width={350} minWidth={200}>
+            <ChakraSelect
+              isClearable
+              closeMenuOnSelect
+              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              name="facilitiesMunicipality"
+              value={asOption(municipality)}
+              options={municipalityOptions}
+              placeholder={t('translation:facilities.searchWithMunicipality')}
+              onChange={e => setMunicipality(e?.value)}
+            />
+          </Box>
         </Flex>
         <Button
           data-cy="search-facilities-btn"
