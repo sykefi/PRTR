@@ -15,9 +15,10 @@ import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../models/OptionType'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
+import { TranslationKeys } from '../../react-i18next'
 
 const getFacilityMainActivityOptions = (
-  t: (translationKey: string) => string | undefined
+  t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<FacilityMainActivityCode>[] => {
   return Object.values(FacilityMainActivityCode)
     .reduce((prev, curr) => {

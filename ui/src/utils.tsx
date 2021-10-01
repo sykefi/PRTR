@@ -8,6 +8,7 @@ import {
   GeoJSONPointFeature,
   GeoJSONPointFeatureCollection
 } from './models/GeoJSON'
+import { TranslationKeys } from './react-i18next'
 
 const facilityAsGeoJSONFeature = (
   f: Facility
@@ -57,7 +58,7 @@ export const checkForMissingTranslations = (
 }
 
 export const getPollutantLabel = (
-  t: (translationKey: string) => string | undefined,
+  t: (translationKey: TranslationKeys) => string | undefined,
   pollutant: PollutantCode
 ) => {
   const name = t(`pollutantName:${pollutant}`)
@@ -67,7 +68,7 @@ export const getPollutantLabel = (
 }
 
 export const getLongPollutantLabel = (
-  t: (translationKey: string) => string | undefined,
+  t: (translationKey: TranslationKeys) => string | undefined,
   pollutant: PollutantCode
 ) => {
   const name = t(`pollutantName:${pollutant}`)

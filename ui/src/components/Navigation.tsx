@@ -12,8 +12,9 @@ import {
 import { GiFactory } from 'react-icons/gi'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { NavLink as RrLink } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { NavigationItem, RoutePath } from '../models'
+import { TFuncKey, useTranslation } from 'react-i18next'
+import { NavigationItem } from '../models/NavigationItem'
+import { RoutePath } from '../models/RoutePath'
 
 export const NavLink = ({
   navigationItem,
@@ -23,7 +24,7 @@ export const NavLink = ({
   search?: string
 }) => {
   const { t } = useTranslation()
-  const displayText = t(navigationItem.tKey)
+  const displayText = t(navigationItem.tKey as TFuncKey)
 
   return (
     <Link

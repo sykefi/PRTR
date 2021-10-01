@@ -16,9 +16,10 @@ import { Medium } from '../../api/models/Medium'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 import { getLongPollutantLabel, getPollutantLabel } from '../../utils'
 import { asOption } from '../../models/OptionType'
+import { TranslationKeys } from '../../react-i18next'
 
 const getPollutantNameOptions = (
-  t: (translationKey: string) => string | undefined
+  t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<PollutantCode>[] => {
   return Object.values(PollutantCode)
     .reduce((prev, curr) => {
