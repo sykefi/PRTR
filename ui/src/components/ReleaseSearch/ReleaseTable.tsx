@@ -32,12 +32,13 @@ export const ReleaseTable = ({
       width={750}
       minWidth={250}
       maxWidth="100%"
-      paddingX={5}
-      paddingY={2}
       height="max-content"
       maxHeight={{ base: 'initial', sm: 'max(600px, calc(100vh - 345px))' }}
       overflowY={{ base: 'initial', sm: 'auto' }}
+      alignSelf={{ base: 'flex-start', sm: 'unset' }}
       overflowX="auto"
+      paddingX={5}
+      paddingY={2}
       background="white"
       borderRadius="md"
       boxShadow="md">
@@ -84,6 +85,7 @@ export const ReleaseTable = ({
                 <Td p={1} maxWidth={240}>
                   <Link
                     as={ReactRouterLink}
+                    textDecoration="underline"
                     lineHeight="tight"
                     overflowWrap="normal"
                     whiteSpace="unset"
