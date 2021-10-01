@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useQuery } from 'react-query'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
@@ -13,40 +13,40 @@ import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityC
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
-import { asOption } from '../../utils'
+import { asOption } from '../../models/OptionType'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 
-const useFacilityMainActivityOptions =
-  (): OptionType<FacilityMainActivityCode>[] => {
-    const { t } = useTranslation('mainActivityCodeDesc')
+const getFacilityMainActivityOptions = (
+  t: (translationKey: string) => string | undefined
+): OptionType<FacilityMainActivityCode>[] => {
+  return Object.values(FacilityMainActivityCode)
+    .reduce((prev, curr) => {
+      const desc = t(`mainActivityCodeDesc:${curr}`)
+      const option = desc
+        ? { value: curr, label: `${curr}, ${desc}` }
+        : undefined
+      if (option) {
+        return prev.concat(option)
+      }
+      return prev
+    }, [] as OptionType<FacilityMainActivityCode>[])
+    .sort((a, b) => {
+      if (a.label < b.label) {
+        return -1
+      }
+      if (a.label > b.label) {
+        return 1
+      }
+      return 0
+    })
+}
 
-    return Object.values(FacilityMainActivityCode)
-      .reduce((prev, curr) => {
-        if (t(curr)) {
-          return prev.concat({
-            value: curr,
-            label: `${curr} - ${t(curr)}`
-          })
-        }
-        return prev
-      }, [] as OptionType<FacilityMainActivityCode>[])
-      .sort((a, b) => {
-        if (a.label < b.label) {
-          return -1
-        }
-        if (a.label > b.label) {
-          return 1
-        }
-        return 0
-      })
-  }
-
-const useMunicipalityOptions = (
+const getMunicipalityOptions = (
   metadata: PRTRApiMetadata | undefined
 ): OptionType<string>[] => {
   return metadata
     ? metadata.present_cities
-        .map(c => asOption(c))
+        .map(c => asOption(c, c))
         .filter((o): o is OptionType<string> => Boolean(o))
     : []
 }
@@ -67,8 +67,6 @@ export const FacilityFilterPanel = ({
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
 
-  const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
-
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
   const [municipality, setMunicipality] = useState<string | undefined>(
     undefined
@@ -77,12 +75,19 @@ export const FacilityFilterPanel = ({
     FacilityMainActivityCode | undefined
   >(undefined)
 
+  const facilityMainActivityCodeOptions = useMemo(
+    () => getFacilityMainActivityOptions(t),
+    [t]
+  )
   const apiMetadata = useQuery(
     ['prtrApiMetadata'],
     () => api.getApiMetadata(),
     env.rqCacheSettings
   )
-  const municipalityOptions = useMunicipalityOptions(apiMetadata.data)
+  const municipalityOptions = useMemo(
+    () => getMunicipalityOptions(apiMetadata.data),
+    [apiMetadata.data]
+  )
 
   useEffect(() => {
     // initialize inputs from URL search params
@@ -137,9 +142,14 @@ export const FacilityFilterPanel = ({
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              value={asOption(facilityMainActivityCode, v =>
-                t(`mainActivityCodeDesc:${v}`)
-              )}
+              value={
+                facilityMainActivityCode
+                  ? asOption(
+                      facilityMainActivityCode,
+                      t(`mainActivityCodeDesc:${facilityMainActivityCode}`)
+                    )
+                  : null
+              }
               name="facilityMainActivityCode"
               options={facilityMainActivityCodeOptions}
               placeholder={t(
@@ -154,7 +164,7 @@ export const FacilityFilterPanel = ({
               closeMenuOnSelect
               isLoading={apiMetadata.isLoading || apiMetadata.isError}
               name="facilitiesMunicipality"
-              value={asOption(municipality)}
+              value={asOption(municipality, municipality)}
               options={municipalityOptions}
               placeholder={t('translation:facilities.searchWithMunicipality')}
               onChange={e => setMunicipality(e?.value)}

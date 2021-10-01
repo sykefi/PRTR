@@ -8,7 +8,6 @@ import {
   GeoJSONPointFeature,
   GeoJSONPointFeatureCollection
 } from './models/GeoJSON'
-import { OptionType } from './models/OptionType'
 
 const facilityAsGeoJSONFeature = (
   f: Facility
@@ -57,22 +56,34 @@ export const checkForMissingTranslations = (
   }
 }
 
+export const getPollutantLabel = (
+  t: (translationKey: string) => string | undefined,
+  pollutant: PollutantCode
+) => {
+  const name = t(`pollutantName:${pollutant}`)
+  const abbr = t(`pollutantAbbreviation:${pollutant}`)
+  const brackets = abbr ? ` (${abbr})` : ''
+  return `${name}${brackets}`
+}
+
+export const getLongPollutantLabel = (
+  t: (translationKey: string) => string | undefined,
+  pollutant: PollutantCode
+) => {
+  const name = t(`pollutantName:${pollutant}`)
+  const abbr = t(`pollutantAbbreviation:${pollutant}`)
+  const cas = t(`pollutantCasNumber:${pollutant}`)
+  const brackets =
+    !abbr && !cas
+      ? ''
+      : ` (${abbr}${abbr && cas && ', '}${cas && 'CAS: ' + cas})`
+  return `${name}${brackets}`
+}
+
 export const handleCheckForMissingTranslations = () => {
   checkForMissingTranslations(
     'mainActivityCodeDesc',
     Object.values(FacilityMainActivityCode)
   )
   checkForMissingTranslations('pollutantName', Object.values(PollutantCode))
-}
-
-export const asOption = <T extends string | number>(
-  v: T | undefined,
-  getLabel?: (v: T) => string
-): OptionType<T> | null => {
-  return v
-    ? {
-        value: v,
-        label: getLabel ? getLabel(v) : v.toString()
-      }
-    : null
 }
