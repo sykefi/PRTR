@@ -29,9 +29,11 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
         overflowWrap="normal"
         whiteSpace="unset"
         overflow="hidden"
+        textDecoration="underline"
         to={{
           pathname: '/facilities/' + f.facilityId,
-          state: { from: location.pathname } // store the current (i.e. previous) path in location.state.from
+          state: { from: location.pathname }
+          // store the current (i.e. previous) path in location.state.from so that we know where we came from
         }}>
         {f.nameOfFeature}
       </Link>

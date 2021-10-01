@@ -92,7 +92,8 @@ export const ReleaseTable = ({
                     overflow="hidden"
                     to={{
                       pathname: '/facilities/' + r.facilityId,
-                      state: { from: location.pathname } // store the current (i.e. previous) path in location.state.from
+                      state: { from: location.pathname }
+                      // store the current (i.e. previous) path in location.state.from so that we know where we came from
                     }}>
                     {r.nameOfFeature}
                   </Link>

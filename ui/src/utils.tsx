@@ -3,23 +3,26 @@ import { Namespace } from 'react-i18next'
 import { Facility } from './api/models/Facility'
 import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
 import { PollutantCode } from './api/models/PollutantCode'
+import { FacilityMapFeature } from './models/FacilityMapFeature'
 import {
   GeoJSONPointFeature,
   GeoJSONPointFeatureCollection
 } from './models/GeoJSON'
 import { OptionType } from './models/OptionType'
 
-export const facilityAsGeoJSONFeature = (f: Facility): GeoJSONPointFeature => {
+const facilityAsGeoJSONFeature = (
+  f: Facility
+): GeoJSONPointFeature<Omit<FacilityMapFeature, 'geometry'>> => {
   return {
     type: 'Feature',
     geometry: { type: 'Point', coordinates: [f.x, f.y] },
-    properties: {}
+    properties: { facilityId: f.facilityId, nameOfFeature: f.nameOfFeature }
   }
 }
 
 export const facilitiesAsGeoJSONFC = (
   facilities: Facility[]
-): GeoJSONPointFeatureCollection => {
+): GeoJSONPointFeatureCollection<Omit<FacilityMapFeature, 'geometry'>> => {
   return {
     type: 'FeatureCollection',
     crs: {
