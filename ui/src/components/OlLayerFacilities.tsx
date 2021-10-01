@@ -76,7 +76,6 @@ export const OlLayerFacilities = ({
       select.on('select', handleCreatePopupOnSelect)
     }
     return () => {
-      console.log('clear facilities layer')
       select.un('select', handleCreatePopupOnSelect)
       olMap.removeInteraction(select)
       if (!!zoomDelay) clearTimeout(zoomDelay)

@@ -15,6 +15,7 @@ import { FacilityMapFeature } from '../models/FacilityMapFeature'
 import municipalitiesGeoJson from '../assets/kunnat21_4-5milj_3067.json'
 import { Facility } from '../api/models/Facility'
 import { OlLayerFacilities } from './OlLayerFacilities'
+import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
 
@@ -177,10 +178,10 @@ export const OlMap = (props: Props) => {
         ref={popupRef}
         className="ol-popup"
         visibility={popupData ? 'unset' : 'hidden'}
-        p={3}>
+        p={4}>
         <Flex>
           <Box flex={1}>
-            {popupData && <Box>{popupData.nameOfFeature}</Box>}
+            {popupData && <FacilityMapPopupContent popupData={popupData} />}
           </Box>
           <Box>
             <CloseButton onClick={() => setPopupData(null)} />
