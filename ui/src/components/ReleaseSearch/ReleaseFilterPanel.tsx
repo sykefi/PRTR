@@ -100,6 +100,11 @@ export const ReleaseFilterPanel = (props: {
     })
   }
 
+  const searchInputsChanged =
+    (!props.urlYear && !props.urlPollutantCode) ||
+    props.urlYear !== year ||
+    props.urlPollutantCode !== pollutantCode
+
   return (
     <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">
       <FormControl
@@ -137,9 +142,10 @@ export const ReleaseFilterPanel = (props: {
           </Box>
         </Flex>
         <Button
-          width="max-content"
           data-cy="filter-releases-btn"
           type="submit"
+          disabled={!searchInputsChanged}
+          width="max-content"
           marginBottom={0.5}
           colorScheme="green">
           {t('common.fetch')}

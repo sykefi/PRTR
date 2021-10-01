@@ -92,13 +92,17 @@ export const FacilityFilterPanel = ({
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
-      <Flex display="flex" flexWrap="wrap" justify="center">
-        <FormControl
-          marginTop={1.0}
-          marginBottom={2.0}
-          width={550}
-          minWidth={250}>
-          <Box marginY={1.0}>
+      <FormControl
+        display="flex"
+        flexWrap="wrap"
+        flexDirection="column"
+        justify="center"
+        sx={{ gap: 'var(--chakra-space-3)' }} //flex gap
+        marginTop={1.0}
+        marginBottom={2.0}
+        width="100%">
+        <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
+          <Box width={450} minWidth={200}>
             <ChakraSelect
               isClearable
               closeMenuOnSelect
@@ -118,28 +122,28 @@ export const FacilityFilterPanel = ({
             type="text"
             bgColor="white"
             minWidth={200}
+            width={450}
             colorScheme="red"
             borderColor="var(--chakra-colors-gray-500)"
             _hover={{
               borderColor: 'var(--chakra-colors-gray-500)'
             }}
             maxWidth="100%"
-            marginY={1.0}
             value={searchTerm || ''}
             onChange={e => setSearchTerm(e.target.value)}
             placeholder={t('translation:common.searchTerm')}
           />
-          <Button
-            data-cy="search-facilities-btn"
-            type="submit"
-            disabled={!searchInputsChanged}
-            marginY={1.0}
-            marginLeft={1.0}
-            colorScheme="green">
-            {t('translation:common.fetch')}
-          </Button>
-        </FormControl>
-      </Flex>
+        </Flex>
+        <Button
+          data-cy="search-facilities-btn"
+          type="submit"
+          disabled={!searchInputsChanged}
+          width="max-content"
+          marginBottom={0.5}
+          colorScheme="green">
+          {t('translation:common.fetch')}
+        </Button>
+      </FormControl>
     </Form>
   )
 }
