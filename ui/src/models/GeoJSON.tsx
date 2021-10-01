@@ -1,7 +1,7 @@
-export interface GeoJSONPointFeature {
+export interface GeoJSONPointFeature<T = Record<string, unknown>> {
   type: 'Feature'
   geometry: { type: 'Point'; coordinates: [number, number] }
-  properties: Record<string, unknown>
+  properties: T
 }
 
 export interface GeoJSONFeatureCollection {
@@ -9,7 +9,7 @@ export interface GeoJSONFeatureCollection {
   crs: { type: 'name'; properties: { name: string } }
 }
 
-export interface GeoJSONPointFeatureCollection
+export interface GeoJSONPointFeatureCollection<T = Record<string, unknown>>
   extends GeoJSONFeatureCollection {
-  features: GeoJSONPointFeature[]
+  features: GeoJSONPointFeature<T>[]
 }
