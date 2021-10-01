@@ -31,11 +31,12 @@ export const FacilitySearch = () => {
     useURLSearchParamInt(URLSearchParamName.FirstItemIdx) || 0
 
   const { isLoading, isError, isSuccess, data } = useQuery(
-    ['facilities', urlSearchTerm, urlFacilityMainActivityCode],
+    ['facilities', urlSearchTerm, urlMunicipality, urlFacilityMainActivityCode],
     async () => {
       return api.getFacilities({
         name_search_str: urlSearchTerm,
-        main_activity_code: urlFacilityMainActivityCode
+        main_activity_code: urlFacilityMainActivityCode,
+        municipality: urlMunicipality
       })
     },
     {

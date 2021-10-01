@@ -148,6 +148,18 @@ export const FacilityFilterPanel = ({
               onChange={e => setFacilityMainActivityCode(e?.value)}
             />
           </Box>
+          <Box width={350} minWidth={200}>
+            <ChakraSelect
+              isClearable
+              closeMenuOnSelect
+              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              name="facilitiesMunicipality"
+              value={asOption(municipality)}
+              options={municipalityOptions}
+              placeholder={t('translation:facilities.searchWithMunicipality')}
+              onChange={e => setMunicipality(e?.value)}
+            />
+          </Box>
           <Input
             data-cy="facility-search-term"
             type="text"
@@ -164,18 +176,6 @@ export const FacilityFilterPanel = ({
             onChange={e => setSearchTerm(e.target.value)}
             placeholder={t('translation:facilities.searchWithName')}
           />
-          <Box width={350} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              isLoading={apiMetadata.isLoading || apiMetadata.isError}
-              name="facilitiesMunicipality"
-              value={asOption(municipality)}
-              options={municipalityOptions}
-              placeholder={t('translation:facilities.searchWithMunicipality')}
-              onChange={e => setMunicipality(e?.value)}
-            />
-          </Box>
         </Flex>
         <Button
           data-cy="search-facilities-btn"
