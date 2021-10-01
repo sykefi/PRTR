@@ -100,25 +100,41 @@ interface Props {
 }
 
 export const OlMap = (props: Props) => {
+  const mapRef = useRef<HTMLDivElement>(null)
+  const popupRef = useRef<HTMLDivElement>(null)
   const [mapIsRendered, setMapIsRendered] = useState(false)
   const [popupData, setPopupData] = useState<FacilityMapFeature | null>(null)
-  const popupRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // initialize popup overlay when the target element mounts in the DOM
+    if (popupRef.current) {
+      olMap.addOverlay(popupOverlay)
+      popupOverlay.setElement(popupRef.current)
+    }
+    return () => {
+      setPopupData(null)
+      popupOverlay.setElement(undefined)
+      popupOverlay.setPosition(undefined)
+      olMap.removeOverlay(popupOverlay)
+    }
+  }, [popupRef])
+
+  useEffect(() => {
+    // update/clear popup location when popupData is changed
     if (mapIsRendered) {
       if (popupData) {
         popupOverlay.setPosition(popupData.geometry.getCoordinates())
-        popupOverlay.setElement(popupRef.current || undefined)
-        olMap.addOverlay(popupOverlay)
+      } else {
+        popupOverlay.setPosition(undefined)
       }
     }
   }, [popupData, mapIsRendered])
 
   useEffect(() => {
+    // initialize map
     let renderDelay: null | ReturnType<typeof setTimeout> = null
-    // mount and unmount map with the component
-    if (!olMap.getTarget()) {
-      olMap.setTarget('map')
+    if (!olMap.getTarget() && mapRef.current) {
+      olMap.setTarget(mapRef.current)
       renderDelay = setTimeout(() => {
         olMap.updateSize()
         setMapIsRendered(true)
@@ -126,17 +142,11 @@ export const OlMap = (props: Props) => {
     }
 
     return () => {
-      // clear popup
-      setPopupData(null)
-      popupOverlay.setElement(undefined)
-      popupOverlay.setPosition(undefined)
-      olMap.removeOverlay(popupOverlay)
-      // clear map
       olMap.setTarget(undefined)
       if (!!renderDelay) clearTimeout(renderDelay)
       setMapIsRendered(false)
     }
-  }, [])
+  }, [mapRef])
 
   useEffect(() => {
     if (mapIsRendered && props.zoomToInitialExtent) {
@@ -152,7 +162,7 @@ export const OlMap = (props: Props) => {
 
   return (
     <Box
-      id="map"
+      ref={mapRef}
       border="2px solid white"
       width={props.width || '600px'}
       minWidth={250}
@@ -182,6 +192,7 @@ export const OlMap = (props: Props) => {
           olMap={olMap}
           facilities={props.facilities!}
           facilitySource={facilitySource}
+          popupData={popupData}
           setPopupData={setPopupData}
           zoomToInitialExtent={props.zoomToInitialExtent}
         />

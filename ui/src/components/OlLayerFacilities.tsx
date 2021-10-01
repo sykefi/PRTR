@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { Feature, Map } from 'ol'
 import Select, { SelectEvent } from 'ol/interaction/Select'
 import Geometry from 'ol/geom/Geometry'
@@ -14,6 +14,7 @@ interface Props {
   olMap: Map
   facilities: Facility[]
   facilitySource: VectorSource<Geometry>
+  popupData: FacilityMapFeature | null
   setPopupData: (f: FacilityMapFeature | null) => void
   zoomToInitialExtent: boolean
 }
@@ -22,9 +23,16 @@ export const OlLayerFacilities = ({
   olMap,
   facilities,
   facilitySource,
+  popupData,
   setPopupData,
   zoomToInitialExtent
 }: Props) => {
+  const selectInteraction = useRef(
+    new Select({
+      layers: l => l.get('name') === 'facilities'
+    })
+  )
+
   const handleCreatePopupOnSelect = useCallback(
     async (event: SelectEvent) => {
       const selectedFacility =
@@ -32,17 +40,20 @@ export const OlLayerFacilities = ({
           ? (event.selected[0].getProperties() as FacilityMapFeature)
           : null
       setPopupData(selectedFacility)
-      console.log('select event', event, selectedFacility)
-      console.log(selectedFacility ? 'selected' : 'cleared selection')
     },
     [setPopupData]
   )
 
   useEffect(() => {
+    if (!popupData) {
+      selectInteraction.current.getFeatures().clear()
+    }
+  }, [popupData])
+
+  useEffect(() => {
     // add/update facilities to map
-    const select = new Select({
-      layers: l => l.get('name') === 'facilities'
-    })
+    const select = selectInteraction.current
+
     if (!!facilities) {
       const features = facilitySource
         .getFormat()
@@ -66,8 +77,8 @@ export const OlLayerFacilities = ({
     }
     return () => {
       console.log('clear facilities layer')
-      olMap.removeInteraction(select)
       select.un('select', handleCreatePopupOnSelect)
+      olMap.removeInteraction(select)
       if (!!zoomDelay) clearTimeout(zoomDelay)
       facilitySource.clear()
     }
