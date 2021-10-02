@@ -11,6 +11,7 @@ import { isDevOrTestEnv } from './env'
 import { handleCheckForMissingTranslations } from './utils'
 import { ReleaseSearch } from './components/ReleaseSearch/ReleaseSearch'
 import { Medium } from './api/models/Medium'
+import { ScrollToTop } from './components/ScrollToTop'
 
 const queryClient = new QueryClient()
 
@@ -34,6 +35,7 @@ const App = () => {
     <div data-cy="app-container">
       <QueryClientProvider client={queryClient}>
         <Router>
+          <ScrollToTop />
           <Navigation navigationItems={navigationItems} />
           <Switch>
             <Route path={`${RoutePath.Facilities}/:facilityId`}>
