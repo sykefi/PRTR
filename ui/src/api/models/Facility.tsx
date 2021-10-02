@@ -1,9 +1,11 @@
 import { FacilityMainActivityCode } from './FacilityMainActivityCode'
+import { FacilityTopMainActivity } from './FacilityTopMainActivity'
 
 export interface Facility {
   facilityId: string
   parentCompanyName: string
   nameOfFeature: string
+  topMainActivity: FacilityTopMainActivity
   mainActivityCode: FacilityMainActivityCode
   x: number
   y: number
@@ -11,6 +13,5 @@ export interface Facility {
   buildingNumber?: string
   postalCode: string
   city: string
-  countryCode: string
   telephoneNo?: string
 }

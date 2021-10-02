@@ -1,6 +1,6 @@
 from pydantic.error_wrappers import ValidationError
 from models.enums import (
-    MainActivityCode, Medium, MethodCode, PollutantCode
+    MainActivityCode, Medium, MethodCode, PollutantCode, TopMainActivity
 )
 from typing import List, Optional, TypedDict, Generic, TypeVar
 from pydantic import BaseModel
@@ -47,6 +47,7 @@ class ProductionFacility(BaseModel):
     facilityId: str
     parentCompanyName: str
     nameOfFeature: str
+    topMainActivity: TopMainActivity
     mainActivityCode: MainActivityCode
     x: int
     y: int
@@ -54,8 +55,15 @@ class ProductionFacility(BaseModel):
     buildingNumber: Optional[str] = None
     postalCode: Optional[str] = None
     city: Optional[str] = None
-    countryCode: str
     telephoneNo: Optional[str] = None
+
+
+def _parseTopMainActivity(
+    mainActivityCode: MainActivityCode
+) -> TopMainActivity:
+    if mainActivityCode == MainActivityCode.MISSING:
+        return TopMainActivity.MISSING
+    return mainActivityCode[:1]
 
 
 def facility_csv_dict_2_facility(
@@ -66,6 +74,9 @@ def facility_csv_dict_2_facility(
             facilityId=csv_facility['facilityId'],
             parentCompanyName=csv_facility['parentCompanyName'],
             nameOfFeature=csv_facility['nameOfFeature'],
+            topMainActivity=_parseTopMainActivity(
+                csv_facility['mainActivityCode']
+            ),
             mainActivityCode=csv_facility['mainActivityCode'],
             x=csv_facility['x'],
             y=csv_facility['y'],

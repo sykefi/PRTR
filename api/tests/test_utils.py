@@ -35,7 +35,6 @@ def test_reads_facility_from_dictionary():
     assert facility.buildingNumber == '10'
     assert facility.postalCode == '02320'
     assert facility.city == 'Espoo'
-    assert facility.countryCode == 'FI'
     assert facility.telephoneNo == '12345'
 
 
