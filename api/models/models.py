@@ -2,7 +2,7 @@ from pydantic.error_wrappers import ValidationError
 from models.enums import (
     MainActivityCode, Medium, MethodCode, PollutantCode, TopMainActivity
 )
-from typing import List, Optional, TypedDict, Generic, TypeVar
+from typing import List, Optional, TypedDict, Generic, TypeVar, Union
 from pydantic import BaseModel
 from pydantic.generics import GenericModel
 
@@ -59,8 +59,8 @@ class ProductionFacility(BaseModel):
 
 
 def _parseTopMainActivity(
-    mainActivityCode: MainActivityCode
-) -> TopMainActivity:
+    mainActivityCode: Union[MainActivityCode, str]
+) -> Union[TopMainActivity, str]:
     if mainActivityCode == MainActivityCode.MISSING:
         return TopMainActivity.MISSING
     return mainActivityCode[:1]
