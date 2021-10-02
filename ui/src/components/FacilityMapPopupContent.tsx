@@ -1,7 +1,7 @@
 import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
 import { Box, Link } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
-import { RoutePath } from '../models'
+import { RoutePath } from '../models/RoutePath'
 
 export const FacilityMapPopupContent = ({
   popupData
