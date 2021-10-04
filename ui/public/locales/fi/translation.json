@@ -1,4 +1,8 @@
 {
+  "textContent": {
+    "p1": "Tällä sivustolla esitetään E-PRTR-järjestelmässä (European Pollutant Release and Transfer Register) julkaistua Suomea koskevia tietoja päästöistä ilmaan ja veteen, sekä tietoja jätteiden siirroista. Rekisterin tarkoituksena on lisätä yleisön tietoisuutta ympäristökuormituksesta sekä edistää teollisuuden pyrkimyksiä ympäristönsuojelulle asetettujen tavoitteiden ja kansainvälisten sopimusten velvoitteiden saavuttamisessa.",
+    "p2": "Päästötietojen ilmoittaminen EU:n komissiolle perustuu IPPC-direktiivin nojalla annettuun komission päätökseen. EU:n jäsenmaiden tulee tehdä päästöinventaarioita E-PRTR -päätöksen toimialaluettelon mukaisista laitoksista ja raportoida ne EU:n komissiolle. Maiden ilmoittamat tiedot kootaan julkiseen E-PRTR -rekisteriin, jota ylläpitää Euroopan ympäristökeskus (European Environment Agency, EEA). E-PRTR -rekisteri sisältää tietoja päästöistä ja jätteiden siirroista. Esitettävä tieto on peräisin EEA:n ylläpitämästä tietokannasta, eikä sille tehdä tämän julkaisun yhteydessä erillisiä laatutarkastuksia. Puutteita saattaa ilmetä. Tällä hetkellä käytössä olevan tietokannan kolmas versio on julkaistu <0>maaliskuussa 2021<0/>."
+  },
   "common": {
     "welcomeMessage": "Tervetuloa FIN-PRTR palvelun kehitysversioon!",
     "frontPage": "Etusivu",
