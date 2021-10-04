@@ -24,21 +24,19 @@ import {
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[] => {
-  const topMainActivities = Object.values(FacilityTopMainActivity)
-  const mainActivityCodes = Object.values(FacilityMainActivityCode)
-  return [...topMainActivities, ...mainActivityCodes]
+  return [
+    ...Object.values(FacilityTopMainActivity),
+    ...Object.values(FacilityMainActivityCode)
+  ]
     .reduce((prev, curr) => {
       const desc = t(`mainActivityCodeDesc:${curr}`)
-      const option = desc
-        ? {
-            value: curr,
-            label: `${curr}${isTopMainActivity(curr) ? '.' : ':'} ${desc}`,
-            bold: isTopMainActivity(curr),
-            indent: !isTopMainActivity(curr)
-          }
-        : undefined
-      if (option) {
-        return prev.concat(option)
+      if (desc) {
+        return prev.concat({
+          value: curr,
+          label: `${curr}${isTopMainActivity(curr) ? '.' : ':'} ${desc}`,
+          bold: isTopMainActivity(curr),
+          indent: !isTopMainActivity(curr)
+        })
       }
       return prev
     }, [] as OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[])

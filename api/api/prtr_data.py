@@ -59,8 +59,6 @@ def get_facilities(
     placename: Union[str, None],
     main_activity: Union[MainActivityCode, TopMainActivity, None]
 ) -> PRTRListResponse[ProductionFacility]:
-    """
-    """
 
     if facility_id:
         if facility_id in _facility_by_id:
@@ -98,8 +96,8 @@ def get_facilities(
             and
             (
                 not main_activity
-                or f.mainActivityCode == main_activity
                 or f.topMainActivity == main_activity
+                or f.mainActivityCode == main_activity
             )
         )
     ]
