@@ -16,19 +16,26 @@ import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../models/OptionType'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 import { TranslationKeys } from '../../react-i18next'
-import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
+import {
+  FacilityTopMainActivity,
+  isTopMainActivity
+} from '../../api/models/FacilityTopMainActivity'
 
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[] => {
-  return [
-    ...Object.values(FacilityTopMainActivity),
-    ...Object.values(FacilityMainActivityCode)
-  ]
+  const topMainActivities = Object.values(FacilityTopMainActivity)
+  const mainActivityCodes = Object.values(FacilityMainActivityCode)
+  return [...topMainActivities, ...mainActivityCodes]
     .reduce((prev, curr) => {
       const desc = t(`mainActivityCodeDesc:${curr}`)
       const option = desc
-        ? { value: curr, label: `${curr}: ${desc}` }
+        ? {
+            value: curr,
+            label: `${curr}${isTopMainActivity(curr) ? '.' : ':'} ${desc}`,
+            bold: isTopMainActivity(curr),
+            indent: !isTopMainActivity(curr)
+          }
         : undefined
       if (option) {
         return prev.concat(option)
