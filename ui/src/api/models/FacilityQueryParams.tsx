@@ -5,6 +5,6 @@ export interface FacilityQueryParams {
   skip?: number
   limit?: number
   name_search_str?: string
-  municipality?: string
+  placename?: string
   main_activity_code?: FacilityMainActivityCode
 }

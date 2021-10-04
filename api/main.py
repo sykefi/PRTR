@@ -64,7 +64,7 @@ def read_facilities(
     skip: int = 0,
     limit: int = 10,
     name_search_str: str = None,
-    municipality: str = None,
+    placename: str = None,
     main_activity_code: MainActivityCode = None
 ):
     match = prtr_data.get_facilities(
@@ -72,7 +72,7 @@ def read_facilities(
         skip,
         limit,
         name_search_str,
-        municipality,
+        placename,
         main_activity_code
     )
     if not match.data:

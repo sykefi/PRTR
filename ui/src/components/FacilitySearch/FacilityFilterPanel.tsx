@@ -42,7 +42,7 @@ const getFacilityMainActivityOptions = (
     })
 }
 
-const getMunicipalityOptions = (
+const getPlacenameOptions = (
   metadata: PRTRApiMetadata | undefined
 ): OptionType<string>[] => {
   return metadata
@@ -58,20 +58,18 @@ const Form = styled.form`
 
 export const FacilityFilterPanel = ({
   urlSearchTerm,
-  urlMunicipality,
+  urlPlacename,
   urlFacilityMainActivityCode
 }: {
   urlSearchTerm: string | undefined
-  urlMunicipality: string | undefined
+  urlPlacename: string | undefined
   urlFacilityMainActivityCode: FacilityMainActivityCode | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
 
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
-  const [municipality, setMunicipality] = useState<string | undefined>(
-    undefined
-  )
+  const [placename, setPlacename] = useState<string | undefined>(undefined)
   const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
     FacilityMainActivityCode | undefined
   >(undefined)
@@ -85,8 +83,8 @@ export const FacilityFilterPanel = ({
     () => api.getApiMetadata(),
     env.rqCacheSettings
   )
-  const municipalityOptions = useMemo(
-    () => getMunicipalityOptions(apiMetadata.data),
+  const placenameOptions = useMemo(
+    () => getPlacenameOptions(apiMetadata.data),
     [apiMetadata.data]
   )
 
@@ -94,8 +92,8 @@ export const FacilityFilterPanel = ({
     // initialize inputs from URL search params
     setFacilityMainActivityCode(urlFacilityMainActivityCode)
     setSearchTerm(urlSearchTerm)
-    setMunicipality(urlMunicipality)
-  }, [urlFacilityMainActivityCode, urlSearchTerm, urlMunicipality])
+    setPlacename(urlPlacename)
+  }, [urlFacilityMainActivityCode, urlSearchTerm, urlPlacename])
 
   /**
    * Resets current URL search parameters (including active row ranges)
@@ -113,8 +111,8 @@ export const FacilityFilterPanel = ({
         facilityMainActivityCode
       )
     }
-    if (municipality) {
-      newUrlSearchParams.set(URLSearchParamName.Municipality, municipality)
+    if (placename) {
+      newUrlSearchParams.set(URLSearchParamName.Placename, placename)
     }
     history.push({
       pathname: '/facilities',
@@ -124,7 +122,7 @@ export const FacilityFilterPanel = ({
 
   const searchInputsChanged =
     urlSearchTerm !== searchTerm ||
-    urlMunicipality !== municipality ||
+    urlPlacename !== placename ||
     urlFacilityMainActivityCode !== facilityMainActivityCode
 
   return (
@@ -164,11 +162,11 @@ export const FacilityFilterPanel = ({
               isClearable
               closeMenuOnSelect
               isLoading={apiMetadata.isLoading || apiMetadata.isError}
-              name="facilitiesMunicipality"
-              value={asOption(municipality, municipality)}
-              options={municipalityOptions}
-              placeholder={t('translation:facilities.searchWithMunicipality')}
-              onChange={e => setMunicipality(e?.value)}
+              name="facilitiesPlacename"
+              value={asOption(placename, placename)}
+              options={placenameOptions}
+              placeholder={t('translation:facilities.searchWithPlacename')}
+              onChange={e => setPlacename(e?.value)}
             />
           </Box>
           <Input

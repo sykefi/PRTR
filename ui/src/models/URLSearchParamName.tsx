@@ -4,5 +4,5 @@ export enum URLSearchParamName {
   PollutantCode = 'pollutant',
   FirstItemIdx = 'first',
   Year = 'year',
-  Municipality = 'municipality'
+  Placename = 'placename'
 }

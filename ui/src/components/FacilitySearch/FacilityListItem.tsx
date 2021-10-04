@@ -42,7 +42,7 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
           {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
         </Box>
         <Box fontSize="smaller">
-          {t('common.municipality')}: {f.city}
+          {t('common.placename')}: {f.city}
         </Box>
       </Flex>
     </Box>
