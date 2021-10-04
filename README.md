@@ -40,6 +40,8 @@ To open the interactive dashboard (Cypress) for running and debugging tests, run
 
 By default the app uses the PRTR API at the address defined in [.env.development](ui/.env.development). To use local backend instead, you can add a new file .env.development.local and add the same environment variable there as `REACT_APP_PRTR_SERVER=http://localhost:8000`.
 
+To disable query caching (with React Query) on local development, you can also add the environment variable `REACT_APP_PRTR_DATA_CACHE_TIME=0`.
+
 ### Code style
 
 The project is currently formatted with [Prettier](https://prettier.io/). In VSCode, the easiest way to format is to use the plugin [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and the following settings:
