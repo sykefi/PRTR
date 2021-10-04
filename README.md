@@ -73,7 +73,7 @@ $ conda activate prtr
 - E-PRTR data is available for download at [industry.eea.europa.eu/download](https://industry.eea.europa.eu/download) / [eea.europa.eu/data-and-maps/data](https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3) (e.g. _Industrial_Reporting_Database_v4_March_2021.accdb_)
 - Previously imported PRTR dataset for Finland is already included as CSV files in [api/api/assets](api/api/assets)
 - The data import script requires installation of [driver for MS for Access files](https://www.microsoft.com/en-us/download/details.aspx?id=54920)
-- Prior to running the script, add a new file .env to `api/data_import/` containing at least the following environment variable: PRTR_DB_FILE_PATH=path\to\your-prtr\data\\*.accdb
+- Prior to running the script, add a new file .env to `api/data_import/` containing at least the following environment variable: PRTR_DB_FILE_PATH=path\to\your\prtr\data\\*.accdb
 - Other settings (such as country code) can be adjusted in [data_import/conf.py](api/data_import/conf.py)
 
 To execute the data import, run:
