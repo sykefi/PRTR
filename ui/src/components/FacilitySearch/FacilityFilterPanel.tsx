@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { useQuery } from 'react-query'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
@@ -6,36 +7,50 @@ import { useHistory } from 'react-router-dom'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
+import * as api from '../../api'
+import * as env from '../../env'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
-import { asOption } from '../../utils'
+import { asOption } from '../../models/OptionType'
+import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
+import { TranslationKeys } from '../../react-i18next'
 
-const useFacilityMainActivityOptions =
-  (): OptionType<FacilityMainActivityCode>[] => {
-    const { t } = useTranslation('mainActivityCodeDesc')
+const getFacilityMainActivityOptions = (
+  t: (translationKey: TranslationKeys) => string | undefined
+): OptionType<FacilityMainActivityCode>[] => {
+  return Object.values(FacilityMainActivityCode)
+    .reduce((prev, curr) => {
+      const desc = t(`mainActivityCodeDesc:${curr}`)
+      const option = desc
+        ? { value: curr, label: `${curr}, ${desc}` }
+        : undefined
+      if (option) {
+        return prev.concat(option)
+      }
+      return prev
+    }, [] as OptionType<FacilityMainActivityCode>[])
+    .sort((a, b) => {
+      if (a.label < b.label) {
+        return -1
+      }
+      if (a.label > b.label) {
+        return 1
+      }
+      return 0
+    })
+}
 
-    return Object.values(FacilityMainActivityCode)
-      .reduce((prev, curr) => {
-        if (t(curr)) {
-          return prev.concat({
-            value: curr,
-            label: `${curr} - ${t(curr)}`
-          })
-        }
-        return prev
-      }, [] as OptionType<FacilityMainActivityCode>[])
-      .sort((a, b) => {
-        if (a.label < b.label) {
-          return -1
-        }
-        if (a.label > b.label) {
-          return 1
-        }
-        return 0
-      })
-  }
+const getPlacenameOptions = (
+  metadata: PRTRApiMetadata | undefined
+): OptionType<string>[] => {
+  return metadata
+    ? metadata.present_cities
+        .map(c => asOption(c, c))
+        .filter((o): o is OptionType<string> => Boolean(o))
+    : []
+}
 
 const Form = styled.form`
   max-width: 100%;
@@ -43,26 +58,42 @@ const Form = styled.form`
 
 export const FacilityFilterPanel = ({
   urlSearchTerm,
+  urlPlacename,
   urlFacilityMainActivityCode
 }: {
   urlSearchTerm: string | undefined
+  urlPlacename: string | undefined
   urlFacilityMainActivityCode: FacilityMainActivityCode | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
 
-  const facilityMainActivityCodeOptions = useFacilityMainActivityOptions()
-
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
+  const [placename, setPlacename] = useState<string | undefined>(undefined)
   const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
     FacilityMainActivityCode | undefined
   >(undefined)
+
+  const facilityMainActivityCodeOptions = useMemo(
+    () => getFacilityMainActivityOptions(t),
+    [t]
+  )
+  const apiMetadata = useQuery(
+    ['prtrApiMetadata'],
+    () => api.getApiMetadata(),
+    env.rqCacheSettings
+  )
+  const placenameOptions = useMemo(
+    () => getPlacenameOptions(apiMetadata.data),
+    [apiMetadata.data]
+  )
 
   useEffect(() => {
     // initialize inputs from URL search params
     setFacilityMainActivityCode(urlFacilityMainActivityCode)
     setSearchTerm(urlSearchTerm)
-  }, [urlFacilityMainActivityCode, urlSearchTerm])
+    setPlacename(urlPlacename)
+  }, [urlFacilityMainActivityCode, urlSearchTerm, urlPlacename])
 
   /**
    * Resets current URL search parameters (including active row ranges)
@@ -80,6 +111,9 @@ export const FacilityFilterPanel = ({
         facilityMainActivityCode
       )
     }
+    if (placename) {
+      newUrlSearchParams.set(URLSearchParamName.Placename, placename)
+    }
     history.push({
       pathname: '/facilities',
       search: '?' + newUrlSearchParams.toString()
@@ -88,6 +122,7 @@ export const FacilityFilterPanel = ({
 
   const searchInputsChanged =
     urlSearchTerm !== searchTerm ||
+    urlPlacename !== placename ||
     urlFacilityMainActivityCode !== facilityMainActivityCode
 
   return (
@@ -106,9 +141,14 @@ export const FacilityFilterPanel = ({
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              value={asOption(facilityMainActivityCode, v =>
-                t(`mainActivityCodeDesc:${v}`)
-              )}
+              value={
+                facilityMainActivityCode
+                  ? asOption(
+                      facilityMainActivityCode,
+                      t(`mainActivityCodeDesc:${facilityMainActivityCode}`)
+                    )
+                  : null
+              }
               name="facilityMainActivityCode"
               options={facilityMainActivityCodeOptions}
               placeholder={t(
@@ -117,12 +157,24 @@ export const FacilityFilterPanel = ({
               onChange={e => setFacilityMainActivityCode(e?.value)}
             />
           </Box>
+          <Box width={350} minWidth={200}>
+            <ChakraSelect
+              isClearable
+              closeMenuOnSelect
+              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              name="facilitiesPlacename"
+              value={asOption(placename, placename)}
+              options={placenameOptions}
+              placeholder={t('translation:facilities.searchWithPlacename')}
+              onChange={e => setPlacename(e?.value)}
+            />
+          </Box>
           <Input
             data-cy="facility-search-term"
             type="text"
             bgColor="white"
             minWidth={200}
-            width={450}
+            width={350}
             colorScheme="red"
             borderColor="var(--chakra-colors-gray-500)"
             _hover={{
@@ -131,7 +183,7 @@ export const FacilityFilterPanel = ({
             maxWidth="100%"
             value={searchTerm || ''}
             onChange={e => setSearchTerm(e.target.value)}
-            placeholder={t('translation:common.searchTerm')}
+            placeholder={t('translation:facilities.searchWithName')}
           />
         </Flex>
         <Button

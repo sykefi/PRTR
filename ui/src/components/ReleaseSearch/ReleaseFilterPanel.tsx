@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { Box, Flex } from '@chakra-ui/layout'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -12,17 +12,18 @@ import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
-import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { Medium } from '../../api/models/Medium'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
-import { asOption } from '../../utils'
+import { getLongPollutantLabel, getPollutantLabel } from '../../utils'
+import { asOption } from '../../models/OptionType'
+import { TranslationKeys } from '../../react-i18next'
 
-const usePollutantNameOptions = (
-  getPollutantLabel: (p: PollutantCode) => string
+const getPollutantNameOptions = (
+  t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<PollutantCode>[] => {
   return Object.values(PollutantCode)
     .reduce((prev, curr) => {
-      const label = getPollutantLabel(curr)
+      const label = getLongPollutantLabel(t, curr)
       if (!!label) {
         return prev.concat({
           value: curr,
@@ -41,12 +42,12 @@ const usePollutantNameOptions = (
     })
 }
 
-const useYearOptions = (
+const getYearOptions = (
   metadata: PRTRApiMetadata | undefined
 ): OptionType<number>[] => {
   return metadata
     ? metadata.available_reporting_years
-        .map(y => asOption(y))
+        .map(y => asOption(y, y))
         .filter((o): o is OptionType<number> => Boolean(o))
     : []
 }
@@ -60,23 +61,31 @@ export const ReleaseFilterPanel = (props: {
   urlPollutantCode: PollutantCode | undefined
   urlYear: number | undefined
 }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation([
+    'translation',
+    'pollutantName',
+    'pollutantCasNumber',
+    'pollutantAbbreviation'
+  ])
   const history = useHistory()
   const location = useLocation()
+
   const [pollutantCode, setPollutantCode] = useState<PollutantCode | undefined>(
     undefined
   )
   const [year, setYear] = useState<number | undefined>(undefined)
 
-  const getPollutantLabel = useGetPollutantLabel()
-  const pollutantOptions = usePollutantNameOptions(getPollutantLabel)
+  const pollutantOptions = useMemo(() => getPollutantNameOptions(t), [t])
 
   const apiMetadata = useQuery(
     ['prtrApiMetadata'],
     () => api.getApiMetadata(),
     env.rqCacheSettings
   )
-  const yearOptions = useYearOptions(apiMetadata.data)
+  const yearOptions = useMemo(
+    () => getYearOptions(apiMetadata.data),
+    [apiMetadata.data]
+  )
 
   useEffect(() => {
     // initialize select inputs from url search params on page load
@@ -122,9 +131,13 @@ export const ReleaseFilterPanel = (props: {
               isClearable
               closeMenuOnSelect
               name="releasesPollutantCode"
-              value={asOption(pollutantCode, getPollutantLabel)}
+              value={
+                pollutantCode
+                  ? asOption(pollutantCode, getPollutantLabel(t, pollutantCode))
+                  : null
+              }
               options={pollutantOptions}
-              placeholder={t('releases.selectPollutant')}
+              placeholder={t('translation:releases.selectPollutant')}
               onChange={e => setPollutantCode(e?.value)}
             />
           </Box>
@@ -134,9 +147,9 @@ export const ReleaseFilterPanel = (props: {
               closeMenuOnSelect
               isLoading={apiMetadata.isLoading || apiMetadata.isError}
               name="releasesYear"
-              value={asOption(year)}
+              value={asOption(year, year)}
               options={yearOptions}
-              placeholder={t('releases.selectYear')}
+              placeholder={t('translation:releases.selectYear')}
               onChange={e => setYear(e?.value)}
             />
           </Box>
@@ -148,7 +161,7 @@ export const ReleaseFilterPanel = (props: {
           width="max-content"
           marginBottom={0.5}
           colorScheme="green">
-          {t('common.fetch')}
+          {t('translation:common.fetch')}
         </Button>
       </FormControl>
     </Form>
