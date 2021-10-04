@@ -20,23 +20,26 @@ import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivit
 
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
-): OptionType<FacilityMainActivityCode>[] => {
-  return Object.values(FacilityMainActivityCode)
+): OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[] => {
+  return [
+    ...Object.values(FacilityTopMainActivity),
+    ...Object.values(FacilityMainActivityCode)
+  ]
     .reduce((prev, curr) => {
       const desc = t(`mainActivityCodeDesc:${curr}`)
       const option = desc
-        ? { value: curr, label: `${curr}, ${desc}` }
+        ? { value: curr, label: `${curr}: ${desc}` }
         : undefined
       if (option) {
         return prev.concat(option)
       }
       return prev
-    }, [] as OptionType<FacilityMainActivityCode>[])
+    }, [] as OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[])
     .sort((a, b) => {
-      if (a.label < b.label) {
+      if (a.value < b.value) {
         return -1
       }
-      if (a.label > b.label) {
+      if (a.value > b.value) {
         return 1
       }
       return 0
