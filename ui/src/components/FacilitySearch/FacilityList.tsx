@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 import { Box } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
 import { FacilityListItem } from './FacilityListItem'

@@ -15,6 +15,6 @@
 - [ ] I have reviewed the changes myself
 - [ ] I have added relevant tests
 
-## How to test?
+## How to test
 
 <!--- Add the steps for testing / how you tested the code -->
