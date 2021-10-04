@@ -1,4 +1,6 @@
-from models.enums import MainActivityCode, Medium, PollutantCode
+from models.enums import (
+    MainActivityCode, Medium, PollutantCode, TopMainActivity
+)
 from models.models import (
     PRTRListResponse, PollutantRelease,
     ProductionFacility, PrtrMetadata, with_facility_info
@@ -55,8 +57,10 @@ def get_facilities(
     limit: int,
     name_search: Union[str, None],
     placename: Union[str, None],
-    main_activity_code: Union[MainActivityCode, None]
+    main_activity: Union[MainActivityCode, TopMainActivity, None]
 ) -> PRTRListResponse[ProductionFacility]:
+    """
+    """
 
     if facility_id:
         if facility_id in _facility_by_id:
@@ -93,8 +97,9 @@ def get_facilities(
             )
             and
             (
-                not main_activity_code
-                or f.mainActivityCode == main_activity_code
+                not main_activity
+                or f.mainActivityCode == main_activity
+                or f.topMainActivity == main_activity
             )
         )
     ]

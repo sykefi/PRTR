@@ -10,6 +10,7 @@ import {
   useURLSearchParam,
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
+import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { FacilityPageSelector } from './FacilityPageSelector'
@@ -23,19 +24,19 @@ export const FacilitySearch = () => {
 
   const urlSearchTerm = useURLSearchParam(URLSearchParamName.SearchTerm)
   const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
-  const urlFacilityMainActivityCode = useURLSearchParam(
-    URLSearchParamName.FacilityMainActivityCode
-  ) as FacilityMainActivityCode | undefined
+  const urlFacilityMainActivity = useURLSearchParam(
+    URLSearchParamName.FacilityMainActivity
+  ) as FacilityTopMainActivity | FacilityMainActivityCode | undefined
 
   const urlFirstItemIdx =
     useURLSearchParamInt(URLSearchParamName.FirstItemIdx) || 0
 
   const { isLoading, isError, isSuccess, data } = useQuery(
-    ['facilities', urlSearchTerm, urlPlacename, urlFacilityMainActivityCode],
+    ['facilities', urlSearchTerm, urlPlacename, urlFacilityMainActivity],
     async () => {
       return api.getFacilities({
         name_search_str: urlSearchTerm,
-        main_activity_code: urlFacilityMainActivityCode,
+        main_activity: urlFacilityMainActivity,
         placename: urlPlacename
       })
     },
@@ -52,7 +53,7 @@ export const FacilitySearch = () => {
         <FacilityFilterPanel
           urlSearchTerm={urlSearchTerm}
           urlPlacename={urlPlacename}
-          urlFacilityMainActivityCode={urlFacilityMainActivityCode}
+          urlFacilityMainActivity={urlFacilityMainActivity}
         />
       </BelowNavigationHeaderPanel>
 

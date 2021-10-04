@@ -1,4 +1,5 @@
 import { FacilityMainActivityCode } from './FacilityMainActivityCode'
+import { FacilityTopMainActivity } from './FacilityTopMainActivity'
 
 export interface FacilityQueryParams {
   facility_id?: string
@@ -6,5 +7,5 @@ export interface FacilityQueryParams {
   limit?: number
   name_search_str?: string
   placename?: string
-  main_activity_code?: FacilityMainActivityCode
+  main_activity?: FacilityMainActivityCode | FacilityTopMainActivity
 }

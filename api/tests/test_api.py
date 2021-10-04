@@ -79,7 +79,7 @@ def test_get_facility_by_name():
 def test_get_facility_by_main_activity_type():
     main_activity = MainActivityCode.ONE_A
     response = client.get(
-        f'{root_path}/facilities?main_activity_code={main_activity.value}'
+        f'{root_path}/facilities?main_activity={main_activity.value}'
     )
     assert response.status_code == 200
     data = response.json()['data']

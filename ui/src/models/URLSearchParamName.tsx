@@ -1,6 +1,6 @@
 export enum URLSearchParamName {
   SearchTerm = 'searchTerm',
-  FacilityMainActivityCode = 'facilityType',
+  FacilityMainActivity = 'facilityType',
   PollutantCode = 'pollutant',
   FirstItemIdx = 'first',
   Year = 'year',

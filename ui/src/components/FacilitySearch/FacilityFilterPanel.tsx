@@ -16,6 +16,7 @@ import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../models/OptionType'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 import { TranslationKeys } from '../../react-i18next'
+import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
 
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
@@ -59,22 +60,25 @@ const Form = styled.form`
 export const FacilityFilterPanel = ({
   urlSearchTerm,
   urlPlacename,
-  urlFacilityMainActivityCode
+  urlFacilityMainActivity
 }: {
   urlSearchTerm: string | undefined
   urlPlacename: string | undefined
-  urlFacilityMainActivityCode: FacilityMainActivityCode | undefined
+  urlFacilityMainActivity:
+    | FacilityMainActivityCode
+    | FacilityTopMainActivity
+    | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
 
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
   const [placename, setPlacename] = useState<string | undefined>(undefined)
-  const [facilityMainActivityCode, setFacilityMainActivityCode] = useState<
-    FacilityMainActivityCode | undefined
+  const [facilityMainActivity, setFacilityMainActivity] = useState<
+    FacilityMainActivityCode | FacilityTopMainActivity | undefined
   >(undefined)
 
-  const facilityMainActivityCodeOptions = useMemo(
+  const facilityMainActivityOptions = useMemo(
     () => getFacilityMainActivityOptions(t),
     [t]
   )
@@ -90,10 +94,10 @@ export const FacilityFilterPanel = ({
 
   useEffect(() => {
     // initialize inputs from URL search params
-    setFacilityMainActivityCode(urlFacilityMainActivityCode)
+    setFacilityMainActivity(urlFacilityMainActivity)
     setSearchTerm(urlSearchTerm)
     setPlacename(urlPlacename)
-  }, [urlFacilityMainActivityCode, urlSearchTerm, urlPlacename])
+  }, [urlFacilityMainActivity, urlSearchTerm, urlPlacename])
 
   /**
    * Resets current URL search parameters (including active row ranges)
@@ -105,10 +109,10 @@ export const FacilityFilterPanel = ({
     const newUrlSearchParams = new URLSearchParams()
     if (searchTerm)
       newUrlSearchParams.set(URLSearchParamName.SearchTerm, searchTerm)
-    if (facilityMainActivityCode) {
+    if (facilityMainActivity) {
       newUrlSearchParams.set(
-        URLSearchParamName.FacilityMainActivityCode,
-        facilityMainActivityCode
+        URLSearchParamName.FacilityMainActivity,
+        facilityMainActivity
       )
     }
     if (placename) {
@@ -123,7 +127,7 @@ export const FacilityFilterPanel = ({
   const searchInputsChanged =
     urlSearchTerm !== searchTerm ||
     urlPlacename !== placename ||
-    urlFacilityMainActivityCode !== facilityMainActivityCode
+    urlFacilityMainActivity !== facilityMainActivity
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
@@ -142,19 +146,19 @@ export const FacilityFilterPanel = ({
               isClearable
               closeMenuOnSelect
               value={
-                facilityMainActivityCode
+                facilityMainActivity
                   ? asOption(
-                      facilityMainActivityCode,
-                      t(`mainActivityCodeDesc:${facilityMainActivityCode}`)
+                      facilityMainActivity,
+                      t(`mainActivityCodeDesc:${facilityMainActivity}`)
                     )
                   : null
               }
-              name="facilityMainActivityCode"
-              options={facilityMainActivityCodeOptions}
+              name="facilityMainActivity"
+              options={facilityMainActivityOptions}
               placeholder={t(
                 'translation:facilities.selectFacilityMainActivityCode'
               )}
-              onChange={e => setFacilityMainActivityCode(e?.value)}
+              onChange={e => setFacilityMainActivity(e?.value)}
             />
           </Box>
           <Box width={350} minWidth={200}>
