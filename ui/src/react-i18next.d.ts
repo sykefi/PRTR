@@ -18,13 +18,22 @@ type DeepKeys<T> = T extends Record<string, unknown>
     }[keyof T]
   : '';
 
-type DeepLeafKeys<T> = T extends Record<string, unknown>
+type DeepLeafKeys<P extends string, T> = T extends Record<string, unknown>
   ? {
-      [K in keyof T]-?: Concat<K & string, DeepKeys<T[K]>>;
+      [K in keyof T]-?: 
+      WithBasePrefix<
+        P, Concat<K & string, DeepKeys<T[K]>>
+      > | 
+      Concat<K & string, DeepKeys<T[K]>>;
     }[keyof T]
   : '';
 
-export type TranslationKeys = DeepLeafKeys<typeof translation>;
+export type TranslationKeys = 
+  DeepLeafKeys<'translation', typeof translation> |
+  DeepLeafKeys<'mainActivityCodeDesc', typeof mainActivityCodeDesc> |
+  DeepLeafKeys<'pollutantName', typeof pollutantName> |
+  DeepLeafKeys<'pollutantAbbreviation', typeof pollutantAbbreviation> |
+  DeepLeafKeys<'pollutantCasNumber', typeof pollutantCasNumber>
 
 // react-i18next versions higher than 11.11.0
 declare module 'react-i18next' {

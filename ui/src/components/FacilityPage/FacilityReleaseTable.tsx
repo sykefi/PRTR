@@ -6,20 +6,20 @@ import * as env from '../../env'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { getReleases } from '../../api/releases'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
-import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import {
   colorSchemeByMedium,
   colorSchemeByMethodCode,
   translationKeyByMedium,
   translationKeyByMethodCode
 } from '../../constants'
+import { getPollutantLabel } from '../../utils'
 
 const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
-  const getPollutantLabel = useGetPollutantLabel()
   const { t } = useTranslation([
     'translation',
     'pollutantName',
-    'pollutantAbbreviation'
+    'pollutantAbbreviation',
+    'pollutantCasNumber'
   ])
 
   return (
@@ -65,7 +65,7 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
                 ).toLocaleString('fi')}
               </Td>
               <Td p={1} maxWidth={120} paddingRight={2}>
-                {getPollutantLabel(r.pollutantCode)}
+                {getPollutantLabel(t, r.pollutantCode)}
               </Td>
               <Td p={1}>
                 <Badge

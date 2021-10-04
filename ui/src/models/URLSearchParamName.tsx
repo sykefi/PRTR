@@ -3,5 +3,6 @@ export enum URLSearchParamName {
   FacilityMainActivityCode = 'facilityType',
   PollutantCode = 'pollutant',
   FirstItemIdx = 'first',
-  Year = 'year'
+  Year = 'year',
+  Placename = 'placename'
 }

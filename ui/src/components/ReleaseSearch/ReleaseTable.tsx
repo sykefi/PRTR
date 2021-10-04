@@ -4,12 +4,12 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
-import { useGetPollutantLabel } from '../../hooks/useGetPollutantLabel'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import {
   colorSchemeByMethodCode,
   translationKeyByMethodCode
 } from '../../constants'
+import { getPollutantLabel } from '../../utils'
 
 export const ReleaseTable = ({
   loading,
@@ -19,11 +19,11 @@ export const ReleaseTable = ({
   releases: PollutantRelease[]
 }) => {
   const location = useLocation()
-  const getPollutantLabel = useGetPollutantLabel()
   const { t } = useTranslation([
     'translation',
     'pollutantName',
-    'pollutantAbbreviation'
+    'pollutantAbbreviation',
+    'pollutantCasNumber'
   ])
 
   return (
@@ -80,7 +80,7 @@ export const ReleaseTable = ({
                   ).toLocaleString('fi')}
                 </Td>
                 <Td p={1} maxWidth={140} paddingRight={3}>
-                  {getPollutantLabel(r.pollutantCode)}
+                  {getPollutantLabel(t, r.pollutantCode)}
                 </Td>
                 <Td p={1} maxWidth={240}>
                   <Link

@@ -6,7 +6,7 @@
     "pollutantReleases": "Päästöt",
     "releasesToAir": "Päästöt ilmaan",
     "releasesToWater": "Päästöt veteen",
-    "municipality": "Paikkakunta",
+    "placename": "Paikkakunta",
     "searchTerm": "Hakusana",
     "resetSearch": "Poista haku",
     "goBackToSearch": "Palaa hakuun",
@@ -27,6 +27,8 @@
   },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
+    "searchWithName": "Hae laitoksen nimellä...",
+    "searchWithPlacename": "Hae paikkakunnalla...",
     "facilitySearchResult": "Haulla löytyi {{resultCount}} laitosta.",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
     "noFacilitiesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",

@@ -63,7 +63,7 @@ export const FacilityBasicInfo = ({
             }
           />
           <InfoPropRow
-            label={t('translation:common.municipality')}
+            label={t('translation:common.placename')}
             value={facility.city}
           />
           <InfoPropRow

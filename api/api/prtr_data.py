@@ -54,6 +54,7 @@ def get_facilities(
     skip: int,
     limit: int,
     name_search: Union[str, None],
+    placename: Union[str, None],
     main_activity_code: Union[MainActivityCode, None]
 ) -> PRTRListResponse[ProductionFacility]:
 
@@ -80,6 +81,15 @@ def get_facilities(
                 not name_search_str
                 or name_search_str in f.nameOfFeature.lower()
                 or name_search_str in f.parentCompanyName.lower()
+            )
+            and
+            (
+                not placename
+                or (
+                    f.city
+                    and
+                    placename.lower() == f.city.lower()
+                )
             )
             and
             (

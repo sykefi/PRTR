@@ -1,6 +1,7 @@
 import { Link as ReactRouterLink, useLocation } from 'react-router-dom'
-import { Link } from '@chakra-ui/layout'
+import { Box, Link } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
+import { RoutePath } from '../models/RoutePath'
 
 export const FacilityMapPopupContent = ({
   popupData
@@ -8,6 +9,11 @@ export const FacilityMapPopupContent = ({
   popupData: FacilityMapFeature
 }) => {
   const location = useLocation()
+
+  // show just the name (without link) if user is already at the facility page
+  if (location.pathname === `${RoutePath.Facilities}/${popupData.facilityId}`) {
+    return <Box fontWeight="semibold">{popupData.nameOfFeature}</Box>
+  }
 
   return (
     <Link

@@ -22,6 +22,7 @@ export const FacilitySearch = () => {
   const { t } = useTranslation()
 
   const urlSearchTerm = useURLSearchParam(URLSearchParamName.SearchTerm)
+  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
   const urlFacilityMainActivityCode = useURLSearchParam(
     URLSearchParamName.FacilityMainActivityCode
   ) as FacilityMainActivityCode | undefined
@@ -30,11 +31,12 @@ export const FacilitySearch = () => {
     useURLSearchParamInt(URLSearchParamName.FirstItemIdx) || 0
 
   const { isLoading, isError, isSuccess, data } = useQuery(
-    ['facilities', urlSearchTerm, urlFacilityMainActivityCode],
+    ['facilities', urlSearchTerm, urlPlacename, urlFacilityMainActivityCode],
     async () => {
       return api.getFacilities({
         name_search_str: urlSearchTerm,
-        main_activity_code: urlFacilityMainActivityCode
+        main_activity_code: urlFacilityMainActivityCode,
+        placename: urlPlacename
       })
     },
     {
@@ -49,6 +51,7 @@ export const FacilitySearch = () => {
       <BelowNavigationHeaderPanel>
         <FacilityFilterPanel
           urlSearchTerm={urlSearchTerm}
+          urlPlacename={urlPlacename}
           urlFacilityMainActivityCode={urlFacilityMainActivityCode}
         />
       </BelowNavigationHeaderPanel>

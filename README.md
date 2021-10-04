@@ -40,6 +40,8 @@ To open the interactive dashboard (Cypress) for running and debugging tests, run
 
 By default the app uses the PRTR API at the address defined in [.env.development](ui/.env.development). To use local backend instead, you can add a new file .env.development.local and add the same environment variable there as `REACT_APP_PRTR_SERVER=http://localhost:8000`.
 
+To disable query caching (with React Query) on local development, you can also add the environment variable `REACT_APP_PRTR_DATA_CACHE_TIME=0`.
+
 ### Code style
 
 The project is currently formatted with [Prettier](https://prettier.io/). In VSCode, the easiest way to format is to use the plugin [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and the following settings:
@@ -55,8 +57,7 @@ The project is currently formatted with [Prettier](https://prettier.io/). In VSC
 
 ### Prerequisites
 
-- [Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/products/individual) package manager for Python.
-- E-PRTR data is available for download at [industry.eea.europa.eu/download](https://industry.eea.europa.eu/download) (included as CSV files for Finland in [api/api/assets](api/api/assets)).
+[Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/products/individual) package manager for Python.
 
 ### Installation
 
@@ -68,6 +69,8 @@ $ conda activate prtr
 ```
 
 ### Data import (optional)
+
+E-PRTR data is available for download at [industry.eea.europa.eu/download](https://industry.eea.europa.eu/download) / [eea.europa.eu/data-and-maps/data](https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3) (e.g. _Industrial_Reporting_Database_v4_March_2021.accdb_). A previously imported dataset for Finland is already included as CSV files in [api/api/assets](api/api/assets).
 
 The data import script requires installation of [driver for MS for Access files](https://www.microsoft.com/en-us/download/details.aspx?id=54920). Prior to running the script, adjust the [configuration](api/data_import/conf.py) if needed (filepath to .accdb data, country code etc.). Previously imported PRTR dataset for Finland is already included as CSV files in the path [api/api/assets](api/api/assets).
 
