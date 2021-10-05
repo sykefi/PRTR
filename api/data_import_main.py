@@ -41,7 +41,7 @@ if not os.path.exists(conf.prtr_db_file_path):
 
 sql_facilities = (
     f'''
-    SELECT
+    SELECT DISTINCT
     [2_ProductionFacility].Facility_INSPIRE_ID,
     [2_ProductionFacility].parentCompanyName,
     [2_ProductionFacility].nameOfFeature,
@@ -51,18 +51,40 @@ sql_facilities = (
     [2_ProductionFacility].pointGeometryLat,
     [2_ProductionFacility].streetName,
     [2_ProductionFacility].buildingNumber,
-    [2_ProductionFacility].postalCode,
     [2_ProductionFacility].city,
+    [2_ProductionFacility].postalCode,
     [2_ProductionFacility].countryCode,
-    [2d_CompetentAuthorityEPRTR].telephoneNo
-    FROM
-    (
+    Max([2a_ProductionFacilityDetails].reportingYear) AS reportingYear,
+    FIRST([2a_ProductionFacilityDetails].status) as status,
+    FIRST([2d_CompetentAuthorityEPRTR].telephoneNo) as telephoneNo
+    FROM (
         2_ProductionFacility
+        LEFT JOIN 2a_ProductionFacilityDetails ON
+            [2_ProductionFacility].[Facility_INSPIRE_ID] =
+            [2a_ProductionFacilityDetails].[Facility_INSPIRE_ID]
+        )
         LEFT JOIN 2d_CompetentAuthorityEPRTR ON
-        [2_ProductionFacility].Facility_INSPIRE_ID =
-        [2d_CompetentAuthorityEPRTR].Facility_INSPIRE_ID
-    )
-    WHERE [2_ProductionFacility].countryCode='{conf.country_code}';
+            [2_ProductionFacility].[Facility_INSPIRE_ID] =
+            [2d_CompetentAuthorityEPRTR].[Facility_INSPIRE_ID]
+    GROUP BY [2_ProductionFacility].Facility_INSPIRE_ID,
+    [2_ProductionFacility].parentCompanyName,
+    [2_ProductionFacility].nameOfFeature,
+    [2_ProductionFacility].mainActivityCode,
+    [2_ProductionFacility].mainActivityName,
+    [2_ProductionFacility].pointGeometryLat,
+    [2_ProductionFacility].pointGeometryLon,
+    [2_ProductionFacility].streetName,
+    [2_ProductionFacility].buildingNumber,
+    [2_ProductionFacility].city,
+    [2_ProductionFacility].postalCode,
+    [2_ProductionFacility].countryCode,
+    [2_ProductionFacility].facilityType
+    HAVING (
+        (
+            [2_ProductionFacility].countryCode='{conf.country_code}' AND
+            [2_ProductionFacility].facilityType='EPRTR'
+        )
+    );
     '''
 )
 
@@ -85,7 +107,9 @@ sql_releases = (
         [2f_PollutantRelease].Facility_INSPIRE_ID =
         [2_ProductionFacility].Facility_INSPIRE_ID
     )
-    WHERE [2_ProductionFacility].countryCode='{conf.country_code}';
+    WHERE
+    [2_ProductionFacility].countryCode='{conf.country_code}' AND
+    [2_ProductionFacility].facilityType='EPRTR';
     '''
 )
 
