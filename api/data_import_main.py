@@ -59,11 +59,11 @@ sql_facilities = (
     FIRST([2d_CompetentAuthorityEPRTR].telephoneNo) as telephoneNo
     FROM (
         2_ProductionFacility
-        INNER JOIN 2a_ProductionFacilityDetails ON
+        LEFT JOIN 2a_ProductionFacilityDetails ON
             [2_ProductionFacility].[Facility_INSPIRE_ID] =
             [2a_ProductionFacilityDetails].[Facility_INSPIRE_ID]
         )
-        INNER JOIN 2d_CompetentAuthorityEPRTR ON
+        LEFT JOIN 2d_CompetentAuthorityEPRTR ON
             [2_ProductionFacility].[Facility_INSPIRE_ID] =
             [2d_CompetentAuthorityEPRTR].[Facility_INSPIRE_ID]
     GROUP BY [2_ProductionFacility].Facility_INSPIRE_ID,

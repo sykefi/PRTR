@@ -65,7 +65,7 @@ def test_get_facility_by_id():
 
 
 def test_get_facility_by_name():
-    name_search = 'Tuulilasintien lajittelulaitos'
+    name_search = 'Sappi Finland I Oy, Kankaan tehdas'
     response = client.get(
         f'{root_path}/facilities?name_search_str={name_search}'
     )
