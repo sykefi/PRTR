@@ -1,4 +1,8 @@
-from models.enums import MainActivityCode, Medium, PollutantCode
+from typing import Optional, Union
+from fastapi.params import Query
+from models.enums import (
+    MainActivityCode, Medium, PollutantCode, TopMainActivity
+)
 from models.models import (
     PRTRListResponse, PollutantRelease,
     ProductionFacility, PrtrMetadata
@@ -65,7 +69,10 @@ def read_facilities(
     limit: int = 10,
     name_search_str: str = None,
     placename: str = None,
-    main_activity_code: MainActivityCode = None
+    main_activity: Optional[Union[MainActivityCode, TopMainActivity]] = Query(
+        None,
+        description='Either MainActivityCode or TopMainActivity (optional).'
+    )
 ):
     match = prtr_data.get_facilities(
         facility_id,
@@ -73,7 +80,7 @@ def read_facilities(
         limit,
         name_search_str,
         placename,
-        main_activity_code
+        main_activity
     )
     if not match.data:
         raise HTTPException(

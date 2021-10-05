@@ -179,7 +179,7 @@ const chakraComponents: SelectProps['components'] = {
       </chakra.div>
     )
   },
-  Option: ({ innerRef, innerProps, children, isFocused, isDisabled }) => {
+  Option: ({ innerRef, innerProps, children, isFocused, isDisabled, data }) => {
     const { item } = useStyles()
     return (
       <chakra.div
@@ -188,6 +188,8 @@ const chakraComponents: SelectProps['components'] = {
           ...item,
           w: '100%',
           textAlign: 'left',
+          fontWeight: data.bold ? 'semibold' : 'initial',
+          paddingLeft: data.indent ? 6 : undefined,
           bg: isFocused
             ? (item as RecursiveCSSObject<ItemProps>)._focus.bg
             : 'transparent',
