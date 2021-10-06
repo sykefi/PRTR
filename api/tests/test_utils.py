@@ -23,7 +23,8 @@ def test_reads_facility_from_dictionary():
         'postalCode': '02320',
         'city': 'Espoo',
         'countryCode': 'FI',
-        'telephoneNo': '12345'
+        'telephoneNo': '12345',
+        'status': 'disused'
     })
     assert facility.facilityId == '12'
     assert facility.parentCompanyName == 'ABOY'
@@ -36,6 +37,7 @@ def test_reads_facility_from_dictionary():
     assert facility.postalCode == '02320'
     assert facility.city == 'Espoo'
     assert facility.telephoneNo == '12345'
+    assert facility.status == "disused"
 
 
 def test_throws_validation_error_for_invalid_facility_main_activity_code():
@@ -56,7 +58,8 @@ def test_throws_validation_error_for_invalid_facility_main_activity_code():
             'postalCode': '02320',
             'city': 'Espoo',
             'countryCode': 'FI',
-            'telephoneNo': '12345'
+            'telephoneNo': '12345',
+            'status': 'functional'
         })
 
 
@@ -78,7 +81,8 @@ def test_throws_validation_error_for_facility_missing_facility_id():
             'postalCode': '02320',
             'city': 'Espoo',
             'countryCode': 'FI',
-            'telephoneNo': '12345'
+            'telephoneNo': '12345',
+            'status': 'notRegulated'
         })
 
 

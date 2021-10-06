@@ -139,3 +139,10 @@ class PollutantCode(str, Enum):
     TRICHLOROMETHANE = 'TRICHLOROMETHANE'
     VINYLCHLORIDE = 'VINYLCHLORIDE'
     ZNANDCOMPOUNDS = 'ZNANDCOMPOUNDS'
+
+
+class FacilityStatus(str, Enum):
+    DECOMMISSIONED = 'decommissioned'
+    DISUSED = 'disused'
+    FUNCTIONAL = 'functional'
+    NOT_REGULATED = 'notRegulated'
