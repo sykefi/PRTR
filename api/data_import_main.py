@@ -11,8 +11,9 @@ Engine 2016 Redistributable" (or newer)
 """
 
 from data_import.utils import (
-    add_projected_x_y_columns, print_main_activity_codes_as_enum,
-    print_unique_values_as_enum, clean_id, validate_ids
+    add_projected_x_y_columns, ensure_no_unlinked_releases,
+    handle_merge_duplicate_facilities, print_main_activity_codes_as_enum,
+    print_unique_values_as_enum, clean_id, ensure_unique_ids
 )
 from data_import.conf import conf
 import os
@@ -56,6 +57,8 @@ sql_facilities = (
     [2_ProductionFacility].countryCode,
     Max([2a_ProductionFacilityDetails].reportingYear) AS reportingYear,
     FIRST([2a_ProductionFacilityDetails].status) as status,
+    FIRST([2d_CompetentAuthorityEPRTR].CompetentAuthorityEPRTRId)
+        as CompetentAuthorityEPRTRId,
     FIRST([2d_CompetentAuthorityEPRTR].telephoneNo) as telephoneNo
     FROM (
         2_ProductionFacility
@@ -125,11 +128,11 @@ facilities = pd.read_sql_query(sql_facilities, conn)
 facilities['facilityId'] = [
     clean_id(id_str) for id_str in facilities['Facility_INSPIRE_ID']
 ]
-validate_ids(facilities)
 add_projected_x_y_columns(facilities)
 print(f'Read {len(facilities)} facilities from {conf.prtr_db_file_path}')
 
-print_main_activity_codes_as_enum(facilities)
+if conf.print_uniq_values_from_columns:
+    print_main_activity_codes_as_enum(facilities)
 
 
 releases = pd.read_sql_query(sql_releases, conn)
@@ -138,10 +141,20 @@ releases['facilityId'] = [
 ]
 print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')
 
-print_unique_values_as_enum(releases, 'pollutantCode')
-print_unique_values_as_enum(releases, 'pollutantName')
-print_unique_values_as_enum(releases, 'medium')
-print_unique_values_as_enum(releases, 'methodCode')
+
+# merge duplicate facilities by name
+facilities = handle_merge_duplicate_facilities(facilities, releases)
+# ensure unique facilityIds and that all realease are linked to some facility
+# (by facilityId)
+ensure_unique_ids(facilities)
+ensure_no_unlinked_releases(facilities, releases)
+
+
+if conf.print_uniq_values_from_columns:
+    print_unique_values_as_enum(releases, 'pollutantCode')
+    print_unique_values_as_enum(releases, 'pollutantName')
+    print_unique_values_as_enum(releases, 'medium')
+    print_unique_values_as_enum(releases, 'methodCode')
 
 
 if not os.path.exists(conf.csv_out_dir):
