@@ -1,8 +1,11 @@
 import { Box, Flex, Heading, Link, Text } from '@chakra-ui/layout'
 import { Trans, useTranslation } from 'react-i18next'
+import { FrontPageContentFi } from './FrontPageContentFi'
+import { FrontPageContentSv } from './FrontPageContentSv'
+import { FrontPageContentEn } from './FrontPageContentEn'
 
 export const FrontPage = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <Flex direction="column" align="center" p={3}>
@@ -18,6 +21,11 @@ export const FrontPage = () => {
         <Heading as="h3" fontSize="larger">
           {t('common.welcomeMessage')}
         </Heading>
+        {i18n.language === 'fi' && <FrontPageContentFi />}
+        {i18n.language === 'sv' && <FrontPageContentSv />}
+        {i18n.language === 'en' && <FrontPageContentEn />}
+
+        {/* TODO: remove the placeholder content below */}
         <Text paddingTop={4} fontWeight="normal">
           {t('textContent.p1')}
         </Text>
