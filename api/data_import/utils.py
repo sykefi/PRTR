@@ -1,4 +1,5 @@
 from data_import.conf import conf
+from data_import.log import log
 from typing import Dict, List, Union
 from pandas import DataFrame
 import numpy as np
@@ -104,19 +105,19 @@ def _get_main_activity_code_enum_name(code: str) -> str:
 
 def print_main_activity_codes_as_enum(df: DataFrame):
     unique_values = df['mainActivityCode'].unique()
-    print('Unique values in column "mainActivityCode":')
+    log('Unique values in column "mainActivityCode":')
     for value in sorted([v for v in unique_values if v is not None]):
         enum_name = _get_main_activity_code_enum_name(value)
-        print(f"    {enum_name} = '{value}'")
-    print('\n')
+        log(f"    {enum_name} = '{value}'")
+    log('\n')
 
 
 def print_unique_values_as_enum(df: DataFrame, col: str):
     unique_values = df[col].unique()
-    print(f'Unique values in column "{col}":')
+    log(f'Unique values in column "{col}":')
     for value in sorted([v for v in unique_values if v is not None]):
-        print(f"    {value} = '{value}'")
-    print('\n')
+        log(f"    {value} = '{value}'")
+    log('\n')
 
 
 def ensure_no_unlinked_releases(facilities: DataFrame, releases: DataFrame):
@@ -221,14 +222,14 @@ def _get_id_to_id_merge_map_for_facilities(
 
     merge_maps_all: List[Dict[str, str]] = []
     if duplicates_by_name:
-        print('Found duplicate facilities by name (to merge):')
+        log('Found duplicate facilities by name (to merge):')
         for name, duplicates in duplicates_by_name.items():
             if not _facilities_can_be_merged(duplicates):
                 continue
             merge_map = _get_merge_map_for_duplicates(duplicates)
             if not merge_map:
                 continue
-            print(f'  name: {name}: {merge_map}')
+            log(f'  name: {name}: {merge_map}')
             merge_maps_all.append(merge_map)
 
     # create final merge dictionary for duplicate facilities
@@ -238,7 +239,7 @@ def _get_id_to_id_merge_map_for_facilities(
         for merge_from_id, merge_to_id in merge_map.items():
             final_id_to_id_merge_map[merge_from_id] = merge_to_id
 
-    print(f'Found {len(final_id_to_id_merge_map)} facilities to merge')
+    log(f'Found {len(final_id_to_id_merge_map)} facilities to merge')
 
     if final_id_to_id_merge_map:
         return final_id_to_id_merge_map
@@ -256,8 +257,8 @@ def handle_merge_duplicate_facilities(
     reference to dropped (duplicate) facility.
     """
 
-    print(f'Facilities before merging duplicates: {len(facilities)}')
-    print(f'Releases before merging duplicates: {len(releases)}')
+    log(f'Facilities before merging duplicates: {len(facilities)}')
+    log(f'Releases before merging duplicates: {len(releases)}')
 
     facility_id_to_id_merge_map = _get_id_to_id_merge_map_for_facilities(
         facilities
@@ -270,7 +271,7 @@ def handle_merge_duplicate_facilities(
     facilities = facilities[
         ~facilities['facilityId'].isin(facility_duplicate_ids_to_rm)
     ]
-    print(f'Facilities after dropping duplicates: {len(facilities)}')
+    log(f'Facilities after dropping duplicates: {len(facilities)}')
 
     # update facilityId for releases that are linked to duplicate
     # (dropped) facilities (use unchanged facilityId as default)

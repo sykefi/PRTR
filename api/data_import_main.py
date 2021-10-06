@@ -16,6 +16,7 @@ from data_import.utils import (
     print_unique_values_as_enum, clean_id, ensure_unique_ids
 )
 from data_import.conf import conf
+from data_import.log import log
 import os
 import pandas as pd
 import pyodbc
@@ -129,7 +130,7 @@ facilities['facilityId'] = [
     clean_id(id_str) for id_str in facilities['Facility_INSPIRE_ID']
 ]
 add_projected_x_y_columns(facilities)
-print(f'Read {len(facilities)} facilities from {conf.prtr_db_file_path}')
+log(f'Read {len(facilities)} facilities')
 
 if conf.print_uniq_values_from_columns:
     print_main_activity_codes_as_enum(facilities)
@@ -139,7 +140,7 @@ releases = pd.read_sql_query(sql_releases, conn)
 releases['facilityId'] = [
     clean_id(id_str) for id_str in releases['Facility_INSPIRE_ID']
 ]
-print(f'Read {len(releases)} releases from {conf.prtr_db_file_path}')
+log(f'Read {len(releases)} releases')
 
 
 # merge duplicate facilities by name
