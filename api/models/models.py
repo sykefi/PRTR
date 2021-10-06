@@ -1,6 +1,6 @@
 from pydantic.error_wrappers import ValidationError
 from models.enums import (
-    MainActivityCode, Medium, MethodCode, PollutantCode, TopMainActivity
+    MainActivityCode, Medium, MethodCode, PollutantCode, TopMainActivity, FacilityStatus
 )
 from typing import List, Optional, TypedDict, Generic, TypeVar, Union
 from pydantic import BaseModel
@@ -41,6 +41,7 @@ class ProductionFacilityCsvDict(TypedDict):
     city: str
     countryCode: str
     telephoneNo: str
+    status: str
 
 
 class ProductionFacility(BaseModel):
@@ -56,6 +57,7 @@ class ProductionFacility(BaseModel):
     postalCode: Optional[str] = None
     city: Optional[str] = None
     telephoneNo: Optional[str] = None
+    status: Optional[FacilityStatus] = None
 
 
 def _parseTopMainActivity(
@@ -88,7 +90,8 @@ def facility_csv_dict_2_facility(
                 if csv_facility['city'] else None
             ),
             countryCode=csv_facility['countryCode'],
-            telephoneNo=csv_facility['telephoneNo']
+            telephoneNo=csv_facility['telephoneNo'],
+            status=csv_facility['status']
         )
     except ValidationError as e:
         print(
