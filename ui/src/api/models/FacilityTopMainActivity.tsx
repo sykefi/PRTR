@@ -10,3 +10,11 @@ export enum FacilityTopMainActivity {
   OTHER = '9',
   MISSING = 'MISSING'
 }
+
+const values = Object.values(FacilityTopMainActivity)
+
+export const isTopMainActivity = (
+  value: string
+): value is FacilityTopMainActivity => {
+  return (values as string[]).includes(value)
+}
