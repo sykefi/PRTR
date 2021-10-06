@@ -43,8 +43,8 @@ FI.EEA/125267.FACILITY;2009;NOX;Nitrogen oxides;AIR;173000.0;0.0;M;Measured: ana
 FI.EEA/125267.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;54.4;0.0;M;Measured: analytical method used;FI_EEA_125267
 FI.EEA/125267.FACILITY;2012;SOX;Sulphur oxides;AIR;235000.0;0.0;M;Measured: analytical method used;FI_EEA_125267
 FI.EEA/125267.FACILITY;2012;NOX;Nitrogen oxides;AIR;160000.0;0.0;M;Measured: analytical method used;FI_EEA_125267
-FI.EEA/125268.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;69.0;0.0;C;Calculated: calculation method used;FI_EEA_125268
-FI.EEA/125269.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;53.0;0.0;C;Calculated: calculation method used;FI_EEA_125269
+FI.EEA/125268.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;69.0;0.0;C;Calculated: calculation method used;0000003251
+FI.EEA/125269.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;53.0;0.0;C;Calculated: calculation method used;0000003237
 FI.EEA/125281.FACILITY;2009;NH3;Ammonia;AIR;13200.0;0.0;C;Calculated: calculation method used;FI_EEA_125281
 FI.EEA/125285.FACILITY;2009;NH3;Ammonia;AIR;11000.0;0.0;C;Calculated: calculation method used;FI_EEA_125285
 FI.EEA/125286.FACILITY;2016;NH3;Ammonia;AIR;11400.0;0.0;M;Measured: analytical method used;FI_EEA_125286
@@ -56,7 +56,7 @@ FI.EEA/125286.FACILITY;2012;NH3;Ammonia;AIR;15600.0;0.0;C;Calculated: calculatio
 FI.EEA/125286.FACILITY;2009;NH3;Ammonia;AIR;17200.0;0.0;C;Calculated: calculation method used;FI_EEA_125286
 FI.EEA/125286.FACILITY;2011;NH3;Ammonia;AIR;15700.0;0.0;C;Calculated: calculation method used;FI_EEA_125286
 FI.EEA/125290.FACILITY;2010;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);AIR;11.3;0.0;M;Measured: analytical method used;FI_EEA_125290
-FI.EEA/158543.FACILITY;2010;CH4;Methane;AIR;290000.0;0.0;C;Calculated: calculation method used;FI_EEA_158543
+FI.EEA/158543.FACILITY;2010;CH4;Methane;AIR;290000.0;0.0;C;Calculated: calculation method used;0000004232
 FI.EEA/16974.FACILITY;2010;CUANDCOMPOUNDS;Copper and compounds (as Cu);WATER;114.0;0.0;C;Calculated: calculation method used;FI_EEA_16974
 FI.EEA/16974.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;98.0;0.0;C;Calculated: calculation method used;FI_EEA_16974
 FI.EEA/16974.FACILITY;2010;TOTALNITROGEN;Total nitrogen;WATER;121000.0;0.0;M;Measured: analytical method used;FI_EEA_16974
@@ -67,8 +67,8 @@ FI.EEA/16974.FACILITY;2008;TOTALNITROGEN;Total nitrogen;WATER;111000.0;0.0;M;Mea
 FI.EEA/16974.FACILITY;2008;TOC;Total organic carbon(as total C or COD/3);WATER;67700.0;0.0;C;Calculated: calculation method used;FI_EEA_16974
 FI.EEA/16974.FACILITY;2011;TOTALNITROGEN;Total nitrogen;WATER;191000.0;0.0;M;Measured: analytical method used;FI_EEA_16974
 FI.EEA/16974.FACILITY;2009;TOTALNITROGEN;Total nitrogen;WATER;82800.0;0.0;M;Measured: analytical method used;FI_EEA_16974
-FI.EEA/16983.FACILITY;2007;NOX;Nitrogen oxides;AIR;102000.0;0.0;M;Measured: analytical method used;FI_EEA_16983
-FI.EEA/16983.FACILITY;2007;CO2;Carbon dioxide;AIR;106000000.0;0.0;C;Calculated: calculation method used;FI_EEA_16983
+FI.EEA/16983.FACILITY;2007;NOX;Nitrogen oxides;AIR;102000.0;0.0;M;Measured: analytical method used;0000003642
+FI.EEA/16983.FACILITY;2007;CO2;Carbon dioxide;AIR;106000000.0;0.0;C;Calculated: calculation method used;0000003642
 FI.EEA/16986.FACILITY;2010;NMVOC;Non-methane volatile organic compounds;AIR;108000.0;0.0;C;Calculated: calculation method used;FI_EEA_16986
 FI.EEA/16986.FACILITY;2009;NMVOC;Non-methane volatile organic compounds;AIR;118000.0;0.0;C;Calculated: calculation method used;FI_EEA_16986
 FI.EEA/16986.FACILITY;2007;NMVOC;Non-methane volatile organic compounds;AIR;174000.0;0.0;C;Calculated: calculation method used;FI_EEA_16986
@@ -389,16 +389,16 @@ FI.EEA/17151.FACILITY;2007;NH3;Ammonia;AIR;10200.0;0.0;C;Calculated: calculation
 FI.EEA/17151.FACILITY;2013;NH3;Ammonia;AIR;13300.0;0.0;C;Calculated: calculation method used;FI_EEA_17151
 FI.EEA/17154.FACILITY;2010;NH3;Ammonia;AIR;13200.0;0.0;C;Calculated: calculation method used;FI_EEA_17154
 FI.EEA/17154.FACILITY;2007;NH3;Ammonia;AIR;16800.0;0.0;C;Calculated: calculation method used;FI_EEA_17154
-FI.EEA/17157.FACILITY;2013;PBANDCOMPOUNDS;Lead and compounds (as Pb);WATER;84.5;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;PHENOLS;Phenols (as total C);WATER;21.1;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;84.5;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);WATER;10.6;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;52.8;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;CUANDCOMPOUNDS;Copper and compounds (as Cu);WATER;52.8;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;HGANDCOMPOUNDS;Mercury and compounds (as Hg);WATER;1.06;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;31.7;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;TOTALNITROGEN;Total nitrogen;WATER;605000.0;0.0;M;Measured: analytical method used;FI_EEA_17157
-FI.EEA/17157.FACILITY;2013;TOTALPHOSPHORUS;Total phosphorus;WATER;18300.0;0.0;M;Measured: analytical method used;FI_EEA_17157
+FI.EEA/17157.FACILITY;2013;PBANDCOMPOUNDS;Lead and compounds (as Pb);WATER;84.5;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;PHENOLS;Phenols (as total C);WATER;21.1;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;84.5;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);WATER;10.6;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;52.8;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;CUANDCOMPOUNDS;Copper and compounds (as Cu);WATER;52.8;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;HGANDCOMPOUNDS;Mercury and compounds (as Hg);WATER;1.06;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;31.7;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;TOTALNITROGEN;Total nitrogen;WATER;605000.0;0.0;M;Measured: analytical method used;0000020790
+FI.EEA/17157.FACILITY;2013;TOTALPHOSPHORUS;Total phosphorus;WATER;18300.0;0.0;M;Measured: analytical method used;0000020790
 FI.EEA/17160.FACILITY;2008;NH3;Ammonia;AIR;12600.0;0.0;C;Calculated: calculation method used;FI_EEA_17160
 FI.EEA/17160.FACILITY;2007;NH3;Ammonia;AIR;12600.0;0.0;C;Calculated: calculation method used;FI_EEA_17160
 FI.EEA/17161.FACILITY;2007;NH3;Ammonia;AIR;10200.0;0.0;C;Calculated: calculation method used;FI_EEA_17161
@@ -457,9 +457,9 @@ FI.EEA/17217.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;224
 FI.EEA/17217.FACILITY;2008;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;184.0;0.0;C;Calculated: calculation method used;FI_EEA_17217
 FI.EEA/17217.FACILITY;2007;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;56.0;0.0;C;Calculated: calculation method used;FI_EEA_17217
 FI.EEA/17217.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;93.3;0.0;C;Calculated: calculation method used;FI_EEA_17217
-FI.EEA/17253.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;50.9;0.0;M;Measured: analytical method used;FI_EEA_17253
-FI.EEA/17254.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;70.9;0.0;C;Calculated: calculation method used;FI_EEA_17254
-FI.EEA/17254.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;82.0;0.0;M;Measured: analytical method used;FI_EEA_17254
+FI.EEA/17253.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;50.9;0.0;M;Measured: analytical method used;0000003293
+FI.EEA/17254.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;70.9;0.0;C;Calculated: calculation method used;0000003292
+FI.EEA/17254.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;82.0;0.0;M;Measured: analytical method used;0000003292
 FI.EEA/17268.FACILITY;2008;NOX;Nitrogen oxides;AIR;112000.0;0.0;C;Calculated: calculation method used;FI_EEA_17268
 FI.EEA/175437.FACILITY;2011;NH3;Ammonia;AIR;12700.0;0.0;M;Measured: analytical method used;FI_EEA_175437
 FI.EEA/189933.FACILITY;2012;SOX;Sulphur oxides;AIR;158000.0;0.0;M;Measured: analytical method used;FI_EEA_189933
@@ -515,8 +515,8 @@ FI.EEA/239298.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);AIR;150
 FI.EEA/239298.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;62.0;0.0;M;Measured: analytical method used;FI_EEA_239298
 FI.EEA/239298.FACILITY;2014;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;87.9;0.0;M;Measured: analytical method used;FI_EEA_239298
 FI.EEA/239298.FACILITY;2015;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;71.8;0.0;M;Measured: analytical method used;FI_EEA_239298
-FI.EEA/239308.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;63.0;0.0;C;Calculated: calculation method used;FI_EEA_239308
-FI.EEA/239308.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;55.0;0.0;M;Measured: analytical method used;FI_EEA_239308
+FI.EEA/239308.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;63.0;0.0;C;Calculated: calculation method used;0000003291
+FI.EEA/239308.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;55.0;0.0;M;Measured: analytical method used;0000003291
 FI.EEA/239320.FACILITY;2017;NH3;Ammonia;AIR;24800.0;0.0;M;Measured: analytical method used;FI_EEA_239320
 FI.EEA/239320.FACILITY;2011;NH3;Ammonia;AIR;13700.0;0.0;M;Measured: analytical method used;FI_EEA_239320
 FI.EEA/239320.FACILITY;2012;NH3;Ammonia;AIR;22600.0;0.0;M;Measured: analytical method used;FI_EEA_239320
@@ -538,12 +538,12 @@ FI.EEA/293662.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;111.
 FI.EEA/293662.FACILITY;2013;SOX;Sulphur oxides;AIR;339000.0;0.0;M;Measured: analytical method used;FI_EEA_293662
 FI.EEA/293662.FACILITY;2013;NOX;Nitrogen oxides;AIR;175000.0;0.0;M;Measured: analytical method used;FI_EEA_293662
 FI.EEA/293662.FACILITY;2013;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;1290000000.0;0.0;C;Calculated: calculation method used;FI_EEA_293662
-FI.EEA/293663.FACILITY;2013;SOX;Sulphur oxides;AIR;151000.0;0.0;M;Measured: analytical method used;FI_EEA_293663
+FI.EEA/293663.FACILITY;2013;SOX;Sulphur oxides;AIR;151000.0;0.0;M;Measured: analytical method used;0100243602
 FI.EEA/293669.FACILITY;2014;CO2;Carbon dioxide;AIR;1290000000.0;0.0;M;Measured: analytical method used;FI_EEA_293669
 FI.EEA/293669.FACILITY;2014;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;67.2;0.0;M;Measured: analytical method used;FI_EEA_293669
 FI.EEA/293669.FACILITY;2014;NOX;Nitrogen oxides;AIR;172000.0;0.0;M;Measured: analytical method used;FI_EEA_293669
 FI.EEA/293669.FACILITY;2014;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;1290000000.0;0.0;C;Calculated: calculation method used;FI_EEA_293669
-FI.EEA/293670.FACILITY;2014;SOX;Sulphur oxides;AIR;161000.0;0.0;M;Measured: analytical method used;FI_EEA_293670
+FI.EEA/293670.FACILITY;2014;SOX;Sulphur oxides;AIR;161000.0;0.0;M;Measured: analytical method used;0100243602
 FI.EEA/293745.FACILITY;2015;NH3;Ammonia;AIR;11900.0;0.0;M;Measured: analytical method used;FI_EEA_293745
 FI.EEA/296205.FACILITY;2016;NH3;Ammonia;AIR;16800.0;0.0;M;Measured: analytical method used;FI_EEA_296205
 FI.EEA/296216.FACILITY;2016;NH3;Ammonia;AIR;10200.0;0.0;M;Measured: analytical method used;FI_EEA_296216
@@ -574,12 +574,12 @@ FI.EEA/67515.FACILITY;2009;NH3;Ammonia;AIR;12200.0;0.0;C;Calculated: calculation
 FI.EEA/67527.FACILITY;2008;NH3;Ammonia;AIR;10200.0;0.0;C;Calculated: calculation method used;FI_EEA_67527
 FI.EEA/67527.FACILITY;2016;NH3;Ammonia;AIR;12000.0;0.0;M;Measured: analytical method used;FI_EEA_67527
 FI.EEA/67529.FACILITY;2008;NH3;Ammonia;AIR;12500.0;0.0;C;Calculated: calculation method used;FI_EEA_67529
-FI.EEA/67534.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;51.0;0.0;M;Measured: analytical method used;FI_EEA_67534
-FI.EEA/67534.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;278.0;0.0;M;Measured: analytical method used;FI_EEA_67534
-FI.EEA/67534.FACILITY;2012;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;48.6;0.0;M;Measured: analytical method used;FI_EEA_67534
-FI.EEA/67534.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;273.0;0.0;M;Measured: analytical method used;FI_EEA_67534
-FI.EEA/67534.FACILITY;2014;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;66.0;0.0;M;Measured: analytical method used;FI_EEA_67534
-FI.EEA/67534.FACILITY;2014;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;295.0;0.0;M;Measured: analytical method used;FI_EEA_67534
+FI.EEA/67534.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;51.0;0.0;M;Measured: analytical method used;0100187991
+FI.EEA/67534.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;278.0;0.0;M;Measured: analytical method used;0100187991
+FI.EEA/67534.FACILITY;2012;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;48.6;0.0;M;Measured: analytical method used;0100187991
+FI.EEA/67534.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;273.0;0.0;M;Measured: analytical method used;0100187991
+FI.EEA/67534.FACILITY;2014;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;66.0;0.0;M;Measured: analytical method used;0100187991
+FI.EEA/67534.FACILITY;2014;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;295.0;0.0;M;Measured: analytical method used;0100187991
 FI.EEA/6929.FACILITY;2016;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;24.3;0.0;M;Measured: analytical method used;FI_EEA_6929
 FI.EEA/6929.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;664.0;0.0;M;Measured: analytical method used;FI_EEA_6929
 FI.EEA/6929.FACILITY;2015;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;122.0;0.0;M;Measured: analytical method used;FI_EEA_6929
@@ -646,137 +646,137 @@ FI.EEA/7094.FACILITY;2007;DCM;Dichloromethane;AIR;5050.0;0.0;C;Calculated: calcu
 FI.EEA/7094.FACILITY;2011;DCM;Dichloromethane;AIR;3790.0;0.0;C;Calculated: calculation method used;FI_EEA_7094
 FI.EEA/7097.FACILITY;2010;NH3;Ammonia;AIR;12900.0;0.0;C;Calculated: calculation method used;FI_EEA_7097
 FI.EEA/7097.FACILITY;2007;NH3;Ammonia;AIR;12900.0;0.0;C;Calculated: calculation method used;FI_EEA_7097
-FI.EEA/7249.FACILITY;2015;CO2;Carbon dioxide;AIR;620000000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;SOX;Sulphur oxides;AIR;240000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;NOX;Nitrogen oxides;AIR;656000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;67100000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;13200.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;PM10;Particulate matter;AIR;116000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;12.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;55.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;CO;Carbon monoxide;AIR;550000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1360.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;15500.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;CO2;Carbon dioxide;AIR;746000000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;NOX;Nitrogen oxides;AIR;641000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;TOC;Total organic carbon(as total C or COD/3);WATER;781000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;TOTALNITROGEN;Total nitrogen;WATER;61200.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;14700.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;PM10;Particulate matter;AIR;126000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;25.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;74.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;439.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;73700000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;173.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2013;TOTALPHOSPHORUS;Total phosphorus;WATER;5280.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;TOTALNITROGEN;Total nitrogen;WATER;52800.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;TOTALPHOSPHORUS;Total phosphorus;WATER;6090.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;TOC;Total organic carbon(as total C or COD/3);WATER;665000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;277.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2015;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;10800.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;CO;Carbon monoxide;AIR;2480000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;SOX;Sulphur oxides;AIR;302000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;NOX;Nitrogen oxides;AIR;876000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;CO2;Carbon dioxide;AIR;797000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;TOTALNITROGEN;Total nitrogen;WATER;84300.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;TOTALPHOSPHORUS;Total phosphorus;WATER;6170.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;TOC;Total organic carbon(as total C or COD/3);WATER;1960000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;609.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2008;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;16300.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;CO2;Carbon dioxide;AIR;762000000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;52.8;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;SOX;Sulphur oxides;AIR;358000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;NOX;Nitrogen oxides;AIR;621000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;98900000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;16.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);WATER;16.6;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;HGANDCOMPOUNDS;Mercury and compounds (as Hg);WATER;3.65;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;71.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;TOTALNITROGEN;Total nitrogen;WATER;54000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;TOC;Total organic carbon(as total C or COD/3);WATER;851000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;355.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;CO2;Carbon dioxide;AIR;712000000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;172.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;SOX;Sulphur oxides;AIR;155000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;NOX;Nitrogen oxides;AIR;623000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;71200000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;16300.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;PM10;Particulate matter;AIR;117000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;13.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;59.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;TOTALNITROGEN;Total nitrogen;WATER;73000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;TOTALPHOSPHORUS;Total phosphorus;WATER;6250.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;TOC;Total organic carbon(as total C or COD/3);WATER;711000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;296.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2014;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;16500.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2016;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;1420.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;CO;Carbon monoxide;AIR;855000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;CO2;Carbon dioxide;AIR;712000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;159.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;SOX;Sulphur oxides;AIR;169000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;NOX;Nitrogen oxides;AIR;746000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;PM10;Particulate matter;AIR;151000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;23.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;70.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;164.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;TOTALNITROGEN;Total nitrogen;WATER;76300.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;TOTALPHOSPHORUS;Total phosphorus;WATER;6850.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;TOC;Total organic carbon(as total C or COD/3);WATER;810000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1280.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2012;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;13500.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;CO;Carbon monoxide;AIR;599000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;CO2;Carbon dioxide;AIR;727000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;SOX;Sulphur oxides;AIR;261000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;NOX;Nitrogen oxides;AIR;803000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;PM10;Particulate matter;AIR;146000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;26.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;77.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;179.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;TOTALNITROGEN;Total nitrogen;WATER;81100.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;TOTALPHOSPHORUS;Total phosphorus;WATER;5850.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;TOC;Total organic carbon(as total C or COD/3);WATER;1540000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1400.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2009;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;12300.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;CO;Carbon monoxide;AIR;2930000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;SOX;Sulphur oxides;AIR;335000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;NOX;Nitrogen oxides;AIR;789000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;CO2;Carbon dioxide;AIR;803000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;162.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);WATER;32.4;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;CUANDCOMPOUNDS;Copper and compounds (as Cu);WATER;162.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;HGANDCOMPOUNDS;Mercury and compounds (as Hg);WATER;8.1;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;48.6;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;TOTALNITROGEN;Total nitrogen;WATER;95100.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;PBANDCOMPOUNDS;Lead and compounds (as Pb);WATER;162.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;TOTALPHOSPHORUS;Total phosphorus;WATER;7330.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;632.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2007;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;19400.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;28.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;CO;Carbon monoxide;AIR;1390000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;CO2;Carbon dioxide;AIR;787000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;85.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;15200.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;198.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1550.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;NOX;Nitrogen oxides;AIR;856000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;PM10;Particulate matter;AIR;162000.0;0.0;C;Calculated: calculation method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;SOX;Sulphur oxides;AIR;219000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;TOTALNITROGEN;Total nitrogen;WATER;94500.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;TOTALPHOSPHORUS;Total phosphorus;WATER;6840.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2010;TOC;Total organic carbon(as total C or COD/3);WATER;1470000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;CO;Carbon monoxide;AIR;812000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;CO2;Carbon dioxide;AIR;721000000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;128.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;SOX;Sulphur oxides;AIR;186000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;NOX;Nitrogen oxides;AIR;783000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;23.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;68.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;158.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;TOTALNITROGEN;Total nitrogen;WATER;60400.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;TOTALPHOSPHORUS;Total phosphorus;WATER;5460.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;TOC;Total organic carbon(as total C or COD/3);WATER;785000.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1240.0;0.0;M;Measured: analytical method used;FI_EEA_7249
-FI.EEA/7249.FACILITY;2011;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;13400.0;0.0;M;Measured: analytical method used;FI_EEA_7249
+FI.EEA/7249.FACILITY;2015;CO2;Carbon dioxide;AIR;620000000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;SOX;Sulphur oxides;AIR;240000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;NOX;Nitrogen oxides;AIR;656000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;67100000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2015;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;13200.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;PM10;Particulate matter;AIR;116000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;12.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;55.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;CO;Carbon monoxide;AIR;550000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1360.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;15500.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;CO2;Carbon dioxide;AIR;746000000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;NOX;Nitrogen oxides;AIR;641000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;TOC;Total organic carbon(as total C or COD/3);WATER;781000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;TOTALNITROGEN;Total nitrogen;WATER;61200.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;14700.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;PM10;Particulate matter;AIR;126000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;25.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;74.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;439.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;73700000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2013;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;173.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2013;TOTALPHOSPHORUS;Total phosphorus;WATER;5280.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;TOTALNITROGEN;Total nitrogen;WATER;52800.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;TOTALPHOSPHORUS;Total phosphorus;WATER;6090.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;TOC;Total organic carbon(as total C or COD/3);WATER;665000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;277.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2015;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;10800.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;CO;Carbon monoxide;AIR;2480000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;SOX;Sulphur oxides;AIR;302000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;NOX;Nitrogen oxides;AIR;876000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;CO2;Carbon dioxide;AIR;797000000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2008;TOTALNITROGEN;Total nitrogen;WATER;84300.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;TOTALPHOSPHORUS;Total phosphorus;WATER;6170.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;TOC;Total organic carbon(as total C or COD/3);WATER;1960000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;609.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2008;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;16300.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;CO2;Carbon dioxide;AIR;762000000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);AIR;52.8;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;SOX;Sulphur oxides;AIR;358000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;NOX;Nitrogen oxides;AIR;621000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;98900000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2016;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;16.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);WATER;16.6;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;HGANDCOMPOUNDS;Mercury and compounds (as Hg);WATER;3.65;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;71.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;TOTALNITROGEN;Total nitrogen;WATER;54000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;TOC;Total organic carbon(as total C or COD/3);WATER;851000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;355.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;CO2;Carbon dioxide;AIR;712000000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;172.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;SOX;Sulphur oxides;AIR;155000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;NOX;Nitrogen oxides;AIR;623000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;71200000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2014;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;16300.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;PM10;Particulate matter;AIR;117000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;13.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;59.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;TOTALNITROGEN;Total nitrogen;WATER;73000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;TOTALPHOSPHORUS;Total phosphorus;WATER;6250.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;TOC;Total organic carbon(as total C or COD/3);WATER;711000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;296.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2014;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;16500.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2016;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;1420.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;CO;Carbon monoxide;AIR;855000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;CO2;Carbon dioxide;AIR;712000000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2012;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;159.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;SOX;Sulphur oxides;AIR;169000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;NOX;Nitrogen oxides;AIR;746000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;PM10;Particulate matter;AIR;151000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2012;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;23.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;70.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;164.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;TOTALNITROGEN;Total nitrogen;WATER;76300.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;TOTALPHOSPHORUS;Total phosphorus;WATER;6850.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;TOC;Total organic carbon(as total C or COD/3);WATER;810000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1280.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2012;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;13500.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;CO;Carbon monoxide;AIR;599000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;CO2;Carbon dioxide;AIR;727000000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2009;SOX;Sulphur oxides;AIR;261000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;NOX;Nitrogen oxides;AIR;803000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;PM10;Particulate matter;AIR;146000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2009;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;26.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;77.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;179.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;TOTALNITROGEN;Total nitrogen;WATER;81100.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;TOTALPHOSPHORUS;Total phosphorus;WATER;5850.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;TOC;Total organic carbon(as total C or COD/3);WATER;1540000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1400.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2009;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;12300.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;CO;Carbon monoxide;AIR;2930000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;SOX;Sulphur oxides;AIR;335000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;NOX;Nitrogen oxides;AIR;789000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;CO2;Carbon dioxide;AIR;803000000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2007;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;162.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;CDANDCOMPOUNDS;Cadmium and compounds (as Cd);WATER;32.4;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;CUANDCOMPOUNDS;Copper and compounds (as Cu);WATER;162.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;HGANDCOMPOUNDS;Mercury and compounds (as Hg);WATER;8.1;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;48.6;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;TOTALNITROGEN;Total nitrogen;WATER;95100.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;PBANDCOMPOUNDS;Lead and compounds (as Pb);WATER;162.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;TOTALPHOSPHORUS;Total phosphorus;WATER;7330.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;632.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2007;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;19400.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;28.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;CO;Carbon monoxide;AIR;1390000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;CO2;Carbon dioxide;AIR;787000000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2010;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;85.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;15200.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;198.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1550.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;NOX;Nitrogen oxides;AIR;856000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;PM10;Particulate matter;AIR;162000.0;0.0;C;Calculated: calculation method used;0000018120
+FI.EEA/7249.FACILITY;2010;SOX;Sulphur oxides;AIR;219000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;TOTALNITROGEN;Total nitrogen;WATER;94500.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;TOTALPHOSPHORUS;Total phosphorus;WATER;6840.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2010;TOC;Total organic carbon(as total C or COD/3);WATER;1470000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;CO;Carbon monoxide;AIR;812000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;CO2;Carbon dioxide;AIR;721000000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;CUANDCOMPOUNDS;Copper and compounds (as Cu);AIR;128.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;SOX;Sulphur oxides;AIR;186000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;NOX;Nitrogen oxides;AIR;783000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;ASANDCOMPOUNDS;Arsenic and compounds (as As);WATER;23.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;CRANDCOMPOUNDS;Chromium and compounds (as Cr);WATER;68.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;NIANDCOMPOUNDS;Nickel and compounds (as Ni);WATER;158.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;TOTALNITROGEN;Total nitrogen;WATER;60400.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;TOTALPHOSPHORUS;Total phosphorus;WATER;5460.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;TOC;Total organic carbon(as total C or COD/3);WATER;785000.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;ZNANDCOMPOUNDS;Zinc and compounds (as Zn);WATER;1240.0;0.0;M;Measured: analytical method used;0000018120
+FI.EEA/7249.FACILITY;2011;HALOGENATEDORGANICCOMPOUNDS;Halogenated organic compounds (as AOX);WATER;13400.0;0.0;M;Measured: analytical method used;0000018120
 FI.EEA/7288.FACILITY;2010;CHLORINEANDINORGANICCOMPOUNDS;Chlorine and inorganic compounds (as HCl);AIR;70000.0;0.0;E;Estimated;FI_EEA_7288
 FI.EEA/7288.FACILITY;2010;CO2;Carbon dioxide;AIR;1230000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7288
 FI.EEA/7288.FACILITY;2010;CO2EXCLBIOMASS;Carbon dioxide excluding biomass;AIR;1230000000.0;0.0;C;Calculated: calculation method used;FI_EEA_7288

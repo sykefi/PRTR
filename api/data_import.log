@@ -1,0 +1,53 @@
+PRTR-data import: 21/10/06 13:54:11
+Read 1208 facilities
+Read 11080 releases
+Facilities before merging duplicates: 1208
+Found duplicate facilities by name (to merge):
+  name: Adven Oy, Heinolan voimalaitos, IDs to merge ({from: to}): {'FI_EEA_16983': '0000003642'}
+  name: Blaxar Oy Kokkola, Pintakäsittelylaitos, Lahdenperä, IDs to merge ({from: to}): {'FI_EEA_239248': '0000021015'}
+  name: Boliden Kylylahti, Kylylahti Copper Oy, Luikonlahden rikastamo, IDs to merge ({from: to}): {'FI_EEA_67534': '0100187991'}
+  name: Chemigate Oy, Mietoisten tehdas, IDs to merge ({from: to}): {'FI_EEA_17046': '0000001707'}
+  name: Fingrid Oyj, Kilpilahden kaasuturbiinilaitos, IDs to merge ({from: to}): {'FI_EEA_239303': '0000011520'}
+  name: Fingrid Oyj, Kristiinankaupungin varavoimalaitos, IDs to merge ({from: to}): {'FI_EEA_175436': '0000020946'}
+  name: Fingrid Oyj, Olkiluodon kaasuturbiinilaitos, IDs to merge ({from: to}): {'FI_EEA_189898': '0100184469'}
+  name: Formica IKI Oy, Ikilevytehdas, IDs to merge ({from: to}): {'FI_EEA_17173': '0000002204'}
+  name: Fortum Power and Heat Oy, Kaupunginkallion lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_17251': '0000003259'}
+  name: Fortum Power and Heat Oy, Kivenlahden lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_125266': '0000003238'}
+  name: Fortum Power and Heat Oy, Otaniemen lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_125268': '0000003251'}
+  name: Fortum Power and Heat Oy, Tapiolan lämpökeskus ja varavoimalaitos, IDs to merge ({from: to}): {'FI_EEA_125269': '0000003237'}
+  name: HELSINGIN RAUTA OY KOSKENSAAREN TEHTAAT, Koskensaaren tehtaat, IDs to merge ({from: to}): {'FI_EEA_17015': '0000001830'}
+  name: Hankkija Oy, Seinäjoen tehdas, IDs to merge ({from: to}): {'FI_EEA_209973': '0000022468'}
+  name: Helen Oy, Alppilan lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_239306': '0000003290'}
+  name: Helen Oy, Hanasaaren lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_296211': '0100176221'}
+  name: Helen Oy, Lassilan lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_17253': '0000003293'}
+  name: Helen Oy, Munkkisaaren lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_239308': '0000003291'}
+  name: Helen Oy, Ruskeasuon lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_17254': '0000003292'}
+  name: KANTELEEN VOIMA OY, Piipsannevan tuhkanläjitysalue, Haapavesi, IDs to merge ({from: to}): {'FI_EEA_239297': '0000003693'}
+  name: KUUSAMON KAUPUNKI, Kuusamon Jäteasema, IDs to merge ({from: to}): {'FI_EEA_293661': '0000003893', 'FI_EEA_293668': '0000003893'}
+  name: Keravan Energia Oy, Ylikeravan Lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_189894': '0000003417'}
+  name: Monäs Feed Oy Ab, Monäs, IDs to merge ({from: to}): {'FI_EEA_239257': '0000002130'}
+  name: Napapiirin Residuum Oy, Kuusiselän kaatopaikka, IDs to merge ({from: to}): {'FI_EEA_17037': '0100004650'}
+  name: Omya Oy, Imatran tehdas, IDs to merge ({from: to}): {'FI_EEA_239283': '0000016032'}
+  name: Oy Botniarosk Ab, Jätekeskus ja kaatopaikka, Teuva, IDs to merge ({from: to}): {'FI_EEA_17157': '0000020790'}
+  name: Oy Phoenix Collector Ltd, Haminan laitos, IDs to merge ({from: to}): {'FI_EEA_239284': '0000016221'}
+  name: PURSO OY, SULATTO, IDs to merge ({from: to}): {'FI_EEA_17187': '0000002261'}
+  name: PVO-Lämpövoima Oy, Lålbyn tuhkan sijoitusalue, IDs to merge ({from: to}): {'FI_EEA_239261': '0000052080'}
+  name: Porvoon Energia Oy, Harabackan maakaasuvoimalaitos, IDs to merge ({from: to}): {'FI_EEA_125276': '0000003492'}
+  name: PrimaTimber Oy, Joensuun kyllästämö, IDs to merge ({from: to}): {'FI_EEA_209987': '0000019908'}
+  name: Ravintoraisio Oy, Mylly Nokia, IDs to merge ({from: to}): {'FI_EEA_17190': '0100038732'}
+  name: SCHAEFER KALK Finland Oy, Kuusankosken PCC- tehdas, IDs to merge ({from: to}): {'FI_EEA_17006': '0000001564'}
+  name: Stora Enso Oyj, Pukkikankaan kaatopaikka, IDs to merge ({from: to}): {'FI_EEA_158543': '0000004232'}
+  name: Stora Enso Oyj, Sunilan teollisuuskaatopaikka, IDs to merge ({from: to}): {'FI_EEA_239286': '0100222039'}
+  name: Stora Enso Oyj, Varkauden tehtaat, IDs to merge ({from: to}): {'FI_EEA_7249': '0000018120'}
+  name: Sucros Oy, Säkylän voimalaitos, IDs to merge ({from: to}): {'FI_EEA_293663': '0100243602', 'FI_EEA_293670': '0100243602'}
+  name: Tekpin Oy, Kuhmoisten tehdas, IDs to merge ({from: to}): {'FI_EEA_67511': '0000023407'}
+  name: Turku Energia Oy, Koroisten lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_125291': '0000002886'}
+  name: Turku Energia Oy, TYKS lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_17110': '0000002858'}
+  name: VALIO OY RIIHIMÄKI, Riihimäen meijeri, IDs to merge ({from: to}): {'FI_EEA_8013': '0000002371'}
+  name: Vaasan Sähkö Oy, Pitkämäen lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_158542': '0000002985'}
+  name: Vantaan Energia Oy, Hakunilan lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_125278': '0000003331'}
+  name: Vantaan Energia Oy, Koivukylän lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_189926': '0000003332'}
+  name: Vantaan Energia Oy, Lentokentän lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_239316': '0100193206'}
+  name: YLIVIESKAN TIILI OY, Ylivieskan tiilitehdas, IDs to merge ({from: to}): {'FI_EEA_17229': '0000002620'}
+Found 48 facilities to merge
+Facilities after dropping duplicates: 1160

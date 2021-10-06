@@ -21,11 +21,15 @@ class Conf():
     country_code: str
     proj_crs_epsg: int
     csv_out_dir: str
+    log_file: str
+    print_uniq_values_from_columns: bool
 
 
 conf = Conf(
     prtr_db_file_path=conf_utils.read_env_var('PRTR_DB_FILE_PATH'),
     country_code=conf_utils.read_env_var('COUNTRY_CODE', default='FI'),
     proj_crs_epsg=3067,
-    csv_out_dir='api/assets'
+    csv_out_dir='api/assets',
+    log_file=r'data_import.log',
+    print_uniq_values_from_columns=False
 )
