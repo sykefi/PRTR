@@ -258,7 +258,6 @@ def handle_merge_duplicate_facilities(
     """
 
     log(f'Facilities before merging duplicates: {len(facilities)}')
-    log(f'Releases before merging duplicates: {len(releases)}')
 
     facility_id_to_id_merge_map = _get_id_to_id_merge_map_for_facilities(
         facilities

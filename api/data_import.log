@@ -1,8 +1,7 @@
-PRTR-data import: 21/10/06 13:33:55
+PRTR-data import: 21/10/06 13:50:12
 Read 1208 facilities
 Read 11080 releases
 Facilities before merging duplicates: 1208
-Releases before merging duplicates: 11080
 Found duplicate facilities by name (to merge):
   name: Adven Oy, Heinolan voimalaitos: {'FI_EEA_16983': '0000003642'}
   name: Blaxar Oy Kokkola, Pintakäsittelylaitos, Lahdenperä: {'FI_EEA_239248': '0000021015'}
