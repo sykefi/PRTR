@@ -51,7 +51,7 @@
     "quantity": "Määrä",
     "releaseMediumType": "Tyyppi",
     "method": {
-      "title": "Laskentatapa",
+      "title": "Selvitystapa",
       "measured": "Mitattu",
       "calculated": "Laskennallinen",
       "estimated": "Arvioitu"
