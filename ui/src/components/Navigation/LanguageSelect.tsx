@@ -50,7 +50,7 @@ export const LanguageSelect = () => {
   const { i18n } = useTranslation()
 
   return (
-    <Flex alignItems={'center'}>
+    <Flex alignItems={'center'} minWidth={133}>
       <Menu>
         <MenuButton
           as={Button}
