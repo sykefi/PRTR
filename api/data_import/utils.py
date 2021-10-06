@@ -229,7 +229,7 @@ def _get_id_to_id_merge_map_for_facilities(
             merge_map = _get_merge_map_for_duplicates(duplicates)
             if not merge_map:
                 continue
-            log(f'  name: {name}: {merge_map}')
+            log(f'  name: {name}, IDs to merge ({{from: to}}): {merge_map}')
             merge_maps_all.append(merge_map)
 
     # create final merge dictionary for duplicate facilities
