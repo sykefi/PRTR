@@ -12,9 +12,9 @@ export const theme = extendTheme({
   breakpoints,
   styles: {
     global: {
-      body: {
-        backgroundColor: '#f0f2f5',
-        height: '100%'
+      'html, body': {
+        height: '100%',
+        backgroundColor: '#f0f2f5'
       }
     }
   }
