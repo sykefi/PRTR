@@ -24,20 +24,6 @@ export const FrontPage = () => {
         {i18n.language === 'fi' && <FrontPageContentFi />}
         {i18n.language === 'sv' && <FrontPageContentSv />}
         {i18n.language === 'en' && <FrontPageContentEn />}
-
-        {/* TODO: remove the placeholder content below */}
-        <Text paddingTop={4} fontWeight="normal">
-          {t('textContent.p1')}
-        </Text>
-        <Text paddingTop={5} fontWeight="normal">
-          <Trans i18nKey="textContent.p2">
-            <Link
-              textDecoration="underline"
-              target="_blank"
-              href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
-              rel="noopener noreferrer external"></Link>
-          </Trans>
-        </Text>
       </Box>
     </Flex>
   )
