@@ -41,15 +41,15 @@
     "pollutant": "Yhdiste",
     "quantity": "Määrä",
     "releaseMediumType": "Tyyppi",
+    "selectPollutant": "Valitse yhdiste",
+    "selectYear": "Valitse vuosi",
+    "noReleasesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
+    "releasesFetchErrorInfo": "Päästöjen haku epäonnistui, yritä myöhemmin uudestaan.",
     "method": {
       "title": "Selvitystapa",
       "measured": "Mitattu",
       "calculated": "Laskennallinen",
       "estimated": "Arvioitu"
-    },
-    "selectPollutant": "Valitse yhdiste",
-    "selectYear": "Valitse vuosi",
-    "noReleasesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
-    "releasesFetchErrorInfo": "Päästöjen haku epäonnistui, yritä myöhemmin uudestaan."
+    }
   }
 }

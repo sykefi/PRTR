@@ -1,5 +1,5 @@
-import { Box, Flex, Heading, Link, Text } from '@chakra-ui/layout'
-import { Trans, useTranslation } from 'react-i18next'
+import { Box, Flex, Heading } from '@chakra-ui/layout'
+import { useTranslation } from 'react-i18next'
 import { FrontPageContentFi } from './FrontPageContentFi'
 import { FrontPageContentSv } from './FrontPageContentSv'
 import { FrontPageContentEn } from './FrontPageContentEn'
