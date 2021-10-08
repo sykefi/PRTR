@@ -15,5 +15,5 @@ export interface Facility {
   postalCode: string
   city: string
   telephoneNo?: string
-  status: FacilityStatus
+  status?: FacilityStatus
 }
