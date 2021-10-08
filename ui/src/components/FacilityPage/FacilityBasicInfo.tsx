@@ -74,6 +74,10 @@ export const FacilityBasicInfo = ({
             label={t('translation:common.telephoneNumber')}
             value={facility.telephoneNo || ''}
           />
+          <InfoPropRow
+            label={t('translation:facilities.status.title')}
+            value={t(`translation:facilities.status.${facility.status}`)}
+          />
         </>
       )}
       {loading && (
