@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Box } from '@chakra-ui/layout'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { FrontPage } from './components/FrontPage'
+import { FrontPage } from './components/FrontPage/FrontPage'
 import { FacilitySearch } from './components/FacilitySearch/FacilitySearch'
-import Navigation from './components/Navigation'
+import Navigation from './components/Navigation/Navigation'
 import { NavigationItem } from './models/NavigationItem'
 import { RoutePath } from './models/RoutePath'
 import { FacilityPage } from './components/FacilityPage/FacilityPage'
@@ -33,7 +34,7 @@ const App = () => {
   }, [ready])
 
   return (
-    <div data-cy="app-container">
+    <Box data-cy="app-container" minHeight="100%">
       <QueryClientProvider client={queryClient}>
         <Router>
           <ScrollToTop />
@@ -57,7 +58,7 @@ const App = () => {
           </Switch>
         </Router>
       </QueryClientProvider>
-    </div>
+    </Box>
   )
 }
 

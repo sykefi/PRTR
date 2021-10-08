@@ -13,8 +13,9 @@ import { GiFactory } from 'react-icons/gi'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { NavLink as RrLink } from 'react-router-dom'
 import { TFuncKey, useTranslation } from 'react-i18next'
-import { NavigationItem } from '../models/NavigationItem'
-import { RoutePath } from '../models/RoutePath'
+import { NavigationItem } from '../../models/NavigationItem'
+import { RoutePath } from '../../models/RoutePath'
+import { LanguageSelect } from './LanguageSelect'
 
 export const NavLink = ({
   navigationItem,
@@ -133,6 +134,7 @@ const Navigation = ({
                 <NavLink key={item.path} navigationItem={item} />
               ))}
             </HStack>
+            <LanguageSelect />
           </HStack>
         </Flex>
 
