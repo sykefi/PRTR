@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { Box, Flex, Link } from '@chakra-ui/layout'
+import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
+import { colorSchemeByFacilityStatus } from '../../constants'
 
 export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
   const { t } = useTranslation()
@@ -44,9 +45,13 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
         <Box fontSize="smaller" marginRight={2}>
           {t('common.placename')}: {f.city}
         </Box>
-        <Box fontSize="smaller">
-          {t('facilities.status.title')}: {t(`facilities.status.${f.status}`)}
+        <Box fontSize="smaller" marginRight={2}>
+          {t('facilities.status.title')}:
         </Box>
+        <Badge
+          colorScheme={colorSchemeByFacilityStatus[f.status]}>
+          {t(`facilities.status.${f.status}`)}
+        </Badge>
       </Flex>
     </Box>
   )
