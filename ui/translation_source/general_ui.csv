@@ -33,6 +33,11 @@ facilities.noReleasesFoundForFacility;Tietokannasta ei löytynyt päästötietoj
 facilities.facilityReleaseTable;Päästötiedot;;
 facilities.goBackToFacilitySearch;Palaa laitoshakuun;;
 facilities.goBackToReleaseSearch;Palaa päästöhakuun;;
+facilities.status.title;Status;;
+facilities.status.decommissioned;decommissioned;;
+facilities.status.disused;disused;;
+facilities.status.functional;functional;;
+facilities.status.notRegulated;not regulated;;
 ;;;
 releases.releaseToAir;Päästö ilmaan;;
 releases.releaseToWater;Päästö veteen;;
