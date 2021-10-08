@@ -76,7 +76,7 @@ export const FacilityBasicInfo = ({
           />
           <InfoPropRow
             label={t('translation:facilities.status.title')}
-            value={t(`translation:facilities.status.${facility.status}`)}
+            value={facility.status ? t(`translation:facilities.status.${facility.status}`) : ''}
           />
         </>
       )}

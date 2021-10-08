@@ -49,8 +49,9 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
           {t('facilities.status.title')}:
         </Box>
         <Badge
-          colorScheme={colorSchemeByFacilityStatus[f.status]}>
-          {t(`facilities.status.${f.status}`)}
+          colorScheme={f.status ? colorSchemeByFacilityStatus[f.status] : "blackAlpha"}
+          variant={f.status ? "subtle" : "outline"}>
+          {f.status ? t(`facilities.status.${f.status}`): '-'}
         </Badge>
       </Flex>
     </Box>
