@@ -1,4 +1,4 @@
-PRTR-data import: 21/10/06 13:54:11
+PRTR-data import: 21/10/09 09:41:36
 Read 1208 facilities
 Read 11080 releases
 Facilities before merging duplicates: 1208
@@ -50,4 +50,8 @@ Found duplicate facilities by name (to merge):
   name: Vantaan Energia Oy, Lentokentän lämpökeskus, IDs to merge ({from: to}): {'FI_EEA_239316': '0100193206'}
   name: YLIVIESKAN TIILI OY, Ylivieskan tiilitehdas, IDs to merge ({from: to}): {'FI_EEA_17229': '0000002620'}
 Found 48 facilities to merge
-Facilities after dropping duplicates: 1160
+Facilities after dropping/merging duplicates: 1160
+Read 13675 waste transfers
+Wrote facilities to file: api/assets/facilities.csv
+Wrote releases to file: api/assets/releases.csv
+Wrote waste_transfers to file: api/assets/waste_transfers.csv
