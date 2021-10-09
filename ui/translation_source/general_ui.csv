@@ -5,6 +5,7 @@ common.frontPage;Etusivu;Startsida;Frontpage
 common.facilitySearch;Laitoshaku;;
 common.releasesToAir;Päästöt ilmaan;;
 common.releasesToWater;Päästöt veteen;;
+common.wasteTransfers;Jätesiirrot;;
 common.placename;Paikkakunta;;
 common.streetAddress;Katuosoite;;
 common.telephoneNumber;Puhelinnumero;;
