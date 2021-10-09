@@ -17,6 +17,7 @@
     "showingItems": "Kohteet",
     "showingRows": "Rivit",
     "year": "Vuosi",
+    "selectYear": "Valitse vuosi",
     "previousPage": "Edellinen sivu",
     "nextPage": "Seuraava sivu",
     "basicInfo": "Perustiedot",
@@ -52,5 +53,9 @@
       "calculated": "Laskennallinen",
       "estimated": "Arvioitu"
     }
+  },
+  "wasteTransfers": {
+    "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
+    "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan."
   }
 }
