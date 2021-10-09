@@ -1,6 +1,7 @@
 from pydantic.error_wrappers import ValidationError
 from models.enums import (
-    MainActivityCode, Medium, MethodCode, PollutantCode, TopMainActivity, FacilityStatus
+    MainActivityCode, Medium, MethodCode, PollutantCode, TopMainActivity,
+    FacilityStatus, WasteClassificationCode, WasteTreatmentCode
 )
 from typing import List, Optional, TypedDict, Generic, TypeVar, Union
 from pydantic import BaseModel
@@ -89,14 +90,12 @@ def facility_csv_dict_2_facility(
                 csv_facility['city'].capitalize()
                 if csv_facility['city'] else None
             ),
-            countryCode=csv_facility['countryCode'],
             telephoneNo=csv_facility['telephoneNo'],
             status=csv_facility['status']
         )
     except ValidationError as e:
         print(
-            f'Could not convert to ProductionFacility '
-            f'from data: {csv_facility}'
+            f'Could not create ProductionFacility object from {csv_facility}'
         )
         raise e
 
@@ -141,8 +140,7 @@ def release_csv_dict_2_release(
         )
     except ValidationError as e:
         print(
-            f'Could not convert to PollutantRelease '
-            f'from data: {csv_release}'
+            f'Could not create PollutantRelease object from {csv_release}'
         )
         raise e
 
@@ -167,3 +165,71 @@ def with_facility_info(
         x=facility.x,
         y=facility.y
     )
+
+
+class WasteTransferCsvDict(TypedDict):
+    Facility_INSPIRE_ID: str
+    reportingYear: str
+    nameOfFeature: str
+    mainActivityCode: str
+    mainActivityName: str
+    city: str
+    wasteClassificationCode: str
+    wasteClassificationName: str
+    wasteTreatmentCode: str
+    wasteTreatmentName: str
+    totalWasteQuantityTNE: str
+    methodCode: str
+    methodName: str
+    nameOfReceiver: str
+    ReceivingSite_city: str
+    ReceivingSite_postalCode: str
+    ReceivingSite_countryName: str
+    facilityId: str
+
+
+class WasteTransfer(BaseModel):
+    facilityId: str
+    reportingYear: int
+    nameOfFeature: str
+    topMainActivity: TopMainActivity
+    mainActivityCode: MainActivityCode
+    city: Optional[str] = None
+    wasteClassificationCode: WasteClassificationCode
+    wasteTreatmentCode: WasteTreatmentCode
+    totalWasteQuantityTNE: float
+    methodCode: MethodCode
+    nameOfReceiver: Optional[str] = None
+    receivingSiteCity: Optional[str] = None
+    receivingSiteCountryName: Optional[str] = None
+
+
+def waste_transfer_csv_dict_2_waste_transfer(
+    csv_wt: WasteTransferCsvDict
+) -> WasteTransfer:
+    try:
+        return WasteTransfer(
+            facilityId=csv_wt['facilityId'],
+            reportingYear=csv_wt['reportingYear'],
+            nameOfFeature=csv_wt['nameOfFeature'],
+            topMainActivity=_parseTopMainActivity(
+                csv_wt['mainActivityCode']
+            ),
+            mainActivityCode=csv_wt['mainActivityCode'],
+            city=(
+                csv_wt['city'].capitalize()
+                if csv_wt['city'] else None
+            ),
+            wasteClassificationCode=csv_wt['wasteClassificationCode'],
+            wasteTreatmentCode=csv_wt['wasteTreatmentCode'],
+            totalWasteQuantityTNE=csv_wt['totalWasteQuantityTNE'],
+            methodCode=csv_wt['methodCode'],
+            nameOfReceiver=csv_wt['nameOfReceiver'],
+            receivingSiteCity=csv_wt['ReceivingSite_city'],
+            receivingSiteCountryName=csv_wt['ReceivingSite_countryName']
+        )
+    except ValidationError as e:
+        print(
+            f'Could not create WasteTransfer object from {csv_wt}'
+        )
+        raise e

@@ -187,6 +187,11 @@ ensure_no_unlinked_releases_or_transfers(
     error_label='waste transfers'
 )
 
+if conf.print_uniq_values_from_columns:
+    print_unique_values_as_enum(waste_transfers, 'wasteClassificationCode')
+    print_unique_values_as_enum(waste_transfers, 'wasteTreatmentCode')
+    print_unique_values_as_enum(waste_transfers, 'methodCode')
+
 
 if not os.path.exists(conf.csv_out_dir):
     os.makedirs(conf.csv_out_dir)

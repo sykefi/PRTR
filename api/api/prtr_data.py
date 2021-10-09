@@ -2,8 +2,8 @@ from models.enums import (
     MainActivityCode, Medium, PollutantCode, TopMainActivity
 )
 from models.models import (
-    PRTRListResponse, PollutantRelease,
-    ProductionFacility, PrtrMetadata, with_facility_info
+    PRTRListResponse, PollutantRelease, ProductionFacility,
+    PrtrMetadata, WasteTransfer, with_facility_info
 )
 from typing import List, Union
 import api.prtr_data_source as prtr_data_source
@@ -31,6 +31,11 @@ _releases: List[PollutantRelease] = [
     for r in _bare_releases
     if r.facilityId in _facility_by_id
 ]
+
+_waste_transfers: List[WasteTransfer] = sorted(
+    prtr_data_source.load_waste_transfers(conf.waste_transfers_csv_fp),
+    key=lambda wt: (-wt.reportingYear, -wt.totalWasteQuantityTNE)
+)
 
 _metadata = PrtrMetadata(
     available_reporting_years=sorted(
@@ -125,6 +130,27 @@ def get_releases(
             (not reporting_year or r.reportingYear == reporting_year) and
             (not medium or r.medium == medium) and
             (not pollutant_code or r.pollutantCode == pollutant_code)
+        )
+    ]
+    return PRTRListResponse(
+        data=match[skip:skip + limit],
+        count=len(match),
+        skipped=skip,
+        limit=limit
+    )
+
+
+def get_waste_transfers(
+    facility_id: Union[str, None],
+    skip: int,
+    limit: int,
+    reporting_year: Union[int, None]
+) -> PRTRListResponse[WasteTransfer]:
+    match = [
+        wt for wt in _waste_transfers
+        if (
+            (not facility_id or wt.facilityId == facility_id) and
+            (not reporting_year or wt.reportingYear == reporting_year)
         )
     ]
     return PRTRListResponse(

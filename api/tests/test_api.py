@@ -17,6 +17,11 @@ def _has_release_fields(data: dict) -> bool:
     return pollutantCode is not None
 
 
+def _has_waste_transfer_fields(data: dict) -> bool:
+    waste_class = data.get('wasteClassificationCode', None)
+    return waste_class is not None
+
+
 def test_root_response():
     response = client.get('/')
     assert response.status_code == 200
@@ -132,3 +137,36 @@ def test_get_releases_by_pollutant_code():
     assert len(data) > 1
     for release in data:
         assert release['pollutantCode'] == pollutant_code
+
+
+def test_get_waste_transfers():
+    response = client.get(f'{root_path}/waste-transfers')
+    assert response.status_code == 200
+    data = response.json()['data']
+    assert len(data) > 1
+    for wt in data:
+        assert _has_waste_transfer_fields(wt)
+
+
+def test_get_waste_transfers_by_facility_id():
+    facility_id = 'FI_EEA_11035'
+    response = client.get(
+        f'{root_path}/waste-transfers?facility_id={facility_id}'
+    )
+    data = response.json()['data']
+    assert len(data) > 1
+    for wt in data:
+        assert _has_waste_transfer_fields(wt)
+        assert wt['facilityId'] == facility_id
+
+
+def test_get_waste_transfers_by_year():
+    year = 2010
+    response = client.get(
+        f'{root_path}/waste-transfers?reporting_year={year}'
+    )
+    data = response.json()['data']
+    assert len(data) > 1
+    for wt in data:
+        assert _has_waste_transfer_fields(wt)
+        assert wt['reportingYear'] == year

@@ -8,8 +8,6 @@ sql_waste_transfers = (
     [2_ProductionFacility].nameOfFeature,
     [2_ProductionFacility].mainActivityCode,
     [2_ProductionFacility].mainActivityName,
-    [2_ProductionFacility].pointGeometryLon,
-    [2_ProductionFacility].pointGeometryLat,
     [2_ProductionFacility].city,
     [2h_OffSiteWasteTransfer].wasteClassificationCode,
     [2h_OffSiteWasteTransfer].wasteClassificationName,
