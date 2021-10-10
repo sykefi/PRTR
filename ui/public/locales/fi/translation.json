@@ -35,7 +35,8 @@
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
     "facilityReleaseTable": "Päästötiedot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
-    "goBackToReleaseSearch": "Palaa päästöhakuun"
+    "goBackToReleaseSearch": "Palaa päästöhakuun",
+    "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun"
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",
@@ -56,6 +57,20 @@
   },
   "wasteTransfers": {
     "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
-    "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan."
+    "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
+    "quantity": "Määrä",
+    "receiver": "Vastaanottaja",
+    "classification": {
+      "title": "Jätteen tyyppi",
+      "HW": "E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet",
+      "NONHW": "Muut kuin vaaralliset jätteet",
+      "HWshort": "Vaarallinen",
+      "NONHWshort": "Muu"
+    },
+    "treatment": {
+      "title": "Käsittely",
+      "D": "Loppukäsittelyyn",
+      "R": "Hyödynnettäväksi"
+    }
   }
 }

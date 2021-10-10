@@ -1,5 +1,7 @@
 import { Medium } from './api/models/Medium'
 import { MethodCode } from './api/models/MethodCode'
+import { WasteClassificationCode } from './api/models/WasteClassificationCode'
+import { WasteTreatmentCode } from './api/models/WasteTreatmentCode'
 
 export const colorSchemeByMethodCode: Record<MethodCode, string> = {
   [MethodCode.M]: 'green',
@@ -19,6 +21,19 @@ export const translationKeyByMethodCode: Record<
 export const colorSchemeByMedium: Record<Medium, string> = {
   [Medium.AIR]: 'orange',
   [Medium.WATER]: 'cyan'
+}
+
+export const colorSchemeByWasteClassification: Record<
+  WasteClassificationCode,
+  string
+> = {
+  [WasteClassificationCode.HW]: 'purple',
+  [WasteClassificationCode.NONHW]: 'orange'
+}
+
+export const colorSchemeByWasteTreatment: Record<WasteTreatmentCode, string> = {
+  [WasteTreatmentCode.D]: 'blue',
+  [WasteTreatmentCode.R]: 'green'
 }
 
 export const translationKeyByMedium: Record<
