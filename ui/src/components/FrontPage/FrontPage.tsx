@@ -33,7 +33,7 @@ export const FrontPage = () => {
         maxWidth={900}
         background="white"
         borderRadius="md"
-        boxShadow="md">
+        boxShadow="sm">
         <Box marginBottom={4} fontWeight="bold">
           {t('common.welcomeMessage')}
         </Box>
