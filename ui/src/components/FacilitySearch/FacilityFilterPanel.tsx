@@ -92,7 +92,7 @@ export const FacilityFilterPanel = ({
   )
   const apiMetadata = useQuery(
     ['prtrApiMetadata'],
-    () => api.getApiMetadata(),
+    api.getApiMetadata,
     env.rqCacheSettings
   )
   const placenameOptions = useMemo(

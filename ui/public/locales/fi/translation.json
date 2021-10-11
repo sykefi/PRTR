@@ -5,6 +5,7 @@
     "facilitySearch": "Laitoshaku",
     "releasesToAir": "Päästöt ilmaan",
     "releasesToWater": "Päästöt veteen",
+    "wasteTransfers": "Jätesiirrot",
     "placename": "Paikkakunta",
     "streetAddress": "Katuosoite",
     "telephoneNumber": "Puhelinnumero",
@@ -16,6 +17,7 @@
     "showingItems": "Kohteet",
     "showingRows": "Rivit",
     "year": "Vuosi",
+    "selectYear": "Valitse vuosi",
     "previousPage": "Edellinen sivu",
     "nextPage": "Seuraava sivu",
     "basicInfo": "Perustiedot",
@@ -38,6 +40,7 @@
     "facilityReleaseTable": "Päästötiedot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
     "goBackToReleaseSearch": "Palaa päästöhakuun",
+    "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
     "status": {
       "title": "Status",
       "decommissioned": "decommissioned",
@@ -61,6 +64,24 @@
       "measured": "Mitattu",
       "calculated": "Laskennallinen",
       "estimated": "Arvioitu"
+    }
+  },
+  "wasteTransfers": {
+    "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
+    "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
+    "quantity": "Määrä",
+    "receiver": "Vastaanottaja",
+    "classification": {
+      "title": "Jätteen tyyppi",
+      "HW": "E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet",
+      "NONHW": "Muut kuin vaaralliset jätteet",
+      "HWshort": "Vaarallinen",
+      "NONHWshort": "Muu"
+    },
+    "treatment": {
+      "title": "Käsittely",
+      "D": "Loppukäsittelyyn",
+      "R": "Hyödynnettäväksi"
     }
   }
 }
