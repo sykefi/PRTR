@@ -19,12 +19,13 @@ const legendItems: FacilityTopMainActivity[] = [
   FacilityTopMainActivity.MISSING
 ]
 
-const ClassRow = ({
+const LegendClassRow = ({
   topMainActivity
 }: {
   topMainActivity: FacilityTopMainActivity
 }) => {
   const { t } = useTranslation('mainActivityCodeDesc')
+
   return (
     <Flex marginY={4} align="center">
       <Box
@@ -35,13 +36,14 @@ const ClassRow = ({
         border="1px solid"
         borderColor={strokeColorByTopMainActivity[topMainActivity]}
         backgroundColor={fillColorByTopMainActivity[topMainActivity]}></Box>
-      <Box marginX={2}>{t(topMainActivity)}</Box>
+      <Box marginLeft={2}>{t(topMainActivity)}</Box>
     </Flex>
   )
 }
 
 export const FacilityMapLegend = () => {
   const { t } = useTranslation()
+
   return (
     <Box
       data-cy="facility-map-legend"
@@ -50,9 +52,6 @@ export const FacilityMapLegend = () => {
       maxWidth="100%"
       paddingX={5}
       paddingY={2}
-      height="max-content"
-      maxHeight={600}
-      overflowY="auto"
       background="white"
       borderRadius="md"
       boxShadow="md">
@@ -60,7 +59,7 @@ export const FacilityMapLegend = () => {
         {t('facilities.mapLegendTitle')}
       </Heading>
       {legendItems.map(a => (
-        <ClassRow key={a} topMainActivity={a} />
+        <LegendClassRow key={a} topMainActivity={a} />
       ))}
     </Box>
   )
