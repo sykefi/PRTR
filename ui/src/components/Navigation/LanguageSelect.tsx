@@ -27,11 +27,16 @@ const LanguageOptionButton = ({
   lng,
   label
 }: {
-  lng: string
+  lng: 'fi' | 'sv' | 'en'
   label: string
 }) => {
   const { i18n } = useTranslation()
   const isActiveLang = (lng: string): boolean => i18n.language === lng
+
+  const handleChangeLanguage = () => {
+    i18n.changeLanguage(lng)
+    localStorage.setItem('i18nextLng', lng)
+  }
 
   return (
     <MenuItem
@@ -40,7 +45,7 @@ const LanguageOptionButton = ({
       fontWeight={isActiveLang(lng) ? 'semibold' : 'initial'}
       color={isActiveLang(lng) ? '#1876f2' : 'initial'}
       disabled={isActiveLang(lng)}
-      onClick={() => i18n.changeLanguage(lng)}>
+      onClick={handleChangeLanguage}>
       {label}
     </MenuItem>
   )
