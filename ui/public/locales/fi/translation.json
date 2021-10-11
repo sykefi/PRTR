@@ -43,10 +43,10 @@
     "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
     "status": {
       "title": "Status",
-      "decommissioned": "decommissioned",
-      "disused": "disused",
-      "functional": "functional",
-      "notRegulated": "not regulated"
+      "decommissioned": "Käytöstä poistettu",
+      "disused": "Ei toiminnassa",
+      "functional": "Toiminnassa",
+      "notRegulated": "Ei säännelty"
     }
   },
   "releases": {
