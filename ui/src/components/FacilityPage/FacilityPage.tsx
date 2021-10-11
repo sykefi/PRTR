@@ -36,11 +36,15 @@ export const FacilityPage = () => {
   const previousPathIsReleaseList =
     !!location.state && location.state.from?.includes('releases')
 
+  const previousPathIsWasteTransferList =
+    !!location.state && location.state.from?.includes('wasteTransfers')
+
   const handleExit = () => {
     if (
-      // go back to search page if we came from there
+      // go back to one of the search pages if we came from there
       previousPathIsFacilityList ||
-      previousPathIsReleaseList
+      previousPathIsReleaseList ||
+      previousPathIsWasteTransferList
     ) {
       history.goBack()
     } else {
@@ -52,7 +56,9 @@ export const FacilityPage = () => {
   const exitLabel = t(
     previousPathIsReleaseList
       ? 'translation:facilities.goBackToReleaseSearch'
-      : 'translation:facilities.goBackToFacilitySearch'
+      : previousPathIsFacilityList
+      ? 'translation:facilities.goBackToFacilitySearch'
+      : 'translation:facilities.goBackToWasteTransferSearch'
   )
 
   return (

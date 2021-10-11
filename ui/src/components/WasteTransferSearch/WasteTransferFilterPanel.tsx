@@ -8,39 +8,11 @@ import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import * as api from '../../api'
 import * as env from '../../env'
-import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
-import { Medium } from '../../api/models/Medium'
 import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
-import { getLongPollutantLabel, getPollutantLabel } from '../../utils'
 import { asOption } from '../../models/OptionType'
-import { TranslationKeys } from '../../react-i18next'
-
-const getPollutantNameOptions = (
-  t: (translationKey: TranslationKeys) => string | undefined
-): OptionType<PollutantCode>[] => {
-  return Object.values(PollutantCode)
-    .reduce((prev, curr) => {
-      const label = getLongPollutantLabel(t, curr)
-      if (!!label) {
-        return prev.concat({
-          value: curr,
-          label
-        })
-      } else return prev
-    }, [] as OptionType<PollutantCode>[])
-    .sort((a, b) => {
-      if (a.label < b.label) {
-        return -1
-      }
-      if (a.label > b.label) {
-        return 1
-      }
-      return 0
-    })
-}
 
 const getYearOptions = (
   metadata: PRTRApiMetadata | undefined
@@ -56,26 +28,14 @@ const Form = styled.form`
   max-width: 100%;
 `
 
-export const ReleaseFilterPanel = (props: {
-  medium: Medium
-  urlPollutantCode: PollutantCode | undefined
+export const WasteTransferFilterPanel = (props: {
   urlYear: number | undefined
 }) => {
-  const { t } = useTranslation([
-    'translation',
-    'pollutantName',
-    'pollutantCasNumber',
-    'pollutantAbbreviation'
-  ])
+  const { t } = useTranslation(['translation'])
   const history = useHistory()
   const location = useLocation()
 
-  const [pollutantCode, setPollutantCode] = useState<PollutantCode | undefined>(
-    undefined
-  )
   const [year, setYear] = useState<number | undefined>(undefined)
-
-  const pollutantOptions = useMemo(() => getPollutantNameOptions(t), [t])
 
   const apiMetadata = useQuery(
     ['prtrApiMetadata'],
@@ -89,16 +49,12 @@ export const ReleaseFilterPanel = (props: {
 
   useEffect(() => {
     // initialize select inputs from url search params on page load
-    setPollutantCode(props.urlPollutantCode)
     setYear(props.urlYear)
-  }, [props.medium, props.urlPollutantCode, props.urlYear])
+  }, [props.urlYear])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
-    if (pollutantCode) {
-      newUrlSearchParams.set(URLSearchParamName.PollutantCode, pollutantCode)
-    }
     if (year) {
       newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
     }
@@ -109,13 +65,8 @@ export const ReleaseFilterPanel = (props: {
     })
   }
 
-  const searchInputsChanged =
-    (!props.urlYear && !props.urlPollutantCode) ||
-    props.urlYear !== year ||
-    props.urlPollutantCode !== pollutantCode
-
   return (
-    <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">
+    <Form onSubmit={handleSubmit} data-cy="waste-transfers-filter-panel">
       <FormControl
         display="flex"
         flexWrap="wrap"
@@ -126,38 +77,22 @@ export const ReleaseFilterPanel = (props: {
         marginBottom={2.0}
         width="100%">
         <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
-          <Box width={350} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              name="releasesPollutantCode"
-              value={
-                pollutantCode
-                  ? asOption(pollutantCode, getPollutantLabel(t, pollutantCode))
-                  : null
-              }
-              options={pollutantOptions}
-              placeholder={t('translation:releases.selectPollutant')}
-              onChange={e => setPollutantCode(e?.value)}
-            />
-          </Box>
           <Box width={250} minWidth={200}>
             <ChakraSelect
               isClearable
               closeMenuOnSelect
               isLoading={apiMetadata.isLoading || apiMetadata.isError}
-              name="releasesYear"
+              name="wasteTransfersYear"
               value={asOption(year, year)}
               options={yearOptions}
-              placeholder={t('translation:releases.selectYear')}
+              placeholder={t('translation:common.selectYear')}
               onChange={e => setYear(e?.value)}
             />
           </Box>
         </Flex>
         <Button
-          data-cy="filter-releases-btn"
+          data-cy="filter-waste-transfers-btn"
           type="submit"
-          disabled={!searchInputsChanged}
           width="max-content"
           marginBottom={0.5}
           colorScheme="green">
