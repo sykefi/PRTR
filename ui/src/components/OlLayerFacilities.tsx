@@ -2,31 +2,68 @@ import { useCallback, useEffect, useRef } from 'react'
 import { Feature, Map } from 'ol'
 import Select, { SelectEvent } from 'ol/interaction/Select'
 import Geometry from 'ol/geom/Geometry'
+import GeoJSON from 'ol/format/GeoJSON'
+import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import { easeOut } from 'ol/easing'
+import { StyleFunction } from 'ol/style/Style'
+import { FeatureLike } from 'ol/Feature'
+import { Style, Fill, Circle, Stroke } from 'ol/style'
 import { Facility } from '../api/models/Facility'
 import { facilitiesAsGeoJSONFC } from '../utils'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
+import {
+  fillColorByTopMainActivity,
+  strokeColorByTopMainActivity
+} from '../constants'
+import { FacilityTopMainActivity } from '../api/models/FacilityTopMainActivity'
 
 let zoomDelay: null | ReturnType<typeof setTimeout> = null
 
-interface Props {
-  olMap: Map
-  facilities: Facility[]
-  facilitySource: VectorSource<Geometry>
-  popupData: FacilityMapFeature | null
-  setPopupData: (f: FacilityMapFeature | null) => void
-  zoomToInitialExtent: boolean
-}
+const styleFunction: StyleFunction = (feature: FeatureLike) =>
+  new Style({
+    image: new Circle({
+      radius: 5,
+      fill: new Fill({
+        color:
+          fillColorByTopMainActivity[
+            feature.get('topMainActivity') as FacilityTopMainActivity
+          ] || 'rgba(255,255,255,0)'
+      }),
+      stroke: new Stroke({
+        color:
+          strokeColorByTopMainActivity[
+            feature.get('topMainActivity') as FacilityTopMainActivity
+          ] || 'rgba(255,255,255,0)',
+        width: 1.5
+      })
+    })
+  })
+
+const facilitySource = new VectorSource({
+  format: new GeoJSON()
+})
+
+export const facilityLayer = new VectorLayer({
+  zIndex: 2,
+  source: facilitySource,
+  style: styleFunction
+})
+facilityLayer.set('name', 'facilities')
 
 export const OlLayerFacilities = ({
   olMap,
   facilities,
-  facilitySource,
   popupData,
   setPopupData,
   zoomToInitialExtent
-}: Props) => {
+}: {
+  olMap: Map
+  facilities: Facility[]
+  popupData: FacilityMapFeature | null
+  setPopupData: (f: FacilityMapFeature | null) => void
+  zoomToInitialExtent: boolean
+}) => {
   const selectInteraction = useRef(
     new Select({
       layers: l => l.get('name') === 'facilities'
@@ -81,13 +118,7 @@ export const OlLayerFacilities = ({
       if (!!zoomDelay) clearTimeout(zoomDelay)
       facilitySource.clear()
     }
-  }, [
-    handleCreatePopupOnSelect,
-    olMap,
-    facilities,
-    facilitySource,
-    zoomToInitialExtent
-  ])
+  }, [handleCreatePopupOnSelect, olMap, facilities, zoomToInitialExtent])
 
   return null
 }

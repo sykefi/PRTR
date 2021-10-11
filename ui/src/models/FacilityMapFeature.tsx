@@ -3,5 +3,5 @@ import { Facility } from '../api/models/Facility'
 
 export type FacilityMapFeature = Pick<
   Facility,
-  'facilityId' | 'nameOfFeature'
+  'facilityId' | 'nameOfFeature' | 'topMainActivity'
 > & { geometry: Point }
