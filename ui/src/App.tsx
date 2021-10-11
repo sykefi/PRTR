@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Box } from '@chakra-ui/layout'
+import { Flex, Box } from '@chakra-ui/layout'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { FrontPage } from './components/FrontPage/FrontPage'
@@ -14,6 +14,7 @@ import { handleCheckForMissingTranslations } from './utils'
 import { ReleaseSearch } from './components/ReleaseSearch/ReleaseSearch'
 import { Medium } from './api/models/Medium'
 import { ScrollToTop } from './components/ScrollToTop'
+import { Footer } from './components/Footer'
 
 const queryClient = new QueryClient()
 
@@ -34,31 +35,34 @@ const App = () => {
   }, [ready])
 
   return (
-    <Box data-cy="app-container" minHeight="100%">
+    <Router>
       <QueryClientProvider client={queryClient}>
-        <Router>
-          <ScrollToTop />
+        <Flex data-cy="app-container" direction="column" minHeight="100%">
           <Navigation navigationItems={navigationItems} />
-          <Switch>
-            <Route path={`${RoutePath.Facilities}/:facilityId`}>
-              <FacilityPage />
-            </Route>
-            <Route path={RoutePath.Facilities}>
-              <FacilitySearch />
-            </Route>
-            <Route path={RoutePath.ReleasesToAir}>
-              <ReleaseSearch medium={Medium.AIR} />
-            </Route>
-            <Route path={RoutePath.ReleasesToWater}>
-              <ReleaseSearch medium={Medium.WATER} />
-            </Route>
-            <Route exact path={RoutePath.FrontPage}>
-              <FrontPage />
-            </Route>
-          </Switch>
-        </Router>
+          <Box flex="1">
+            <ScrollToTop />
+            <Switch>
+              <Route path={`${RoutePath.Facilities}/:facilityId`}>
+                <FacilityPage />
+              </Route>
+              <Route path={RoutePath.Facilities}>
+                <FacilitySearch />
+              </Route>
+              <Route path={RoutePath.ReleasesToAir}>
+                <ReleaseSearch medium={Medium.AIR} />
+              </Route>
+              <Route path={RoutePath.ReleasesToWater}>
+                <ReleaseSearch medium={Medium.WATER} />
+              </Route>
+              <Route exact path={RoutePath.FrontPage}>
+                <FrontPage />
+              </Route>
+            </Switch>
+          </Box>
+          <Footer />
+        </Flex>
       </QueryClientProvider>
-    </Box>
+    </Router>
   )
 }
 

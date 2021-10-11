@@ -21,6 +21,10 @@
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja..."
   },
+  "footer": {
+    "feedbackToAuthorities": "Palautetta päästötiedoista ja muista sisältöä koskevista asioista voi lähettää aluehallintovirastoille.",
+    "feedbackToPrtrTeam": "Sivuston teknisestä toiminnasta voi lähettää palautetta tai kehitysehdotuksia osoitteeseen PRTR@syke.fi"
+  },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
     "searchWithName": "Hae laitoksen nimellä...",

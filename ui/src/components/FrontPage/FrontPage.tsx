@@ -17,7 +17,7 @@ export const FrontPage = () => {
         maxWidth={900}
         background="white"
         borderRadius="md"
-        boxShadow="md">
+        boxShadow="sm">
         <Heading as="h3" fontSize="larger">
           {t('common.welcomeMessage')}
         </Heading>
