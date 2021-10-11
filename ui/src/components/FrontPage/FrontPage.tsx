@@ -17,6 +17,7 @@ const FrontPageStyleWrapper = styled.div`
   a {
     text-decoration: underline;
   }
+  margin-bottom: -10px;
 `
 
 export const FrontPage = () => {
