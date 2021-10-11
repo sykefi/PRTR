@@ -36,7 +36,14 @@
     "facilityReleaseTable": "Päästötiedot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
     "goBackToReleaseSearch": "Palaa päästöhakuun",
-    "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun"
+    "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
+    "status": {
+      "title": "Status",
+      "decommissioned": "decommissioned",
+      "disused": "disused",
+      "functional": "functional",
+      "notRegulated": "not regulated"
+    }
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",

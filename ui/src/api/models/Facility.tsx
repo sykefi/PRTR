@@ -1,5 +1,6 @@
 import { FacilityMainActivityCode } from './FacilityMainActivityCode'
 import { FacilityTopMainActivity } from './FacilityTopMainActivity'
+import { FacilityStatus } from './FacilityStatus'
 
 export interface Facility {
   facilityId: string
@@ -14,4 +15,5 @@ export interface Facility {
   postalCode: string
   city: string
   telephoneNo?: string
+  status?: FacilityStatus
 }
