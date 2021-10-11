@@ -1,3 +1,4 @@
+import { FacilityStatus } from './api/models/FacilityStatus'
 import { Medium } from './api/models/Medium'
 import { MethodCode } from './api/models/MethodCode'
 
@@ -27,4 +28,11 @@ export const translationKeyByMedium: Record<
 > = {
   [Medium.AIR]: 'releaseToAir',
   [Medium.WATER]: 'releaseToWater'
+}
+
+export const colorSchemeByFacilityStatus: Record<FacilityStatus, string> = {
+  [FacilityStatus.DECOMMISSIONED]: 'purple',
+  [FacilityStatus.DISUSED]: 'red',
+  [FacilityStatus.FUNCTIONAL]: 'green',
+  [FacilityStatus.NOT_REGULATED]: 'gray'
 }
