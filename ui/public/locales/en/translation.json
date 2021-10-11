@@ -1,5 +1,81 @@
 {
   "common": {
-    "frontPage": "Frontpage"
+    "frontPage": "Frontpage",
+    "facilitySearch": "Facility search",
+    "releasesToAir": "Releases to air",
+    "releasesToWater": "Releases to water",
+    "wasteTransfers": "Waste transfers",
+    "placename": "Location",
+    "streetAddress": "Street address",
+    "telephoneNumber": "Phone number",
+    "facility": "Facility",
+    "goBack": "Back",
+    "toGoBack": "Return",
+    "search": "Search",
+    "fetch": "Get",
+    "showingItems": "Items",
+    "showingRows": "Rows",
+    "year": "Year",
+    "selectYear": "Select year",
+    "previousPage": "Previous page",
+    "nextPage": "Next page",
+    "basicInfo": "Basic information",
+    "loadingInformation": "Loading information..."
+  },
+  "facilities": {
+    "facilityTypeCode": "Sector",
+    "searchWithName": "Search with facility name...",
+    "searchWithPlacename": "Search by location",
+    "loadFacilitiesErroredText": "Error in fetching information. Please try again later.",
+    "noFacilitiesFoundFromSearch": "No releases found with the selected attributes.",
+    "couldNotFindFacilityWithId": "Error in fetching information. Please try again later.",
+    "couldNotFindFacilityReleases": "Error in fetching information. Please try again later.",
+    "noReleasesFoundForFacility": "No releases found for the selected facility.",
+    "facilityReleaseTable": "Releases",
+    "goBackToFacilitySearch": "Return to facility search",
+    "goBackToReleaseSearch": "Return to releases",
+    "goBackToWasteTransferSearch": "Return to waste transfers",
+    "status": {
+      "title": "Status",
+      "decommissioned": "Decommissioned",
+      "disused": "Disused",
+      "functional": "Functional",
+      "notRegulated": "Not regulated"
+    }
+  },
+  "releases": {
+    "releaseToAir": "Releases to air",
+    "releaseToWater": "Releases to water",
+    "pollutant": "Pollutant",
+    "quantity": "Quantity",
+    "releaseMediumType": "Medium",
+    "selectPollutant": "Select pollutant",
+    "selectYear": "Select year",
+    "noReleasesFoundFromSearch": "No releases found with the selected attributes.",
+    "releasesFetchErrorInfo": "Error in fetching information. Please try again later.",
+    "method": {
+      "title": "Method",
+      "measured": "Measured",
+      "calculated": "Calculated",
+      "estimated": "Estimated"
+    }
+  },
+  "wasteTransfers": {
+    "noWasteTransfersFoundFromSearch": "No waste transfers found with the selected attributes.",
+    "wasteTransfersFetchErrorInfo": "Error in fetching information. Please try again later.",
+    "quantity": "Quantity",
+    "receiver": "Receiver",
+    "classification": {
+      "title": "Type of waste",
+      "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
+      "NONHW": "Non-hazardous waste",
+      "HWshort": "Hazardouz",
+      "NONHWshort": "Non-hazardous"
+    },
+    "treatment": {
+      "title": "Treatment",
+      "D": "❌ Destined for disposal",
+      "R": "♻ Destined for recovery"
+    }
   }
 }

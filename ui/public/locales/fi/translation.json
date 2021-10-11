@@ -23,6 +23,10 @@
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja..."
   },
+  "footer": {
+    "feedbackToAuthorities": "Palautetta päästötiedoista ja muista sisältöä koskevista asioista voi lähettää aluehallintovirastoille.",
+    "feedbackToPrtrTeam": "Sivuston teknisestä toiminnasta voi lähettää palautetta tai kehitysehdotuksia osoitteeseen PRTR@syke.fi"
+  },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
     "searchWithName": "Hae laitoksen nimellä...",
@@ -39,10 +43,10 @@
     "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
     "status": {
       "title": "Status",
-      "decommissioned": "decommissioned",
-      "disused": "disused",
-      "functional": "functional",
-      "notRegulated": "not regulated"
+      "decommissioned": "Käytöstä poistettu",
+      "disused": "Ei toiminnassa",
+      "functional": "Toiminnassa",
+      "notRegulated": "Ei säännelty"
     }
   },
   "releases": {
