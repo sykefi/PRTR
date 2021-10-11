@@ -57,7 +57,7 @@ export const rgbColorsByTopMainActivity: Record<
   Exclude<FacilityTopMainActivity, 'MISSING'>,
   number[]
 > = {
-  [FacilityTopMainActivity.ENERGY]: [230, 242, 5],
+  [FacilityTopMainActivity.ENERGY]: [227, 208, 0],
   [FacilityTopMainActivity.METALS]: [86, 87, 76],
   [FacilityTopMainActivity.MINERALS]: [3, 211, 252],
   [FacilityTopMainActivity.CHEMICAL]: [245, 39, 43],
@@ -105,7 +105,7 @@ export const fillColorByTopMainActivity: Record<
   ),
   [FacilityTopMainActivity.LIVESTOCK]: getRgbColorByTopMainActivity(
     FacilityTopMainActivity.LIVESTOCK,
-    0.4
+    0.5
   ),
   [FacilityTopMainActivity.FOOD]: getRgbColorByTopMainActivity(
     FacilityTopMainActivity.FOOD,

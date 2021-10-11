@@ -23,7 +23,7 @@ let zoomDelay: null | ReturnType<typeof setTimeout> = null
 const styleFunction: StyleFunction = (feature: FeatureLike) =>
   new Style({
     image: new Circle({
-      radius: 5,
+      radius: 6,
       fill: new Fill({
         color:
           fillColorByTopMainActivity[
