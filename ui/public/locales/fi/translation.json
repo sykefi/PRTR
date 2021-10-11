@@ -33,7 +33,14 @@
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
     "facilityReleaseTable": "Päästötiedot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
-    "goBackToReleaseSearch": "Palaa päästöhakuun"
+    "goBackToReleaseSearch": "Palaa päästöhakuun",
+    "status": {
+      "title": "Status",
+      "decommissioned": "decommissioned",
+      "disused": "disused",
+      "functional": "functional",
+      "notRegulated": "not regulated"
+    }
   },
   "releases": {
     "releaseToAir": "Päästö ilmaan",
