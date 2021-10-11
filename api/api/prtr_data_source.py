@@ -1,8 +1,9 @@
 from pydantic.error_wrappers import ValidationError
 import csv
 from models.models import (
-    BarePollutantRelease, ProductionFacility,
-    facility_csv_dict_2_facility, release_csv_dict_2_release
+    BarePollutantRelease, ProductionFacility, WasteTransfer,
+    facility_csv_dict_2_facility, release_csv_dict_2_release,
+    waste_transfer_csv_dict_2_waste_transfer
 )
 from typing import Callable, List, Union
 
@@ -66,3 +67,17 @@ def load_releases(releases_fp: str) -> List[BarePollutantRelease]:
     ]
     _log_import_errors(releases, 'releases')
     return [f for f in releases if f]
+
+
+def load_waste_transfers(waste_transfers_fp: str) -> List[WasteTransfer]:
+    waste_transfers = [
+        _dict_to_model_or_none(
+            _replace_empty_strings_with_none(d),
+            waste_transfer_csv_dict_2_waste_transfer
+        )
+        for d in csv.DictReader(
+            open(waste_transfers_fp, encoding='utf8'), delimiter=';'
+        )
+    ]
+    _log_import_errors(waste_transfers, 'waste_transfers')
+    return [wt for wt in waste_transfers if wt]

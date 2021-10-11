@@ -5,7 +5,7 @@ from models.enums import (
 )
 from models.models import (
     PRTRListResponse, PollutantRelease,
-    ProductionFacility, PrtrMetadata
+    ProductionFacility, PrtrMetadata, WasteTransfer
 )
 from api.conf import conf
 from fastapi import FastAPI, HTTPException, status
@@ -111,4 +111,23 @@ def read_pollutant_releases(
         reporting_year,
         medium,
         pollutant_code
+    )
+
+
+@app.get(
+    f'{root_path}/waste-transfers',
+    response_model=PRTRListResponse[WasteTransfer],
+    summary='Get waste transfers'
+)
+def read_waste_transfers(
+    facility_id: str = None,
+    skip: int = 0,
+    limit: int = 10,
+    reporting_year: int = None,
+):
+    return prtr_data.get_waste_transfers(
+        facility_id,
+        skip,
+        limit,
+        reporting_year,
     )

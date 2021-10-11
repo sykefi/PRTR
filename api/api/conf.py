@@ -7,6 +7,7 @@ class Conf():
     api_description: str
     facilities_csv_fp: str
     releases_csv_fp: str
+    waste_transfers_csv_fp: str
     api_version: str
 
 
@@ -18,6 +19,7 @@ conf = Conf(
         '(serving only Finnish PRTR data).'
     ),
     api_version='v1',
-    facilities_csv_fp='api/assets/facilities.csv',
-    releases_csv_fp='api/assets/releases.csv'
+    facilities_csv_fp=r'api/assets/facilities.csv',
+    releases_csv_fp=r'api/assets/releases.csv',
+    waste_transfers_csv_fp=r'api/assets/waste_transfers.csv'
 )

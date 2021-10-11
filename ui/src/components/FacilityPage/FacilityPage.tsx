@@ -23,7 +23,7 @@ export const FacilityPage = () => {
 
   const { isLoading, isError, data } = useQuery(
     ['facility', facilityId],
-    async () => await getFacility(facilityId),
+    () => getFacility(facilityId),
     {
       retry: false,
       ...env.rqCacheSettings

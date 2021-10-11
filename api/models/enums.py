@@ -146,3 +146,13 @@ class FacilityStatus(str, Enum):
     DISUSED = 'disused'
     FUNCTIONAL = 'functional'
     NOT_REGULATED = 'notRegulated'
+
+
+class WasteClassificationCode(str, Enum):
+    HW = 'HW'
+    NONHW = 'NONHW'
+
+
+class WasteTreatmentCode(str, Enum):
+    D = 'D'
+    R = 'R'

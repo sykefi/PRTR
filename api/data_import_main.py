@@ -11,12 +11,14 @@ Engine 2016 Redistributable" (or newer)
 """
 
 from data_import.utils import (
-    add_projected_x_y_columns, ensure_no_unlinked_releases,
+    add_projected_x_y_columns, ensure_no_unlinked_releases_or_transfers,
     handle_merge_duplicate_facilities, print_main_activity_codes_as_enum,
-    print_unique_values_as_enum, clean_id, ensure_unique_ids
+    print_unique_values_as_enum, clean_id, ensure_unique_ids,
+    update_facility_ids_by_merge_map
 )
 from data_import.conf import conf
 from data_import.log import log
+import data_import.queries as queries
 import os
 import pandas as pd
 import pyodbc
@@ -37,7 +39,7 @@ if accdb_driver not in drivers:
 
 if not os.path.exists(conf.prtr_db_file_path):
     raise EnvironmentError(
-        f'No data file found in the specified path: {conf.prtr_db_file_path}',
+        f'No data file found in the specified path: {conf.prtr_db_file_path}'
     )
 
 
@@ -126,29 +128,37 @@ conn = pyodbc.connect(
 
 
 facilities = pd.read_sql_query(sql_facilities, conn)
+log(f'Read {len(facilities)} facilities')
+
 facilities['facilityId'] = [
     clean_id(id_str) for id_str in facilities['Facility_INSPIRE_ID']
 ]
+ensure_unique_ids(facilities)
+
 add_projected_x_y_columns(facilities)
-log(f'Read {len(facilities)} facilities')
 
 if conf.print_uniq_values_from_columns:
     print_main_activity_codes_as_enum(facilities)
 
 
 releases = pd.read_sql_query(sql_releases, conn)
+log(f'Read {len(releases)} releases')
+
 releases['facilityId'] = [
     clean_id(id_str) for id_str in releases['Facility_INSPIRE_ID']
 ]
-log(f'Read {len(releases)} releases')
 
 
 # merge duplicate facilities by name
-facilities = handle_merge_duplicate_facilities(facilities, releases)
-# ensure unique facilityIds and that all realease are linked to some facility
-# (by facilityId)
-ensure_unique_ids(facilities)
-ensure_no_unlinked_releases(facilities, releases)
+facilities, facility_id_to_id_merge_map = handle_merge_duplicate_facilities(
+    facilities
+)
+
+# ensure that all realease are linked to some facility (by facilityId)
+if facility_id_to_id_merge_map:
+    update_facility_ids_by_merge_map(releases, facility_id_to_id_merge_map)
+
+ensure_no_unlinked_releases_or_transfers(facilities, releases)
 
 
 if conf.print_uniq_values_from_columns:
@@ -156,6 +166,31 @@ if conf.print_uniq_values_from_columns:
     print_unique_values_as_enum(releases, 'pollutantName')
     print_unique_values_as_enum(releases, 'medium')
     print_unique_values_as_enum(releases, 'methodCode')
+
+
+waste_transfers = pd.read_sql_query(queries.sql_waste_transfers, conn)
+log(f'Read {len(waste_transfers)} waste transfers')
+
+waste_transfers['facilityId'] = [
+    clean_id(id_str) for id_str in waste_transfers['Facility_INSPIRE_ID']
+]
+
+if facility_id_to_id_merge_map:
+    update_facility_ids_by_merge_map(
+        waste_transfers,
+        facility_id_to_id_merge_map
+    )
+
+ensure_no_unlinked_releases_or_transfers(
+    facilities,
+    waste_transfers,
+    error_label='waste transfers'
+)
+
+if conf.print_uniq_values_from_columns:
+    print_unique_values_as_enum(waste_transfers, 'wasteClassificationCode')
+    print_unique_values_as_enum(waste_transfers, 'wasteTreatmentCode')
+    print_unique_values_as_enum(waste_transfers, 'methodCode')
 
 
 if not os.path.exists(conf.csv_out_dir):
@@ -167,9 +202,20 @@ facilities.to_csv(
     index=False,
     encoding='utf-8'
 )
+log(f'Wrote facilities to file: {conf.csv_out_dir}/facilities.csv')
+
 releases.to_csv(
     fr'{conf.csv_out_dir}/releases.csv',
     sep=';',
     index=False,
     encoding='utf-8'
 )
+log(f'Wrote releases to file: {conf.csv_out_dir}/releases.csv')
+
+waste_transfers.to_csv(
+    fr'{conf.csv_out_dir}/waste_transfers.csv',
+    sep=';',
+    index=False,
+    encoding='utf-8'
+)
+log(f'Wrote waste_transfers to file: {conf.csv_out_dir}/waste_transfers.csv')

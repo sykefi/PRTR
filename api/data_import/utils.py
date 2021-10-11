@@ -1,6 +1,6 @@
 from data_import.conf import conf
 from data_import.log import log
-from typing import Dict, List, Union
+from typing import Dict, List, Tuple, Union
 from pandas import DataFrame
 import numpy as np
 import pyproj
@@ -120,21 +120,26 @@ def print_unique_values_as_enum(df: DataFrame, col: str):
     log('\n')
 
 
-def ensure_no_unlinked_releases(facilities: DataFrame, releases: DataFrame):
+def ensure_no_unlinked_releases_or_transfers(
+    facilities: DataFrame,
+    releases_or_transfers: DataFrame,
+    error_label='releases'
+):
     """Throws ValueError if some releases are found that are not linked to
     facilities by facilityId.
     """
 
     facility_ids = list(facilities['facilityId'])
-    unlinked_releases = [
-        rd for rd
-        in releases.to_dict(orient='records')
-        if rd['facilityId'] not in facility_ids
+    unlinked = [
+        fid for fid
+        in list(releases_or_transfers['facilityId'])
+        if fid not in facility_ids
     ]
-    if unlinked_releases:
+    if unlinked:
         error = (
-            f'Found {len(unlinked_releases)} unlinked releases by facilityId',
-            ' (i.e. releases without facility in the facilities DataFrame).'
+            f'Found {len(unlinked)} unlinked {error_label} by facilityId'
+            f' (i.e. {error_label} without facility in the facilities'
+            ' DataFrame).'
         )
         raise ValueError(error)
 
@@ -249,12 +254,10 @@ def _get_id_to_id_merge_map_for_facilities(
 
 def handle_merge_duplicate_facilities(
     facilities: DataFrame,
-    releases: DataFrame
-) -> DataFrame:
+) -> Tuple[DataFrame, Union[Dict[str, str], None]]:
     """Drops duplicate facilities by name and some other logic. Returns
-    facility DataFrame without duplicate facilities. Updates facilityId
-    values to releases DataFrame for those releases that would otherwise
-    reference to dropped (duplicate) facility.
+    facility DataFrame without duplicate facilities and merged facilityIds
+    as a dictionary ({from_id: to_id},...).
     """
 
     log(f'Facilities before merging duplicates: {len(facilities)}')
@@ -270,16 +273,23 @@ def handle_merge_duplicate_facilities(
     facilities = facilities[
         ~facilities['facilityId'].isin(facility_duplicate_ids_to_rm)
     ]
-    log(f'Facilities after dropping duplicates: {len(facilities)}')
+    log(f'Facilities after dropping/merging duplicates: {len(facilities)}')
 
-    # update facilityId for releases that are linked to duplicate
-    # (dropped) facilities (use unchanged facilityId as default)
-    releases['facilityId'] = [
+    return (facilities, facility_id_to_id_merge_map)
+
+
+def update_facility_ids_by_merge_map(
+    releases_or_waste_transfers: DataFrame,
+    facility_id_to_id_merge_map: Dict[str, str]
+):
+    """Updates facilityId for releases or waste transfers that are
+    linked to duplicate (dropped) facilities.
+    """
+
+    releases_or_waste_transfers['facilityId'] = [
         facility_id_to_id_merge_map.get(
-            r_facility_id, r_facility_id
+            facility_id, facility_id
         )
-        for r_facility_id
-        in releases['facilityId']
+        for facility_id
+        in releases_or_waste_transfers['facilityId']
     ]
-
-    return facilities
