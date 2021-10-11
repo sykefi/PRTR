@@ -33,10 +33,8 @@ export const FacilityList = ({
       as="ul"
       listStyleType="none"
       boxSizing="border-box"
-      maxHeight="max(600px, calc(100vh - 345px))"
+      maxHeight="max(600px, calc(100vh - 405px))"
       maxWidth="100%"
-      marginTop={1}
-      marginBottom={2}
       overflowY="auto">
       {facilities
         .slice(firstItemIdx, firstItemIdx + pageItemLimit)

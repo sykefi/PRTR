@@ -41,6 +41,7 @@
     "goBackToFacilitySearch": "Palaa laitoshakuun",
     "goBackToReleaseSearch": "Palaa päästöhakuun",
     "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
+    "mapLegendTitle": "Kartan värit toimialoittain",
     "status": {
       "title": "Status",
       "decommissioned": "Käytöstä poistettu",

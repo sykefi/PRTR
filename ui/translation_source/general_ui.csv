@@ -39,6 +39,7 @@ facilities.facilityReleaseTable;Päästötiedot;;Releases
 facilities.goBackToFacilitySearch;Palaa laitoshakuun;;Return to facility search
 facilities.goBackToReleaseSearch;Palaa päästöhakuun;;Return to releases
 facilities.goBackToWasteTransferSearch;Palaa jätesiirtohakuun;;Return to waste transfers
+facilities.mapLegendTitle;Kartan värit toimialoittain;;
 facilities.status.title;Status;Status;Status
 facilities.status.decommissioned;Käytöstä poistettu;;Decommissioned
 facilities.status.disused;Ei toiminnassa;;Disused
