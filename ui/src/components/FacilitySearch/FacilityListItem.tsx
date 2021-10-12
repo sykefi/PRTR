@@ -16,9 +16,9 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
       borderRadius="md"
       boxShadow="sm"
       paddingX={3}
-      paddingY={1.5}
+      paddingY={2}
       textAlign="left"
-      marginY={1.5}
+      marginY={2}
       marginTop={idx === 0 ? 'unset' : 1}
       marginRight={{ base: 'unset', md: 1 }}
       width="500px"
@@ -38,21 +38,27 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
         }}>
         {f.nameOfFeature}
       </Link>
-      <Flex>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
-        </Box>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('common.placename')}: {f.city}
-        </Box>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('facilities.status.title')}:
-        </Box>
-        <Badge
-          colorScheme={f.status ? colorSchemeByFacilityStatus[f.status] : "blackAlpha"}
-          variant={f.status ? "subtle" : "outline"}>
-          {f.status ? t(`facilities.status.${f.status}`): '-'}
-        </Badge>
+      <Flex marginTop={0.5} justify="space-between">
+        <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
+          <Box>{t('facilities.facilityTypeCode')}:</Box>
+          <Box>{f.mainActivityCode}</Box>
+        </Flex>
+        <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
+          <Box>{t('common.placename')}:</Box>
+          <Box>{f.city}</Box>
+        </Flex>
+        <Flex wrap="wrap">
+          <Box fontSize="smaller" marginRight={2}>
+            {t('facilities.status.title')}:
+          </Box>
+          <Badge
+            colorScheme={
+              f.status ? colorSchemeByFacilityStatus[f.status] : 'blackAlpha'
+            }
+            variant={f.status ? 'subtle' : 'outline'}>
+            {f.status ? t(`facilities.status.${f.status}`) : '-'}
+          </Badge>
+        </Flex>
       </Flex>
     </Box>
   )
