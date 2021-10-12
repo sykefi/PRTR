@@ -33,8 +33,11 @@ facilities.noFacilitiesFoundFromSearch;Tietokannasta ei löytynyt päästöjä v
 facilities.selectFacilityMainActivityCode;Valitse laitoksen toimiala;;
 facilities.couldNotFindFacilityWithId;Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.;;Error in fetching information. Please try again later.
 facilities.couldNotFindFacilityReleases;Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.;;Error in fetching information. Please try again later.
+facilities.couldNotFindFacilityWasteTransfers;Laitoksen jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;;Error in fetching information. Please try again later.
 facilities.noReleasesFoundForFacility;Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.;;No releases found for the selected facility.
+facilities.noWasteTransfersFoundForFacility;Tietokannasta ei löytynyt jätesiirtoja valitulle laitokselle.;;No waste transfers found for the selected facility.
 facilities.facilityReleaseTable;Päästötiedot;;Releases
+facilities.facilityWasteTransferTable;Jätesiirrot;;Waste transfers
 facilities.goBackToFacilitySearch;Palaa laitoshakuun;;Return to facility search
 facilities.goBackToReleaseSearch;Palaa päästöhakuun;;Return to releases
 facilities.goBackToWasteTransferSearch;Palaa jätesiirtohakuun;;Return to waste transfers
