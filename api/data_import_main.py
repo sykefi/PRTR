@@ -43,83 +43,6 @@ if not os.path.exists(conf.prtr_db_file_path):
     )
 
 
-sql_facilities = (
-    f'''
-    SELECT DISTINCT
-    [2_ProductionFacility].Facility_INSPIRE_ID,
-    [2_ProductionFacility].parentCompanyName,
-    [2_ProductionFacility].nameOfFeature,
-    [2_ProductionFacility].mainActivityCode,
-    [2_ProductionFacility].mainActivityName,
-    [2_ProductionFacility].pointGeometryLon,
-    [2_ProductionFacility].pointGeometryLat,
-    [2_ProductionFacility].streetName,
-    [2_ProductionFacility].buildingNumber,
-    [2_ProductionFacility].city,
-    [2_ProductionFacility].postalCode,
-    [2_ProductionFacility].countryCode,
-    Max([2a_ProductionFacilityDetails].reportingYear) AS reportingYear,
-    FIRST([2a_ProductionFacilityDetails].status) as status,
-    FIRST([2d_CompetentAuthorityEPRTR].CompetentAuthorityEPRTRId)
-        as CompetentAuthorityEPRTRId,
-    FIRST([2d_CompetentAuthorityEPRTR].telephoneNo) as telephoneNo
-    FROM (
-        2_ProductionFacility
-        LEFT JOIN 2a_ProductionFacilityDetails ON
-            [2_ProductionFacility].[Facility_INSPIRE_ID] =
-            [2a_ProductionFacilityDetails].[Facility_INSPIRE_ID]
-        )
-        LEFT JOIN 2d_CompetentAuthorityEPRTR ON
-            [2_ProductionFacility].[Facility_INSPIRE_ID] =
-            [2d_CompetentAuthorityEPRTR].[Facility_INSPIRE_ID]
-    GROUP BY [2_ProductionFacility].Facility_INSPIRE_ID,
-    [2_ProductionFacility].parentCompanyName,
-    [2_ProductionFacility].nameOfFeature,
-    [2_ProductionFacility].mainActivityCode,
-    [2_ProductionFacility].mainActivityName,
-    [2_ProductionFacility].pointGeometryLat,
-    [2_ProductionFacility].pointGeometryLon,
-    [2_ProductionFacility].streetName,
-    [2_ProductionFacility].buildingNumber,
-    [2_ProductionFacility].city,
-    [2_ProductionFacility].postalCode,
-    [2_ProductionFacility].countryCode,
-    [2_ProductionFacility].facilityType
-    HAVING (
-        (
-            [2_ProductionFacility].countryCode='{conf.country_code}' AND
-            [2_ProductionFacility].facilityType='EPRTR'
-        )
-    );
-    '''
-)
-
-sql_releases = (
-    f'''
-    SELECT
-    [2f_PollutantRelease].Facility_INSPIRE_ID,
-    [2f_PollutantRelease].reportingYear,
-    [2f_PollutantRelease].pollutantCode,
-    [2f_PollutantRelease].pollutantName,
-    [2f_PollutantRelease].medium,
-    [2f_PollutantRelease].totalPollutantQuantityKg,
-    [2f_PollutantRelease].AccidentalPollutantQuantityKG,
-    [2f_PollutantRelease].methodCode,
-    [2f_PollutantRelease].methodName
-    FROM
-    (
-        2f_PollutantRelease
-        INNER JOIN 2_ProductionFacility ON
-        [2f_PollutantRelease].Facility_INSPIRE_ID =
-        [2_ProductionFacility].Facility_INSPIRE_ID
-    )
-    WHERE
-    [2_ProductionFacility].countryCode='{conf.country_code}' AND
-    [2_ProductionFacility].facilityType='EPRTR';
-    '''
-)
-
-
 print(f'Attempting to read PRTR data from {conf.prtr_db_file_path}')
 conn = pyodbc.connect(
     fr'Driver={{{accdb_driver}}};'
@@ -127,7 +50,7 @@ conn = pyodbc.connect(
 )
 
 
-facilities = pd.read_sql_query(sql_facilities, conn)
+facilities = pd.read_sql_query(queries.sql_facilities, conn)
 log(f'Read {len(facilities)} facilities')
 
 facilities['facilityId'] = [
@@ -141,7 +64,7 @@ if conf.print_uniq_values_from_columns:
     print_main_activity_codes_as_enum(facilities)
 
 
-releases = pd.read_sql_query(sql_releases, conn)
+releases = pd.read_sql_query(queries.sql_releases, conn)
 log(f'Read {len(releases)} releases')
 
 releases['facilityId'] = [

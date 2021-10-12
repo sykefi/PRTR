@@ -1,28 +1,14 @@
-import { useQuery } from 'react-query'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { Box, Flex } from '@chakra-ui/layout'
-import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import * as api from '../../api'
-import * as env from '../../env'
-import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
-import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 import { asOption } from '../../models/OptionType'
-
-const getYearOptions = (
-  metadata: PRTRApiMetadata | undefined
-): OptionType<number>[] => {
-  return metadata
-    ? metadata.available_reporting_years
-        .map(y => asOption(y, y))
-        .filter((o): o is OptionType<number> => Boolean(o))
-    : []
-}
+import { useYearOptions } from '../../hooks/useYearOptions'
 
 const Form = styled.form`
   max-width: 100%;
@@ -37,15 +23,8 @@ export const WasteTransferFilterPanel = (props: {
 
   const [year, setYear] = useState<number | undefined>(undefined)
 
-  const apiMetadata = useQuery(
-    ['prtrApiMetadata'],
-    api.getApiMetadata,
-    env.rqCacheSettings
-  )
-  const yearOptions = useMemo(
-    () => getYearOptions(apiMetadata.data),
-    [apiMetadata.data]
-  )
+  const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
+    useYearOptions()
 
   useEffect(() => {
     // initialize select inputs from url search params on page load
@@ -65,6 +44,8 @@ export const WasteTransferFilterPanel = (props: {
     })
   }
 
+  const searchInputsChanged = !props.urlYear || props.urlYear !== year
+
   return (
     <Form onSubmit={handleSubmit} data-cy="waste-transfers-filter-panel">
       <FormControl
@@ -81,7 +62,7 @@ export const WasteTransferFilterPanel = (props: {
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              isLoading={yearOptionsIsLoading || yearOptionsIsError}
               name="wasteTransfersYear"
               value={asOption(year, year)}
               options={yearOptions}
@@ -94,6 +75,7 @@ export const WasteTransferFilterPanel = (props: {
           data-cy="filter-waste-transfers-btn"
           type="submit"
           width="max-content"
+          disabled={!searchInputsChanged}
           marginBottom={0.5}
           colorScheme="green">
           {t('translation:common.fetch')}

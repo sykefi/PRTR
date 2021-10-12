@@ -3,7 +3,33 @@ import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
-import { colorSchemeByFacilityStatus } from '../../constants'
+import {
+  colorSchemeByFacilityStatus,
+  fillColorByTopMainActivity,
+  strokeColorByTopMainActivity
+} from '../../constants'
+import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
+
+const MainActivityBadge = ({
+  topMainActivity
+}: {
+  topMainActivity: FacilityTopMainActivity
+}) => {
+  return (
+    <Box
+      borderRadius="50%"
+      width={2.5}
+      height={2.5}
+      minHeight={2.5}
+      minWidth={2.5}
+      border="2px solid"
+      color="black"
+      marginTop={0.5}
+      borderColor={strokeColorByTopMainActivity[topMainActivity]}
+      backgroundColor={fillColorByTopMainActivity[topMainActivity]}
+    />
+  )
+}
 
 export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
   const { t } = useTranslation()
@@ -16,9 +42,9 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
       borderRadius="md"
       boxShadow="sm"
       paddingX={3}
-      paddingY={1.5}
+      paddingY={2}
       textAlign="left"
-      marginY={1.5}
+      marginY={2}
       marginTop={idx === 0 ? 'unset' : 1}
       marginRight={{ base: 'unset', md: 1 }}
       width="500px"
@@ -38,21 +64,29 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
         }}>
         {f.nameOfFeature}
       </Link>
-      <Flex>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
-        </Box>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('common.placename')}: {f.city}
-        </Box>
-        <Box fontSize="smaller" marginRight={2}>
-          {t('facilities.status.title')}:
-        </Box>
-        <Badge
-          colorScheme={f.status ? colorSchemeByFacilityStatus[f.status] : "blackAlpha"}
-          variant={f.status ? "subtle" : "outline"}>
-          {f.status ? t(`facilities.status.${f.status}`): '-'}
-        </Badge>
+      <Flex marginTop={0.5} justify="space-between">
+        <Flex wrap="wrap" fontSize="smaller" marginRight={2} align="center">
+          <Box paddingRight={1}>
+            {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
+          </Box>
+          <MainActivityBadge topMainActivity={f.topMainActivity} />
+        </Flex>
+        <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
+          <Box paddingRight={1.5}>{t('common.placename')}:</Box>
+          <Box>{f.city}</Box>
+        </Flex>
+        <Flex wrap="wrap">
+          <Box fontSize="smaller" marginRight={2}>
+            {t('facilities.status.title')}:
+          </Box>
+          <Badge
+            colorScheme={
+              f.status ? colorSchemeByFacilityStatus[f.status] : 'blackAlpha'
+            }
+            variant={f.status ? 'subtle' : 'outline'}>
+            {f.status ? t(`facilities.status.${f.status}`) : '-'}
+          </Badge>
+        </Flex>
       </Flex>
     </Box>
   )

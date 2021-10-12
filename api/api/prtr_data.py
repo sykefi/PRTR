@@ -39,9 +39,9 @@ _metadata = PrtrMetadata(
         reverse=True
     ),
     present_pollutant_codes=list(set([r.pollutantCode for r in _releases])),
-    present_cities=list(set([
+    present_cities=sorted(list(set([
         f.city for f in _facilities if f.city is not None
-    ])),
+    ]))),
     present_main_activity_codes=list(set([
         f.mainActivityCode for f in _facilities
     ])),
@@ -117,7 +117,8 @@ def get_releases(
     limit: int,
     reporting_year: Union[int, None],
     medium: Union[Medium, None],
-    pollutant_code: Union[PollutantCode, None]
+    pollutant_code: Union[PollutantCode, None],
+    placename: Union[str, None]
 ) -> PRTRListResponse[PollutantRelease]:
     if facility_id: sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
     else: sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
@@ -128,6 +129,7 @@ def get_releases(
                 (not reporting_year or r.reportingYear == reporting_year) and
                 (not medium or r.medium == medium) and
                 (not pollutant_code or r.pollutantCode == pollutant_code)
+                (not placename or r.city == placename)
             )
         ],
         key=sort_key

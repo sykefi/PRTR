@@ -1,11 +1,8 @@
 import { BarePollutantRelease } from './BarePollutantRelease'
 
 export interface PollutantRelease extends BarePollutantRelease {
-  parentCompanyName: string
   nameOfFeature: string
   city: string | null
-  x: number
-  y: number
 }
 
 export const withId = (r: Omit<PollutantRelease, 'id'>): PollutantRelease => {

@@ -8,7 +8,7 @@ client = TestClient(app)
 
 
 def _has_facility_fields(data: dict) -> bool:
-    parent_company_name = data.get('parentCompanyName', None)
+    parent_company_name = data.get('nameOfFeature', None)
     return parent_company_name is not None
 
 

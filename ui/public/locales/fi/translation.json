@@ -23,6 +23,9 @@
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja..."
   },
+  "footer": {
+    "sendFeedbackButtonLabel": "Lähetä palautetta"
+  },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
     "searchWithName": "Hae laitoksen nimellä...",
@@ -37,12 +40,13 @@
     "goBackToFacilitySearch": "Palaa laitoshakuun",
     "goBackToReleaseSearch": "Palaa päästöhakuun",
     "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
+    "mapLegendTitle": "Kartan värit toimialoittain",
     "status": {
       "title": "Status",
-      "decommissioned": "decommissioned",
-      "disused": "disused",
-      "functional": "functional",
-      "notRegulated": "not regulated"
+      "decommissioned": "Käytöstä poistettu",
+      "disused": "Ei toiminnassa",
+      "functional": "Toiminnassa",
+      "notRegulated": "Ei säännelty"
     }
   },
   "releases": {

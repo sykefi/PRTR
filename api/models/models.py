@@ -146,11 +146,8 @@ def release_csv_dict_2_release(
 
 
 class PollutantRelease(BarePollutantRelease):
-    parentCompanyName: str
     nameOfFeature: str
     city: Optional[str] = None
-    x: float
-    y: float
 
 
 def with_facility_info(
@@ -159,11 +156,8 @@ def with_facility_info(
 ) -> PollutantRelease:
     return PollutantRelease(
         **release.dict(),
-        parentCompanyName=facility.parentCompanyName,
         nameOfFeature=facility.nameOfFeature,
-        city=facility.city,
-        x=facility.x,
-        y=facility.y
+        city=facility.city
     )
 
 

@@ -4,7 +4,7 @@ import { Map, Overlay, View } from 'ol'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
 import GeoJSON from 'ol/format/GeoJSON'
-import { Style, Fill, Circle, Stroke } from 'ol/style'
+import { Style, Fill, Stroke } from 'ol/style'
 import { Extent } from 'ol/extent'
 import Projection from 'ol/proj/Projection'
 import { easeOut } from 'ol/easing'
@@ -14,7 +14,7 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
 import municipalitiesGeoJson from '../assets/kunnat21_4-5milj_3067.json'
 import { Facility } from '../api/models/Facility'
-import { OlLayerFacilities } from './OlLayerFacilities'
+import { facilityLayer, OlLayerFacilities } from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
@@ -41,26 +41,6 @@ const baseLayer = new VectorLayer({
     })
   })
 })
-
-const facilitySource = new VectorSource({
-  format: new GeoJSON()
-})
-
-const facilityLayer = new VectorLayer({
-  zIndex: 2,
-  source: facilitySource,
-  style: new Style({
-    image: new Circle({
-      radius: 5,
-      fill: new Fill({ color: 'rgba(0, 136, 255, 0.3)' }),
-      stroke: new Stroke({
-        color: '#0073d8',
-        width: 1.5
-      })
-    })
-  })
-})
-facilityLayer.set('name', 'facilities')
 
 const olMap = new Map({
   target: undefined,
@@ -192,7 +172,6 @@ export const OlMap = (props: Props) => {
         <OlLayerFacilities
           olMap={olMap}
           facilities={props.facilities!}
-          facilitySource={facilitySource}
           popupData={popupData}
           setPopupData={setPopupData}
           zoomToInitialExtent={props.zoomToInitialExtent}

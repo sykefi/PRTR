@@ -13,6 +13,7 @@
 ## PR checklist
 
 - [ ] I have reviewed the changes myself
+- [ ] I have updated the external translation source (if necessary)
 - [ ] I have added relevant tests
 
 ## How to test

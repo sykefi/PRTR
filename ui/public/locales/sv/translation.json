@@ -1,5 +1,15 @@
 {
   "common": {
-    "frontPage": "Startsida"
+    "frontPage": "Framsida",
+    "search": "Sök",
+    "year": "År",
+    "selectYear": "Välj år",
+    "previousPage": "Föregående sida",
+    "nextPage": "Nästa sida"
+  },
+  "facilities": {
+    "status": {
+      "title": "Status"
+    }
   }
 }
