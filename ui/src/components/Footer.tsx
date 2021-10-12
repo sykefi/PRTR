@@ -1,4 +1,6 @@
-import { Flex, Text } from '@chakra-ui/layout'
+import { Button } from '@chakra-ui/button'
+import { EmailIcon } from '@chakra-ui/icons'
+import { Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 
 export const Footer = () => {
@@ -7,21 +9,20 @@ export const Footer = () => {
   return (
     <Flex
       direction="column"
-      background="darkgrey"
-      color="white"
+      background="white"
+      color="black"
       p={8}
-      paddingX={12}
       fontStyle="italic"
       align="center">
       <Flex
-        data-cy="front-page-content"
         width="100%"
-        direction="column"
-        align="center"
-        minWidth={250}
-        maxWidth={900}>
-        <Text marginBottom={1.5}>{t('footer.feedbackToAuthorities')}</Text>
-        <Text>{t('footer.feedbackToPrtrTeam')}</Text>
+        paddingX={{ base: 0, md: 80 }}
+        justify={{ base: 'center', md: 'flex-end' }}>
+        <a href="mailto:PRTR@syke.fi">
+          <Button leftIcon={<EmailIcon />} variant="solid">
+            {t('footer.sendFeedbackButtonLabel')}
+          </Button>
+        </a>
       </Flex>
     </Flex>
   )

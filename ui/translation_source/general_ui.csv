@@ -23,8 +23,7 @@ common.nextPage;Seuraava sivu;Nästa sida;Next page
 common.basicInfo;Perustiedot;;Basic information
 common.loadingInformation;Ladataan tietoja...;;Loading information...
 ;;;
-footer.feedbackToAuthorities;Palautetta päästötiedoista ja muista sisältöä koskevista asioista voi lähettää aluehallintovirastoille.;;
-footer.feedbackToPrtrTeam;Sivuston teknisestä toiminnasta voi lähettää palautetta tai kehitysehdotuksia osoitteeseen PRTR@syke.fi;;
+footer.sendFeedbackButtonLabel;Lähetä palautetta;;
 ;;;
 facilities.facilityTypeCode;Toimialaluokitus;;Sector
 facilities.searchWithName;Hae laitoksen nimellä...;;Search with facility name...
