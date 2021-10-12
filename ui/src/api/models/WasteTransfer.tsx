@@ -16,9 +16,9 @@ export interface WasteTransfer {
   wasteTreatmentCode: WasteTreatmentCode
   totalWasteQuantityTNE: number
   methodCode: MethodCode
-  nameOfReceiver?: string
-  receivingSiteCity?: string
-  receivingSiteCountryName?: string
+  nameOfReceiver: string | null
+  receivingSiteCity: string | null
+  receivingSiteCountryName: string | null
 }
 
 export const withId = (wt: Omit<WasteTransfer, 'id'>): WasteTransfer => {
