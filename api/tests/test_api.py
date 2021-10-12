@@ -43,7 +43,7 @@ def test_get_metadata():
     assert isinstance(body['present_pollutant_codes'][0], str)
     assert len(body['present_main_activity_codes']) > 40
     assert isinstance(body['present_main_activity_codes'][0], str)
-    assert len(body['present_cities']) > 300
+    assert len(body['present_cities']) > 250
     assert isinstance(body['present_cities'][0], str)
 
 

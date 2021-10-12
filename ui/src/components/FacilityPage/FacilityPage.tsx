@@ -4,6 +4,7 @@ import { Button } from '@chakra-ui/button'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
+import { hasCoordinates } from '../../api/models/Facility'
 import * as env from '../../env'
 import { getFacility } from '../../api'
 import { BelowNavigationHeaderPanel } from '../Common'
@@ -100,12 +101,14 @@ export const FacilityPage = () => {
             handleExit={handleExit}
             exitLabel={exitLabel}
           />
-          <OlMap
-            width={450}
-            height={400}
-            facilities={data ? [data] : undefined}
-            zoomToInitialExtent={false}
-          />
+          {data && hasCoordinates(data) && (
+            <OlMap
+              width={450}
+              height={400}
+              facilities={[data]}
+              zoomToInitialExtent={false}
+            />
+          )}
         </Flex>
         <Flex wrap="wrap" maxWidth="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
           <FacilityReleaseTable

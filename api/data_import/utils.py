@@ -1,6 +1,6 @@
 from data_import.conf import conf
 from data_import.log import log
-from typing import Dict, List, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union
 from pandas import DataFrame
 import numpy as np
 import pyproj
@@ -23,29 +23,29 @@ project = pyproj.Transformer.from_crs(
 )
 
 
-def _clean_field_for_main_activity_7(row: str, field_name) -> bool:
+def _clear_field_for_main_activity_7(row: str, field_name) -> Union[None, Any]:
     if (
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_I.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_II.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_III.value
     ):
-        return np.nan
+        return None
     return row[field_name]
 
 
-def _clean_fields_for_main_activity_7(df: DataFrame, field_names: List[str]):
+def _clear_fields_for_main_activity_7(df: DataFrame, field_names: List[str]):
     for field_name in field_names:
         df[field_name] = df.apply(
-            lambda row: _clean_field_for_main_activity_7(row, field_name),
+            lambda row: _clear_field_for_main_activity_7(row, field_name),
             axis=1
         )
     return df
 
 
-def clean_location_data_for_main_activity_7(
+def clear_location_data_for_main_activity_7(
     facilities: DataFrame
 ) -> DataFrame:
-    return _clean_fields_for_main_activity_7(
+    df = _clear_fields_for_main_activity_7(
         facilities,
         [
             'x', 'y',
@@ -54,6 +54,10 @@ def clean_location_data_for_main_activity_7(
             'pointGeometryLat', 'pointGeometryLon'
         ]
     )
+    # keep series x & y as integers (as before)
+    df['x'] = df['x'].astype('Int64')
+    df['y'] = df['y'].astype('Int64')
+    return df
 
 
 def add_projected_x_y_columns(

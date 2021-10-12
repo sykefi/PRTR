@@ -4,12 +4,17 @@ import { useTranslation } from 'react-i18next'
 import { Facility } from '../../api/models/Facility'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 
+const getStreetAddress = (f: Facility): string | undefined => {
+  if (!f.streetName && !f.buildingNumber) return
+  return `${f.streetName ? f.streetName + ' ' : ''} ${f.buildingNumber || ''}`
+}
+
 const InfoPropRow = ({
   label,
   value
 }: {
   label: string
-  value: string | null
+  value?: string | null
 }) => {
   return (
     <Box marginY={2}>
@@ -71,7 +76,7 @@ export const FacilityBasicInfo = ({
           />
           <InfoPropRow
             label={t('translation:common.streetAddress')}
-            value={`${facility.streetName} ${facility.buildingNumber || ''}`}
+            value={getStreetAddress(facility)}
           />
           <InfoPropRow
             label={t('translation:common.telephoneNumber')}

@@ -13,7 +13,7 @@ import './OlMap.css'
 import { Box, Flex } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
 import municipalitiesGeoJson from '../assets/kunnat21_4-5milj_3067.json'
-import { Facility } from '../api/models/Facility'
+import { FacilityWithCoordinates } from '../api/models/Facility'
 import { facilityLayer, OlLayerFacilities } from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
@@ -73,7 +73,7 @@ olMap.on('pointermove', e => {
 })
 
 interface Props {
-  facilities?: Facility[]
+  facilities?: FacilityWithCoordinates[]
   width?: number
   margin?: number
   height?: string | number
