@@ -16,7 +16,11 @@ const facilityAsGeoJSONFeature = (
   return {
     type: 'Feature',
     geometry: { type: 'Point', coordinates: [f.x, f.y] },
-    properties: { facilityId: f.facilityId, nameOfFeature: f.nameOfFeature }
+    properties: {
+      facilityId: f.facilityId,
+      nameOfFeature: f.nameOfFeature,
+      topMainActivity: f.topMainActivity
+    }
   }
 }
 

@@ -46,13 +46,14 @@ export const FacilityPageSelector = ({
   return (
     <Flex
       data-cy="result-page-selector"
-      margin={1}
+      marginTop={1}
+      marginBottom={3.5}
       width="500px"
       maxWidth="100%"
       align="center"
       justify="center"
       wrap="wrap">
-      <Box fontWeight="bold" marginRight={3} marginY={1.5}>
+      <Box fontWeight="bold" marginRight={3} marginY={2}>
         {t('common.showingItems')} {firstItemIdx + 1}-{lastItemIdxToShow}
         {totalItemCount && ` (${totalItemCount})`}
       </Box>

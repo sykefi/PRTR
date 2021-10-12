@@ -13,6 +13,7 @@ import {
 import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import { FacilityMapLegend } from '../FacilityMapLegend'
 import { FacilityPageSelector } from './FacilityPageSelector'
 import { FacilityFilterPanel } from './FacilityFilterPanel'
 import { FacilityList } from './FacilityList'
@@ -81,31 +82,37 @@ export const FacilitySearch = () => {
           p={{ base: 3, md: 4 }}
           display="inline-flex"
           width="fit-content"
-          flexWrap="wrap"
+          wrap="wrap"
           justify="center"
           align="center">
           {gotFacilities && (
             <>
-              <Flex justify={{ base: 'center', lg: 'flex-start' }} width="100%">
-                <FacilityPageSelector
-                  pageItemLimit={pageItemLimit}
-                  firstItemIdx={urlFirstItemIdx}
-                  totalItemCount={data.length}
-                  loading={false}
-                />
-              </Flex>
-              <Flex wrap="wrap" justify="center" maxWidth="100%">
-                <FacilityList
-                  facilities={data}
-                  firstItemIdx={urlFirstItemIdx}
-                  pageItemLimit={pageItemLimit}
-                />
-                <Box px={{ base: 'unset', md: 2 }} m={1} maxWidth="100%">
+              <Flex
+                wrap="wrap"
+                justify="center"
+                align="flex-start"
+                maxWidth="100%"
+                sx={{ gap: 'var(--chakra-space-3)' }}>
+                <Flex justify="center" direction="column" maxWidth="100%">
+                  <FacilityPageSelector
+                    pageItemLimit={pageItemLimit}
+                    firstItemIdx={urlFirstItemIdx}
+                    totalItemCount={data.length}
+                    loading={false}
+                  />
+                  <FacilityList
+                    facilities={data}
+                    firstItemIdx={urlFirstItemIdx}
+                    pageItemLimit={pageItemLimit}
+                  />
+                </Flex>
+                <Box maxWidth="100%">
                   <OlMap
                     facilities={data}
                     zoomToInitialExtent={!urlSearchTerm}
                   />
                 </Box>
+                <FacilityMapLegend />
               </Flex>
             </>
           )}
