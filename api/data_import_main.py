@@ -14,7 +14,7 @@ from data_import.utils import (
     add_projected_x_y_columns, ensure_no_unlinked_releases_or_transfers,
     handle_merge_duplicate_facilities, print_main_activity_codes_as_enum,
     print_unique_values_as_enum, clean_id, ensure_unique_ids,
-    update_facility_ids_by_merge_map
+    update_facility_ids_by_merge_map, clean_location_data_for_main_activity_7
 )
 from data_import.conf import conf
 from data_import.log import log
@@ -118,6 +118,8 @@ if conf.print_uniq_values_from_columns:
 
 if not os.path.exists(conf.csv_out_dir):
     os.makedirs(conf.csv_out_dir)
+
+facilities = clean_location_data_for_main_activity_7(facilities)
 
 facilities.to_csv(
     fr'{conf.csv_out_dir}/facilities.csv',

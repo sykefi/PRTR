@@ -7,6 +7,7 @@ import pyproj
 from pyproj import CRS
 from shapely.geometry import Point
 from shapely.ops import transform
+from models.enums import MainActivityCode
 
 
 def _replace_all(text: str, dic: Dict[str, str]):
@@ -20,6 +21,39 @@ project = pyproj.Transformer.from_crs(
     crs_to=CRS(f'epsg:{conf.proj_crs_epsg}'),
     always_xy=True
 )
+
+
+def _clean_field_for_main_activity_7(row: str, field_name) -> bool:
+    if (
+        row['mainActivityCode'] == MainActivityCode.SEVEN_A_I.value or
+        row['mainActivityCode'] == MainActivityCode.SEVEN_A_II.value or
+        row['mainActivityCode'] == MainActivityCode.SEVEN_A_III.value
+    ):
+        return np.nan
+    return row[field_name]
+
+
+def _clean_fields_for_main_activity_7(df: DataFrame, field_names: List[str]):
+    for field_name in field_names:
+        df[field_name] = df.apply(
+            lambda row: _clean_field_for_main_activity_7(row, field_name),
+            axis=1
+        )
+    return df
+
+
+def clean_location_data_for_main_activity_7(
+    facilities: DataFrame
+) -> DataFrame:
+    return _clean_fields_for_main_activity_7(
+        facilities,
+        [
+            'x', 'y',
+            'streetName', 'postalCode', 'city',
+            'telephoneNo', 'buildingNumber',
+            'pointGeometryLat', 'pointGeometryLon'
+        ]
+    )
 
 
 def add_projected_x_y_columns(
