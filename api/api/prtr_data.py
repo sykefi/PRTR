@@ -16,8 +16,7 @@ _facility_by_id = {f.facilityId: f for f in _facilities}
 
 _bare_releases = sorted(
     prtr_data_source.load_releases(conf.releases_csv_fp),
-    key=lambda r: r.reportingYear,
-    reverse=True
+    key=lambda r: (r.pollutantCode, -r.reportingYear)
 )
 
 fuzzy_releases_count = len([
