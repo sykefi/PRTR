@@ -5,10 +5,15 @@ import { FrontPageContentFi } from './FrontPageContentFi'
 import { FrontPageContentSv } from './FrontPageContentSv'
 import { FrontPageContentEn } from './FrontPageContentEn'
 
+const DevTitle = styled.h2`
+  font-size: 22px;
+  margin-top: -2;
+  margin-bottom: 12px;
+`
+
 const FrontPageStyleWrapper = styled.div`
   h2 {
     font-size: 22px;
-    margin-top: 10px;
     margin-bottom: 5px;
   }
   p {
@@ -34,9 +39,7 @@ export const FrontPage = () => {
         background="white"
         borderRadius="md"
         boxShadow="sm">
-        <Box marginBottom={4} fontWeight="bold">
-          {t('common.welcomeMessage')}
-        </Box>
+        <DevTitle>{t('common.welcomeMessage')}</DevTitle>
         <FrontPageStyleWrapper>
           {i18n.language === 'fi' && <FrontPageContentFi />}
           {i18n.language === 'sv' && <FrontPageContentSv />}
