@@ -75,9 +75,7 @@ export const ReleaseTable = ({
                   {r.reportingYear}
                 </Td>
                 <Td p={1} paddingRight={3}>
-                  {(
-                    r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
-                  ).toLocaleString('fi')}
+                  {r.totalPollutantQuantityKg.toLocaleString('fi')}
                 </Td>
                 <Td p={1} maxWidth={140} paddingRight={3}>
                   {getPollutantLabel(t, r.pollutantCode)}

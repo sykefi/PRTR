@@ -60,9 +60,7 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
                 </Badge>
               </Td>
               <Td p={1} paddingRight={2}>
-                {(
-                  r.totalPollutantQuantityKg + r.AccidentalPollutantQuantityKG
-                ).toLocaleString('fi')}
+                {r.totalPollutantQuantityKg.toLocaleString('fi')}
               </Td>
               <Td p={1} maxWidth={120} paddingRight={2}>
                 {getPollutantLabel(t, r.pollutantCode)}
