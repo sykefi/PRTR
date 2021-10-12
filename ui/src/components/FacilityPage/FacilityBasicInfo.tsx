@@ -6,7 +6,7 @@ import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 
 const getStreetAddress = (f: Facility): string | undefined => {
   if (!f.streetName && !f.buildingNumber) return
-  return `${f.streetName ? f.streetName + ' ' : ''} ${f.buildingNumber || ''}`
+  return `${f.streetName ? f.streetName + ' ' : ''}${f.buildingNumber || ''}`
 }
 
 const InfoPropRow = ({
