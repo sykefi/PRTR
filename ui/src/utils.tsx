@@ -3,6 +3,7 @@ import { Namespace } from 'react-i18next'
 import { Facility } from './api/models/Facility'
 import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
 import { PollutantCode } from './api/models/PollutantCode'
+import { WasteTransfer } from './api/models/WasteTransfer'
 import { FacilityMapFeature } from './models/FacilityMapFeature'
 import {
   GeoJSONPointFeature,
@@ -83,6 +84,19 @@ export const getLongPollutantLabel = (
       ? ''
       : ` (${abbr}${abbr && cas && ', '}${cas && 'CAS: ' + cas})`
   return `${name}${brackets}`
+}
+
+export const getReceiverLabel = (wt: WasteTransfer): string => {
+  const locationString = wt.receivingSiteCity
+    ? wt.receivingSiteCity +
+      (wt.receivingSiteCountryName ? `, ${wt.receivingSiteCountryName}` : '')
+    : wt.receivingSiteCountryName || ''
+
+  return wt.nameOfReceiver
+    ? `${wt.nameOfReceiver}${locationString && ' (' + locationString + ')'}`
+    : locationString
+    ? locationString
+    : '-'
 }
 
 export const handleCheckForMissingTranslations = () => {

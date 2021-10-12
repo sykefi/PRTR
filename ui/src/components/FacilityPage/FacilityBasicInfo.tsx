@@ -1,7 +1,6 @@
 import { Button } from '@chakra-ui/button'
 import { Box, Flex, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
 import { Facility } from '../../api/models/Facility'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 
@@ -25,19 +24,23 @@ const InfoPropRow = ({
 export const FacilityBasicInfo = ({
   facility,
   loading,
-  error
+  error,
+  handleExit,
+  exitLabel
 }: {
   facility: Facility | undefined
   loading: boolean
   error: boolean
+  handleExit: () => void
+  exitLabel: string
 }) => {
-  const history = useHistory()
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
 
   return (
     <Box
       data-cy="facility-basic-info"
       width={450}
+      minHeight={400}
       minWidth={250}
       maxWidth="100%"
       paddingX={5}
@@ -76,7 +79,11 @@ export const FacilityBasicInfo = ({
           />
           <InfoPropRow
             label={t('translation:facilities.status.title')}
-            value={facility.status ? t(`translation:facilities.status.${facility.status}`) : ''}
+            value={
+              facility.status
+                ? t(`translation:facilities.status.${facility.status}`)
+                : ''
+            }
           />
         </>
       )}
@@ -94,8 +101,8 @@ export const FacilityBasicInfo = ({
                 marginY={2.0}
                 size="sm"
                 colorScheme="blue"
-                onClick={() => history.push('/')}>
-                {t('translation:common.goBack')}
+                onClick={handleExit}>
+                {exitLabel}
               </Button>
             </Box>
           </Box>
