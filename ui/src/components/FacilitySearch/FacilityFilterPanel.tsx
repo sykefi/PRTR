@@ -1,5 +1,4 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react'
-import { useQuery } from 'react-query'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
@@ -7,19 +6,17 @@ import { useHistory } from 'react-router-dom'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import * as api from '../../api'
-import * as env from '../../env'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../models/OptionType'
-import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 import { TranslationKeys } from '../../react-i18next'
 import {
   FacilityTopMainActivity,
   isTopMainActivity
 } from '../../api/models/FacilityTopMainActivity'
+import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
@@ -51,16 +48,6 @@ const getFacilityMainActivityOptions = (
     })
 }
 
-const getPlacenameOptions = (
-  metadata: PRTRApiMetadata | undefined
-): OptionType<string>[] => {
-  return metadata
-    ? metadata.present_cities
-        .map(c => asOption(c, c))
-        .filter((o): o is OptionType<string> => Boolean(o))
-    : []
-}
-
 const Form = styled.form`
   max-width: 100%;
 `
@@ -90,15 +77,11 @@ export const FacilityFilterPanel = ({
     () => getFacilityMainActivityOptions(t),
     [t]
   )
-  const apiMetadata = useQuery(
-    ['prtrApiMetadata'],
-    api.getApiMetadata,
-    env.rqCacheSettings
-  )
-  const placenameOptions = useMemo(
-    () => getPlacenameOptions(apiMetadata.data),
-    [apiMetadata.data]
-  )
+  const {
+    placenameOptionsIsLoading,
+    placenameOptionsIsError,
+    placenameOptions
+  } = usePlacenameOptions()
 
   useEffect(() => {
     // initialize inputs from URL search params
@@ -173,7 +156,7 @@ export const FacilityFilterPanel = ({
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
               name="facilitiesPlacename"
               value={asOption(placename, placename)}
               options={placenameOptions}

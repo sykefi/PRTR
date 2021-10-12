@@ -1,4 +1,3 @@
-import { useQuery } from 'react-query'
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { Box, Flex } from '@chakra-ui/layout'
@@ -6,17 +5,16 @@ import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import * as api from '../../api'
-import * as env from '../../env'
 import { PollutantCode } from '../../api/models/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { Medium } from '../../api/models/Medium'
-import { PRTRApiMetadata } from '../../api/models/PRTRApiMetadata'
 import { getLongPollutantLabel, getPollutantLabel } from '../../utils'
 import { asOption } from '../../models/OptionType'
 import { TranslationKeys } from '../../react-i18next'
+import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
+import { useYearOptions } from '../../hooks/useYearOptions'
 
 const getPollutantNameOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
@@ -42,16 +40,6 @@ const getPollutantNameOptions = (
     })
 }
 
-const getYearOptions = (
-  metadata: PRTRApiMetadata | undefined
-): OptionType<number>[] => {
-  return metadata
-    ? metadata.available_reporting_years
-        .map(y => asOption(y, y))
-        .filter((o): o is OptionType<number> => Boolean(o))
-    : []
-}
-
 const Form = styled.form`
   max-width: 100%;
 `
@@ -74,18 +62,18 @@ export const ReleaseFilterPanel = (props: {
     undefined
   )
   const [year, setYear] = useState<number | undefined>(undefined)
+  const [placename, setPlacename] = useState<string | undefined>(undefined)
 
   const pollutantOptions = useMemo(() => getPollutantNameOptions(t), [t])
 
-  const apiMetadata = useQuery(
-    ['prtrApiMetadata'],
-    api.getApiMetadata,
-    env.rqCacheSettings
-  )
-  const yearOptions = useMemo(
-    () => getYearOptions(apiMetadata.data),
-    [apiMetadata.data]
-  )
+  const {
+    placenameOptionsIsLoading,
+    placenameOptionsIsError,
+    placenameOptions
+  } = usePlacenameOptions()
+
+  const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
+    useYearOptions()
 
   useEffect(() => {
     // initialize select inputs from url search params on page load
@@ -145,12 +133,24 @@ export const ReleaseFilterPanel = (props: {
             <ChakraSelect
               isClearable
               closeMenuOnSelect
-              isLoading={apiMetadata.isLoading || apiMetadata.isError}
+              isLoading={yearOptionsIsLoading || yearOptionsIsError}
               name="releasesYear"
               value={asOption(year, year)}
               options={yearOptions}
               placeholder={t('translation:releases.selectYear')}
               onChange={e => setYear(e?.value)}
+            />
+          </Box>
+          <Box width={350} minWidth={200}>
+            <ChakraSelect
+              isClearable
+              closeMenuOnSelect
+              isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
+              name="facilitiesPlacename"
+              value={asOption(placename, placename)}
+              options={placenameOptions}
+              placeholder={t('translation:facilities.searchWithPlacename')}
+              onChange={e => setPlacename(e?.value)}
             />
           </Box>
         </Flex>
