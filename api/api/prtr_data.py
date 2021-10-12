@@ -14,10 +14,7 @@ _facilities = prtr_data_source.load_facilities(conf.facilities_csv_fp)
 
 _facility_by_id = {f.facilityId: f for f in _facilities}
 
-_bare_releases = sorted(
-    prtr_data_source.load_releases(conf.releases_csv_fp),
-    key=lambda r: (r.pollutantCode, -r.reportingYear)
-)
+_bare_releases = prtr_data_source.load_releases(conf.releases_csv_fp)
 
 fuzzy_releases_count = len([
     r for r in _bare_releases if r.facilityId not in _facility_by_id
@@ -131,6 +128,12 @@ def get_releases(
             (not pollutant_code or r.pollutantCode == pollutant_code)
         )
     ]
+    if facility_id: sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+    else: sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
+    match = sorted(
+        match,
+        key=sort_key
+    )
     return PRTRListResponse(
         data=match[skip:skip + limit],
         count=len(match),
