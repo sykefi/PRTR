@@ -121,7 +121,8 @@ def get_releases(
     limit: int,
     reporting_year: Union[int, None],
     medium: Union[Medium, None],
-    pollutant_code: Union[PollutantCode, None]
+    pollutant_code: Union[PollutantCode, None],
+    placename: Union[str, None]
 ) -> PRTRListResponse[PollutantRelease]:
     match = [
         r for r in _releases
@@ -129,7 +130,8 @@ def get_releases(
             (not facility_id or r.facilityId == facility_id) and
             (not reporting_year or r.reportingYear == reporting_year) and
             (not medium or r.medium == medium) and
-            (not pollutant_code or r.pollutantCode == pollutant_code)
+            (not pollutant_code or r.pollutantCode == pollutant_code) and
+            (not placename or r.city == placename)
         )
     ]
     return PRTRListResponse(

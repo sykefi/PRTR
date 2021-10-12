@@ -25,15 +25,24 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   )
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
+  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['releases', props.medium, urlPollutantCode, urlFirstItemIdx, urlYear],
+    [
+      'releases',
+      props.medium,
+      urlPollutantCode,
+      urlFirstItemIdx,
+      urlYear,
+      urlPlacename
+    ],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getReleases({
         pollutant_code: urlPollutantCode,
         medium: props.medium,
         reporting_year: urlYear,
+        placename: urlPlacename,
         skip: urlFirstItemIdx,
         limit: pageItemLimit
       })
@@ -50,6 +59,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
           medium={props.medium}
           urlPollutantCode={urlPollutantCode}
           urlYear={urlYear}
+          urlPlacename={urlPlacename}
         />
       </BelowNavigationHeaderPanel>
       <Flex

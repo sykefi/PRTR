@@ -44,6 +44,8 @@ export const WasteTransferFilterPanel = (props: {
     })
   }
 
+  const searchInputsChanged = !props.urlYear || props.urlYear !== year
+
   return (
     <Form onSubmit={handleSubmit} data-cy="waste-transfers-filter-panel">
       <FormControl
@@ -73,6 +75,7 @@ export const WasteTransferFilterPanel = (props: {
           data-cy="filter-waste-transfers-btn"
           type="submit"
           width="max-content"
+          disabled={!searchInputsChanged}
           marginBottom={0.5}
           colorScheme="green">
           {t('translation:common.fetch')}

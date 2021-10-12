@@ -48,6 +48,7 @@ export const ReleaseFilterPanel = (props: {
   medium: Medium
   urlPollutantCode: PollutantCode | undefined
   urlYear: number | undefined
+  urlPlacename: string | undefined
 }) => {
   const { t } = useTranslation([
     'translation',
@@ -65,15 +66,13 @@ export const ReleaseFilterPanel = (props: {
   const [placename, setPlacename] = useState<string | undefined>(undefined)
 
   const pollutantOptions = useMemo(() => getPollutantNameOptions(t), [t])
-
+  const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
+    useYearOptions()
   const {
     placenameOptionsIsLoading,
     placenameOptionsIsError,
     placenameOptions
   } = usePlacenameOptions()
-
-  const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
-    useYearOptions()
 
   useEffect(() => {
     // initialize select inputs from url search params on page load
@@ -90,6 +89,9 @@ export const ReleaseFilterPanel = (props: {
     if (year) {
       newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
     }
+    if (placename) {
+      newUrlSearchParams.set(URLSearchParamName.Placename, placename.toString())
+    }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
@@ -98,9 +100,10 @@ export const ReleaseFilterPanel = (props: {
   }
 
   const searchInputsChanged =
-    (!props.urlYear && !props.urlPollutantCode) ||
+    (!props.urlYear && !props.urlPollutantCode && !props.urlPlacename) ||
     props.urlYear !== year ||
-    props.urlPollutantCode !== pollutantCode
+    props.urlPollutantCode !== pollutantCode ||
+    props.urlPlacename !== placename
 
   return (
     <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">

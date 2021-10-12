@@ -8,4 +8,5 @@ export interface ReleaseQueryParams {
   reporting_year?: number
   medium?: Medium
   pollutant_code?: PollutantCode
+  placename?: string
 }
