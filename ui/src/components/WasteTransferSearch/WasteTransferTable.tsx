@@ -9,19 +9,7 @@ import {
   colorSchemeByWasteClassification,
   colorSchemeByWasteTreatment
 } from '../../constants'
-
-const getReceiverLabel = (wt: WasteTransfer): string => {
-  const locationString = wt.receivingSiteCity
-    ? wt.receivingSiteCity +
-      (wt.receivingSiteCountryName ? `, ${wt.receivingSiteCountryName}` : '')
-    : wt.receivingSiteCountryName || ''
-
-  return wt.nameOfReceiver
-    ? `${wt.nameOfReceiver}${locationString && ' (' + locationString + ')'}`
-    : locationString
-    ? locationString
-    : '-'
-}
+import { getReceiverLabel } from '../../utils'
 
 export const WasteTransferTable = ({
   loading,

@@ -24,6 +24,5 @@ export const getReleases = async (
     ...body,
     data: body.data
       .map(withId)
-      .sort((a, b) => b.reportingYear - a.reportingYear)
   }
 }

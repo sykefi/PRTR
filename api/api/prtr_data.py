@@ -14,11 +14,7 @@ _facilities = prtr_data_source.load_facilities(conf.facilities_csv_fp)
 
 _facility_by_id = {f.facilityId: f for f in _facilities}
 
-_bare_releases = sorted(
-    prtr_data_source.load_releases(conf.releases_csv_fp),
-    key=lambda r: r.reportingYear,
-    reverse=True
-)
+_bare_releases = prtr_data_source.load_releases(conf.releases_csv_fp)
 
 fuzzy_releases_count = len([
     r for r in _bare_releases if r.facilityId not in _facility_by_id
@@ -124,16 +120,20 @@ def get_releases(
     pollutant_code: Union[PollutantCode, None],
     placename: Union[str, None]
 ) -> PRTRListResponse[PollutantRelease]:
-    match = [
-        r for r in _releases
-        if (
-            (not facility_id or r.facilityId == facility_id) and
-            (not reporting_year or r.reportingYear == reporting_year) and
-            (not medium or r.medium == medium) and
-            (not pollutant_code or r.pollutantCode == pollutant_code) and
-            (not placename or r.city == placename)
-        )
-    ]
+    if facility_id: sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+    else: sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
+    match = sorted([
+            r for r in _releases
+            if (
+                (not facility_id or r.facilityId == facility_id) and
+                (not reporting_year or r.reportingYear == reporting_year) and
+                (not medium or r.medium == medium) and
+                (not pollutant_code or r.pollutantCode == pollutant_code) and
+                (not placename or r.city == placename)
+            )
+        ],
+        key=sort_key
+    )
     return PRTRListResponse(
         data=match[skip:skip + limit],
         count=len(match),

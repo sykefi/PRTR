@@ -10,6 +10,7 @@ import { BelowNavigationHeaderPanel } from '../Common'
 import { OlMap } from '../OlMap'
 import { FacilityReleaseTable } from './FacilityReleaseTable'
 import { FacilityBasicInfo } from './FacilityBasicInfo'
+import { FacilityWasteTransferTable } from './FacilityWasteTransferTable'
 
 type FacilityParams = {
   facilityId: string
@@ -91,22 +92,33 @@ export const FacilityPage = () => {
         sx={{ gap: 'var(--chakra-space-3)' }}
         padding={3}
         data-cy="facility-info-container">
-        <FacilityBasicInfo
-          loading={isLoading}
-          error={isError}
-          facility={data}
-        />
-        <FacilityReleaseTable
-          basicInfoIsLoading={isLoading}
-          basicInfoIsError={isError}
-          facilityId={facilityId}
-        />
-        <OlMap
-          width={450}
-          height={500}
-          facilities={data ? [data] : undefined}
-          zoomToInitialExtent={false}
-        />
+        <Flex wrap="wrap" maxWidth="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
+          <FacilityBasicInfo
+            loading={isLoading}
+            error={isError}
+            facility={data}
+            handleExit={handleExit}
+            exitLabel={exitLabel}
+          />
+          <OlMap
+            width={450}
+            height={400}
+            facilities={data ? [data] : undefined}
+            zoomToInitialExtent={false}
+          />
+        </Flex>
+        <Flex wrap="wrap" maxWidth="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
+          <FacilityReleaseTable
+            basicInfoIsLoading={isLoading}
+            basicInfoIsError={isError}
+            facilityId={facilityId}
+          />
+          <FacilityWasteTransferTable
+            basicInfoIsLoading={isLoading}
+            basicInfoIsError={isError}
+            facilityId={facilityId}
+          />
+        </Flex>
       </Flex>
     </>
   )
