@@ -119,19 +119,17 @@ def get_releases(
     medium: Union[Medium, None],
     pollutant_code: Union[PollutantCode, None]
 ) -> PRTRListResponse[PollutantRelease]:
-    match = [
-        r for r in _releases
-        if (
-            (not facility_id or r.facilityId == facility_id) and
-            (not reporting_year or r.reportingYear == reporting_year) and
-            (not medium or r.medium == medium) and
-            (not pollutant_code or r.pollutantCode == pollutant_code)
-        )
-    ]
     if facility_id: sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
     else: sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
-    match = sorted(
-        match,
+    match = sorted([
+            r for r in _releases
+            if (
+                (not facility_id or r.facilityId == facility_id) and
+                (not reporting_year or r.reportingYear == reporting_year) and
+                (not medium or r.medium == medium) and
+                (not pollutant_code or r.pollutantCode == pollutant_code)
+            )
+        ],
         key=sort_key
     )
     return PRTRListResponse(
