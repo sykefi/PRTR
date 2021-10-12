@@ -40,11 +40,11 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
       </Link>
       <Flex marginTop={0.5} justify="space-between">
         <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
-          <Box>{t('facilities.facilityTypeCode')}:</Box>
+          <Box paddingRight={1.5}>{t('facilities.facilityTypeCode')}:</Box>
           <Box>{f.mainActivityCode}</Box>
         </Flex>
         <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
-          <Box>{t('common.placename')}:</Box>
+          <Box paddingRight={1.5}>{t('common.placename')}:</Box>
           <Box>{f.city}</Box>
         </Flex>
         <Flex wrap="wrap">

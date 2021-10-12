@@ -47,7 +47,7 @@ export const FacilityMapLegend = () => {
   return (
     <Box
       data-cy="facility-map-legend"
-      width={450}
+      width={370}
       minWidth={250}
       maxWidth="100%"
       paddingX={5}
