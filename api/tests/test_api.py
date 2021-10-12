@@ -104,17 +104,21 @@ def test_get_releases():
 
 
 def test_get_releases_by_facility_id():
-    facility_id = 'FI_EEA_11035'
+    facility_id = 'FI_EEA_6347'
     response = client.get(
         f'{root_path}/releases?facility_id={facility_id}'
     )
     assert response.status_code == 200
     data = response.json()['data']
-    assert len(data) == 8
+    assert len(data) == 10
+    release_prev = None
     for release in data:
         assert release['facilityId'] == facility_id
         assert _has_release_fields(release)
         assert _has_facility_fields(release)
+        if release_prev:
+            assert release['pollutantCode'] >= release_prev['pollutantCode']
+        release_prev = release
 
 
 def test_get_releases_by_year():
