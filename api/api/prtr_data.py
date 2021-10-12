@@ -43,9 +43,9 @@ _metadata = PrtrMetadata(
         reverse=True
     ),
     present_pollutant_codes=list(set([r.pollutantCode for r in _releases])),
-    present_cities=list(set([
+    present_cities=sorted(list(set([
         f.city for f in _facilities if f.city is not None
-    ])),
+    ]))),
     present_main_activity_codes=list(set([
         f.mainActivityCode for f in _facilities
     ])),
