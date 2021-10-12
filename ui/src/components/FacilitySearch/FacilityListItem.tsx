@@ -3,7 +3,33 @@ import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { Facility } from '../../api/models/Facility'
-import { colorSchemeByFacilityStatus } from '../../constants'
+import {
+  colorSchemeByFacilityStatus,
+  fillColorByTopMainActivity,
+  strokeColorByTopMainActivity
+} from '../../constants'
+import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
+
+const MainActivityBadge = ({
+  topMainActivity
+}: {
+  topMainActivity: FacilityTopMainActivity
+}) => {
+  return (
+    <Box
+      borderRadius="50%"
+      width={2.5}
+      height={2.5}
+      minHeight={2.5}
+      minWidth={2.5}
+      border="2px solid"
+      color="black"
+      marginTop={0.5}
+      borderColor={strokeColorByTopMainActivity[topMainActivity]}
+      backgroundColor={fillColorByTopMainActivity[topMainActivity]}
+    />
+  )
+}
 
 export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
   const { t } = useTranslation()
@@ -39,9 +65,11 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
         {f.nameOfFeature}
       </Link>
       <Flex marginTop={0.5} justify="space-between">
-        <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
-          <Box paddingRight={1.5}>{t('facilities.facilityTypeCode')}:</Box>
-          <Box>{f.mainActivityCode}</Box>
+        <Flex wrap="wrap" fontSize="smaller" marginRight={2} align="center">
+          <Box paddingRight={1}>
+            {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
+          </Box>
+          <MainActivityBadge topMainActivity={f.topMainActivity} />
         </Flex>
         <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
           <Box paddingRight={1.5}>{t('common.placename')}:</Box>
