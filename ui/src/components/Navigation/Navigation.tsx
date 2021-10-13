@@ -101,7 +101,7 @@ const Navigation = ({
         zIndex={10}
         px={4}
         data-cy="navigation-panel">
-        <RrLink to={RoutePath.FrontPage}>
+        <RrLink to={RoutePath.FrontPage} data-cy="front-page-nav">
           <Flex
             align="center"
             justify="center"
