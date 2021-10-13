@@ -1,5 +1,5 @@
-import { Medium } from './Medium'
-import { PollutantCode } from './PollutantCode'
+import { Medium } from '../enums/Medium'
+import { PollutantCode } from '../enums/PollutantCode'
 
 export interface ReleaseQueryParams {
   facility_id?: string

@@ -1,5 +1,5 @@
-import { FacilityMainActivityCode } from './FacilityMainActivityCode'
-import { PollutantCode } from './PollutantCode'
+import { FacilityMainActivityCode } from '../enums/FacilityMainActivityCode'
+import { PollutantCode } from '../enums/PollutantCode'
 
 export interface PRTRApiMetadata {
   available_reporting_years: number[]

@@ -1,9 +1,9 @@
-import { FacilityStatus } from './api/models/FacilityStatus'
-import { FacilityTopMainActivity } from './api/models/FacilityTopMainActivity'
-import { Medium } from './api/models/Medium'
-import { MethodCode } from './api/models/MethodCode'
-import { WasteClassificationCode } from './api/models/WasteClassificationCode'
-import { WasteTreatmentCode } from './api/models/WasteTreatmentCode'
+import { FacilityStatus } from './api/enums/FacilityStatus'
+import { FacilityTopMainActivity } from './api/enums/FacilityTopMainActivity'
+import { Medium } from './api/enums/Medium'
+import { MethodCode } from './api/enums/MethodCode'
+import { WasteClassificationCode } from './api/enums/WasteClassificationCode'
+import { WasteTreatmentCode } from './api/enums/WasteTreatmentCode'
 
 export const colorSchemeByMethodCode: Record<MethodCode, string> = {
   [MethodCode.M]: 'green',

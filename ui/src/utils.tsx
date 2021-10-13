@@ -1,8 +1,8 @@
 import i18next from 'i18next'
 import { Namespace } from 'react-i18next'
 import { FacilityWithCoordinates } from './api/models/Facility'
-import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
-import { PollutantCode } from './api/models/PollutantCode'
+import { FacilityMainActivityCode } from './api/enums/FacilityMainActivityCode'
+import { PollutantCode } from './api/enums/PollutantCode'
 import { WasteTransfer } from './api/models/WasteTransfer'
 import { FacilityMapFeature } from './models/FacilityMapFeature'
 import {

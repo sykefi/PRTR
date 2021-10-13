@@ -1,6 +1,6 @@
 import { Box, Flex, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { FacilityTopMainActivity } from '../api/models/FacilityTopMainActivity'
+import { FacilityTopMainActivity } from '../api/enums/FacilityTopMainActivity'
 import {
   strokeColorByTopMainActivity,
   fillColorByTopMainActivity

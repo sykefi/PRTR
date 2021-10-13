@@ -1,8 +1,8 @@
-import { FacilityMainActivityCode } from './FacilityMainActivityCode'
-import { FacilityTopMainActivity } from './FacilityTopMainActivity'
-import { MethodCode } from './MethodCode'
-import { WasteClassificationCode } from './WasteClassificationCode'
-import { WasteTreatmentCode } from './WasteTreatmentCode'
+import { FacilityMainActivityCode } from '../enums/FacilityMainActivityCode'
+import { FacilityTopMainActivity } from '../enums/FacilityTopMainActivity'
+import { MethodCode } from '../enums/MethodCode'
+import { WasteClassificationCode } from '../enums/WasteClassificationCode'
+import { WasteTreatmentCode } from '../enums/WasteTreatmentCode'
 
 export interface WasteTransfer {
   id: string

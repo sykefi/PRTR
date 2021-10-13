@@ -1,6 +1,6 @@
-import { FacilityMainActivityCode } from './FacilityMainActivityCode'
-import { FacilityTopMainActivity } from './FacilityTopMainActivity'
-import { FacilityStatus } from './FacilityStatus'
+import { FacilityMainActivityCode } from '../enums/FacilityMainActivityCode'
+import { FacilityTopMainActivity } from '../enums/FacilityTopMainActivity'
+import { FacilityStatus } from '../enums/FacilityStatus'
 
 export interface Facility {
   facilityId: string

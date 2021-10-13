@@ -1,5 +1,5 @@
-import { FacilityMainActivityCode } from './FacilityMainActivityCode'
-import { FacilityTopMainActivity } from './FacilityTopMainActivity'
+import { FacilityMainActivityCode } from '../enums/FacilityMainActivityCode'
+import { FacilityTopMainActivity } from '../enums/FacilityTopMainActivity'
 
 export interface FacilityQueryParams {
   facility_id?: string
