@@ -10,6 +10,7 @@ import {
   useURLSearchParam,
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
+import { hasCoordinates } from '../../api/models/Facility'
 import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
 import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
@@ -47,6 +48,7 @@ export const FacilitySearch = () => {
     }
   )
   const gotFacilities = !!data && data.length > 0
+  const facilitiesWithCoordinates = data ? data.filter(hasCoordinates) : []
 
   return (
     <>
@@ -106,13 +108,17 @@ export const FacilitySearch = () => {
                     pageItemLimit={pageItemLimit}
                   />
                 </Flex>
-                <Box maxWidth="100%">
-                  <OlMap
-                    facilities={data}
-                    zoomToInitialExtent={!urlSearchTerm}
-                  />
-                </Box>
-                <FacilityMapLegend />
+                {facilitiesWithCoordinates.length > 0 && (
+                  <>
+                    <Box maxWidth="100%">
+                      <OlMap
+                        facilities={facilitiesWithCoordinates}
+                        zoomToInitialExtent={!urlSearchTerm}
+                      />
+                    </Box>
+                    <FacilityMapLegend />
+                  </>
+                )}
               </Flex>
             </>
           )}

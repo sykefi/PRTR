@@ -120,8 +120,10 @@ def get_releases(
     pollutant_code: Union[PollutantCode, None],
     placename: Union[str, None]
 ) -> PRTRListResponse[PollutantRelease]:
-    if facility_id: sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
-    else: sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
+    if facility_id:
+        sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+    else:
+        sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
     match = sorted([
             r for r in _releases
             if (

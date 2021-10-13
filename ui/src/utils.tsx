@@ -1,6 +1,6 @@
 import i18next from 'i18next'
 import { Namespace } from 'react-i18next'
-import { Facility } from './api/models/Facility'
+import { FacilityWithCoordinates } from './api/models/Facility'
 import { FacilityMainActivityCode } from './api/models/FacilityMainActivityCode'
 import { PollutantCode } from './api/models/PollutantCode'
 import { WasteTransfer } from './api/models/WasteTransfer'
@@ -12,7 +12,7 @@ import {
 import { TranslationKeys } from './react-i18next'
 
 const facilityAsGeoJSONFeature = (
-  f: Facility
+  f: FacilityWithCoordinates
 ): GeoJSONPointFeature<Omit<FacilityMapFeature, 'geometry'>> => {
   return {
     type: 'Feature',
@@ -26,7 +26,7 @@ const facilityAsGeoJSONFeature = (
 }
 
 export const facilitiesAsGeoJSONFC = (
-  facilities: Facility[]
+  facilities: FacilityWithCoordinates[]
 ): GeoJSONPointFeatureCollection<Omit<FacilityMapFeature, 'geometry'>> => {
   return {
     type: 'FeatureCollection',

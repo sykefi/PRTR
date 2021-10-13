@@ -51,8 +51,8 @@ class ProductionFacility(BaseModel):
     nameOfFeature: str
     topMainActivity: TopMainActivity
     mainActivityCode: MainActivityCode
-    x: int
-    y: int
+    x: Optional[int] = None
+    y: Optional[int] = None
     streetName: Optional[str] = None
     buildingNumber: Optional[str] = None
     postalCode: Optional[str] = None
