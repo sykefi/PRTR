@@ -49,8 +49,9 @@ const baseLayer = new TileLayer({
     tileGrid: new WMTSTileGrid({
       matrixIds: matrixIds,
       resolutions: resolutions,
-      origin: [-548576.000000, 8388608.000000] // from capabilities
-    })
+      origin: [-548576, 8388608] // from capabilities
+    }),
+    attributions: '© Maanmittauslaitos'
   })
 })
 
