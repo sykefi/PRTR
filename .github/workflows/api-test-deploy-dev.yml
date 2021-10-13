@@ -13,10 +13,10 @@ jobs:
     name: Test API
     runs-on: ubuntu-latest
     container:
-      image: prtrdev.azurecr.io/fin-prtr:latest
+      image: sykeprtrprodacr.azurecr.io/fin-prtr:latest
       credentials:
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
     steps:
     - uses: actions/checkout@v2
     - name: Test PRTR API
