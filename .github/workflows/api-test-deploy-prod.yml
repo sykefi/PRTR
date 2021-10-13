@@ -1,0 +1,60 @@
+name: 'API: tests & prod deploy'
+
+on:
+  push:
+    paths:
+      - 'api/**'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - '.github/workflows/api-test-deploy-prod.yml'
+
+env:
+  AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io
+  AZURE_WEBAPP_NAME: syke-prtr-fastapi-p-cont
+
+jobs:
+  # tests:
+  #   name: Test API
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: sykeprtrprodacr.azurecr.io/fin-prtr:latest
+  #     credentials:
+  #       username: ${{ secrets.REGISTRY_USERNAME }}
+  #       password: ${{ secrets.REGISTRY_PASSWORD }}
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Test PRTR API
+  #     run: |
+  #         cd api/
+  #         python -m pytest tests/ -vv
+
+  build-deploy-prod:
+    name: Build & deploy prod
+    # if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    # needs: tests
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/docker-login@v1
+      with:
+        login-server: sykeprtrprodacr.azurecr.io
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
+    - name: Build & push image
+      run: |
+        docker build . \
+          -t sykeprtrprodacr.azurecr.io/fin-prtr:latest \
+          -t sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}
+        docker push sykeprtrprodacr.azurecr.io/fin-prtr:latest
+        docker push sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        images: 'sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}'
+    - name: logout
+      run: |
+        az logout
