@@ -35,14 +35,14 @@ jobs:
     # needs: tests
     steps:
     - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
     - uses: azure/docker-login@v1
       with:
         login-server: sykeprtrprodacr.azurecr.io
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
-    - uses: azure/login@v1
-      with:
-        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
     - name: Build & push image
       run: |
         docker build . \
