@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { CloseButton } from '@chakra-ui/close-button'
 import { Map, Overlay, View } from 'ol'
+import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector'
 import VectorSource from 'ol/source/Vector'
+import WMTS from 'ol/source/WMTS'
+import WMTSTileGrid from 'ol/tilegrid/WMTS'
 import GeoJSON from 'ol/format/GeoJSON'
 import { Style, Fill, Stroke } from 'ol/style'
 import { Extent } from 'ol/extent'
@@ -26,18 +29,27 @@ const etrsTm35Fin = new Projection({
   metersPerUnit: 1
 })
 
-const baseLayer = new VectorLayer({
+const areaSize = 2097152; // width and height of the matrix set in ground (from capabilities)
+const tileSize = 256; // width and height of the tile in pixels (from capabilities)
+const matrixIds = new Array(18);
+const resolutions = new Array(18);
+
+for (let z = 0; z < 16; ++z) {
+  matrixIds[z] = z;
+  resolutions[z] = areaSize / tileSize / Math.pow(2, z);
+}
+
+const baseLayer = new TileLayer({
   zIndex: 1,
-  source: new VectorSource({
-    features: new GeoJSON().readFeatures(municipalitiesGeoJson)
-  }),
-  style: new Style({
-    fill: new Fill({
-      color: 'rgb(242, 242, 242)'
-    }),
-    stroke: new Stroke({
-      color: 'rgb(230, 230, 230)',
-      width: 1
+  source: new WMTS({
+    url: 'https://paikkatieto.ymparisto.fi/proxy/proxy.ashx?https://karttakuva.maanmittauslaitos.fi/maasto/wmts?x',
+    layer: 'taustakartta',
+    matrixSet: 'ETRS-TM35FIN',
+    style: 'default',
+    tileGrid: new WMTSTileGrid({
+      matrixIds: matrixIds,
+      resolutions: resolutions,
+      origin: [-548576.000000, 8388608.000000] // from capabilities
     })
   })
 })
