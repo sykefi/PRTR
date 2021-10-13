@@ -49,9 +49,9 @@ def clear_location_data_for_main_activity_7(
         facilities,
         [
             'x', 'y',
-            'streetName', 'postalCode', 'city',
-            'telephoneNo', 'buildingNumber',
-            'pointGeometryLat', 'pointGeometryLon'
+            'pointGeometryLat', 'pointGeometryLon',
+            'streetName', 'postalCode', 'buildingNumber',
+            'telephoneNo'
         ]
     )
     # keep series x & y as integers (as before)
