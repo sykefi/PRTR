@@ -17,7 +17,7 @@ jobs:
   #   name: Test API
   #   runs-on: ubuntu-latest
   #   container:
-  #     image: sykeprtrprodacr.azurecr.io/fin-prtr:latest
+  #     image: ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
   #     credentials:
   #       username: ${{ secrets.REGISTRY_USERNAME }}
   #       password: ${{ secrets.REGISTRY_PASSWORD }}
@@ -35,26 +35,26 @@ jobs:
     # needs: tests
     steps:
     - uses: actions/checkout@v2
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.AZURE_ACR_NAME }}
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
-    - uses: azure/docker-login@v1
-      with:
-        login-server: sykeprtrprodacr.azurecr.io
-        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
-        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
     - name: Build & push image
       run: |
         docker build . \
-          -t sykeprtrprodacr.azurecr.io/fin-prtr:latest \
-          -t sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}
-        docker push sykeprtrprodacr.azurecr.io/fin-prtr:latest
-        docker push sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}
+          -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest \
+          -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
+        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
+        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: '${{ env.AZURE_WEBAPP_NAME }}'
-        images: 'sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}'
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        images: '${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}'
     - name: logout
       run: |
         az logout
