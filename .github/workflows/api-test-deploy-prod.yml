@@ -53,7 +53,7 @@ jobs:
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        app-name: '${{ env.AZURE_WEBAPP_NAME }}'
         images: 'sykeprtrprodacr.azurecr.io/fin-prtr:${{ github.sha }}'
     - name: logout
       run: |
