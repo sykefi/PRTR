@@ -1,0 +1,52 @@
+name: 'UI: tests & prod deploy'
+
+on:
+  push:
+    paths:
+      - 'ui/**'
+      - '.github/workflows/ui-test-deploy-prod.yml'
+
+env:
+  AZURE_WEBAPP_NAME: syke-prtr-p-web
+  AZURE_WEBAPP_PACKAGE_PATH: 'ui/build' # path to web resources
+  NODE_VERSION: '14.x'
+
+jobs:
+  test-build-deploy:
+    name: Test, Build and Deploy
+    # if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: ui/package-lock.json
+    - name: npm ci
+      run: npm ci
+      working-directory: ui
+    # - name: Cypress tests
+    #   run: |
+    #     npm start & npm run wait-on -- http://localhost:3000
+    #     npm run cypress:run
+    #   working-directory: ui
+    - name: npm build
+      run: npm run build
+      working-directory: ui
+    - name: add process.json
+      run: |
+        echo '{ script: "serve", env: { PM2_SERVE_SPA: "true", PM2_SERVE_HOMEPAGE: "/index.html" } }' >> build/process.json
+      working-directory: ui
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: logout
+      run: |
+        az logout
