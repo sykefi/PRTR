@@ -10,7 +10,10 @@ import api.prtr_data_source as prtr_data_source
 from api.conf import conf
 
 
-_facilities = prtr_data_source.load_facilities(conf.facilities_csv_fp)
+_facilities = sorted(
+    prtr_data_source.load_facilities(conf.facilities_csv_fp),
+    key=lambda f: f.nameOfFeature
+)
 
 _facility_by_id = {f.facilityId: f for f in _facilities}
 
