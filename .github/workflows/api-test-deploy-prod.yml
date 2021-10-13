@@ -13,20 +13,20 @@ env:
   AZURE_WEBAPP_NAME: syke-prtr-fastapi-p-cont
 
 jobs:
-  # tests:
-  #   name: Test API
-  #   runs-on: ubuntu-latest
-  #   container:
-  #     image: ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
-  #     credentials:
-  #       username: ${{ secrets.REGISTRY_USERNAME }}
-  #       password: ${{ secrets.REGISTRY_PASSWORD }}
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Test PRTR API
-  #     run: |
-  #         cd api/
-  #         python -m pytest tests/ -vv
+  tests:
+    name: Test API
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
+      credentials:
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test PRTR API
+      run: |
+          cd api/
+          python -m pytest tests/ -vv
 
   build-deploy-prod:
     name: Build & deploy prod
