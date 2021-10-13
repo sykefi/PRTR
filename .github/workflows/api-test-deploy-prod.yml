@@ -9,7 +9,7 @@ on:
       - '.github/workflows/api-test-deploy-prod.yml'
 
 env:
-  AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io
+  AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io # set separately to jobs.tests.container.image
   AZURE_WEBAPP_NAME: syke-prtr-fastapi-p-cont
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
     name: Test API
     runs-on: ubuntu-latest
     container:
-      image: '${{ env.AZURE_ACR_NAME }}/fin-prtr:latest'
+      image: sykeprtrprodacr.azurecr.io/fin-prtr:latest
       credentials:
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
