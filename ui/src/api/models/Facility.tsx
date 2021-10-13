@@ -8,12 +8,21 @@ export interface Facility {
   nameOfFeature: string
   topMainActivity: FacilityTopMainActivity
   mainActivityCode: FacilityMainActivityCode
+  x: number | null
+  y: number | null
+  streetName: string | null
+  buildingNumber: string | null
+  postalCode: string | null
+  city: string | null
+  telephoneNo: string | null
+  status: FacilityStatus | null
+}
+
+export interface FacilityWithCoordinates extends Facility {
   x: number
   y: number
-  streetName: string
-  buildingNumber?: string
-  postalCode: string
-  city: string
-  telephoneNo?: string
-  status?: FacilityStatus
+}
+
+export const hasCoordinates = (f: Facility): f is FacilityWithCoordinates => {
+  return !!f.x && !!f.y
 }

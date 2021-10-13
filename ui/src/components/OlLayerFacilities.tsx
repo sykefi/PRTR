@@ -9,7 +9,7 @@ import { easeOut } from 'ol/easing'
 import { StyleFunction } from 'ol/style/Style'
 import { FeatureLike } from 'ol/Feature'
 import { Style, Fill, Circle, Stroke } from 'ol/style'
-import { Facility } from '../api/models/Facility'
+import { FacilityWithCoordinates } from '../api/models/Facility'
 import { facilitiesAsGeoJSONFC } from '../utils'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
 import {
@@ -59,7 +59,7 @@ export const OlLayerFacilities = ({
   zoomToInitialExtent
 }: {
   olMap: Map
-  facilities: Facility[]
+  facilities: FacilityWithCoordinates[]
   popupData: FacilityMapFeature | null
   setPopupData: (f: FacilityMapFeature | null) => void
   zoomToInitialExtent: boolean
