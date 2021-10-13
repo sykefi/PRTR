@@ -20,7 +20,6 @@ import { WasteTransferSearch } from './components/WasteTransferSearch/WasteTrans
 const queryClient = new QueryClient()
 
 const navigationItems: NavigationItem[] = [
-  { tKey: 'common.frontPage', path: RoutePath.FrontPage },
   { tKey: 'common.facilitySearch', path: RoutePath.Facilities },
   { tKey: 'common.releasesToAir', path: RoutePath.ReleasesToAir },
   { tKey: 'common.releasesToWater', path: RoutePath.ReleasesToWater },
