@@ -11,8 +11,8 @@ import {
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
 import { hasCoordinates } from '../../api/models/Facility'
-import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
-import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
+import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
+import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { FacilityMapLegend } from '../FacilityMapLegend'
 import { FacilityPageSelector } from './FacilityPageSelector'

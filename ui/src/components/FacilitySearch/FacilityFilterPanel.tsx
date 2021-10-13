@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
+import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
@@ -15,7 +15,7 @@ import { TranslationKeys } from '../../react-i18next'
 import {
   FacilityTopMainActivity,
   isTopMainActivity
-} from '../../api/models/FacilityTopMainActivity'
+} from '../../api/enums/FacilityTopMainActivity'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 
 const getFacilityMainActivityOptions = (

@@ -8,7 +8,7 @@ import {
   fillColorByTopMainActivity,
   strokeColorByTopMainActivity
 } from '../../constants'
-import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
+import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
 
 const MainActivityBadge = ({
   topMainActivity

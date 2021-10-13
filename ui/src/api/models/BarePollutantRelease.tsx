@@ -1,6 +1,6 @@
-import { Medium } from './Medium'
-import { MethodCode } from './MethodCode'
-import { PollutantCode } from './PollutantCode'
+import { Medium } from '../enums/Medium'
+import { MethodCode } from '../enums/MethodCode'
+import { PollutantCode } from '../enums/PollutantCode'
 
 export interface BarePollutantRelease {
   id: string
