@@ -24,6 +24,7 @@ const MainActivityBadge = ({
       minWidth={2.5}
       border="2px solid"
       color="black"
+      marginRight={1}
       marginTop={0.5}
       borderColor={strokeColorByTopMainActivity[topMainActivity]}
       backgroundColor={fillColorByTopMainActivity[topMainActivity]}
@@ -66,10 +67,11 @@ export const FacilityListItem = ({ idx, f }: { idx: number; f: Facility }) => {
       </Link>
       <Flex marginTop={0.5} justify="space-between">
         <Flex wrap="wrap" fontSize="smaller" marginRight={2} align="center">
-          <Box paddingRight={1}>
-            {t('facilities.facilityTypeCode')}: {f.mainActivityCode}
-          </Box>
-          <MainActivityBadge topMainActivity={f.topMainActivity} />
+          <Box marginRight={1.5}>{t('facilities.facilityTypeCode')}:</Box>
+          <Flex align="center">
+            <MainActivityBadge topMainActivity={f.topMainActivity} />
+            {f.mainActivityCode}
+          </Flex>
         </Flex>
         <Flex wrap="wrap" fontSize="smaller" marginRight={2}>
           <Box paddingRight={1.5}>{t('common.placename')}:</Box>
