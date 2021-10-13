@@ -28,6 +28,7 @@ const areaSize = 2097152; // width and height of the matrix set in ground (from 
 const tileSize = 256; // width and height of the tile in pixels (from capabilities)
 const matrixIds = new Array(18);
 const resolutions = new Array(18);
+const proxyUrl = 'https://paikkatieto.ymparisto.fi/proxy/proxy.ashx?';
 
 for (let z = 0; z < 16; ++z) {
   matrixIds[z] = z;
@@ -37,7 +38,7 @@ for (let z = 0; z < 16; ++z) {
 const baseLayer = new TileLayer({
   zIndex: 1,
   source: new WMTS({
-    url: 'https://paikkatieto.ymparisto.fi/proxy/proxy.ashx?https://karttakuva.maanmittauslaitos.fi/maasto/wmts?x',
+    url: proxyUrl + 'https://karttakuva.maanmittauslaitos.fi/maasto/wmts?x',
     layer: 'taustakartta',
     matrixSet: 'ETRS-TM35FIN',
     style: 'default',
