@@ -24,15 +24,15 @@ const etrsTm35Fin = new Projection({
   metersPerUnit: 1
 })
 
-const areaSize = 2097152; // width and height of the matrix set in ground (from capabilities)
-const tileSize = 256; // width and height of the tile in pixels (from capabilities)
-const matrixIds = new Array(18);
-const resolutions = new Array(18);
-const proxyUrl = 'https://paikkatieto.ymparisto.fi/proxy/proxy.ashx?';
+const areaSize = 2097152 // width and height of the matrix set in ground (from capabilities)
+const tileSize = 256 // width and height of the tile in pixels (from capabilities)
+const matrixIds = new Array(18)
+const resolutions = new Array(18)
+const proxyUrl = 'https://paikkatieto.ymparisto.fi/proxy/proxy.ashx?'
 
 for (let z = 0; z < 16; ++z) {
-  matrixIds[z] = z;
-  resolutions[z] = areaSize / tileSize / Math.pow(2, z);
+  matrixIds[z] = z
+  resolutions[z] = areaSize / tileSize / Math.pow(2, z)
 }
 
 const baseLayer = new TileLayer({
@@ -158,7 +158,7 @@ export const OlMap = (props: Props) => {
       minWidth={250}
       maxWidth="100%"
       margin={props.margin || 0}
-      height={props.height || 'max(600px, calc(100vh - 345px))'}
+      height={props.height || 'max(500px, calc(100vh - 445px))'}
       maxHeight={props.height || 1000}
       background="white"
       borderRadius="md"

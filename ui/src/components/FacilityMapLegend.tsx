@@ -50,6 +50,7 @@ export const FacilityMapLegend = () => {
       width={370}
       minWidth={250}
       maxWidth="100%"
+      height="max-content"
       paddingX={5}
       paddingY={2}
       background="white"

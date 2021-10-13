@@ -53,10 +53,12 @@ const Form = styled.form`
 `
 
 export const FacilityFilterPanel = ({
+  searchHasBeenMade,
   urlSearchTerm,
   urlPlacename,
   urlFacilityMainActivity
 }: {
+  searchHasBeenMade: boolean
   urlSearchTerm: string | undefined
   urlPlacename: string | undefined
   urlFacilityMainActivity:
@@ -109,13 +111,15 @@ export const FacilityFilterPanel = ({
     if (placename) {
       newUrlSearchParams.set(URLSearchParamName.Placename, placename)
     }
+    newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: '/facilities',
       search: '?' + newUrlSearchParams.toString()
     })
   }
 
-  const searchInputsChanged =
+  const allowSearch =
+    !searchHasBeenMade ||
     urlSearchTerm !== searchTerm ||
     urlPlacename !== placename ||
     urlFacilityMainActivity !== facilityMainActivity
@@ -184,7 +188,7 @@ export const FacilityFilterPanel = ({
         <Button
           data-cy="search-facilities-btn"
           type="submit"
-          disabled={!searchInputsChanged}
+          disabled={!allowSearch}
           width="max-content"
           marginBottom={0.5}
           colorScheme="green">
