@@ -30,11 +30,11 @@ jobs:
     - name: npm ci
       run: npm ci
       working-directory: ui
-    # - name: Cypress tests
-    #   run: |
-    #     npm start & npm run wait-on -- http://localhost:3000
-    #     npm run cypress:run
-    #   working-directory: ui
+    - name: Cypress tests
+      run: |
+        npm start & npm run wait-on -- http://localhost:3000
+        npm run cypress:run
+      working-directory: ui
     - name: npm build
       run: npm run build
       working-directory: ui
