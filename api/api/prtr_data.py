@@ -147,7 +147,7 @@ def get_releases(
     )
 
 
-def is_waste_international(
+def waste_is_international(
     name_of_receiver: Union[str, None],
     receiving_site_country_name: Union[str, None]
 ) -> bool:
@@ -168,9 +168,12 @@ def get_waste_transfers(
         if (
             (not facility_id or wt.facilityId == facility_id) and
             (not reporting_year or wt.reportingYear == reporting_year) and
-            (not all_or_international_filter or all_or_international_filter == WasteInternationality.ALL
-            or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
-            is_waste_international(wt.nameOfReceiver, wt.receivingSiteCountryName)))
+            (
+                not all_or_international_filter
+                or all_or_international_filter == WasteInternationality.ALL
+                or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
+                    waste_is_international(wt.nameOfReceiver, wt.receivingSiteCountryName))
+            )
         )
     ]
     return PRTRListResponse(
