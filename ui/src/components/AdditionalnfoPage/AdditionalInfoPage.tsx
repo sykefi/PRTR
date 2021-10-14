@@ -23,7 +23,7 @@ const AdditionalInfoPageStyleWrapper = styled.div`
 `
 
 export const AdditionalInfoPage = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   return (
     <Flex direction="column" align="center" p={3}>
