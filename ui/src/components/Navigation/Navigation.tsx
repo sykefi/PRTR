@@ -153,7 +153,7 @@ const Navigation = ({
             onClick={isOpen ? onClose : onOpen}
           />
           <PrtrLogo />
-          <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+          <HStack as={'nav'} spacing={2} display={{ base: 'none', md: 'flex' }}>
             {navigationItems.map(item => (
               <NavLink key={item.path} navigationItem={item} />
             ))}

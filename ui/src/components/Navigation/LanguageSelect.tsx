@@ -59,6 +59,7 @@ export const LanguageSelect = () => {
       <Menu>
         <MenuButton
           as={Button}
+          fontSize="smaller"
           boxShadow="md"
           aria-label={'Selected language: ' + getLanguageName(i18n.language)}
           rounded={'full'}
