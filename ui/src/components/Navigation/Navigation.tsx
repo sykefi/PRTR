@@ -1,13 +1,12 @@
 import {
   Box,
   Flex,
-  Text,
   HStack,
   Link,
-  Icon,
   IconButton,
   useDisclosure,
   useColorModeValue,
+  Icon,
   Stack
 } from '@chakra-ui/react'
 import { GiFactory } from 'react-icons/gi'
@@ -18,7 +17,7 @@ import { NavigationItem } from '../../models/NavigationItem'
 import { RoutePath } from '../../models/RoutePath'
 import { LanguageSelect } from './LanguageSelect'
 
-export const NavLink = ({
+const NavLink = ({
   navigationItem,
   search
 }: {
@@ -38,6 +37,7 @@ export const NavLink = ({
       exact={navigationItem.path === RoutePath.FrontPage}
       px={2}
       py={1}
+      whiteSpace="nowrap"
       color="blackAlpha.700"
       fontWeight={600}
       fontSize="lg"
@@ -73,8 +73,8 @@ export const NavLink = ({
           md: 'initial'
         }}
         position="relative"
-        top="21px"
-        marginTop="-6px"
+        top="31px"
+        marginTop="-10px"
         width="calc(100% + var(--chakra-space-4))"
         borderTop="3px solid transparent"
         borderTopLeftRadius="1px"
@@ -82,6 +82,48 @@ export const NavLink = ({
         left={-2}
       />
     </Link>
+  )
+}
+
+const PrtrLogo = () => {
+  return (
+    <RrLink to={RoutePath.FrontPage} data-cy="front-page-nav">
+      <Flex
+        marginX={{ base: 0, md: 2 }}
+        marginY={1}
+        marginRight={{ base: 1, md: 6 }}
+        letterSpacing={0.2}
+        fontWeight="bold"
+        color="blue.600"
+        direction="column"
+        align="center"
+        justify="center"
+        whiteSpace="nowrap">
+        <Flex align="center">
+          <Icon
+            w={10}
+            h={10}
+            as={GiFactory}
+            paddingBottom={1}
+            marginRight={1}
+            marginLeft="-2px"
+          />
+          <Box
+            whiteSpace="nowrap"
+            letterSpacing={2}
+            fontSize={{ base: 20, md: 24 }}
+            marginBottom={{ base: '0px', md: '-2px' }}>
+            FIN-PRTR
+          </Box>
+        </Flex>
+        <Box
+          marginTop="-6px"
+          fontSize={{ base: 12, md: 15 }}
+          whiteSpace="nowrap">
+          SUOMEN PÄÄSTÖREKISTERI
+        </Box>
+      </Flex>
+    </RrLink>
   )
 }
 
@@ -101,28 +143,7 @@ const Navigation = ({
         zIndex={10}
         px={4}
         data-cy="navigation-panel">
-        <RrLink to={RoutePath.FrontPage} data-cy="front-page-nav">
-          <Flex
-            align="center"
-            justify="center"
-            paddingTop={2}
-            marginBottom={-0.5}
-            color="blue.600">
-            <Icon
-              w={6}
-              h={6}
-              as={GiFactory}
-              paddingBottom={1}
-              marginRight={1}
-            />
-            <Box fontWeight="bold" letterSpacing={0.2} marginX={0.5}>
-              <Text as="span"> FIN-PRTR</Text>
-              <Text as="span"> - </Text>
-              <Text as="span">suomalainen päästörekisteri</Text>
-            </Box>
-          </Flex>
-        </RrLink>
-        <Flex h={16} align="center" justifyContent="center">
+        <Flex h={20} align="center" justifyContent="center">
           <IconButton
             size={'md'}
             marginX={4}
@@ -131,17 +152,13 @@ const Navigation = ({
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} align="center">
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {navigationItems.map(item => (
-                <NavLink key={item.path} navigationItem={item} />
-              ))}
-            </HStack>
-            <LanguageSelect />
+          <PrtrLogo />
+          <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+            {navigationItems.map(item => (
+              <NavLink key={item.path} navigationItem={item} />
+            ))}
           </HStack>
+          <LanguageSelect />
         </Flex>
 
         {isOpen ? (
