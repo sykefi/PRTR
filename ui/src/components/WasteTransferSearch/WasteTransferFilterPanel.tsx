@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
 import { Flex } from '@chakra-ui/layout'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
@@ -39,17 +39,12 @@ export const WasteTransferFilterPanel = (props: {
   const history = useHistory()
   const location = useLocation()
 
-  const [year, setYear] = useState<number | undefined>(undefined)
+  const [year, setYear] = useState<number | undefined>(props.urlYear)
   const [allOrInternational, setAllOrInternational] =
     useState<AllOrInternationalFilter>(props.urlAllOrInternational)
 
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
-
-  useEffect(() => {
-    // initialize select inputs from url search params on page load
-    setYear(props.urlYear)
-  }, [props.urlYear])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
