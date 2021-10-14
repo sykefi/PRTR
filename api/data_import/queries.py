@@ -20,7 +20,10 @@ sql_facilities = (
     FIRST([2a_ProductionFacilityDetails].status) as status,
     FIRST([2d_CompetentAuthorityEPRTR].CompetentAuthorityEPRTRId)
         as CompetentAuthorityEPRTRId,
-    FIRST([2d_CompetentAuthorityEPRTR].telephoneNo) as telephoneNo
+    FIRST([2d_CompetentAuthorityEPRTR].organisationName)
+        as authorityName,
+    FIRST([2d_CompetentAuthorityEPRTR].telephoneNo)
+        as authorityTelephoneNo
     FROM (
         2_ProductionFacility
         LEFT JOIN 2a_ProductionFacilityDetails ON
