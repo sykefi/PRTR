@@ -17,7 +17,7 @@ jobs:
     name: Test API
     runs-on: ubuntu-latest
     container:
-      image: sykeprtrprodacr.azurecr.io/fin-prtr:tests
+      image: sykeprtrdevacr.azurecr.io/fin-prtr:tests
       credentials:
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
@@ -30,7 +30,7 @@ jobs:
 
   build-deploy-prod:
     name: Build & deploy prod
-    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
+    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
     runs-on: ubuntu-latest
     needs: tests
     steps:
