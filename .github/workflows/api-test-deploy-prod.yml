@@ -30,7 +30,7 @@ jobs:
 
   build-deploy-prod:
     name: Build & deploy prod
-    # if: github.ref == 'refs/heads/main' TODO set deploy to run only in prod branch ("main" ?)
+    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
     runs-on: ubuntu-latest
     needs: tests
     steps:

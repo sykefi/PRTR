@@ -14,7 +14,7 @@ env:
 jobs:
   test-build-deploy:
     name: Test, Build and Deploy
-    # if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

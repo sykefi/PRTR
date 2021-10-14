@@ -8,6 +8,10 @@ on:
       - '.dockerignore'
       - '.github/workflows/api-test-deploy-dev.yml'
 
+env:
+  AZURE_ACR_NAME: prtrdev.azurecr.io # set separately to jobs.tests.container.image
+  AZURE_WEBAPP_NAME: prtr-api-dev
+
 jobs:
   tests:
     name: Test API
@@ -26,24 +30,24 @@ jobs:
 
   build-deploy-dev:
     name: Build & deploy dev
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
     runs-on: ubuntu-latest
     needs: tests
     steps:
     - uses: actions/checkout@v2
     - uses: azure/docker-login@v1
       with:
-        login-server: prtrdev.azurecr.io
+        login-server: ${{ env.AZURE_ACR_NAME }}
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
         docker build . \
-          -t prtrdev.azurecr.io/fin-prtr:latest \
-          -t prtrdev.azurecr.io/fin-prtr:${{ github.sha }}
-        docker push prtrdev.azurecr.io/fin-prtr:latest
-        docker push prtrdev.azurecr.io/fin-prtr:${{ github.sha }}
+          -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest \
+          -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
+        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
+        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'prtr-api-dev'
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: 'prtrdev.azurecr.io/fin-prtr:${{ github.sha }}'
+        images: '${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}'
