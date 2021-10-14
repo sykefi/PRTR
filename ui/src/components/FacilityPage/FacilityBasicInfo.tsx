@@ -105,7 +105,7 @@ export const FacilityBasicInfo = ({
             </Box>
             {!authorityInfo && (
               <Box marginTop={0.5} color="blackAlpha.800">
-                '-'
+                -
               </Box>
             )}
             {authorityInfo && (
