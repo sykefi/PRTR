@@ -30,7 +30,7 @@ jobs:
 
   build-deploy-dev:
     name: Build & deploy dev
-    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
+    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
     runs-on: ubuntu-latest
     needs: tests
     steps:
