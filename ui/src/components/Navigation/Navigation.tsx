@@ -114,12 +114,12 @@ const PrtrLogo = () => {
             letterSpacing={2}
             fontSize={{ base: 20, md: 24 }}
             marginBottom={{ base: '0px', md: '-2px' }}>
-            FIN-PRTR
+            FINPRTR
           </Box>
         </Flex>
         <Box
-          marginTop="-6px"
-          fontSize={{ base: 12, md: 15 }}
+          marginTop="-4px"
+          fontSize={{ base: 12, md: '0.8em' }}
           whiteSpace="nowrap">
           SUOMEN PÄÄSTÖREKISTERI
         </Box>
