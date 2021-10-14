@@ -2,6 +2,7 @@ import { Button } from '@chakra-ui/button'
 import { Box, Flex, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { Facility } from '../../api/models/Facility'
+import { getAuthorityInfo } from '../../authorityInfo'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 
 const getStreetAddress = (f: Facility): string | undefined => {
@@ -40,6 +41,11 @@ export const FacilityBasicInfo = ({
   exitLabel: string
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
+
+  const authorityInfo =
+    facility && facility.authorityName
+      ? getAuthorityInfo(facility.authorityName)
+      : undefined
 
   return (
     <Box
