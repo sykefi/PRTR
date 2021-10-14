@@ -6,6 +6,7 @@ import * as env from '../../env'
 import { useURLSearchParamInt } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
+import { SearchInfo } from '../Common/SearchInfo'
 import { WasteTransferFilterPanel } from './WasteTransferFilterPanel'
 import { WasteTransferPageSelector } from './WasteTransferPageSelector'
 import { WasteTransferTable } from './WasteTransferTable'
@@ -36,6 +37,7 @@ export const WasteTransferSearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
+        <SearchInfo text={t('descriptions.wasteTransfers')} />
         <WasteTransferFilterPanel urlYear={urlYear} />
       </BelowNavigationHeaderPanel>
       <Flex

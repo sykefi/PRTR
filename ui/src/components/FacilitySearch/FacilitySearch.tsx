@@ -14,6 +14,7 @@ import { hasCoordinates } from '../../api/models/Facility'
 import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
 import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import { SearchInfo } from '../Common/SearchInfo'
 import { FacilityMapLegend } from '../FacilityMapLegend'
 import { FacilityPageSelector } from './FacilityPageSelector'
 import { FacilityFilterPanel } from './FacilityFilterPanel'
@@ -53,6 +54,7 @@ export const FacilitySearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
+        <SearchInfo text={t('descriptions.Facilities')} />
         <FacilityFilterPanel
           searchHasBeenMade={searchHasBeenMade}
           urlSearchTerm={urlSearchTerm}

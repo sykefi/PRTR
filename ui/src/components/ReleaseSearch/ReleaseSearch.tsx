@@ -10,6 +10,7 @@ import {
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import { SearchInfo } from '../Common/SearchInfo'
 import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
 import { ReleaseFilterPanel } from './ReleaseFilterPanel'
 import { ReleasePageSelector } from './ReleasePageSelector'
@@ -55,6 +56,13 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   return (
     <>
       <BelowNavigationHeaderPanel>
+        <SearchInfo
+          text={t(
+            props.medium === Medium.AIR
+              ? 'descriptions.emissionsToAir'
+              : 'descriptions.emissionsToWater'
+          )}
+        />
         <ReleaseFilterPanel
           medium={props.medium}
           urlPollutantCode={urlPollutantCode}
