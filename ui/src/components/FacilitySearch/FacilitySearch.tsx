@@ -11,15 +11,15 @@ import {
   useURLSearchParamInt
 } from '../../hooks/useURLSearchParams'
 import { hasCoordinates } from '../../api/models/Facility'
-import { FacilityTopMainActivity } from '../../api/models/FacilityTopMainActivity'
-import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
+import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
+import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { FacilityMapLegend } from '../FacilityMapLegend'
 import { FacilityPageSelector } from './FacilityPageSelector'
 import { FacilityFilterPanel } from './FacilityFilterPanel'
 import { FacilityList } from './FacilityList'
 
-const pageItemLimit = 40
+const pageItemLimit = 20
 
 export const FacilitySearch = () => {
   const { t } = useTranslation()
@@ -30,8 +30,8 @@ export const FacilitySearch = () => {
     URLSearchParamName.FacilityMainActivity
   ) as FacilityTopMainActivity | FacilityMainActivityCode | undefined
 
-  const urlFirstItemIdx =
-    useURLSearchParamInt(URLSearchParamName.FirstItemIdx) || 0
+  const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
+  const searchHasBeenMade = urlFirstItemIdx !== undefined
 
   const { isLoading, isError, isSuccess, data } = useQuery(
     ['facilities', urlSearchTerm, urlPlacename, urlFacilityMainActivity],
@@ -54,6 +54,7 @@ export const FacilitySearch = () => {
     <>
       <BelowNavigationHeaderPanel>
         <FacilityFilterPanel
+          searchHasBeenMade={searchHasBeenMade}
           urlSearchTerm={urlSearchTerm}
           urlPlacename={urlPlacename}
           urlFacilityMainActivity={urlFacilityMainActivity}
@@ -91,25 +92,17 @@ export const FacilitySearch = () => {
             <>
               <Flex
                 wrap="wrap"
+                direction="column"
                 justify="center"
-                align="flex-start"
+                align="center"
                 maxWidth="100%"
                 sx={{ gap: 'var(--chakra-space-3)' }}>
-                <Flex justify="center" direction="column" maxWidth="100%">
-                  <FacilityPageSelector
-                    pageItemLimit={pageItemLimit}
-                    firstItemIdx={urlFirstItemIdx}
-                    totalItemCount={data.length}
-                    loading={false}
-                  />
-                  <FacilityList
-                    facilities={data}
-                    firstItemIdx={urlFirstItemIdx}
-                    pageItemLimit={pageItemLimit}
-                  />
-                </Flex>
                 {facilitiesWithCoordinates.length > 0 && (
-                  <>
+                  <Flex
+                    wrap="wrap"
+                    maxWidth="100%"
+                    justify="center"
+                    sx={{ gap: 'var(--chakra-space-3)' }}>
                     <Box maxWidth="100%">
                       <OlMap
                         facilities={facilitiesWithCoordinates}
@@ -117,7 +110,26 @@ export const FacilitySearch = () => {
                       />
                     </Box>
                     <FacilityMapLegend />
-                  </>
+                  </Flex>
+                )}
+                {searchHasBeenMade && (
+                  <Flex
+                    justify="center"
+                    direction="column"
+                    maxWidth="100%"
+                    marginTop={2}>
+                    <FacilityPageSelector
+                      pageItemLimit={pageItemLimit}
+                      firstItemIdx={urlFirstItemIdx}
+                      totalItemCount={data.length}
+                      loading={false}
+                    />
+                    <FacilityList
+                      facilities={data}
+                      firstItemIdx={urlFirstItemIdx}
+                      pageItemLimit={pageItemLimit}
+                    />
+                  </Flex>
                 )}
               </Flex>
             </>

@@ -1,6 +1,7 @@
 import {
   Box,
   Flex,
+  Text,
   HStack,
   Link,
   Icon,
@@ -100,6 +101,27 @@ const Navigation = ({
         zIndex={10}
         px={4}
         data-cy="navigation-panel">
+        <RrLink to={RoutePath.FrontPage} data-cy="front-page-nav">
+          <Flex
+            align="center"
+            justify="center"
+            paddingTop={2}
+            marginBottom={-0.5}
+            color="blue.600">
+            <Icon
+              w={6}
+              h={6}
+              as={GiFactory}
+              paddingBottom={1}
+              marginRight={1}
+            />
+            <Box fontWeight="bold" letterSpacing={0.2} marginX={0.5}>
+              <Text as="span"> FIN-PRTR</Text>
+              <Text as="span"> - </Text>
+              <Text as="span">suomalainen päästörekisteri</Text>
+            </Box>
+          </Flex>
+        </RrLink>
         <Flex h={16} align="center" justifyContent="center">
           <IconButton
             size={'md'}
@@ -110,22 +132,6 @@ const Navigation = ({
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} align="center">
-            <Flex align="center">
-              <Icon
-                w={9}
-                h={9}
-                color="blue.600"
-                as={GiFactory}
-                paddingBottom={1}
-              />
-              <Box
-                fontWeight="bold"
-                letterSpacing={0.2}
-                color="blue.600"
-                marginX={0.5}>
-                FIN-PRTR
-              </Box>
-            </Flex>
             <HStack
               as={'nav'}
               spacing={4}

@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { FacilityMainActivityCode } from '../../api/models/FacilityMainActivityCode'
+import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
 import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
@@ -15,8 +15,20 @@ import { TranslationKeys } from '../../react-i18next'
 import {
   FacilityTopMainActivity,
   isTopMainActivity
-} from '../../api/models/FacilityTopMainActivity'
+} from '../../api/enums/FacilityTopMainActivity'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
+
+const asMainActivityOption = (
+  o: FacilityMainActivityCode | FacilityTopMainActivity,
+  desc?: string
+): OptionType<FacilityMainActivityCode | FacilityTopMainActivity> => {
+  return {
+    value: o,
+    label: `${o}${isTopMainActivity(o) ? '.' : ':'} ${desc || ''}`,
+    bold: isTopMainActivity(o),
+    indent: !isTopMainActivity(o)
+  }
+}
 
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
@@ -26,17 +38,24 @@ const getFacilityMainActivityOptions = (
     ...Object.values(FacilityMainActivityCode)
   ]
     .reduce((prev, curr) => {
+      if (
+        curr === FacilityMainActivityCode.MISSING ||
+        curr === FacilityTopMainActivity.MISSING
+      ) {
+        return prev
+      }
       const desc = t(`mainActivityCodeDesc:${curr}`)
       if (desc) {
-        return prev.concat({
-          value: curr,
-          label: `${curr}${isTopMainActivity(curr) ? '.' : ':'} ${desc}`,
-          bold: isTopMainActivity(curr),
-          indent: !isTopMainActivity(curr)
-        })
+        return prev.concat(asMainActivityOption(curr, desc))
       }
       return prev
     }, [] as OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[])
+    .concat({
+      value: FacilityTopMainActivity.MISSING,
+      label: t(`mainActivityCodeDesc:${FacilityTopMainActivity.MISSING}`) || '',
+      bold: false,
+      indent: false
+    })
     .sort((a, b) => {
       if (a.value < b.value) {
         return -1
@@ -53,10 +72,12 @@ const Form = styled.form`
 `
 
 export const FacilityFilterPanel = ({
+  searchHasBeenMade,
   urlSearchTerm,
   urlPlacename,
   urlFacilityMainActivity
 }: {
+  searchHasBeenMade: boolean
   urlSearchTerm: string | undefined
   urlPlacename: string | undefined
   urlFacilityMainActivity:
@@ -109,13 +130,15 @@ export const FacilityFilterPanel = ({
     if (placename) {
       newUrlSearchParams.set(URLSearchParamName.Placename, placename)
     }
+    newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: '/facilities',
       search: '?' + newUrlSearchParams.toString()
     })
   }
 
-  const searchInputsChanged =
+  const allowSearch =
+    !searchHasBeenMade ||
     urlSearchTerm !== searchTerm ||
     urlPlacename !== placename ||
     urlFacilityMainActivity !== facilityMainActivity
@@ -184,7 +207,7 @@ export const FacilityFilterPanel = ({
         <Button
           data-cy="search-facilities-btn"
           type="submit"
-          disabled={!searchInputsChanged}
+          disabled={!allowSearch}
           width="max-content"
           marginBottom={0.5}
           colorScheme="green">

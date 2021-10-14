@@ -1,6 +1,6 @@
 import { Box, Flex, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { FacilityTopMainActivity } from '../api/models/FacilityTopMainActivity'
+import { FacilityTopMainActivity } from '../api/enums/FacilityTopMainActivity'
 import {
   strokeColorByTopMainActivity,
   fillColorByTopMainActivity
@@ -50,6 +50,7 @@ export const FacilityMapLegend = () => {
       width={370}
       minWidth={250}
       maxWidth="100%"
+      height="max-content"
       paddingX={5}
       paddingY={2}
       background="white"

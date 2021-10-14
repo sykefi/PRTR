@@ -16,7 +16,7 @@ import {
   fillColorByTopMainActivity,
   strokeColorByTopMainActivity
 } from '../constants'
-import { FacilityTopMainActivity } from '../api/models/FacilityTopMainActivity'
+import { FacilityTopMainActivity } from '../api/enums/FacilityTopMainActivity'
 
 let zoomDelay: null | ReturnType<typeof setTimeout> = null
 

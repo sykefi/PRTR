@@ -33,9 +33,7 @@ export const FacilityList = ({
       as="ul"
       listStyleType="none"
       boxSizing="border-box"
-      maxHeight="max(600px, calc(100vh - 405px))"
-      maxWidth="100%"
-      overflowY="auto">
+      maxWidth="100%">
       {facilities
         .slice(firstItemIdx, firstItemIdx + pageItemLimit)
         .map((f, idx) => (

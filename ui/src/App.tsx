@@ -12,7 +12,7 @@ import { FacilityPage } from './components/FacilityPage/FacilityPage'
 import { isDevOrTestEnv } from './env'
 import { handleCheckForMissingTranslations } from './utils'
 import { ReleaseSearch } from './components/ReleaseSearch/ReleaseSearch'
-import { Medium } from './api/models/Medium'
+import { Medium } from './api/enums/Medium'
 import { ScrollToTop } from './components/ScrollToTop'
 import { Footer } from './components/Footer'
 import { WasteTransferSearch } from './components/WasteTransferSearch/WasteTransferSearch'
@@ -20,7 +20,6 @@ import { WasteTransferSearch } from './components/WasteTransferSearch/WasteTrans
 const queryClient = new QueryClient()
 
 const navigationItems: NavigationItem[] = [
-  { tKey: 'common.frontPage', path: RoutePath.FrontPage },
   { tKey: 'common.facilitySearch', path: RoutePath.Facilities },
   { tKey: 'common.releasesToAir', path: RoutePath.ReleasesToAir },
   { tKey: 'common.releasesToWater', path: RoutePath.ReleasesToWater },

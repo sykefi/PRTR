@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
 import * as api from '../../api'
 import * as env from '../../env'
-import { Medium } from '../../api/models/Medium'
-import { PollutantCode } from '../../api/models/PollutantCode'
+import { Medium } from '../../api/enums/Medium'
+import { PollutantCode } from '../../api/enums/PollutantCode'
 import {
   useURLSearchParam,
   useURLSearchParamInt
