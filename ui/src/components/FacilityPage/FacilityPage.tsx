@@ -104,7 +104,7 @@ export const FacilityPage = () => {
           {data && hasCoordinates(data) && (
             <OlMap
               width={450}
-              height={400}
+              height={450}
               facilities={[data]}
               zoomToInitialExtent={false}
             />

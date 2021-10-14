@@ -1,7 +1,9 @@
 import { Button } from '@chakra-ui/button'
-import { Box, Flex, Heading } from '@chakra-ui/layout'
+import { ExternalLinkIcon } from '@chakra-ui/icons'
+import { Box, Flex, Heading, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { Facility } from '../../api/models/Facility'
+import { AuthorityInfo } from '../../assets/authorityInfo/models/AuthorityInfo'
 import { getAuthorityInfo } from '../../authorityInfo'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 
@@ -27,6 +29,14 @@ const InfoPropRow = ({
   )
 }
 
+export const getCompetentAuthorityName = (
+  authority: AuthorityInfo,
+  lang: string
+): string | undefined => {
+  if (!authority || !['fi', 'sv', 'en'].includes(lang)) return undefined
+  return authority.name[lang as 'fi' | 'sv' | 'en']
+}
+
 export const FacilityBasicInfo = ({
   facility,
   loading,
@@ -41,6 +51,7 @@ export const FacilityBasicInfo = ({
   exitLabel: string
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
+  const { i18n } = useTranslation()
 
   const authorityInfo =
     facility && facility.authorityName
@@ -85,9 +96,25 @@ export const FacilityBasicInfo = ({
             value={getStreetAddress(facility)}
           />
           <InfoPropRow
-            label={t('translation:common.telephoneNumber')}
+            label={t('translation:common.telephoneNumberToAuthority')}
             value={facility.authorityTelephoneNo || ''}
           />
+          <Box marginY={2}>
+            <Box fontWeight="semibold">
+              {t('translation:common.competentAuthority')}
+            </Box>
+            {!authorityInfo && (
+              <Box marginTop={0.5} color="blackAlpha.800">
+                '-'
+              </Box>
+            )}
+            {authorityInfo && (
+              <Link href={authorityInfo.url} isExternal>
+                {getCompetentAuthorityName(authorityInfo, i18n.language) || '-'}{' '}
+                <ExternalLinkIcon color="#4f4f4f" mx="2px" />
+              </Link>
+            )}
+          </Box>
           <InfoPropRow
             label={t('translation:facilities.status.title')}
             value={
