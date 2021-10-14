@@ -22,6 +22,9 @@ const AdditionalInfoPageStyleWrapper = styled.div`
   a {
     text-decoration: underline;
   }
+  li {
+    margin-left: 20px;
+  }
   margin-bottom: -10px;
 `
 
