@@ -1,7 +1,8 @@
 {
   "common": {
+    "welcomeMessage": "Welcome to Finland's PRTR registry",
     "frontPage": "Frontpage",
-    "facilitySearch": "Facility search",
+    "facilitySearch": "Facility, activity, location",
     "releasesToAir": "Releases to air",
     "releasesToWater": "Releases to water",
     "wasteTransfers": "Waste transfers",
@@ -12,32 +13,34 @@
     "goBack": "Back",
     "toGoBack": "Return",
     "search": "Search",
-    "fetch": "Get",
+    "fetch": "🔎 Search",
     "showingItems": "Items",
     "showingRows": "Rows",
     "year": "Year",
     "selectYear": "Select year",
-    "previousPage": "Previous page",
-    "nextPage": "Next page",
+    "previousPage": "⪡ Previous page",
+    "nextPage": "Next page ⪢",
     "basicInfo": "Basic information",
     "loadingInformation": "Loading information..."
   },
+  "footer": {
+    "sendFeedbackButtonLabel": "Send feedback"
+  },
   "facilities": {
-    "facilityTypeCode": "Sector",
-    "searchWithName": "Search with facility name...",
+    "facilityTypeCode": "Industrial classification",
+    "searchWithName": "Search by facility name",
     "searchWithPlacename": "Search by location",
     "loadFacilitiesErroredText": "Error in fetching information. Please try again later.",
     "noFacilitiesFoundFromSearch": "No releases found with the selected attributes.",
+    "selectFacilityMainActivityCode": "Select activity",
     "couldNotFindFacilityWithId": "Error in fetching information. Please try again later.",
     "couldNotFindFacilityReleases": "Error in fetching information. Please try again later.",
-    "couldNotFindFacilityWasteTransfers": "Error in fetching information. Please try again later.",
     "noReleasesFoundForFacility": "No releases found for the selected facility.",
-    "noWasteTransfersFoundForFacility": "No waste transfers found for the selected facility.",
     "facilityReleaseTable": "Releases",
-    "facilityWasteTransferTable": "Waste transfers",
     "goBackToFacilitySearch": "Return to facility search",
     "goBackToReleaseSearch": "Return to releases",
     "goBackToWasteTransferSearch": "Return to waste transfers",
+    "mapLegendTitle": "Map colours indicate the different activities",
     "status": {
       "title": "Status",
       "decommissioned": "Decommissioned",
@@ -72,7 +75,7 @@
       "title": "Type of waste",
       "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
       "NONHW": "Non-hazardous waste",
-      "HWshort": "Hazardouz",
+      "HWshort": "Hazardous",
       "NONHWshort": "Non-hazardous"
     },
     "treatment": {
@@ -80,5 +83,10 @@
       "D": "❌ Destined for disposal",
       "R": "♻ Destined for recovery"
     }
+  },
+  "descriptions": {
+    "emissionsToAir": "🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.",
+    "emissionsToWater": "🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.",
+    "wasteTransfers": "🛈 Browse through the data of waste transfers of PRTR facilities by using the selectors above. It is possible to filter the information by year or location. For finding waste transfers of a specific facility, please refer to facility search. Hazardous waste is defined by Article 2(14) of the E-PRTR."
   }
 }

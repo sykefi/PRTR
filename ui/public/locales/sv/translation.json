@@ -1,15 +1,87 @@
 {
   "common": {
+    "welcomeMessage": "Välkommen till Finlands PRTR register",
     "frontPage": "Framsida",
+    "facilitySearch": "Anläggning, verksamhet, ort",
+    "releasesToAir": "Utsläpp till luft",
+    "releasesToWater": "Utsläpp till vatten",
+    "wasteTransfers": "Transport av avfall",
+    "placename": "Ort",
+    "streetAddress": "Gatuadress",
+    "telephoneNumber": "Telefonnummer",
+    "facility": "Anläggning ",
+    "goBack": "Tillbaka ",
+    "toGoBack": "Tillbaka",
     "search": "Sök",
+    "fetch": "🔎 Sök",
+    "showingItems": "Träffar",
+    "showingRows": "Rader",
     "year": "År",
     "selectYear": "Välj år",
-    "previousPage": "Föregående sida",
-    "nextPage": "Nästa sida"
+    "previousPage": "⪡ Föregående sida",
+    "nextPage": "Nästa sida ⪢",
+    "basicInfo": "Grunddata",
+    "loadingInformation": "Uppgifterna laddas upp"
+  },
+  "footer": {
+    "sendFeedbackButtonLabel": "Skicka respons"
   },
   "facilities": {
+    "facilityTypeCode": "Näringsgrensindelning",
+    "searchWithName": "Sök efter anläggningens namn",
+    "searchWithPlacename": "Sök efter ort",
+    "loadFacilitiesErroredText": "Anläggningssökningen misslyckades, försök igen senare.",
+    "noFacilitiesFoundFromSearch": "Dina sökvillkor gav inga träffar i databasen",
+    "selectFacilityMainActivityCode": " Välj verksamhetsområde",
+    "couldNotFindFacilityWithId": "Sökningen av uppgifterna misslyckades, försök igen senare.",
+    "couldNotFindFacilityReleases": "Sökningen av utsläppen misslyckades, försök igen senare.",
+    "noReleasesFoundForFacility": "Inga träffar i databasen för den valda anläggningen",
+    "facilityReleaseTable": "Utsläppsdata",
+    "goBackToFacilitySearch": "Återvänd till anläggningssökning",
+    "goBackToReleaseSearch": "Återvänd till anläggningssökning",
+    "goBackToWasteTransferSearch": "Återvänd till sökning av avfallstransporter",
+    "mapLegendTitle": "Färgerna på kartan beskriver de olika verksamheten",
     "status": {
-      "title": "Status"
+      "title": "Status",
+      "decommissioned": "Nedlagd",
+      "disused": "Ur drift",
+      "functional": "I drift",
+      "notRegulated": "Inte reglerad"
+    }
+  },
+  "releases": {
+    "releaseToAir": "Utsläpp till luft",
+    "releaseToWater": "Utsläpp till vatten",
+    "pollutant": "Kemisk förening",
+    "quantity": "Mängd",
+    "releaseMediumType": "Typ",
+    "selectPollutant": "Välj kemisk förening",
+    "selectYear": "Välj år",
+    "noReleasesFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
+    "releasesFetchErrorInfo": "Sökningen av utsläppen misslyckades, försök igen senare.",
+    "method": {
+      "title": "Metod",
+      "measured": "Mätning",
+      "calculated": "Beräkning",
+      "estimated": "Uppskattning"
+    }
+  },
+  "wasteTransfers": {
+    "noWasteTransfersFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
+    "wasteTransfersFetchErrorInfo": "Sökningen av avfallstransporter misslyckades, försök igen senare.",
+    "quantity": "Mängd",
+    "receiver": "Mottagande anläggning",
+    "classification": {
+      "title": "Avfallstyp",
+      "HW": "Farligt avfall i E-PRTR artikel 2(4) ",
+      "NONHW": "Icke-farligt avfall",
+      "HWshort": "Farligt",
+      "NONHWshort": "Annat"
+    },
+    "treatment": {
+      "title": "Behandling",
+      "D": "❌ Till bortskaffare",
+      "R": "♻ Till återvinnare"
     }
   }
 }
