@@ -80,7 +80,7 @@ export const FacilityBasicInfo = ({
           />
           <InfoPropRow
             label={t('translation:common.telephoneNumber')}
-            value={facility.telephoneNo || ''}
+            value={facility.authorityTelephoneNo || ''}
           />
           <InfoPropRow
             label={t('translation:facilities.status.title')}
