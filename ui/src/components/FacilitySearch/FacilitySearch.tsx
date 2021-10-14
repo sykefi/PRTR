@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import * as api from '../../api'
 import * as env from '../../env'
-import { BelowNavigationHeaderPanel } from '../Common'
+import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { OlMap } from '../OlMap'
 import {
