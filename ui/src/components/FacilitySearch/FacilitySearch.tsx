@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import * as api from '../../api'
 import * as env from '../../env'
-import { BelowNavigationHeaderPanel } from '../Common'
+import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { OlMap } from '../OlMap'
 import {
@@ -14,6 +14,7 @@ import { hasCoordinates } from '../../api/models/Facility'
 import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
 import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import { SearchInfo } from '../Common/SearchInfo'
 import { FacilityMapLegend } from '../FacilityMapLegend'
 import { FacilityPageSelector } from './FacilityPageSelector'
 import { FacilityFilterPanel } from './FacilityFilterPanel'
@@ -53,6 +54,7 @@ export const FacilitySearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
+        <SearchInfo text={t('descriptions.Facilities')} />
         <FacilityFilterPanel
           searchHasBeenMade={searchHasBeenMade}
           urlSearchTerm={urlSearchTerm}

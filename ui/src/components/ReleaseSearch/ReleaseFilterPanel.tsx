@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
-import { Box, Flex } from '@chakra-ui/layout'
+import { Flex } from '@chakra-ui/layout'
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
@@ -8,13 +8,13 @@ import styled from 'styled-components'
 import { PollutantCode } from '../../api/enums/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
-import { ChakraSelect } from '../ChakraReactSelect'
 import { Medium } from '../../api/enums/Medium'
 import { getLongPollutantLabel, getPollutantLabel } from '../../utils'
 import { asOption } from '../../models/OptionType'
 import { TranslationKeys } from '../../react-i18next'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 import { useYearOptions } from '../../hooks/useYearOptions'
+import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
 
 const getPollutantNameOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
@@ -117,45 +117,42 @@ export const ReleaseFilterPanel = (props: {
         marginBottom={2.0}
         width="100%">
         <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
-          <Box width={350} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              name="releasesPollutantCode"
-              value={
-                pollutantCode
-                  ? asOption(pollutantCode, getPollutantLabel(t, pollutantCode))
-                  : null
-              }
-              options={pollutantOptions}
-              placeholder={t('translation:releases.selectPollutant')}
-              onChange={e => setPollutantCode(e?.value)}
-            />
-          </Box>
-          <Box width={250} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              isLoading={yearOptionsIsLoading || yearOptionsIsError}
-              name="releasesYear"
-              value={asOption(year, year)}
-              options={yearOptions}
-              placeholder={t('translation:releases.selectYear')}
-              onChange={e => setYear(e?.value)}
-            />
-          </Box>
-          <Box width={350} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
-              name="facilitiesPlacename"
-              value={asOption(placename, placename)}
-              options={placenameOptions}
-              placeholder={t('translation:facilities.searchWithPlacename')}
-              onChange={e => setPlacename(e?.value)}
-            />
-          </Box>
+          <DropdownSelectorAndLabel<PollutantCode>
+            width={350}
+            minWidth={200}
+            name="releasesPollutantCode"
+            label={t('translation:releases.selectPollutant')}
+            placeholder={t('translation:releases.selectPollutant')}
+            value={
+              pollutantCode
+                ? asOption(pollutantCode, getPollutantLabel(t, pollutantCode))
+                : null
+            }
+            options={pollutantOptions}
+            handleChange={setPollutantCode}
+          />
+          <DropdownSelectorAndLabel<number>
+            width={250}
+            minWidth={200}
+            name="releasesYear"
+            label={t('translation:releases.selectYear')}
+            placeholder={t('translation:releases.selectYear')}
+            isLoading={yearOptionsIsLoading || yearOptionsIsError}
+            options={yearOptions}
+            value={asOption(year, year)}
+            handleChange={setYear}
+          />
+          <DropdownSelectorAndLabel<string>
+            width={350}
+            minWidth={200}
+            name="facilitiesPlacename"
+            label={t('translation:facilities.searchWithPlacename')}
+            placeholder={t('translation:facilities.searchWithPlacename')}
+            isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
+            options={placenameOptions}
+            value={asOption(placename, placename)}
+            handleChange={setPlacename}
+          />
         </Flex>
         <Button
           data-cy="filter-releases-btn"

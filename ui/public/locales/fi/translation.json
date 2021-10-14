@@ -13,13 +13,13 @@
     "goBack": "Palaa",
     "toGoBack": "Paluu",
     "search": "Etsi",
-    "fetch": "Hae",
+    "fetch": "🔎 Hae",
     "showingItems": "Kohteet",
     "showingRows": "Rivit",
     "year": "Vuosi",
     "selectYear": "Valitse vuosi",
-    "previousPage": "Edellinen sivu",
-    "nextPage": "Seuraava sivu",
+    "previousPage": "⪡ Edellinen sivu",
+    "nextPage": "Seuraava sivu ⪢",
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja...",
     "additionalInfo": "Lisätietoja"
@@ -46,8 +46,8 @@
     "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
     "mapLegendTitle": "Kartan värit toimialoittain",
     "status": {
-      "title": "Status",
-      "decommissioned": "Käytöstä poistettu",
+      "title": "Toiminnan tila",
+      "decommissioned": "Toiminta päättynyt",
       "disused": "Ei toiminnassa",
       "functional": "Toiminnassa",
       "notRegulated": "Ei säännelty"
@@ -67,7 +67,10 @@
       "title": "Selvitystapa",
       "measured": "Mitattu",
       "calculated": "Laskennallinen",
-      "estimated": "Arvioitu"
+      "estimated": "Arvioitu",
+      "measuredTooltip": "Mitattu",
+      "calculatedTooltip": "Laskennallinen",
+      "estimatedTooltip": "Arvioitu"
     }
   },
   "wasteTransfers": {
@@ -84,8 +87,14 @@
     },
     "treatment": {
       "title": "Käsittely",
-      "D": "Loppukäsittelyyn",
-      "R": "Hyödynnettäväksi"
+      "D": "❌ Loppukäsittelyyn",
+      "R": "♻ Hyödynnettäväksi"
     }
+  },
+  "descriptions": {
+    "Facilities": "🛈 Oheisen näkymän avulla voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan.",
+    "emissionsToAir": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla.",
+    "emissionsToWater": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla.",
+    "wasteTransfers": "🛈 Voit selata PRTR-rekisteriin raportoituja jätesiirtoja. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen jätesiirtoja, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. "
   }
 }

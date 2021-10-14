@@ -1,14 +1,14 @@
 import { Button } from '@chakra-ui/button'
 import { FormControl } from '@chakra-ui/form-control'
-import { Box, Flex } from '@chakra-ui/layout'
+import { Flex } from '@chakra-ui/layout'
 import { FormEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
-import { ChakraSelect } from '../ChakraReactSelect'
 import { asOption } from '../../models/OptionType'
 import { useYearOptions } from '../../hooks/useYearOptions'
+import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
 
 const Form = styled.form`
   max-width: 100%;
@@ -58,18 +58,17 @@ export const WasteTransferFilterPanel = (props: {
         marginBottom={2.0}
         width="100%">
         <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
-          <Box width={250} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              isLoading={yearOptionsIsLoading || yearOptionsIsError}
-              name="wasteTransfersYear"
-              value={asOption(year, year)}
-              options={yearOptions}
-              placeholder={t('translation:common.selectYear')}
-              onChange={e => setYear(e?.value)}
-            />
-          </Box>
+          <DropdownSelectorAndLabel
+            width={250}
+            minWidth={200}
+            name="wasteTransfersYear"
+            label={t('translation:common.selectYear')}
+            placeholder={t('translation:common.selectYear')}
+            isLoading={yearOptionsIsLoading || yearOptionsIsError}
+            options={yearOptions}
+            value={asOption(year, year)}
+            handleChange={setYear}
+          />
         </Flex>
         <Button
           data-cy="filter-waste-transfers-btn"

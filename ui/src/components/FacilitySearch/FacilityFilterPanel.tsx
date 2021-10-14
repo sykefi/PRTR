@@ -1,13 +1,12 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
-import { FormControl } from '@chakra-ui/form-control'
+import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { useHistory } from 'react-router-dom'
 import { Input } from '@chakra-ui/input'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
-import { ChakraSelect } from '../ChakraReactSelect'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { asOption } from '../../models/OptionType'
@@ -17,6 +16,7 @@ import {
   isTopMainActivity
 } from '../../api/enums/FacilityTopMainActivity'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
+import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
 
 const asMainActivityOption = (
   o: FacilityMainActivityCode | FacilityTopMainActivity,
@@ -155,54 +155,57 @@ export const FacilityFilterPanel = ({
         marginBottom={2.0}
         width="100%">
         <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
-          <Box width={450} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              value={
-                facilityMainActivity
-                  ? asOption(
-                      facilityMainActivity,
-                      t(`mainActivityCodeDesc:${facilityMainActivity}`)
-                    )
-                  : null
-              }
-              name="facilityMainActivity"
-              options={facilityMainActivityOptions}
-              placeholder={t(
-                'translation:facilities.selectFacilityMainActivityCode'
-              )}
-              onChange={e => setFacilityMainActivity(e?.value)}
-            />
-          </Box>
-          <Box width={350} minWidth={200}>
-            <ChakraSelect
-              isClearable
-              closeMenuOnSelect
-              isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
-              name="facilitiesPlacename"
-              value={asOption(placename, placename)}
-              options={placenameOptions}
-              placeholder={t('translation:facilities.searchWithPlacename')}
-              onChange={e => setPlacename(e?.value)}
-            />
-          </Box>
-          <Input
-            data-cy="facility-search-term"
-            type="text"
-            bgColor="white"
+          <DropdownSelectorAndLabel<
+            FacilityMainActivityCode | FacilityTopMainActivity
+          >
+            width={450}
             minWidth={200}
-            width={350}
-            colorScheme="red"
-            borderColor="var(--chakra-colors-gray-500)"
-            _hover={{
-              borderColor: 'var(--chakra-colors-gray-500)'
-            }}
-            maxWidth="100%"
-            value={searchTerm || ''}
-            onChange={e => setSearchTerm(e.target.value)}
-            placeholder={t('translation:facilities.searchWithName')}
+            name="facilityMainActivity"
+            label={t('translation:facilities.selectFacilityMainActivityCode')}
+            placeholder={t(
+              'translation:facilities.selectFacilityMainActivityCode'
+            )}
+            options={facilityMainActivityOptions}
+            value={
+              facilityMainActivity
+                ? asOption(
+                    facilityMainActivity,
+                    t(`mainActivityCodeDesc:${facilityMainActivity}`)
+                  )
+                : null
+            }
+            handleChange={setFacilityMainActivity}
           />
+          <DropdownSelectorAndLabel<string>
+            width={350}
+            minWidth={200}
+            name="facilitiesPlacename"
+            label={t('translation:facilities.searchWithPlacename')}
+            placeholder={t('translation:facilities.searchWithPlacename')}
+            isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
+            options={placenameOptions}
+            value={asOption(placename, placename)}
+            handleChange={setPlacename}
+          />
+          <Box minWidth={200}>
+            <FormLabel>{t('translation:facilities.searchWithName')} </FormLabel>
+            <Input
+              data-cy="facility-search-term"
+              type="text"
+              bgColor="white"
+              minWidth={200}
+              width={350}
+              colorScheme="red"
+              borderColor="var(--chakra-colors-gray-500)"
+              _hover={{
+                borderColor: 'var(--chakra-colors-gray-500)'
+              }}
+              maxWidth="100%"
+              value={searchTerm || ''}
+              onChange={e => setSearchTerm(e.target.value)}
+              placeholder={t('translation:facilities.searchWithName')}
+            />
+          </Box>
         </Flex>
         <Button
           data-cy="search-facilities-btn"
