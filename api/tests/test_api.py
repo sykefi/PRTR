@@ -174,3 +174,15 @@ def test_get_waste_transfers_by_year():
     for wt in data:
         assert _has_waste_transfer_fields(wt)
         assert wt['reportingYear'] == year
+
+
+def test_get_waste_transfers_by_all_or_international_filter():
+    all_or_international_filter = 'International'
+    response = client.get(
+        f'{root_path}/waste-transfers?all_or_international_filter={all_or_international_filter}'
+    )
+    data = response.json()['data']
+    assert len(data) > 1
+    for wt in data:
+        assert _has_waste_transfer_fields(wt)
+        assert (wt['nameOfReceiver'] is not None or wt['receivingSiteCity'] is not None)
