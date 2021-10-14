@@ -60,10 +60,12 @@ export const ReleaseFilterPanel = (props: {
   const location = useLocation()
 
   const [pollutantCode, setPollutantCode] = useState<PollutantCode | undefined>(
-    undefined
+    props.urlPollutantCode
   )
-  const [year, setYear] = useState<number | undefined>(undefined)
-  const [placename, setPlacename] = useState<string | undefined>(undefined)
+  const [year, setYear] = useState<number | undefined>(props.urlYear)
+  const [placename, setPlacename] = useState<string | undefined>(
+    props.urlPlacename
+  )
 
   const pollutantOptions = useMemo(() => getPollutantNameOptions(t), [t])
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
@@ -75,10 +77,11 @@ export const ReleaseFilterPanel = (props: {
   } = usePlacenameOptions()
 
   useEffect(() => {
-    // initialize select inputs from url search params on page load
+    // initialize/reset select inputs from url search params after toggling between releases to air/water
     setPollutantCode(props.urlPollutantCode)
     setYear(props.urlYear)
-  }, [props.medium, props.urlPollutantCode, props.urlYear])
+    setPlacename(props.urlPlacename)
+  }, [props.medium, props.urlPollutantCode, props.urlYear, props.urlPlacename])
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit

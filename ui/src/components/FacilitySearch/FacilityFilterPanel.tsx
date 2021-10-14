@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { FormEvent, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Button } from '@chakra-ui/button'
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
@@ -88,11 +88,13 @@ export const FacilityFilterPanel = ({
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
 
-  const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined)
-  const [placename, setPlacename] = useState<string | undefined>(undefined)
+  const [searchTerm, setSearchTerm] = useState<string | undefined>(
+    urlSearchTerm
+  )
+  const [placename, setPlacename] = useState<string | undefined>(urlPlacename)
   const [facilityMainActivity, setFacilityMainActivity] = useState<
     FacilityMainActivityCode | FacilityTopMainActivity | undefined
-  >(undefined)
+  >(urlFacilityMainActivity)
 
   const facilityMainActivityOptions = useMemo(
     () => getFacilityMainActivityOptions(t),
@@ -103,13 +105,6 @@ export const FacilityFilterPanel = ({
     placenameOptionsIsError,
     placenameOptions
   } = usePlacenameOptions()
-
-  useEffect(() => {
-    // initialize inputs from URL search params
-    setFacilityMainActivity(urlFacilityMainActivity)
-    setSearchTerm(urlSearchTerm)
-    setPlacename(urlPlacename)
-  }, [urlFacilityMainActivity, urlSearchTerm, urlPlacename])
 
   /**
    * Resets current URL search parameters (including active row ranges)
