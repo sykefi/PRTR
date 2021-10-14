@@ -3,5 +3,6 @@ export enum RoutePath {
   Facilities = '/facilities',
   ReleasesToAir = '/releases/toAir',
   ReleasesToWater = '/releases/toWater',
-  WasteTransfers = '/wasteTransfers'
+  WasteTransfers = '/wasteTransfers',
+  AdditionalInfo = '/additionalInfo'
 }

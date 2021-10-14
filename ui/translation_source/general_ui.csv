@@ -22,6 +22,7 @@ common.previousPage;Edellinen sivu;Föregående sida;Previous page
 common.nextPage;Seuraava sivu;Nästa sida;Next page
 common.basicInfo;Perustiedot;;Basic information
 common.loadingInformation;Ladataan tietoja...;;Loading information...
+common.additionalInfo;Lisätietoja;;
 ;;;
 footer.sendFeedbackButtonLabel;Lähetä palautetta;;
 ;;;
