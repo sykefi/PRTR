@@ -19,6 +19,8 @@ describe('Navigation', () => {
       cy.url().should('eq', 'http://localhost:3000/releases/toAir')
       cy.contains('Päästöt veteen').click()
       cy.url().should('eq', 'http://localhost:3000/releases/toWater')
+      cy.contains('Lisätietoja').click()
+      cy.url().should('eq', 'http://localhost:3000/additionalInfo')
       cy.get('[data-cy="front-page-nav"]').click()
       cy.url().should('eq', 'http://localhost:3000/')
     })

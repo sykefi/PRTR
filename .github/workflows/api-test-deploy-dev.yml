@@ -9,15 +9,15 @@ on:
       - '.github/workflows/api-test-deploy-dev.yml'
 
 env:
-  AZURE_ACR_NAME: prtrdev.azurecr.io # set separately to jobs.tests.container.image
-  AZURE_WEBAPP_NAME: prtr-api-dev
+  AZURE_ACR_NAME: sykeprtrdevacr.azurecr.io # set separately to jobs.tests.container.image
+  AZURE_WEBAPP_NAME: syke-prtr-fastapi-d-cont
 
 jobs:
   tests:
     name: Test API
     runs-on: ubuntu-latest
     container:
-      image: sykeprtrprodacr.azurecr.io/fin-prtr:tests
+      image: sykeprtrdevacr.azurecr.io/fin-prtr:tests
       credentials:
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
@@ -38,16 +38,23 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: ${{ env.AZURE_ACR_NAME }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-    - run: |
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.DEV_AZURE_CREDENTIALS }}
+    - name: Build & push image
+      run: |
         docker build . \
           -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest \
           -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
         docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
         docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
-    - uses: azure/webapps-deploy@v2
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         images: '${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}'
+    - name: logout
+      run: |
+        az logout

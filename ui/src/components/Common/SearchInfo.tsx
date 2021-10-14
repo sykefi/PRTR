@@ -1,9 +1,11 @@
-import { Box } from '@chakra-ui/layout'
+import { Box, Flex } from '@chakra-ui/layout'
 
 export const SearchInfo = ({ text }: { text: string }) => {
   return (
-    <Box paddingX={{ base: 0, md: 10 }} paddingY={2}>
-      {text}
-    </Box>
+    <Flex width="100%" justify="center">
+      <Box paddingX={{ base: 0, md: 10 }} paddingY={2}>
+        {text}
+      </Box>
+    </Flex>
   )
 }

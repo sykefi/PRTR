@@ -9,7 +9,7 @@ on:
       - '.github/workflows/api-build-test-container.yml'
 
 env:
-  AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io
+  AZURE_ACR_NAME: sykeprtrdevacr.azurecr.io
 
 jobs:
   build-test-container:

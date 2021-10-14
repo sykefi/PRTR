@@ -10,11 +10,12 @@ env:
   AZURE_WEBAPP_NAME: syke-prtr-p-web
   AZURE_WEBAPP_PACKAGE_PATH: 'ui/build' # path to web resources
   NODE_VERSION: '14.x'
+  REACT_APP_PRTR_SERVER: https://syke-prtr-fastapi-p-cont.azurewebsites.net # TODO replace with the final prod address
 
 jobs:
   test-build-deploy:
     name: Test, Build and Deploy
-    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
+    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch (still "main" ?)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

@@ -1,3 +1,6 @@
+[![API: tests & prod deploy](https://github.com/sykefi/PRTR/workflows/API%3A%20tests%20%26%20prod%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
+[![UI: tests & prod deploy](https://github.com/sykefi/PRTR/workflows/UI%3A%20tests%20%26%20prod%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
+
 [![API: tests & dev deploy](https://github.com/sykefi/PRTR/workflows/API%3A%20tests%20%26%20dev%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
 [![UI: tests & dev deploy](https://github.com/sykefi/PRTR/workflows/UI%3A%20tests%20%26%20dev%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
 
@@ -5,9 +8,9 @@
 
 A project for handling the European Pollutant Release and Transfer Register (i.e. E-PRTR) data and publishing it as a national web service (API & user interface). The project is funded by the [Ministry of the Environment](https://ym.fi/en/front-page) and implemented by the [Finnish Environment Institute](https://www.syke.fi/en-US).
 
-The development version of the UI is published at [prtr-ui-dev.azurewebsites.net](https://prtr-ui-dev.azurewebsites.net/).
+The development version of the UI is published at [syke-prtr-d-web.azurewebsites.net](https://syke-prtr-d-web.azurewebsites.net/).
 
-The development version of the API (serving only Finnish PRTR data) is published at [prtr-api-dev.azurewebsites.net](https://prtr-api-dev.azurewebsites.net/docs).
+The development version of the API (serving only Finnish PRTR data) is published at [syke-prtr-fastapi-d-cont.azurewebsites.net](https://syke-prtr-fastapi-d-cont.azurewebsites.net/docs).
 
 A prototype of the user interface (or portal) is published at [prtr.fi](http://prtr.fi/).
 
