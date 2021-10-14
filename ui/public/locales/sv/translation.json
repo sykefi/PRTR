@@ -9,8 +9,8 @@
     "placename": "Ort",
     "streetAddress": "Gatuadress",
     "telephoneNumber": "Telefonnummer",
-    "facility": "Anläggning ",
-    "goBack": "Tillbaka ",
+    "facility": "Anläggning",
+    "goBack": "Tillbaka",
     "toGoBack": "Tillbaka",
     "search": "Sök",
     "fetch": "🔎 Sök",
@@ -32,7 +32,7 @@
     "searchWithPlacename": "Sök efter ort",
     "loadFacilitiesErroredText": "Anläggningssökningen misslyckades, försök igen senare.",
     "noFacilitiesFoundFromSearch": "Dina sökvillkor gav inga träffar i databasen",
-    "selectFacilityMainActivityCode": " Välj verksamhetsområde",
+    "selectFacilityMainActivityCode": "Välj verksamhetsområde",
     "couldNotFindFacilityWithId": "Sökningen av uppgifterna misslyckades, försök igen senare.",
     "couldNotFindFacilityReleases": "Sökningen av utsläppen misslyckades, försök igen senare.",
     "noReleasesFoundForFacility": "Inga träffar i databasen för den valda anläggningen",
@@ -73,7 +73,7 @@
     "receiver": "Mottagande anläggning",
     "classification": {
       "title": "Avfallstyp",
-      "HW": "Farligt avfall i E-PRTR artikel 2(4) ",
+      "HW": "Farligt avfall i E-PRTR artikel 2(4)",
       "NONHW": "Icke-farligt avfall",
       "HWshort": "Farligt",
       "NONHWshort": "Annat"
