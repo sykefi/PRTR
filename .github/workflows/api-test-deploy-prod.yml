@@ -12,6 +12,9 @@ env:
   AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io # set separately to jobs.tests.container.image
   AZURE_WEBAPP_NAME: syke-prtr-fastapi-p-cont
 
+
+# trigger run
+
 jobs:
   tests:
     name: Test API
