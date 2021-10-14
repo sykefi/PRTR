@@ -22,11 +22,8 @@ app = FastAPI(
 )
 
 origins = [
-    'http://prtr-ui-dev.azurewebsites.net',
     'https://prtr-ui-dev.azurewebsites.net',
-    'http://syke-prtr-d-web.azurewebsites.net',
     'https://syke-prtr-d-web.azurewebsites.net',
-    'http://syke-prtr-p-web.azurewebsites.net',
     'https://syke-prtr-p-web.azurewebsites.net',
     'http://localhost:3000',
 ]
