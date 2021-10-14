@@ -1,44 +1,26 @@
-name: 'UI: tests & dev deploy'
+name: 'UI: tests & prod deploy'
 
 on:
   push:
     paths:
       - 'ui/**'
-      - '.github/workflows/ui-test-deploy-dev.yml'
+      - '.github/workflows/ui-test-deploy-prod.yml'
 
 env:
-  AZURE_WEBAPP_NAME: prtr-ui-dev
+  AZURE_WEBAPP_NAME: syke-prtr-p-web
   AZURE_WEBAPP_PACKAGE_PATH: 'ui/build' # path to web resources
   NODE_VERSION: '14.x'
 
 jobs:
-  test:
-    name: Cypress tests
-    if: github.ref != 'refs/heads/main'
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-        cache-dependency-path: ui/package-lock.json
-    - name: npm ci
-      run: npm ci
-      working-directory: ui
-    - name: Cypress tests
-      run: |
-        npm start & npm run wait-on -- http://localhost:3000
-        npm run cypress:run
-      working-directory: ui
-
   test-build-deploy:
     name: Test, Build and Deploy
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
+    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v2
       with:
@@ -64,5 +46,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.UI_DEV_AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+    - name: logout
+      run: |
+        az logout

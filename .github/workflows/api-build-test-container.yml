@@ -1,4 +1,5 @@
 name: build test container
+
 on:
   push:
     paths:
@@ -6,17 +7,21 @@ on:
       - 'api/requirements.txt'
       - 'api/dev-env.yml'
       - '.github/workflows/api-build-test-container.yml'
+
+env:
+  AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io
+
 jobs:
-  build-latest:
-    name: Build latest
+  build-test-container:
+    name: Build test container
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: azure/docker-login@v1
       with:
-        login-server: prtrdev.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        login-server: ${{ env.AZURE_ACR_NAME }}
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
     - run: |
-        docker build . -t prtrdev.azurecr.io/fin-prtr:latest
-        docker push prtrdev.azurecr.io/fin-prtr:latest
+        docker build . -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:tests
+        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:tests

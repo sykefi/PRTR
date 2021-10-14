@@ -1,4 +1,4 @@
-name: 'API: tests & dev deploy'
+name: 'API: tests & prod deploy'
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
       - 'api/**'
       - 'Dockerfile'
       - '.dockerignore'
-      - '.github/workflows/api-test-deploy-dev.yml'
+      - '.github/workflows/api-test-deploy-prod.yml'
 
 env:
-  AZURE_ACR_NAME: prtrdev.azurecr.io # set separately to jobs.tests.container.image
-  AZURE_WEBAPP_NAME: prtr-api-dev
+  AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io # set separately to jobs.tests.container.image
+  AZURE_WEBAPP_NAME: syke-prtr-fastapi-p-cont
 
 jobs:
   tests:
@@ -28,9 +28,9 @@ jobs:
           cd api/
           python -m pytest tests/ -vv
 
-  build-deploy-dev:
-    name: Build & deploy dev
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
+  build-deploy-prod:
+    name: Build & deploy prod
+    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch ("main" ?)
     runs-on: ubuntu-latest
     needs: tests
     steps:
@@ -38,16 +38,23 @@ jobs:
     - uses: azure/docker-login@v1
       with:
         login-server: ${{ env.AZURE_ACR_NAME }}
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-    - run: |
+        username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
+        password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
+    - name: Build & push image
+      run: |
         docker build . \
           -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest \
           -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
         docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
         docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}
-    - uses: azure/webapps-deploy@v2
+    - name: 'Deploy to Azure WebApp'
+      uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         images: '${{ env.AZURE_ACR_NAME }}/fin-prtr:${{ github.sha }}'
+    - name: logout
+      run: |
+        az logout
