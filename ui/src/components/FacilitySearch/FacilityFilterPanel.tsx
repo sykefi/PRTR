@@ -18,6 +18,18 @@ import {
 } from '../../api/enums/FacilityTopMainActivity'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 
+const asMainActivityOption = (
+  o: FacilityMainActivityCode | FacilityTopMainActivity,
+  desc?: string
+): OptionType<FacilityMainActivityCode | FacilityTopMainActivity> => {
+  return {
+    value: o,
+    label: `${o}${isTopMainActivity(o) ? '.' : ':'} ${desc || ''}`,
+    bold: isTopMainActivity(o),
+    indent: !isTopMainActivity(o)
+  }
+}
+
 const getFacilityMainActivityOptions = (
   t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[] => {
@@ -26,17 +38,24 @@ const getFacilityMainActivityOptions = (
     ...Object.values(FacilityMainActivityCode)
   ]
     .reduce((prev, curr) => {
+      if (
+        curr === FacilityMainActivityCode.MISSING ||
+        curr === FacilityTopMainActivity.MISSING
+      ) {
+        return prev
+      }
       const desc = t(`mainActivityCodeDesc:${curr}`)
       if (desc) {
-        return prev.concat({
-          value: curr,
-          label: `${curr}${isTopMainActivity(curr) ? '.' : ':'} ${desc}`,
-          bold: isTopMainActivity(curr),
-          indent: !isTopMainActivity(curr)
-        })
+        return prev.concat(asMainActivityOption(curr, desc))
       }
       return prev
     }, [] as OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[])
+    .concat({
+      value: FacilityTopMainActivity.MISSING,
+      label: t(`mainActivityCodeDesc:${FacilityTopMainActivity.MISSING}`) || '',
+      bold: false,
+      indent: false
+    })
     .sort((a, b) => {
       if (a.value < b.value) {
         return -1
