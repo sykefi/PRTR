@@ -5,12 +5,6 @@ import { AdditionalInfoPageContentFi } from './AdditionalInfoPageContentFi'
 import { AdditionalInfoPageContentSv } from './AdditionalInfoPageContentSv'
 import { AdditionalInfoPageContentEn } from './AdditionalInfoPageContentEn'
 
-const DevTitle = styled.h2`
-  font-size: 22px;
-  margin-top: -2;
-  margin-bottom: 12px;
-`
-
 const AdditionalInfoPageStyleWrapper = styled.div`
   h2 {
     font-size: 22px;
