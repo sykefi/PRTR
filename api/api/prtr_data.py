@@ -1,5 +1,5 @@
 from models.enums import (
-    MainActivityCode, Medium, PollutantCode, TopMainActivity
+    MainActivityCode, Medium, PollutantCode, TopMainActivity, WasteInternationality
 )
 from models.models import (
     PRTRListResponse, PollutantRelease, ProductionFacility,
@@ -147,17 +147,30 @@ def get_releases(
     )
 
 
+def is_waste_international(
+    name_of_receiver: Union[str, None],
+    receiving_site_country_name: Union[str, None]
+) -> bool:
+    if name_of_receiver or receiving_site_country_name:
+        return True
+    return False
+
+
 def get_waste_transfers(
     facility_id: Union[str, None],
     skip: int,
     limit: int,
-    reporting_year: Union[int, None]
+    reporting_year: Union[int, None],
+    all_or_international_filter: Union[WasteInternationality, None]
 ) -> PRTRListResponse[WasteTransfer]:
     match = [
         wt for wt in _waste_transfers
         if (
             (not facility_id or wt.facilityId == facility_id) and
-            (not reporting_year or wt.reportingYear == reporting_year)
+            (not reporting_year or wt.reportingYear == reporting_year) and
+            (not all_or_international_filter or all_or_international_filter == WasteInternationality.ALL
+            or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
+            is_waste_international(wt.nameOfReceiver, wt.receivingSiteCountryName)))
         )
     ]
     return PRTRListResponse(

@@ -1,7 +1,7 @@
 from pydantic.error_wrappers import ValidationError
 import csv
 from models.models import (
-    BarePollutantRelease, ProductionFacility, WasteTransfer,
+    BarePollutantRelease, ProductionFacility, WasteTransfer, 
     facility_csv_dict_2_facility, release_csv_dict_2_release,
     waste_transfer_csv_dict_2_waste_transfer
 )
