@@ -11,6 +11,7 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
   label,
   name,
   placeholder,
+  isClearable,
   isLoading,
   options,
   value,
@@ -21,6 +22,7 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
   label: string
   name: string
   placeholder: string
+  isClearable?: boolean
   isLoading?: boolean
   options: OptionType<TOptionValue>[]
   value: OptionType<TOptionValue> | null
@@ -30,7 +32,7 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
     <Box width={width} minWidth={minWidth}>
       <FormLabel>{label} </FormLabel>
       <ChakraSelect
-        isClearable
+        isClearable={isClearable}
         closeMenuOnSelect
         name={name}
         placeholder={placeholder}
@@ -41,4 +43,8 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
       />
     </Box>
   )
+}
+
+DropdownSelectorAndLabel.defaultProps = {
+  isClearable: true
 }

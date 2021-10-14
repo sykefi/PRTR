@@ -6,22 +6,42 @@ import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
-import { asOption } from '../../models/OptionType'
+import { asOption, OptionType } from '../../models/OptionType'
 import { useYearOptions } from '../../hooks/useYearOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
+import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilter'
+import { TranslationKeys } from '../../react-i18next'
 
 const Form = styled.form`
   max-width: 100%;
 `
 
+const getAllOrInternationalOptions = (
+  t: (translationKey: TranslationKeys) => string | undefined
+): OptionType<AllOrInternationalFilter>[] => {
+  return [
+    {
+      value: AllOrInternationalFilter.ALL,
+      label: t('wasteTransfers.allOrInternationalAllLabel') || ''
+    },
+    {
+      value: AllOrInternationalFilter.INTERNATIONAL,
+      label: t('wasteTransfers.allOrInternationalInternationalLabel') || ''
+    }
+  ]
+}
+
 export const WasteTransferFilterPanel = (props: {
   urlYear: number | undefined
+  urlAllOrInternational: AllOrInternationalFilter
 }) => {
-  const { t } = useTranslation(['translation'])
+  const { t } = useTranslation()
   const history = useHistory()
   const location = useLocation()
 
   const [year, setYear] = useState<number | undefined>(undefined)
+  const [allOrInternational, setAllOrInternational] =
+    useState<AllOrInternationalFilter>(props.urlAllOrInternational)
 
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
@@ -37,6 +57,12 @@ export const WasteTransferFilterPanel = (props: {
     if (year) {
       newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
     }
+    if (allOrInternational) {
+      newUrlSearchParams.set(
+        URLSearchParamName.AllOrInternational,
+        allOrInternational
+      )
+    }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
@@ -44,7 +70,10 @@ export const WasteTransferFilterPanel = (props: {
     })
   }
 
-  const searchInputsChanged = !props.urlYear || props.urlYear !== year
+  const searchInputsChanged =
+    (!props.urlYear && allOrInternational === AllOrInternationalFilter.ALL) ||
+    props.urlYear !== year ||
+    props.urlAllOrInternational !== allOrInternational
 
   return (
     <Form onSubmit={handleSubmit} data-cy="waste-transfers-filter-panel">
@@ -62,12 +91,28 @@ export const WasteTransferFilterPanel = (props: {
             width={250}
             minWidth={200}
             name="wasteTransfersYear"
-            label={t('translation:common.selectYear')}
-            placeholder={t('translation:common.selectYear')}
+            label={t('common.selectYear')}
+            placeholder={t('common.selectYear')}
             isLoading={yearOptionsIsLoading || yearOptionsIsError}
             options={yearOptions}
             value={asOption(year, year)}
             handleChange={setYear}
+          />
+          <DropdownSelectorAndLabel<AllOrInternationalFilter>
+            width={350}
+            minWidth={200}
+            name="selectAllOrInternationalWasteTransfers"
+            label={t('wasteTransfers.allOrInternationalSelectLabel')}
+            placeholder={t('wasteTransfers.allOrInternationalSelectLabel')}
+            isClearable={false}
+            options={getAllOrInternationalOptions(t)}
+            value={asOption(
+              allOrInternational,
+              t(`wasteTransfers.allOrInternational${allOrInternational}Label`)
+            )}
+            handleChange={v =>
+              setAllOrInternational(v || AllOrInternationalFilter.ALL)
+            }
           />
         </Flex>
         <Button
@@ -77,7 +122,7 @@ export const WasteTransferFilterPanel = (props: {
           disabled={!searchInputsChanged}
           marginBottom={0.5}
           colorScheme="green">
-          {t('translation:common.fetch')}
+          {t('common.fetch')}
         </Button>
       </FormControl>
     </Form>

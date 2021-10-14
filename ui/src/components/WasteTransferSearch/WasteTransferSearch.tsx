@@ -2,8 +2,12 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
 import * as api from '../../api'
+import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilter'
 import * as env from '../../env'
-import { useURLSearchParamInt } from '../../hooks/useURLSearchParams'
+import {
+  useURLSearchParam,
+  useURLSearchParamInt
+} from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
 import { SearchInfo } from '../Common/SearchInfo'
@@ -18,15 +22,20 @@ export const WasteTransferSearch = () => {
 
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
+  const urlAllOrInternational =
+    useURLSearchParam<AllOrInternationalFilter>(
+      URLSearchParamName.AllOrInternational
+    ) || AllOrInternationalFilter.ALL
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['wasteTransfers', urlFirstItemIdx, urlYear],
+    ['wasteTransfers', urlFirstItemIdx, urlYear, urlAllOrInternational],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getWasteTransfers({
         reporting_year: urlYear,
         skip: urlFirstItemIdx,
-        limit: pageItemLimit
+        limit: pageItemLimit,
+        all_or_international_filter: urlAllOrInternational
       })
     },
     { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
@@ -38,7 +47,10 @@ export const WasteTransferSearch = () => {
     <>
       <BelowNavigationHeaderPanel>
         <SearchInfo text={t('descriptions.wasteTransfers')} />
-        <WasteTransferFilterPanel urlYear={urlYear} />
+        <WasteTransferFilterPanel
+          urlYear={urlYear}
+          urlAllOrInternational={urlAllOrInternational}
+        />
       </BelowNavigationHeaderPanel>
       <Flex
         wrap="wrap"
