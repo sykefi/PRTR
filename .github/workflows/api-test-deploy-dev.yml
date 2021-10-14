@@ -9,15 +9,15 @@ on:
       - '.github/workflows/api-test-deploy-dev.yml'
 
 env:
-  AZURE_ACR_NAME: prtrdev.azurecr.io # set separately to jobs.tests.container.image
-  AZURE_WEBAPP_NAME: prtr-api-dev
+  AZURE_ACR_NAME: sykeprtrdevacr.azurecr.io # set separately to jobs.tests.container.image
+  AZURE_WEBAPP_NAME: syke-prtr-fastapi-d-cont
 
 jobs:
   tests:
     name: Test API
     runs-on: ubuntu-latest
     container:
-      image: sykeprtrprodacr.azurecr.io/fin-prtr:tests
+      image: sykeprtrdevacr.azurecr.io/fin-prtr:tests
       credentials:
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
@@ -30,7 +30,7 @@ jobs:
 
   build-deploy-dev:
     name: Build & deploy dev
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
+    # if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
     runs-on: ubuntu-latest
     needs: tests
     steps:

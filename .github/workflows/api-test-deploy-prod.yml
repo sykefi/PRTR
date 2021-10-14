@@ -17,7 +17,7 @@ jobs:
     name: Test API
     runs-on: ubuntu-latest
     container:
-      image: sykeprtrprodacr.azurecr.io/fin-prtr:tests
+      image: sykeprtrdevacr.azurecr.io/fin-prtr:tests
       credentials:
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
