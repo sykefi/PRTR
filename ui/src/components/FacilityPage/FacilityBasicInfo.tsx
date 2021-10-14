@@ -3,7 +3,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { Box, Flex, Heading, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { Facility } from '../../api/models/Facility'
-import { AuthorityInfo } from '../../assets/authorityInfo/models/AuthorityInfo'
+import { AuthorityInfo } from '../../models/AuthorityInfo'
 import { getAuthorityInfo } from '../../authorityInfo'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 

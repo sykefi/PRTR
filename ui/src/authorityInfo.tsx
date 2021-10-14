@@ -1,5 +1,5 @@
 import authoritiesJson from './assets/authorityInfo/authorityInfo.json'
-import { AuthorityInfo } from './assets/authorityInfo/models/AuthorityInfo'
+import { AuthorityInfo } from './models/AuthorityInfo'
 import { RawAuthorityInfo } from './assets/authorityInfo/models/RawAuthorityInfo'
 
 const authorities = authoritiesJson as RawAuthorityInfo[]
