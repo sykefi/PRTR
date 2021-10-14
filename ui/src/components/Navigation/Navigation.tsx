@@ -73,8 +73,8 @@ const NavLink = ({
           md: 'initial'
         }}
         position="relative"
-        top="31px"
-        marginTop="-10px"
+        top="29px"
+        marginTop="-5px"
         width="calc(100% + var(--chakra-space-4))"
         borderTop="3px solid transparent"
         borderTopLeftRadius="1px"
@@ -91,6 +91,7 @@ const PrtrLogo = () => {
       <Flex
         marginX={{ base: 0, md: 2 }}
         marginY={1}
+        marginTop="-1px"
         marginRight={{ base: 1, md: 6 }}
         letterSpacing={0.2}
         fontWeight="bold"
