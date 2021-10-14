@@ -12,8 +12,8 @@ env:
   AZURE_ACR_NAME: sykeprtrprodacr.azurecr.io
 
 jobs:
-  build-latest:
-    name: Build latest
+  build-test-container:
+    name: Build test container
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -23,5 +23,5 @@ jobs:
         username: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_ID }}
         password: ${{ secrets.PROD_AZURE_CREDENTIALS_CLIENT_SECRET }}
     - run: |
-        docker build . -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
-        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:latest
+        docker build . -t ${{ env.AZURE_ACR_NAME }}/fin-prtr:tests
+        docker push ${{ env.AZURE_ACR_NAME }}/fin-prtr:tests
