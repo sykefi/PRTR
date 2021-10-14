@@ -1,7 +1,8 @@
 from typing import Optional, Union
 from fastapi.params import Query
 from models.enums import (
-    MainActivityCode, Medium, PollutantCode, TopMainActivity
+    MainActivityCode, Medium, PollutantCode,
+    TopMainActivity, WasteInternationality
 )
 from models.models import (
     PRTRListResponse, PollutantRelease,
@@ -127,10 +128,13 @@ def read_waste_transfers(
     skip: int = 0,
     limit: int = 10,
     reporting_year: int = None,
+    all_or_international_filter:
+        WasteInternationality = WasteInternationality.ALL
 ):
     return prtr_data.get_waste_transfers(
         facility_id,
         skip,
         limit,
         reporting_year,
+        all_or_international_filter
     )

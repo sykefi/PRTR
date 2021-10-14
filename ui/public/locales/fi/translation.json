@@ -74,6 +74,9 @@
     }
   },
   "wasteTransfers": {
+    "allOrInternationalSelectLabel": "Näytettävät tiedot",
+    "allOrInternationalAllLabel": "Näytä kaikki siirrot",
+    "allOrInternationalInternationalLabel": "Näytä kansainväliset siirrot",
     "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
     "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "quantity": "Määrä",

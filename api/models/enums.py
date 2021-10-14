@@ -156,3 +156,8 @@ class WasteClassificationCode(str, Enum):
 class WasteTreatmentCode(str, Enum):
     D = 'D'
     R = 'R'
+
+
+class WasteInternationality(str, Enum):
+    ALL = 'All'
+    INTERNATIONAL = 'International'
