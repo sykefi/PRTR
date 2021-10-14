@@ -16,6 +16,7 @@ import { Medium } from './api/enums/Medium'
 import { ScrollToTop } from './components/ScrollToTop'
 import { Footer } from './components/Footer'
 import { WasteTransferSearch } from './components/WasteTransferSearch/WasteTransferSearch'
+import { AdditionalInfoPage } from './components/AdditionalnfoPage/AdditionalInfoPage'
 
 const queryClient = new QueryClient()
 
@@ -23,7 +24,8 @@ const navigationItems: NavigationItem[] = [
   { tKey: 'common.facilitySearch', path: RoutePath.Facilities },
   { tKey: 'common.releasesToAir', path: RoutePath.ReleasesToAir },
   { tKey: 'common.releasesToWater', path: RoutePath.ReleasesToWater },
-  { tKey: 'common.wasteTransfers', path: RoutePath.WasteTransfers }
+  { tKey: 'common.wasteTransfers', path: RoutePath.WasteTransfers },
+  { tKey: 'common.additionalInfo', path: RoutePath.AdditionalInfo }
 ]
 
 const App = () => {
@@ -57,6 +59,9 @@ const App = () => {
               </Route>
               <Route path={RoutePath.WasteTransfers}>
                 <WasteTransferSearch />
+              </Route>
+              <Route path={RoutePath.AdditionalInfo}>
+                <AdditionalInfoPage />
               </Route>
               <Route exact path={RoutePath.FrontPage}>
                 <FrontPage />

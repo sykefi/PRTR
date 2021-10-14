@@ -21,7 +21,8 @@
     "previousPage": "⪡ Edellinen sivu",
     "nextPage": "Seuraava sivu ⪢",
     "basicInfo": "Perustiedot",
-    "loadingInformation": "Ladataan tietoja..."
+    "loadingInformation": "Ladataan tietoja...",
+    "additionalInfo": "Lisätietoja"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Lähetä palautetta"
