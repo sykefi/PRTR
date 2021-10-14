@@ -1,3 +1,6 @@
+[![API: tests & prod deploy](https://github.com/sykefi/PRTR/workflows/API%3A%20tests%20%26%20prod%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
+[![UI: tests & prod deploy](https://github.com/sykefi/PRTR/workflows/UI%3A%20tests%20%26%20prod%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
+
 [![API: tests & dev deploy](https://github.com/sykefi/PRTR/workflows/API%3A%20tests%20%26%20dev%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
 [![UI: tests & dev deploy](https://github.com/sykefi/PRTR/workflows/UI%3A%20tests%20%26%20dev%20deploy/badge.svg)](https://github.com/sykefi/PRTR/actions)
 
