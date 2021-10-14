@@ -38,7 +38,7 @@ def as_translation_dict(data: dict, key_field: str, trans_field: str):
     t_dict = {}
     for row in data:
         key_str = row[key_field]
-        value_str = row[trans_field]
+        value_str = row[trans_field].strip() if row[trans_field] else ''
         if not key_str or not value_str:
             continue
         key_path_list = key_str.split('.')

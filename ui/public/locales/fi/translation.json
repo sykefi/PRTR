@@ -9,6 +9,7 @@
     "placename": "Paikkakunta",
     "streetAddress": "Katuosoite",
     "telephoneNumber": "Puhelinnumero",
+    "competentAuthority": "Valvontaviranomainen",
     "facility": "Laitos",
     "goBack": "Palaa",
     "toGoBack": "Paluu",
@@ -29,8 +30,8 @@
   },
   "facilities": {
     "facilityTypeCode": "Toimialaluokitus",
-    "searchWithName": "Hae laitoksen nimellä...",
-    "searchWithPlacename": "Hae paikkakunnalla...",
+    "searchWithName": "Hae laitoksen nimellä",
+    "searchWithPlacename": "Hae paikkakunnalla",
     "loadFacilitiesErroredText": "Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.",
     "noFacilitiesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
     "selectFacilityMainActivityCode": "Valitse laitoksen toimiala",
@@ -76,7 +77,7 @@
   "wasteTransfers": {
     "allOrInternationalSelectLabel": "Näytettävät tiedot",
     "allOrInternationalAllLabel": "Näytä kaikki siirrot",
-    "allOrInternationalInternationalLabel": "Näytä kansainväliset siirrot",
+    "allOrInternationalInternationalLabel": "Näytä vain kansainväliset siirrot",
     "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
     "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "quantity": "Määrä",
@@ -95,9 +96,9 @@
     }
   },
   "descriptions": {
-    "Facilities": "🛈 Oheisen näkymän avulla voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan.",
+    "Facilities": "🛈 Voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",
     "emissionsToAir": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla.",
     "emissionsToWater": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla.",
-    "wasteTransfers": "🛈 Voit selata PRTR-rekisteriin raportoituja jätesiirtoja. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen jätesiirtoja, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. "
+    "wasteTransfers": "🛈 Voit selata PRTR-rekisteriin raportoituja jätesiirtoja. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen jätesiirtoja, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti."
   }
 }
