@@ -46,7 +46,7 @@ export const WasteTransferSearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
-        <SearchInfo text={t('descriptions.wasteTransfers')} />
+        <SearchInfo textKey={'descriptions.wasteTransfers'} />
         <WasteTransferFilterPanel
           urlYear={urlYear}
           urlAllOrInternational={urlAllOrInternational}

@@ -54,7 +54,7 @@ export const FacilitySearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
-        <SearchInfo text={t('descriptions.Facilities')} />
+        <SearchInfo textKey={'descriptions.Facilities'} />
         <FacilityFilterPanel
           searchHasBeenMade={searchHasBeenMade}
           urlSearchTerm={urlSearchTerm}
