@@ -50,12 +50,12 @@ To disable query caching (with React Query) on local development, you can also a
 To keep the external translation source and the translation files of the project in sync, it is recommended to make the additions or edits first in the external translation source and only then update the project translation files as instructed below:
 
 1. Download and save the external translation table(s) as utf-8 encoded CSV file(s).
-2. In directory [ui/translation_source](ui/translation_source), replace one or more of the current CSV files with (an) updated table(s)
-3. Check with git diff that the changes/additions seem as intended
+2. In directory [ui/translation_source](ui/translation_source), replace one or more of the current CSV files with (an) updated table(s).
+3. Check with git diff that the changes/additions seem as intended.
 4. `cd ui` (if not already there)
 5. `python import_translations.py` (with any Python 3.x)
-6. Check with git diff that the changes/additions to translation (JSON) files seem appropriate
-7. Optional step: run `npm start` or `npm run build` to check that the project still compiles (if there were changes in the translation keys, there may be TS/compile errors now)
+6. Check with git diff that the changes/additions to translation (JSON) files seem appropriate.
+7. Optional step: run `npm start` or `npm run build` to check that the project still compiles (if there were changes in the translation keys, there may be TS/compile errors now).
 8. Commit & push the changes and enjoy your new localized content.
 
 ### Code style
