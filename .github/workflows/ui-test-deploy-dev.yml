@@ -1,7 +1,12 @@
 name: 'UI: tests & dev deploy'
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
+    branches-ignore:
+      - main
     paths:
       - 'ui/**'
       - '.github/workflows/ui-test-deploy-dev.yml'
@@ -14,7 +19,7 @@ env:
 jobs:
   test:
     name: Cypress tests
-    if: github.ref != 'refs/heads/main'
+    if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -33,9 +38,9 @@ jobs:
         npm run cypress:run
       working-directory: ui
 
-  test-build-deploy:
-    name: Test, Build and Deploy
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
+  test-build-deploy-dev:
+    name: Test, Build and Deploy (dev)
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
