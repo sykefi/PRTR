@@ -186,3 +186,15 @@ def test_get_waste_transfers_by_all_or_international_filter():
     for wt in data:
         assert _has_waste_transfer_fields(wt)
         assert (wt['nameOfReceiver'] is not None or wt['receivingSiteCity'] is not None)
+
+
+def test_get_waste_transfers_by_placename():
+    placename = 'Lohja'
+    response = client.get(
+        f'{root_path}/waste-transfers?placename={placename}'
+    )
+    data = response.json()['data']
+    assert len(data) > 1
+    for wt in data:
+        assert _has_waste_transfer_fields(wt)
+        assert wt['city'] == placename
