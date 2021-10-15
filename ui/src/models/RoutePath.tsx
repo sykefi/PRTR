@@ -4,5 +4,6 @@ export enum RoutePath {
   ReleasesToAir = '/releases/toAir',
   ReleasesToWater = '/releases/toWater',
   WasteTransfers = '/wasteTransfers',
-  AdditionalInfo = '/additionalInfo'
+  AdditionalInfo = '/additionalInfo',
+  PollutantInfoTable = '/pollutantInfoTable'
 }

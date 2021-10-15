@@ -8,7 +8,7 @@
     "wasteTransfers": "Jätesiirrot",
     "placename": "Paikkakunta",
     "streetAddress": "Katuosoite",
-    "telephoneNumber": "Puhelinnumero",
+    "telephoneNumberToAuthority": "Puhelinnumero ELY-keskukseen",
     "competentAuthority": "Valvontaviranomainen",
     "facility": "Laitos",
     "goBack": "Palaa",
@@ -93,12 +93,13 @@
       "title": "Käsittely",
       "D": "❌ Loppukäsittelyyn",
       "R": "♻ Hyödynnettäväksi"
-    }
+    },
+    "searchWithPlaceName": "Hae paikkakunnalla"
   },
   "descriptions": {
     "Facilities": "🛈 Voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",
-    "emissionsToAir": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla.",
-    "emissionsToWater": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla.",
+    "emissionsToAir": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "emissionsToWater": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
     "wasteTransfers": "🛈 Voit selata PRTR-rekisteriin raportoituja jätesiirtoja. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen jätesiirtoja, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti."
   }
 }

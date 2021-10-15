@@ -15,26 +15,28 @@ import { WasteTransferFilterPanel } from './WasteTransferFilterPanel'
 import { WasteTransferPageSelector } from './WasteTransferPageSelector'
 import { WasteTransferTable } from './WasteTransferTable'
 
-const pageItemLimit = 40
+const pageItemLimit = 25
 
 export const WasteTransferSearch = () => {
   const { t } = useTranslation()
 
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
+  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
   const urlAllOrInternational =
     useURLSearchParam<AllOrInternationalFilter>(
       URLSearchParamName.AllOrInternational
     ) || AllOrInternationalFilter.ALL
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['wasteTransfers', urlFirstItemIdx, urlYear, urlAllOrInternational],
+    ['wasteTransfers', urlFirstItemIdx, urlYear, urlPlacename, urlAllOrInternational],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getWasteTransfers({
         reporting_year: urlYear,
         skip: urlFirstItemIdx,
         limit: pageItemLimit,
+        placename: urlPlacename,
         all_or_international_filter: urlAllOrInternational
       })
     },
@@ -46,10 +48,11 @@ export const WasteTransferSearch = () => {
   return (
     <>
       <BelowNavigationHeaderPanel>
-        <SearchInfo text={t('descriptions.wasteTransfers')} />
+        <SearchInfo textKey={'descriptions.wasteTransfers'} />
         <WasteTransferFilterPanel
           urlYear={urlYear}
           urlAllOrInternational={urlAllOrInternational}
+          urlPlacename={urlPlacename}
         />
       </BelowNavigationHeaderPanel>
       <Flex

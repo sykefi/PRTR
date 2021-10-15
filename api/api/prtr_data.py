@@ -161,7 +161,8 @@ def get_waste_transfers(
     skip: int,
     limit: int,
     reporting_year: Union[int, None],
-    all_or_international_filter: Union[WasteInternationality, None]
+    all_or_international_filter: Union[WasteInternationality, None],
+    placename: Union[str, None]
 ) -> PRTRListResponse[WasteTransfer]:
     match = [
         wt for wt in _waste_transfers
@@ -173,7 +174,8 @@ def get_waste_transfers(
                 or all_or_international_filter == WasteInternationality.ALL
                 or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
                     waste_is_international(wt.nameOfReceiver, wt.receivingSiteCountryName))
-            )
+            ) and
+            (not placename or wt.city == placename)
         )
     ]
     return PRTRListResponse(

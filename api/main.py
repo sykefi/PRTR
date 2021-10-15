@@ -129,12 +129,14 @@ def read_waste_transfers(
     limit: int = 10,
     reporting_year: int = None,
     all_or_international_filter:
-        WasteInternationality = WasteInternationality.ALL
+        WasteInternationality = WasteInternationality.ALL,
+    placename: str = None
 ):
     return prtr_data.get_waste_transfers(
         facility_id,
         skip,
         limit,
         reporting_year,
-        all_or_international_filter
+        all_or_international_filter,
+        placename
     )

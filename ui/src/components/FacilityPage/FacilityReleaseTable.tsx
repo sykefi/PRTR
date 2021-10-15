@@ -1,6 +1,5 @@
 import { Badge, Box, Flex, Heading } from '@chakra-ui/layout'
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
-import { Tooltip } from '@chakra-ui/tooltip'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import * as env from '../../env'
@@ -67,22 +66,15 @@ const ReleaseTable = ({ releases }: { releases: PollutantRelease[] }) => {
                 {getPollutantLabel(t, r.pollutantCode)}
               </Td>
               <Td p={1}>
-                <Tooltip
-                  label={t(
+                <Badge
+                  whiteSpace={{ base: 'unset', sm: 'nowrap' }}
+                  colorScheme={colorSchemeByMethodCode[r.methodCode]}>
+                  {t(
                     `translation:releases.method.${
                       translationKeyByMethodCode[r.methodCode]
-                    }Tooltip`
-                  )}>
-                  <Badge
-                    whiteSpace={{ base: 'unset', sm: 'nowrap' }}
-                    colorScheme={colorSchemeByMethodCode[r.methodCode]}>
-                    {t(
-                      `translation:releases.method.${
-                        translationKeyByMethodCode[r.methodCode]
-                      }`
-                    )}
-                  </Badge>
-                </Tooltip>
+                    }`
+                  )}
+                </Badge>
               </Td>
             </Tr>
           )
