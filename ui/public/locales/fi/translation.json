@@ -93,7 +93,8 @@
       "title": "Käsittely",
       "D": "❌ Loppukäsittelyyn",
       "R": "♻ Hyödynnettäväksi"
-    }
+    },
+    "searchWithPlaceName": "Hae paikkakunnalla"
   },
   "descriptions": {
     "Facilities": "🛈 Voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",

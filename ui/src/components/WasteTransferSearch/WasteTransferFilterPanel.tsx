@@ -11,6 +11,7 @@ import { useYearOptions } from '../../hooks/useYearOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
 import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilter'
 import { TranslationKeys } from '../../react-i18next'
+import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 
 const Form = styled.form`
   max-width: 100%;
@@ -34,6 +35,7 @@ const getAllOrInternationalOptions = (
 export const WasteTransferFilterPanel = (props: {
   urlYear: number | undefined
   urlAllOrInternational: AllOrInternationalFilter
+  urlPlacename: string | undefined
 }) => {
   const { t } = useTranslation()
   const history = useHistory()
@@ -45,6 +47,14 @@ export const WasteTransferFilterPanel = (props: {
 
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
+
+  const [placename, setPlacename] = useState<string | undefined>(props.urlPlacename)
+
+  const {
+      placenameOptionsIsLoading,
+      placenameOptionsIsError,
+      placenameOptions
+  } = usePlacenameOptions()
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault() // prevent reload on submit
@@ -58,6 +68,9 @@ export const WasteTransferFilterPanel = (props: {
         allOrInternational
       )
     }
+    if (placename) {
+      newUrlSearchParams.set(URLSearchParamName.Placename, placename)
+    }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
@@ -66,9 +79,10 @@ export const WasteTransferFilterPanel = (props: {
   }
 
   const searchInputsChanged =
-    (!props.urlYear && allOrInternational === AllOrInternationalFilter.ALL) ||
+    (!props.urlYear && allOrInternational === AllOrInternationalFilter.ALL && !props.urlPlacename) ||
     props.urlYear !== year ||
-    props.urlAllOrInternational !== allOrInternational
+    props.urlAllOrInternational !== allOrInternational ||
+    props.urlPlacename !== placename
 
   return (
     <Form onSubmit={handleSubmit} data-cy="waste-transfers-filter-panel">
@@ -108,6 +122,17 @@ export const WasteTransferFilterPanel = (props: {
             handleChange={v =>
               setAllOrInternational(v || AllOrInternationalFilter.ALL)
             }
+          />
+          <DropdownSelectorAndLabel<string>
+            width={350}
+            minWidth={200}
+            name="wasteTransfersPlacename"
+            label={t('wasteTransfers.searchWithPlaceName')}
+            placeholder={t('wasteTransfers.searchWithPlaceName')}
+            isLoading={placenameOptionsIsLoading || placenameOptionsIsError}
+            options={placenameOptions}
+            value={asOption(placename, placename)}
+            handleChange={setPlacename}
           />
         </Flex>
         <Button

@@ -22,19 +22,21 @@ export const WasteTransferSearch = () => {
 
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
+  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
   const urlAllOrInternational =
     useURLSearchParam<AllOrInternationalFilter>(
       URLSearchParamName.AllOrInternational
     ) || AllOrInternationalFilter.ALL
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['wasteTransfers', urlFirstItemIdx, urlYear, urlAllOrInternational],
+    ['wasteTransfers', urlFirstItemIdx, urlYear, urlPlacename, urlAllOrInternational],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getWasteTransfers({
         reporting_year: urlYear,
         skip: urlFirstItemIdx,
         limit: pageItemLimit,
+        placename: urlPlacename,
         all_or_international_filter: urlAllOrInternational
       })
     },
@@ -50,6 +52,7 @@ export const WasteTransferSearch = () => {
         <WasteTransferFilterPanel
           urlYear={urlYear}
           urlAllOrInternational={urlAllOrInternational}
+          urlPlacename={urlPlacename}
         />
       </BelowNavigationHeaderPanel>
       <Flex

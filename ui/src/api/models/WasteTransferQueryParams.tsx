@@ -6,4 +6,5 @@ export interface WasteTransferQueryParams {
   limit?: number
   reporting_year?: number
   all_or_international_filter?: AllOrInternationalFilter
+  placename?: string
 }
