@@ -57,11 +57,11 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
     <>
       <BelowNavigationHeaderPanel>
         <SearchInfo
-          text={t(
+          textKey={
             props.medium === Medium.AIR
               ? 'descriptions.emissionsToAir'
               : 'descriptions.emissionsToWater'
-          )}
+          }
         />
         <ReleaseFilterPanel
           medium={props.medium}
