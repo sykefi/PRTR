@@ -8,9 +8,9 @@ common.releasesToWater;Päästöt veteen;Utsläpp till vatten;Releases to water
 common.wasteTransfers;Jätesiirrot;Transport av avfall;Waste transfers
 common.placename;Paikkakunta;Ort;Location
 common.streetAddress;Katuosoite;Gatuadress;Street address
-common.telephoneNumber;Puhelinnumero;Telefonnummer;Phone number
+common.telephoneNumberToAuthority;Puhelinnumero ELY-keskukseen;Telefonnummer;Phone number
 common.competentAuthority;Valvontaviranomainen;;
-common.facility;Laitos;Anläggning;Facility
+common.facility;Laitos;Anläggning ;Facility
 common.goBack;Palaa;Tillbaka ;Back
 common.toGoBack;Paluu;Tillbaka;Return
 common.search;Etsi;Sök;Search

@@ -8,7 +8,7 @@
     "wasteTransfers": "Transport av avfall",
     "placename": "Ort",
     "streetAddress": "Gatuadress",
-    "telephoneNumber": "Telefonnummer",
+    "telephoneNumberToAuthority": "Telefonnummer",
     "facility": "Anläggning",
     "goBack": "Tillbaka",
     "toGoBack": "Tillbaka",

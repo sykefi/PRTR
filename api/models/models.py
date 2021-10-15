@@ -41,7 +41,8 @@ class ProductionFacilityCsvDict(TypedDict):
     postalCode: str
     city: str
     countryCode: str
-    telephoneNo: str
+    authorityName: str
+    authorityTelephoneNo: str
     status: str
 
 
@@ -57,7 +58,8 @@ class ProductionFacility(BaseModel):
     buildingNumber: Optional[str] = None
     postalCode: Optional[str] = None
     city: Optional[str] = None
-    telephoneNo: Optional[str] = None
+    authorityName: Optional[str] = None
+    authorityTelephoneNo: Optional[str] = None
     status: Optional[FacilityStatus] = None
 
 
@@ -90,7 +92,8 @@ def facility_csv_dict_2_facility(
                 csv_facility['city'].capitalize()
                 if csv_facility['city'] else None
             ),
-            telephoneNo=csv_facility['telephoneNo'],
+            authorityName=csv_facility['authorityName'],
+            authorityTelephoneNo=csv_facility['authorityTelephoneNo'],
             status=csv_facility['status']
         )
     except ValidationError as e:

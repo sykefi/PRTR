@@ -8,7 +8,7 @@
     "wasteTransfers": "Waste transfers",
     "placename": "Location",
     "streetAddress": "Street address",
-    "telephoneNumber": "Phone number",
+    "telephoneNumberToAuthority": "Phone number",
     "facility": "Facility",
     "goBack": "Back",
     "toGoBack": "Return",

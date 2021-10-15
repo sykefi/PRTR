@@ -14,7 +14,8 @@ export interface Facility {
   buildingNumber: string | null
   postalCode: string | null
   city: string | null
-  telephoneNo: string | null
+  authorityName: string | null
+  authorityTelephoneNo: string | null
   status: FacilityStatus | null
 }
 
