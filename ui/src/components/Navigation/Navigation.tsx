@@ -40,7 +40,7 @@ const NavLink = ({
       whiteSpace="nowrap"
       color="blackAlpha.700"
       fontWeight={600}
-      fontSize="lg"
+      fontSize={{ base: 'lg', sm: 'md', xl: 'lg' }}
       rounded={'md'}
       _hover={{
         textDecoration: 'none',
@@ -89,10 +89,10 @@ const PrtrLogo = () => {
   return (
     <RrLink to={RoutePath.FrontPage} data-cy="front-page-nav">
       <Flex
-        marginX={{ base: 0, md: 2 }}
         marginY={1}
         marginTop="-1px"
-        marginRight={{ base: 1, md: 6 }}
+        marginLeft={{ base: -1, sm: 3 }}
+        marginRight={{ base: 0, md: 2, lg: 6 }}
         letterSpacing={0.2}
         fontWeight="bold"
         color="blue.600"
@@ -119,7 +119,7 @@ const PrtrLogo = () => {
         </Flex>
         <Box
           marginTop="-4px"
-          fontSize={{ base: 12, md: '0.8em' }}
+          fontSize={{ base: 12, md: '0.77em' }}
           whiteSpace="nowrap">
           SUOMEN PÄÄSTÖREKISTERI
         </Box>
@@ -154,7 +154,10 @@ const Navigation = ({
             onClick={isOpen ? onClose : onOpen}
           />
           <PrtrLogo />
-          <HStack as={'nav'} spacing={2} display={{ base: 'none', md: 'flex' }}>
+          <HStack
+            as={'nav'}
+            spacing={{ base: 0, sm: 0.5, lg: 2 }}
+            display={{ base: 'none', md: 'flex' }}>
             {navigationItems.map(item => (
               <NavLink key={item.path} navigationItem={item} />
             ))}
