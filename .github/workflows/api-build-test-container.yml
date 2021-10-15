@@ -1,4 +1,6 @@
 name: build test container
+# this action builds the Python env as a Docker container
+# that can then be used in the other actions to run API tests inside of it
 
 on:
   push:

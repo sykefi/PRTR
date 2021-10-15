@@ -2,6 +2,8 @@ name: 'API: tests & dev deploy'
 
 on:
   push:
+    branches-ignore:
+      - main
     paths:
       - 'api/**'
       - 'Dockerfile'
@@ -30,7 +32,7 @@ jobs:
 
   build-deploy-dev:
     name: Build & deploy dev
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in dev branch ("dev" ?)
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
     needs: tests
     steps:
