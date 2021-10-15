@@ -40,7 +40,7 @@ const TableStyleWrapper = styled.div`
   }
 `
 
-export const PollutantInfoTable = () => {
+export const PollutantInfoTableFi = () => {
   return (
     <TableStyleWrapper>
       <div className="pollutantTableContent">

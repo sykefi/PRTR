@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Flex, Box } from '@chakra-ui/layout'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { PollutantInfoTable } from './components/PollutantInfoTable/PollutantInfoTable'
+import { PollutantInfoTableFi } from './components/PollutantInfoTableFi'
 import { FrontPage } from './components/FrontPage/FrontPage'
 import { FacilitySearch } from './components/FacilitySearch/FacilitySearch'
 import Navigation from './components/Navigation/Navigation'
@@ -65,7 +65,7 @@ const App = () => {
                 <AdditionalInfoPage />
               </Route>
               <Route path={RoutePath.PollutantInfoTable}>
-                <PollutantInfoTable />
+                <PollutantInfoTableFi />
               </Route>
               <Route exact path={RoutePath.FrontPage}>
                 <FrontPage />
