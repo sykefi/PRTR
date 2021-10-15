@@ -2,7 +2,6 @@ import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
-import { Tooltip } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
@@ -98,22 +97,15 @@ export const ReleaseTable = ({
                   </Link>
                 </Td>
                 <Td p={1}>
-                  <Tooltip
-                    label={t(
+                  <Badge
+                    whiteSpace={{ base: 'unset', sm: 'nowrap' }}
+                    colorScheme={colorSchemeByMethodCode[r.methodCode]}>
+                    {t(
                       `translation:releases.method.${
                         translationKeyByMethodCode[r.methodCode]
-                      }Tooltip`
-                    )}>
-                    <Badge
-                      whiteSpace={{ base: 'unset', sm: 'nowrap' }}
-                      colorScheme={colorSchemeByMethodCode[r.methodCode]}>
-                      {t(
-                        `translation:releases.method.${
-                          translationKeyByMethodCode[r.methodCode]
-                        }`
-                      )}
-                    </Badge>
-                  </Tooltip>
+                      }`
+                    )}
+                  </Badge>
                 </Td>
               </Tr>
             )
