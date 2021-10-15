@@ -15,7 +15,7 @@ import { WasteTransferFilterPanel } from './WasteTransferFilterPanel'
 import { WasteTransferPageSelector } from './WasteTransferPageSelector'
 import { WasteTransferTable } from './WasteTransferTable'
 
-const pageItemLimit = 40
+const pageItemLimit = 25
 
 export const WasteTransferSearch = () => {
   const { t } = useTranslation()

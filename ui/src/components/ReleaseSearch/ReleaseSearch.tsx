@@ -16,7 +16,7 @@ import { ReleaseFilterPanel } from './ReleaseFilterPanel'
 import { ReleasePageSelector } from './ReleasePageSelector'
 import { ReleaseTable } from './ReleaseTable'
 
-const pageItemLimit = 40
+const pageItemLimit = 20
 
 export const ReleaseSearch = (props: { medium: Medium }) => {
   const { t } = useTranslation()

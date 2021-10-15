@@ -95,10 +95,6 @@ export const FacilityBasicInfo = ({
             label={t('translation:common.streetAddress')}
             value={getStreetAddress(facility)}
           />
-          <InfoPropRow
-            label={t('translation:common.telephoneNumberToAuthority')}
-            value={facility.authorityTelephoneNo || ''}
-          />
           <Box marginY={2}>
             <Box fontWeight="semibold">
               {t('translation:common.competentAuthority')}
@@ -115,6 +111,10 @@ export const FacilityBasicInfo = ({
               </Link>
             )}
           </Box>
+          <InfoPropRow
+            label={t('translation:common.telephoneNumberToAuthority')}
+            value={facility.authorityTelephoneNo || ''}
+          />
           <InfoPropRow
             label={t('translation:facilities.status.title')}
             value={
