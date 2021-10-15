@@ -1,7 +1,12 @@
 name: 'API: tests & prod deploy'
 
 on:
+  pull_request:
+    branches:
+      - main
   push:
+    branches:
+      - main
     paths:
       - 'api/**'
       - 'Dockerfile'
@@ -30,7 +35,7 @@ jobs:
 
   build-deploy-prod:
     name: Build & deploy prod
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch (still "main" ?)
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     needs: tests
     steps:

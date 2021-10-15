@@ -18,8 +18,8 @@ env:
 
 jobs:
   test:
-    name: Cypress tests
-    if: github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main'
+    name: Cypress tests (UI)
+    if: ${{ github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
