@@ -162,12 +162,15 @@ const Navigation = ({
               <NavLink key={item.path} navigationItem={item} />
             ))}
           </HStack>
-          <LanguageSelect />
+          <Box display={{ base: 'none', md: 'flex' }}>
+            <LanguageSelect />
+          </Box>
         </Flex>
 
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
+              <LanguageSelect />
               {navigationItems.map(item => (
                 <NavLink key={item.path} navigationItem={item} />
               ))}
