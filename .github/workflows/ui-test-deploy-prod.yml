@@ -15,8 +15,8 @@ env:
   REACT_APP_PRTR_SERVER: https://syke-prtr-fastapi-p-cont.azurewebsites.net # TODO replace with the final prod address
 
 jobs:
-  test-build-deploy:
-    name: Test, Build and Deploy
+  test-build-deploy-prod:
+    name: Test, Build and Deploy (prod)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
