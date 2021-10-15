@@ -45,6 +45,19 @@ By default the app uses the PRTR API at the address defined in [.env.development
 
 To disable query caching (with React Query) on local development, you can also add the environment variable `REACT_APP_PRTR_DATA_CACHE_TIME=0`.
 
+### Updating translations from external source
+
+To keep the external translation source and the translation files of the project in sync, it is recommended to make the additions or edits first in the external translation source and only then update the project translation files as instructed below:
+
+1. Download and save the external translation table(s) as utf-8 encoded CSV file(s).
+2. In directory [ui/translation_source](ui/translation_source), replace one or more of the current CSV files with (an) updated table(s)
+3. Check with git diff that the changes/additions seem as intended
+4. `cd ui` (if not already there)
+5. `python import translations` (with any Python 3.x)
+6. Check with git diff that the changes/additions to translation (JSON) files seem appropriate
+7. Optional step: run `npm start` or `npm run build` to check that the project still compiles (if there were changes in the translation keys, there may be TS/compile errors now)
+8. Commit & push the changes and enjoy your new localized content.
+
 ### Code style
 
 The project is currently formatted with [Prettier](https://prettier.io/). In VSCode, the easiest way to format is to use the plugin [prettier-vscode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and the following settings:
@@ -76,7 +89,7 @@ $ conda activate prtr
 - E-PRTR data is available for download at [industry.eea.europa.eu/download](https://industry.eea.europa.eu/download) / [eea.europa.eu/data-and-maps/data](https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3) (e.g. _Industrial_Reporting_Database_v4_March_2021.accdb_)
 - Previously imported PRTR dataset for Finland is already included as CSV files in [api/api/assets](api/api/assets)
 - The data import script requires installation of [driver for MS for Access files](https://www.microsoft.com/en-us/download/details.aspx?id=54920)
-- Prior to running the script, add a new file .env to `api/data_import/` containing at least the following environment variable: PRTR_DB_FILE_PATH=path\to\your\prtr\data\\*.accdb
+- Prior to running the script, add a new file .env to `api/data_import/` containing at least the following environment variable: PRTR_DB_FILE_PATH=path\to\your\prtr\data\\\*.accdb
 - Other settings (such as country code) can be adjusted in [data_import/conf.py](api/data_import/conf.py)
 
 To execute the data import, run:
