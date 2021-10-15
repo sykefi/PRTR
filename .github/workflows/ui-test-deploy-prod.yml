@@ -2,6 +2,8 @@ name: 'UI: tests & prod deploy'
 
 on:
   push:
+    branches:
+      - main
     paths:
       - 'ui/**'
       - '.github/workflows/ui-test-deploy-prod.yml'
@@ -15,7 +17,6 @@ env:
 jobs:
   test-build-deploy:
     name: Test, Build and Deploy
-    if: github.ref == 'refs/heads/main' # TODO set deploy to run only in prod branch (still "main" ?)
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
