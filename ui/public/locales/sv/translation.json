@@ -8,7 +8,8 @@
     "wasteTransfers": "Transport av avfall",
     "placename": "Ort",
     "streetAddress": "Gatuadress",
-    "telephoneNumberToAuthority": "Telefonnummer",
+    "telephoneNumberToAuthority": "Telefonnummer till tillsynsmyndigheten",
+    "competentAuthority": "Tillsynsmyndighet",
     "facility": "Anläggning",
     "goBack": "Tillbaka",
     "toGoBack": "Tillbaka",
@@ -21,7 +22,8 @@
     "previousPage": "⪡ Föregående sida",
     "nextPage": "Nästa sida ⪢",
     "basicInfo": "Grunddata",
-    "loadingInformation": "Uppgifterna laddas upp"
+    "loadingInformation": "Uppgifterna laddas upp",
+    "additionalInfo": "Ytterligare information"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Skicka respons"
@@ -35,8 +37,11 @@
     "selectFacilityMainActivityCode": "Välj verksamhetsområde",
     "couldNotFindFacilityWithId": "Sökningen av uppgifterna misslyckades, försök igen senare.",
     "couldNotFindFacilityReleases": "Sökningen av utsläppen misslyckades, försök igen senare.",
-    "noReleasesFoundForFacility": "Inga träffar i databasen för den valda anläggningen",
+    "couldNotFindFacilityWasteTransfers": "Sökningen av uppgifter om avfallstransporter misslyckades, försök igen senare.",
+    "noReleasesFoundForFacility": "Inga utsläpp hittades för den valda anläggningen",
+    "noWasteTransfersFoundForFacility": "Inga avfallstransporter hittades för den valda anläggningen",
     "facilityReleaseTable": "Utsläppsdata",
+    "facilityWasteTransferTable": "Avfallstransporter",
     "goBackToFacilitySearch": "Återvänd till anläggningssökning",
     "goBackToReleaseSearch": "Återvänd till anläggningssökning",
     "goBackToWasteTransferSearch": "Återvänd till sökning av avfallstransporter",
@@ -63,12 +68,18 @@
       "title": "Metod",
       "measured": "Mätning",
       "calculated": "Beräkning",
-      "estimated": "Uppskattning"
+      "estimated": "Expertberäkning",
+      "measuredTooltip": "Utsläppsmätning baserad på internationellt godkänd eller motsvarande metod (direkt/indirekt, kontinuerlig/periodisk eller engångsmätning)",
+      "calculatedTooltip": "Beräkning av utsläpp med internationellt överenskomna eller motsvarande nationella metoder (t.ex. fysikalisk-kemisk korrelation, utsläppsfaktor, massbalans)",
+      "estimatedTooltip": "Expertberäkning baserad på t.ex. tidigare mätningar, studier eller erfarenhet"
     }
   },
   "wasteTransfers": {
+    "allOrInternationalSelectLabel": "Visa",
+    "allOrInternationalAllLabel": "Visa alla transporter",
+    "allOrInternationalInternationalLabel": "Visa endast internationella transporter",
     "noWasteTransfersFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
-    "wasteTransfersFetchErrorInfo": "Sökningen av avfallstransporter misslyckades, försök igen senare.",
+    "wasteTransfersFetchErrorInfo": "Sökningen  misslyckades, försök igen senare.",
     "quantity": "Mängd",
     "receiver": "Mottagande anläggning",
     "classification": {
@@ -82,6 +93,13 @@
       "title": "Behandling",
       "D": "❌ Till bortskaffare",
       "R": "♻ Till återvinnare"
-    }
+    },
+    "searchWithPlaceName": "Sök efter ort"
+  },
+  "descriptions": {
+    "Facilities": "Du kan söka anläggningar i kartan eller i tabellen och filtrera näringsgren, ort eller namn. Tryck på anläggningens namn för att se anläggningsspecifika utsläpp och avfallstransporter.",
+    "emissionsToAir": "\"Välj först utsläpp eller gas, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under \"\"Anläggningssökning\"\".\"",
+    "emissionsToWater": "\"Välj först utsläpp, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under \"\"Anläggningssökning\"\".\"",
+    "wasteTransfers": "\"Du kan söka avfallstransporter och filtrera år eller ort. Anläggningsspecifika transporter hittar du under \"\"Anläggningssökning\"\".\""
   }
 }

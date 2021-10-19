@@ -1,106 +1,111 @@
-﻿translationKey;FI;SV;EN
-;;;
-common.welcomeMessage;Tervetuloa FIN-PRTR palvelun kehitysversioon!;Välkommen till Finlands PRTR register;Welcome to Finland's PRTR registry
-common.frontPage;Etusivu;Framsida;Frontpage
-common.facilitySearch;Laitoshaku;Anläggning, verksamhet, ort;Facility, activity, location
-common.releasesToAir;Päästöt ilmaan;Utsläpp till luft;Releases to air
-common.releasesToWater;Päästöt veteen;Utsläpp till vatten;Releases to water
-common.wasteTransfers;Jätesiirrot;Transport av avfall;Waste transfers
-common.placename;Paikkakunta;Ort;Location
-common.streetAddress;Katuosoite;Gatuadress;Street address
-common.telephoneNumberToAuthority;Puhelinnumero ELY-keskukseen;Telefonnummer;Phone number
-common.competentAuthority;Valvontaviranomainen;;
-common.facility;Laitos;Anläggning ;Facility
-common.goBack;Palaa;Tillbaka ;Back
-common.toGoBack;Paluu;Tillbaka;Return
-common.search;Etsi;Sök;Search
-common.fetch;🔎 Hae;🔎 Sök;🔎 Search
-common.showingItems;Kohteet;Träffar;Items
-common.showingRows;Rivit;Rader;Rows
-common.year;Vuosi;År;Year
-common.selectYear;Valitse vuosi;Välj år;Select year
-common.previousPage;⪡ Edellinen sivu;⪡ Föregående sida;⪡ Previous page
-common.nextPage;Seuraava sivu ⪢;Nästa sida ⪢;Next page ⪢
-common.basicInfo;Perustiedot;Grunddata;Basic information
-common.loadingInformation;Ladataan tietoja...;Uppgifterna laddas upp;Loading information...
-common.additionalInfo;Lisätietoja;;
-;;;
-footer.sendFeedbackButtonLabel;Lähetä palautetta;Skicka respons;Send feedback
-;;;
-facilities.facilityTypeCode;Toimialaluokitus;Näringsgrensindelning;Industrial classification
-facilities.searchWithName;Hae laitoksen nimellä;Sök efter anläggningens namn;Search by facility name
-facilities.searchWithPlacename;Hae paikkakunnalla;Sök efter ort;Search by location
-facilities.loadFacilitiesErroredText;Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.;Anläggningssökningen misslyckades, försök igen senare.;Error in fetching information. Please try again later.
-facilities.noFacilitiesFoundFromSearch;Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.;Dina sökvillkor gav inga träffar i databasen;No releases found with the selected attributes.
-facilities.selectFacilityMainActivityCode;Valitse laitoksen toimiala; Välj verksamhetsområde;Select activity
-facilities.couldNotFindFacilityWithId;Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av uppgifterna misslyckades, försök igen senare.;Error in fetching information. Please try again later.
-facilities.couldNotFindFacilityReleases;Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av utsläppen misslyckades, försök igen senare.;Error in fetching information. Please try again later.
-facilities.couldNotFindFacilityWasteTransfers;Laitoksen jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;;
-facilities.noReleasesFoundForFacility;Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.;Inga träffar i databasen för den valda anläggningen;No releases found for the selected facility.
-facilities.noWasteTransfersFoundForFacility;Tietokannasta ei löytynyt jätesiirtoja valitulle laitokselle.;;
-facilities.facilityReleaseTable;Päästötiedot;Utsläppsdata;Releases
-facilities.facilityWasteTransferTable;Jätesiirrot;;
-facilities.goBackToFacilitySearch;Palaa laitoshakuun;Återvänd till anläggningssökning;Return to facility search
-facilities.goBackToReleaseSearch;Palaa päästöhakuun;Återvänd till anläggningssökning;Return to releases
-facilities.goBackToWasteTransferSearch;Palaa jätesiirtohakuun;Återvänd till sökning av avfallstransporter;Return to waste transfers
-facilities.mapLegendTitle;Kartan värit toimialoittain;Färgerna på kartan beskriver de olika verksamheten;Map colours indicate the different activities
-facilities.status.title;Toiminnan tila;Status;Status
-facilities.status.decommissioned;Toiminta päättynyt;Nedlagd;Decommissioned
-facilities.status.disused;Ei toiminnassa;Ur drift;Disused
-facilities.status.functional;Toiminnassa;I drift;Functional
-facilities.status.notRegulated;Ei säännelty;Inte reglerad;Not regulated
-;;;
-releases.releaseToAir;Päästö ilmaan;Utsläpp till luft;Releases to air
-releases.releaseToWater;Päästö veteen;Utsläpp till vatten;Releases to water
-releases.pollutant;Yhdiste;Kemisk förening;Pollutant
-releases.quantity;Määrä;Mängd;Quantity
-releases.releaseMediumType;Tyyppi;Typ;Medium
-releases.selectPollutant;Valitse yhdiste;Välj kemisk förening;Select pollutant
-releases.selectYear;Valitse vuosi;Välj år;Select year
-releases.noReleasesFoundFromSearch;Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.;Inga träffar i databasen för de valda sökvillkoren;No releases found with the selected attributes.
-releases.releasesFetchErrorInfo;Päästöjen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av utsläppen misslyckades, försök igen senare.;Error in fetching information. Please try again later.
-releases.method.title;Selvitystapa;Metod;Method
-releases.method.measured;Mitattu;Mätning;Measured
-releases.method.calculated;Laskennallinen;Beräkning;Calculated
-releases.method.estimated;Arvioitu;Uppskattning;Estimated
-releases.method.measuredTooltip;Mitattu;;
-releases.method.calculatedTooltip;Laskennallinen;;
-releases.method.estimatedTooltip;Arvioitu;;
-;;;
-wasteTransfers.allOrInternationalSelectLabel;Näytettävät tiedot;;Show
-wasteTransfers.allOrInternationalAllLabel;Näytä kaikki siirrot;;Show all transfers
-wasteTransfers.allOrInternationalInternationalLabel;Näytä vain kansainväliset siirrot;;Show only international transfers
-wasteTransfers.noWasteTransfersFoundFromSearch;Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.;Inga träffar i databasen för de valda sökvillkoren;No waste transfers found with the selected attributes.
-wasteTransfers.wasteTransfersFetchErrorInfo;Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av avfallstransporter misslyckades, försök igen senare.;Error in fetching information. Please try again later.
-wasteTransfers.quantity;Määrä;Mängd;Quantity
-wasteTransfers.receiver;Vastaanottaja;Mottagande anläggning;Receiver
-wasteTransfers.classification.title;Jätteen tyyppi;Avfallstyp;Type of waste
-wasteTransfers.classification.HW;E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet;Farligt avfall i E-PRTR artikel 2(4) ;Hazardous waste as defined by Article 2(14) of the E-PRTR
-wasteTransfers.classification.NONHW;Muut kuin vaaralliset jätteet;Icke-farligt avfall;Non-hazardous waste
-wasteTransfers.classification.HWshort;Vaarallinen;Farligt;Hazardous
-wasteTransfers.classification.NONHWshort;Muu;Annat;Non-hazardous
-wasteTransfers.treatment.title;Käsittely;Behandling;Treatment
-wasteTransfers.treatment.D;❌ Loppukäsittelyyn;❌ Till bortskaffare;❌ Destined for disposal
-wasteTransfers.treatment.R;♻ Hyödynnettäväksi;♻ Till återvinnare;♻ Destined for recovery
-wasteTransfers.searchWithPlacename;Hae paikkakunnalla;;
-;;;
-descriptions.Facilities;🛈 Voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.;;🛈 You can search for specific facilities by using the map or table below. Narrowing down the list of facilities is possible by industry sector, municipality or the name of the facility. Cicking the name of the facility reveals information on emissions and waste transfers for the selected facility.
-descriptions.emissionsToAir;🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.;;🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.
-descriptions.emissionsToWater;🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.;;🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.
-descriptions.wasteTransfers;🛈 Voit selata PRTR-rekisteriin raportoituja jätesiirtoja. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen jätesiirtoja, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. ;;🛈 Browse through the data of waste transfers of PRTR facilities by using the selectors below. For finding waste transfers of a specific facility, please refer to facility search. Hazardous waste is defined by Article 2(14) of the E-PRTR.
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
-;;;
+﻿translationKey;FI;SV;EN;;
+;;;;;
+common.welcomeMessage;Tervetuloa Suomen PRTR-tietopalveluun;Välkommen till Finlands PRTR register;Welcome to Finland's PRTR registry;;
+common.frontPage;Etusivu;Framsida;Frontpage;;
+common.facilitySearch;Laitoshaku;Anläggning, verksamhet, ort;Facility, activity, location;;
+common.releasesToAir;Päästöt ilmaan;Utsläpp till luft;Releases to air;;
+common.releasesToWater;Päästöt veteen;Utsläpp till vatten;Releases to water;;
+common.wasteTransfers;Jätesiirrot;Transport av avfall;Waste transfers;;
+common.placename;Paikkakunta;Ort;Location;;
+common.streetAddress;Katuosoite;Gatuadress;Street address;;
+common.telephoneNumberToAuthority;Puhelinnumero ELY-keskukseen;Telefonnummer till tillsynsmyndigheten;Phone number to supervising authority;;
+common.competentAuthority;Valvontaviranomainen;Tillsynsmyndighet;Supervising authority;;
+common.facility;Laitos;Anläggning;Facility;;
+common.goBack;Palaa;Tillbaka ;Back;;
+common.toGoBack;Paluu;Tillbaka;Return;;
+common.search;Etsi;Sök;Search;;
+common.fetch;🔎 Hae;🔎 Sök;🔎 Search;;
+common.showingItems;Kohteet;Träffar;Items;;
+common.showingRows;Rivit;Rader;Rows;;
+common.year;Vuosi;År;Year;;
+common.selectYear;Valitse vuosi;Välj år;Select year;;
+common.previousPage;⪡ Edellinen sivu;⪡ Föregående sida;⪡ Previous page;;
+common.nextPage;Seuraava sivu ⪢;Nästa sida ⪢;Next page ⪢;;
+common.basicInfo;Perustiedot;Grunddata;Basic information;;
+common.loadingInformation;Ladataan tietoja...;Uppgifterna laddas upp;Loading information...;;
+common.additionalInfo;Lisätietoja;Ytterligare information;Additional information;;
+;;;;;
+footer.sendFeedbackButtonLabel;Lähetä palautetta;Skicka respons;Send feedback;;
+;;;;;
+facilities.facilityTypeCode;Toimialaluokitus;Näringsgrensindelning;Industrial classification;;
+facilities.searchWithName;Hae laitoksen nimellä;Sök efter anläggningens namn;Search by facility name;;
+facilities.searchWithPlacename;Hae paikkakunnalla;Sök efter ort;Search by location;;
+facilities.loadFacilitiesErroredText;Laitosten haku epäonnistui, kokeile myöhemmin uudestaan.;Anläggningssökningen misslyckades, försök igen senare.;Error in loading data. Please try again later.;;
+facilities.noFacilitiesFoundFromSearch;Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.;Dina sökvillkor gav inga träffar i databasen;No releases found with the selected attributes.;;
+facilities.selectFacilityMainActivityCode;Valitse laitoksen toimiala; Välj verksamhetsområde;Select activity;;
+facilities.couldNotFindFacilityWithId;Laitoksen tietojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av uppgifterna misslyckades, försök igen senare.;Error in loading data. Please try again later.;;
+facilities.couldNotFindFacilityReleases;Laitoksen päästötietojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av utsläppen misslyckades, försök igen senare.;Error in loading data. Please try again later.;;
+facilities.couldNotFindFacilityWasteTransfers;Laitoksen jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av uppgifter om avfallstransporter misslyckades, försök igen senare.;Error in loading data. Please try again later.;;
+facilities.noReleasesFoundForFacility;Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.;Inga utsläpp hittades för den valda anläggningen;No releases found for the selected facility.;;
+facilities.noWasteTransfersFoundForFacility;Tietokannasta ei löytynyt jätesiirtoja valitulle laitokselle.;Inga avfallstransporter hittades för den valda anläggningen;No waste transfers found for the selected facility.;;
+facilities.facilityReleaseTable;Päästötiedot;Utsläppsdata;Releases;;
+facilities.facilityWasteTransferTable;Jätesiirrot;Avfallstransporter;Waste transfers;;
+facilities.goBackToFacilitySearch;Palaa laitoshakuun;Återvänd till anläggningssökning;Return to facility search;;
+facilities.goBackToReleaseSearch;Palaa päästöhakuun;Återvänd till anläggningssökning;Return to releases;;
+facilities.goBackToWasteTransferSearch;Palaa jätesiirtohakuun;Återvänd till sökning av avfallstransporter;Return to waste transfers;;
+facilities.mapLegendTitle;Kartan värit toimialoittain;Färgerna på kartan beskriver de olika verksamheten;Map colours indicate the different activities;;
+facilities.status.title;Toiminnan tila;Status;Status;;
+facilities.status.decommissioned;Toiminta päättynyt;Nedlagd;Decommissioned;;
+facilities.status.disused;Ei toiminnassa;Ur drift;Disused;;
+facilities.status.functional;Toiminnassa;I drift;Functional;;
+facilities.status.notRegulated;Ei säännelty;Inte reglerad;Not regulated;;
+;;;;;
+releases.releaseToAir;Päästö ilmaan;Utsläpp till luft;Releases to air;;
+releases.releaseToWater;Päästö veteen;Utsläpp till vatten;Releases to water;;
+releases.pollutant;Yhdiste;Kemisk förening;Pollutant;;
+releases.quantity;Määrä;Mängd;Quantity;;
+releases.releaseMediumType;Tyyppi;Typ;Medium;;
+releases.selectPollutant;Valitse yhdiste;Välj kemisk förening;Select pollutant;;
+releases.selectYear;Valitse vuosi;Välj år;Select year;;
+releases.noReleasesFoundFromSearch;Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.;Inga träffar i databasen för de valda sökvillkoren;No releases found with the selected attributes.;;
+releases.releasesFetchErrorInfo;Päästöjen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av utsläppen misslyckades, försök igen senare.;Error in loading data. Please try again later.;;
+releases.method.title;Selvitystapa;Metod;Method;;
+releases.method.measured;Mitattu;Mätning;Measured;;
+releases.method.calculated;Laskennallinen;Beräkning;Calculated;;
+releases.method.estimated;Arvioitu;Expertberäkning;Estimated;;
+releases.method.measuredTooltip;Päästömittaus kansainvälisesti hyväksytyllä tai siihen verrattavalla menetelmällä (suora/epäsuora, jatkuvatoiminen/jaksottainen tai kertamittaus);Utsläppsmätning baserad på internationellt godkänd eller motsvarande metod (direkt/indirekt, kontinuerlig/periodisk eller engångsmätning);Emission measurement based on internationally approved or corresponding method (direct/indirect, continuous/periodic or single measurement);;https://ec.europa.eu/environment/industry/stationary/e-prtr/pdf/en_prtr.pdf
+releases.method.calculatedTooltip;Päästö laskettu kansainvälisesti sovituilla tai vastaavilla kansallisilla menetelmillä (esim. fysikaaliskemialliset riippuvuus, päästökerroin, massatase);Beräkning av utsläpp med internationellt överenskomna eller motsvarande nationella metoder (t.ex. fysikalisk-kemisk korrelation, utsläppsfaktor, massbalans);Calculation of emissions with internationally agreed or corresponding national method (e.g. physical-chemical correlation, emission factor, mass balance);;
+releases.method.estimatedTooltip;Asiantuntija-arvio perustuen esim. aiempiin mittauksiin, tutkimuksiin tai kokemukseen;Expertberäkning baserad på t.ex. tidigare mätningar, studier eller erfarenhet;Expert judgement based on e.g. earlier measurements, studies or experience;;
+wastetransfers.type.HazardousTooltip;Vaarallisella jätteellä tarkoitetaan direktiivin 91/689/ETY 1 artiklan 4 kohdassa määriteltyä ainetta tai esinettä.;;;;
+wastetransfers.type.NonHazardousTooltip;Vaarattomaksi jätteeksi katsotaan ne jätteet, joita ei luetella direktiivin 91/689/ETY 1 artiklan kohdassa 4.;;;;
+wasteTransfers.method.RecoveryTooltip;"Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A
+säädettyjä toimintoja.";;;;
+wastetransfers.method.DisposalTooltip;Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja.;;;;
+wasteTransfers.method.RecoveryTooltip;;;;;
+wasteTransfers.allOrInternationalSelectLabel;Haettavat tiedot;Visa;Show;;
+wasteTransfers.allOrInternationalAllLabel;Näytä kaikki siirrot;Visa alla transporter;Show all transfers;;
+wasteTransfers.allOrInternationalInternationalLabel;Näytä vain kansainväliset siirrot;Visa endast internationella transporter;Show only international transfers;;
+wasteTransfers.noWasteTransfersFoundFromSearch;Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.;Inga träffar i databasen för de valda sökvillkoren;No waste transfers found with the selected attributes.;;
+wasteTransfers.wasteTransfersFetchErrorInfo;Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen  misslyckades, försök igen senare.;Error in loading data. Please try again later.;;
+wasteTransfers.quantity;Määrä;Mängd;Quantity;;
+wasteTransfers.receiver;Vastaanottaja;Mottagande anläggning;Receiver;;
+wasteTransfers.classification.title;Jätteen tyyppi;Avfallstyp;Type of waste;;
+wasteTransfers.classification.HW;E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet;Farligt avfall i E-PRTR artikel 2(4) ;Hazardous waste as defined by Article 2(14) of the E-PRTR;;
+wasteTransfers.classification.NONHW;Muut kuin vaaralliset jätteet;Icke-farligt avfall;Non-hazardous waste;;
+wasteTransfers.classification.HWshort;Vaarallinen;Farligt;Hazardous;;
+wasteTransfers.classification.NONHWshort;Muu;Annat;Other;;
+wasteTransfers.treatment.title;Käsittely;Behandling;Treatment;;
+wasteTransfers.treatment.D;❌ Loppukäsittelyyn;❌ Till bortskaffare;❌ Destined for disposal;;
+wasteTransfers.treatment.R;♻ Hyödynnettäväksi;♻ Till återvinnare;♻ Destined for recovery;;
+wasteTransfers.searchWithPlaceName;Hae paikkakunnalla;Sök efter ort;Find using location;;
+;;;;;
+descriptions.Facilities;Voit etsiä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.;Du kan söka anläggningar i kartan eller i tabellen och filtrera näringsgren, ort eller namn. Tryck på anläggningens namn för att se anläggningsspecifika utsläpp och avfallstransporter.;You can search for facilities by using the map or the table and filter the list of facilities by industry sector, municipality or the name of the facility. Click the name of the facility to see information on emissions and waste transfers for the selected facility.;;
+descriptions.emissionsToAir;Voit selata päästötietoja valitsemalla ensin yhdisteen. Hakua voi rajata yhdelle tai useammalle vuodelle tai hakea tietoja paikkakunnan mukaan. Tetyn laitoksen päästöjä voit tarkastella laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.;"Välj först utsläpp eller gas, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under ""Anläggningssökning"".";Start browsing emission data by selecting the pollutant or gas. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.;;
+descriptions.emissionsToWater;Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.;"Välj först utsläpp, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under ""Anläggningssökning"".";Start browsing emission information by selecting  the release substance. It is possible to filter the information by year or location.  Informaton of a specific facility, can be found under the facility search.;;
+descriptions.wasteTransfers;Voit selata jätesiirtoja ja rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. ;"Du kan söka avfallstransporter och filtrera år eller ort. Anläggningsspecifika transporter hittar du under ""Anläggningssökning"".";Browse waste transfers by year or location. To find waste transfers of a specific facility use the facility search. ;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
+;;;;;
