@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
+import { Tooltip } from '@chakra-ui/react'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import {
@@ -10,7 +11,6 @@ import {
   translationKeyByMethodCode
 } from '../../constants'
 import { getPollutantLabel } from '../../utils'
-import { Tooltip } from '@chakra-ui/react'
 
 export const ReleaseTable = ({
   loading,
