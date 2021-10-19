@@ -8,7 +8,8 @@
     "wasteTransfers": "Waste transfers",
     "placename": "Location",
     "streetAddress": "Street address",
-    "telephoneNumberToAuthority": "Phone number",
+    "telephoneNumberToAuthority": "Phone number to supervising authority",
+    "competentAuthority": "Supervising authority",
     "facility": "Facility",
     "goBack": "Back",
     "toGoBack": "Return",
@@ -21,7 +22,8 @@
     "previousPage": "⪡ Previous page",
     "nextPage": "Next page ⪢",
     "basicInfo": "Basic information",
-    "loadingInformation": "Loading information..."
+    "loadingInformation": "Loading information...",
+    "additionalInfo": "Additional information"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Send feedback"
@@ -30,13 +32,16 @@
     "facilityTypeCode": "Industrial classification",
     "searchWithName": "Search by facility name",
     "searchWithPlacename": "Search by location",
-    "loadFacilitiesErroredText": "Error in fetching information. Please try again later.",
+    "loadFacilitiesErroredText": "Error in loading data. Please try again later.",
     "noFacilitiesFoundFromSearch": "No releases found with the selected attributes.",
     "selectFacilityMainActivityCode": "Select activity",
-    "couldNotFindFacilityWithId": "Error in fetching information. Please try again later.",
-    "couldNotFindFacilityReleases": "Error in fetching information. Please try again later.",
+    "couldNotFindFacilityWithId": "Error in loading data. Please try again later.",
+    "couldNotFindFacilityReleases": "Error in loading data. Please try again later.",
+    "couldNotFindFacilityWasteTransfers": "Error in loading data. Please try again later.",
     "noReleasesFoundForFacility": "No releases found for the selected facility.",
+    "noWasteTransfersFoundForFacility": "No waste transfers found for the selected facility.",
     "facilityReleaseTable": "Releases",
+    "facilityWasteTransferTable": "Waste transfers",
     "goBackToFacilitySearch": "Return to facility search",
     "goBackToReleaseSearch": "Return to releases",
     "goBackToWasteTransferSearch": "Return to waste transfers",
@@ -58,12 +63,15 @@
     "selectPollutant": "Select pollutant",
     "selectYear": "Select year",
     "noReleasesFoundFromSearch": "No releases found with the selected attributes.",
-    "releasesFetchErrorInfo": "Error in fetching information. Please try again later.",
+    "releasesFetchErrorInfo": "Error in loading data. Please try again later.",
     "method": {
       "title": "Method",
       "measured": "Measured",
       "calculated": "Calculated",
-      "estimated": "Estimated"
+      "estimated": "Estimated",
+      "measuredTooltip": "Emission measurement based on internationally approved or corresponding method (direct/indirect, continuous/periodic or single measurement)",
+      "calculatedTooltip": "Calculation of emissions with internationally agreed or corresponding national method (e.g. physical-chemical correlation, emission factor, mass balance)",
+      "estimatedTooltip": "Expert judgement based on e.g. earlier measurements, studies or experience"
     }
   },
   "wasteTransfers": {
@@ -71,7 +79,7 @@
     "allOrInternationalAllLabel": "Show all transfers",
     "allOrInternationalInternationalLabel": "Show only international transfers",
     "noWasteTransfersFoundFromSearch": "No waste transfers found with the selected attributes.",
-    "wasteTransfersFetchErrorInfo": "Error in fetching information. Please try again later.",
+    "wasteTransfersFetchErrorInfo": "Error in loading data. Please try again later.",
     "quantity": "Quantity",
     "receiver": "Receiver",
     "classification": {
@@ -79,18 +87,19 @@
       "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
       "NONHW": "Non-hazardous waste",
       "HWshort": "Hazardous",
-      "NONHWshort": "Non-hazardous"
+      "NONHWshort": "Other"
     },
     "treatment": {
       "title": "Treatment",
       "D": "❌ Destined for disposal",
       "R": "♻ Destined for recovery"
-    }
+    },
+    "searchWithPlaceName": "Find using location"
   },
   "descriptions": {
-    "Facilities": "🛈 You can search for specific facilities by using the map or table below. Narrowing down the list of facilities is possible by industry sector, municipality or the name of the facility. Cicking the name of the facility reveals information on emissions and waste transfers for the selected facility.",
-    "emissionsToAir": "🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.",
-    "emissionsToWater": "🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.",
-    "wasteTransfers": "🛈 Browse through the data of waste transfers of PRTR facilities by using the selectors below. For finding waste transfers of a specific facility, please refer to facility search. Hazardous waste is defined by Article 2(14) of the E-PRTR."
+    "Facilities": "You can search for facilities by using the map or the table and filter the list of facilities by industry sector, municipality or the name of the facility. Click the name of the facility to see information on emissions and waste transfers for the selected facility.",
+    "emissionsToAir": "Start browsing emission data by selecting the pollutant or gas. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.",
+    "emissionsToWater": "Start browsing emission information by selecting  the release substance. It is possible to filter the information by year or location.  Informaton of a specific facility, can be found under the facility search.",
+    "wasteTransfers": "Browse waste transfers by year or location. To find waste transfers of a specific facility use the facility search."
   }
 }

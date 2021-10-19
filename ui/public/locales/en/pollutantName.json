@@ -45,7 +45,7 @@
   "HCH": "1,2,3,4,5,6-hexachlorocyclohexane",
   "LINDANE": "Lindane",
   "MIREX": "Mirex",
-  "PCDD+PCDF(DIOXINS+FURANS)": "Polychlorinated biphenyls",
+  "PCDD+PCDF(DIOXINS+FURANS)": "Polychlorinated biphenyls (as Teq)",
   "PENTACHLOROBENZENE": "Pentachlorobenzene",
   "PCP": "Pentachlorophenol",
   "PCBS": "Polychlorinated biphenyls",
@@ -83,8 +83,11 @@
   "FLUORIDES": "Fluorides (as total F)",
   "HCN": "Hydrogen cyanide",
   "PM10": "Particulate matter",
-  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "Oktyylifenolit ja oktyylifenolietoksylaatit",
+  "OCTYLPHENOLSANDOCTYLPHENOLETHOXYLATES": "Octylphenols and compounds",
   "FLUORANTHENE": "Fluoranthene",
   "HFCS": "Hydrofluorocarbons",
-  "FLUORINEANDINORGANICCOMPOUNDS": "Fluorine and inorganic compounds (as HF)"
+  "FLUORINEANDINORGANICCOMPOUNDS": "Fluorine and inorganic compounds (as HF)",
+  "ISODRINE": "Isodrine",
+  "HEXABROMBIPHENYL": "Hexabrombiphenyl",
+  "BENZO(g,h,i)PERYLENE": "Benzo(g,h,i)perylene"
 }
