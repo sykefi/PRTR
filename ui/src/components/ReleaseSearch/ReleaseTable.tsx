@@ -10,6 +10,7 @@ import {
   translationKeyByMethodCode
 } from '../../constants'
 import { getPollutantLabel } from '../../utils'
+import { Tooltip } from '@chakra-ui/react'
 
 export const ReleaseTable = ({
   loading,
@@ -95,15 +96,22 @@ export const ReleaseTable = ({
                   </Link>
                 </Td>
                 <Td p={1}>
-                  <Badge
-                    whiteSpace={{ base: 'unset', sm: 'nowrap' }}
-                    colorScheme={colorSchemeByMethodCode[r.methodCode]}>
-                    {t(
+                  <Tooltip
+                    label={t(
                       `translation:releases.method.${
                         translationKeyByMethodCode[r.methodCode]
-                      }`
-                    )}
-                  </Badge>
+                      }Tooltip`
+                    )}>
+                    <Badge
+                      whiteSpace={{ base: 'unset', sm: 'nowrap' }}
+                      colorScheme={colorSchemeByMethodCode[r.methodCode]}>
+                      {t(
+                        `translation:releases.method.${
+                          translationKeyByMethodCode[r.methodCode]
+                        }`
+                      )}
+                    </Badge>
+                  </Tooltip>
                 </Td>
               </Tr>
             )
