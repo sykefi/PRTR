@@ -11,7 +11,7 @@ import 'ol/ol.css'
 import './OlMap.css'
 import { Box, Flex } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
-import { FacilityWithCoordinates } from '../api/models/Facility'
+import { FacilityWithCoordinates, hasPersonalData } from '../api/models/Facility'
 import { facilityLayer, OlLayerFacilities } from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
@@ -180,7 +180,7 @@ export const OlMap = (props: Props) => {
       {mapIsRendered && !!facilityCount && (
         <OlLayerFacilities
           olMap={olMap}
-          facilities={props.facilities!}
+          facilities={props.facilities!.filter(f => !hasPersonalData(f))}
           popupData={popupData}
           setPopupData={setPopupData}
           zoomToInitialExtent={props.zoomToInitialExtent}
