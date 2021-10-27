@@ -54,7 +54,7 @@ export const colorSchemeByFacilityStatus: Record<FacilityStatus, string> = {
 }
 
 export const rgbColorsByTopMainActivity: Record<
-  Exclude<FacilityTopMainActivity, 'MISSING'>,
+  FacilityTopMainActivity,
   number[]
 > = {
   [FacilityTopMainActivity.ENERGY]: [199, 199, 2],
@@ -111,8 +111,7 @@ export const fillColorByTopMainActivity: Record<
   [FacilityTopMainActivity.OTHER]: getRgbColorByTopMainActivity(
     FacilityTopMainActivity.OTHER,
     0.4
-  ),
-  [FacilityTopMainActivity.MISSING]: 'white'
+  )
 }
 
 export const strokeColorByTopMainActivity: Record<
@@ -145,6 +144,5 @@ export const strokeColorByTopMainActivity: Record<
   ),
   [FacilityTopMainActivity.OTHER]: getRgbColorByTopMainActivity(
     FacilityTopMainActivity.OTHER
-  ),
-  [FacilityTopMainActivity.MISSING]: 'black'
+  )
 }

@@ -7,8 +7,7 @@ export enum FacilityTopMainActivity {
   WOOD = '6',
   LIVESTOCK = '7',
   FOOD = '8',
-  OTHER = '9',
-  MISSING = 'MISSING'
+  OTHER = '9'
 }
 
 const values = Object.values(FacilityTopMainActivity)
