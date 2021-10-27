@@ -38,24 +38,12 @@ const getFacilityMainActivityOptions = (
     ...Object.values(FacilityMainActivityCode)
   ]
     .reduce((prev, curr) => {
-      if (
-        curr === FacilityMainActivityCode.MISSING ||
-        curr === FacilityTopMainActivity.MISSING
-      ) {
-        return prev
-      }
       const desc = t(`mainActivityCodeDesc:${curr}`)
       if (desc) {
         return prev.concat(asMainActivityOption(curr, desc))
       }
       return prev
     }, [] as OptionType<FacilityMainActivityCode | FacilityTopMainActivity>[])
-    .concat({
-      value: FacilityTopMainActivity.MISSING,
-      label: t(`mainActivityCodeDesc:${FacilityTopMainActivity.MISSING}`) || '',
-      bold: false,
-      indent: false
-    })
     .sort((a, b) => {
       if (a.value < b.value) {
         return -1

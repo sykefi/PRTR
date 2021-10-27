@@ -15,8 +15,7 @@ const legendItems: FacilityTopMainActivity[] = [
   FacilityTopMainActivity.WOOD,
   FacilityTopMainActivity.LIVESTOCK,
   FacilityTopMainActivity.FOOD,
-  FacilityTopMainActivity.OTHER,
-  FacilityTopMainActivity.MISSING
+  FacilityTopMainActivity.OTHER
 ]
 
 const LegendClassRow = ({
