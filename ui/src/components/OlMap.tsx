@@ -18,7 +18,8 @@ import {
 import {
   facilityLayer,
   facilityLayerPersonalData,
-  OlLayerFacilities
+  OlLayerFacilities,
+  OlLayerFacilitiesPersonalData
 } from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
@@ -193,7 +194,7 @@ export const OlMap = (props: Props) => {
             setPopupData={setPopupData}
             zoomToInitialExtent={props.zoomToInitialExtent}
           />
-          <OlLayerFacilities // personal data (limited zooming)
+          <OlLayerFacilitiesPersonalData // personal data (limited zooming)
             olMap={olMap}
             facilities={props.facilities!.filter(f => hasPersonalData(f))}
             popupData={popupData}
