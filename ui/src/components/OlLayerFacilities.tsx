@@ -51,6 +51,13 @@ export const facilityLayer = new VectorLayer({
 })
 facilityLayer.set('name', 'facilities')
 
+export const facilityLayerPersonalData = new VectorLayer({
+  zIndex: 3,
+  source: facilitySource,
+  style: styleFunction
+})
+facilityLayerPersonalData.set('name', 'facilitiesPersonalData')
+
 export const OlLayerFacilities = ({
   olMap,
   facilities,

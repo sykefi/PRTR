@@ -11,8 +11,15 @@ import 'ol/ol.css'
 import './OlMap.css'
 import { Box, Flex } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
-import { FacilityWithCoordinates, hasPersonalData } from '../api/models/Facility'
-import { facilityLayer, OlLayerFacilities } from './OlLayerFacilities'
+import {
+  FacilityWithCoordinates,
+  hasPersonalData
+} from '../api/models/Facility'
+import {
+  facilityLayer,
+  facilityLayerPersonalData,
+  OlLayerFacilities
+} from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
@@ -53,7 +60,7 @@ const baseLayer = new TileLayer({
 
 const olMap = new Map({
   target: undefined,
-  layers: [baseLayer, facilityLayer],
+  layers: [baseLayer, facilityLayer, facilityLayerPersonalData],
   view: new View({
     projection: etrsTm35Fin,
     center: [435385, 7247696],
@@ -178,13 +185,22 @@ export const OlMap = (props: Props) => {
         </Flex>
       </Box>
       {mapIsRendered && !!facilityCount && (
-        <OlLayerFacilities
-          olMap={olMap}
-          facilities={props.facilities!.filter(f => !hasPersonalData(f))}
-          popupData={popupData}
-          setPopupData={setPopupData}
-          zoomToInitialExtent={props.zoomToInitialExtent}
-        />
+        <>
+          <OlLayerFacilities // everything except personal data (layer for free zooming)
+            olMap={olMap}
+            facilities={props.facilities!.filter(f => !hasPersonalData(f))}
+            popupData={popupData}
+            setPopupData={setPopupData}
+            zoomToInitialExtent={props.zoomToInitialExtent}
+          />
+          <OlLayerFacilities // personal data (limited zooming)
+            olMap={olMap}
+            facilities={props.facilities!.filter(f => hasPersonalData(f))}
+            popupData={popupData}
+            setPopupData={setPopupData}
+            zoomToInitialExtent={props.zoomToInitialExtent}
+          />
+        </>
       )}
     </Box>
   )
