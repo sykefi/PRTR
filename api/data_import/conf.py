@@ -19,6 +19,7 @@ conf_utils.read_env_variables_from_env_file('data_import')
 class Conf():
     prtr_db_file_path: str
     country_code: str
+    first_year: int
     proj_crs_epsg: int
     csv_out_dir: str
     log_file: str
@@ -28,6 +29,7 @@ class Conf():
 conf = Conf(
     prtr_db_file_path=conf_utils.read_env_var('PRTR_DB_FILE_PATH'),
     country_code=conf_utils.read_env_var('COUNTRY_CODE', default='FI'),
+    first_year=conf_utils.read_env_var('FIRST_YEAR', default=2017),
     proj_crs_epsg=3067,
     csv_out_dir='api/assets',
     log_file=r'data_import.log',
