@@ -165,7 +165,7 @@ def test_get_waste_transfers_by_facility_id():
 
 
 def test_get_waste_transfers_by_year():
-    year = 2010
+    year = 2018
     response = client.get(
         f'{root_path}/waste-transfers?reporting_year={year}'
     )
