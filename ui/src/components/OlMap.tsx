@@ -156,7 +156,12 @@ export const OlMap = (props: Props) => {
     }
   }, [mapIsRendered, props.zoomToInitialExtent])
 
-  const facilityCount = props.facilities?.length
+  const facilityNonPersonalData = props.facilities!.filter(
+    f => !hasPersonalData(f)
+  )
+  const facilityPersonalData = props.facilities!.filter(f => hasPersonalData(f))
+  const facilityCountNonPersonalData = facilityNonPersonalData.length
+  const facilityCountPersonalData = facilityPersonalData.length
 
   return (
     <Box
@@ -185,22 +190,26 @@ export const OlMap = (props: Props) => {
           </Box>
         </Flex>
       </Box>
-      {mapIsRendered && !!facilityCount && (
+      {mapIsRendered && (
         <>
-          <OlLayerFacilities // everything except personal data (layer for free zooming)
-            olMap={olMap}
-            facilities={props.facilities!.filter(f => !hasPersonalData(f))}
-            popupData={popupData}
-            setPopupData={setPopupData}
-            zoomToInitialExtent={props.zoomToInitialExtent}
-          />
-          <OlLayerFacilitiesPersonalData // personal data (limited zooming)
-            olMap={olMap}
-            facilities={props.facilities!.filter(f => hasPersonalData(f))}
-            popupData={popupData}
-            setPopupData={setPopupData}
-            zoomToInitialExtent={props.zoomToInitialExtent}
-          />
+          {!!facilityCountNonPersonalData && (
+            <OlLayerFacilities // everything except personal data (layer for free zooming)
+              olMap={olMap}
+              facilities={props.facilities!.filter(f => !hasPersonalData(f))}
+              popupData={popupData}
+              setPopupData={setPopupData}
+              zoomToInitialExtent={props.zoomToInitialExtent}
+            />
+          )}
+          {!!facilityCountPersonalData && (
+            <OlLayerFacilitiesPersonalData // personal data (limited zooming)
+              olMap={olMap}
+              facilities={props.facilities!.filter(f => hasPersonalData(f))}
+              popupData={popupData}
+              setPopupData={setPopupData}
+              zoomToInitialExtent={props.zoomToInitialExtent}
+            />
+          )}
         </>
       )}
     </Box>
