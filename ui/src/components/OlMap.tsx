@@ -81,7 +81,7 @@ const popupOverlay = new Overlay({
 olMap.on('pointermove', e => {
   const pixel = olMap.getEventPixel(e.originalEvent)
   const hit = olMap.hasFeatureAtPixel(pixel, {
-    layerFilter: l => l.get('name') === 'facilities'
+    layerFilter: l => l.get('name')?.includes('facilities')
   })
   const canvas = document.querySelector('canvas')
   if (canvas) {
