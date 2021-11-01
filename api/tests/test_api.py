@@ -122,7 +122,7 @@ def test_get_releases_by_facility_id():
 
 
 def test_get_releases_by_year():
-    year = 2010
+    year = 2017
     response = client.get(
         f'{root_path}/releases?reporting_year={year}'
     )
