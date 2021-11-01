@@ -4,7 +4,7 @@ import { Button } from '@chakra-ui/button'
 import { useHistory, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
-import { hasCoordinates } from '../../api/models/Facility'
+import { hasCoordinates, hasPersonalData } from '../../api/models/Facility'
 import * as env from '../../env'
 import { getFacility } from '../../api'
 import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
@@ -101,7 +101,7 @@ export const FacilityPage = () => {
             handleExit={handleExit}
             exitLabel={exitLabel}
           />
-          {data && hasCoordinates(data) && (
+          {data && hasCoordinates(data) && !hasPersonalData(data) && (
             <OlMap
               width={450}
               height={450}

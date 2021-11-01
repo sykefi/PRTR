@@ -27,3 +27,7 @@ export interface FacilityWithCoordinates extends Facility {
 export const hasCoordinates = (f: Facility): f is FacilityWithCoordinates => {
   return !!f.x && !!f.y
 }
+
+export const hasPersonalData = (f: Facility): f is Facility => {
+  return f.topMainActivity === FacilityTopMainActivity.LIVESTOCK
+}

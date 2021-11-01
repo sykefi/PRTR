@@ -11,8 +11,16 @@ import 'ol/ol.css'
 import './OlMap.css'
 import { Box, Flex } from '@chakra-ui/layout'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
-import { FacilityWithCoordinates } from '../api/models/Facility'
-import { facilityLayer, OlLayerFacilities } from './OlLayerFacilities'
+import {
+  FacilityWithCoordinates,
+  hasPersonalData
+} from '../api/models/Facility'
+import {
+  facilityLayer,
+  facilityLayerPersonalData,
+  OlLayerFacilities,
+  OlLayerFacilitiesPersonalData
+} from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
@@ -53,7 +61,7 @@ const baseLayer = new TileLayer({
 
 const olMap = new Map({
   target: undefined,
-  layers: [baseLayer, facilityLayer],
+  layers: [baseLayer, facilityLayer, facilityLayerPersonalData],
   view: new View({
     projection: etrsTm35Fin,
     center: [435385, 7247696],
@@ -73,7 +81,7 @@ const popupOverlay = new Overlay({
 olMap.on('pointermove', e => {
   const pixel = olMap.getEventPixel(e.originalEvent)
   const hit = olMap.hasFeatureAtPixel(pixel, {
-    layerFilter: l => l.get('name') === 'facilities'
+    layerFilter: l => l.get('name')?.includes('facilities')
   })
   const canvas = document.querySelector('canvas')
   if (canvas) {
@@ -148,7 +156,12 @@ export const OlMap = (props: Props) => {
     }
   }, [mapIsRendered, props.zoomToInitialExtent])
 
-  const facilityCount = props.facilities?.length
+  const facilityNonPersonalData = props.facilities!.filter(
+    f => !hasPersonalData(f)
+  )
+  const facilityPersonalData = props.facilities!.filter(f => hasPersonalData(f))
+  const facilityCountNonPersonalData = facilityNonPersonalData.length
+  const facilityCountPersonalData = facilityPersonalData.length
 
   return (
     <Box
@@ -177,14 +190,27 @@ export const OlMap = (props: Props) => {
           </Box>
         </Flex>
       </Box>
-      {mapIsRendered && !!facilityCount && (
-        <OlLayerFacilities
-          olMap={olMap}
-          facilities={props.facilities!}
-          popupData={popupData}
-          setPopupData={setPopupData}
-          zoomToInitialExtent={props.zoomToInitialExtent}
-        />
+      {mapIsRendered && (
+        <>
+          {!!facilityCountNonPersonalData && (
+            <OlLayerFacilities // everything except personal data (layer for free zooming)
+              olMap={olMap}
+              facilities={props.facilities!.filter(f => !hasPersonalData(f))}
+              popupData={popupData}
+              setPopupData={setPopupData}
+              zoomToInitialExtent={props.zoomToInitialExtent}
+            />
+          )}
+          {!!facilityCountPersonalData && (
+            <OlLayerFacilitiesPersonalData // personal data (limited zooming)
+              olMap={olMap}
+              facilities={props.facilities!.filter(f => hasPersonalData(f))}
+              popupData={popupData}
+              setPopupData={setPopupData}
+              zoomToInitialExtent={props.zoomToInitialExtent}
+            />
+          )}
+        </>
       )}
     </Box>
   )

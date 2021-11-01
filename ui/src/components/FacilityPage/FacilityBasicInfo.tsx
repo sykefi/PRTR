@@ -2,7 +2,7 @@ import { Button } from '@chakra-ui/button'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { Box, Flex, Heading, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
-import { Facility } from '../../api/models/Facility'
+import { Facility, hasPersonalData } from '../../api/models/Facility'
 import { AuthorityInfo } from '../../models/AuthorityInfo'
 import { getAuthorityInfo } from '../../authorityInfo'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
@@ -91,10 +91,10 @@ export const FacilityBasicInfo = ({
             label={t('translation:common.placename')}
             value={facility.city}
           />
-          <InfoPropRow
+          {!hasPersonalData(facility) && (<InfoPropRow
             label={t('translation:common.streetAddress')}
             value={getStreetAddress(facility)}
-          />
+          />)}
           <Box marginY={2}>
             <Box fontWeight="semibold">
               {t('translation:common.competentAuthority')}
