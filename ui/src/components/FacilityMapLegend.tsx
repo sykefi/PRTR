@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { FacilityTopMainActivity } from '../api/enums/FacilityTopMainActivity'
 import {
   strokeColorByTopMainActivity,
-  fillColorByTopMainActivity
+  fillColorByTopMainActivity,
+  symbolByTopMainActivity
 } from '../constants'
 
 const legendItems: FacilityTopMainActivity[] = [
@@ -28,13 +29,12 @@ const LegendClassRow = ({
   return (
     <Flex marginY={4} align="center">
       <Box
-        width={5}
-        minWidth={5}
-        height={5}
         borderRadius="50%"
         border="2px solid"
         borderColor={strokeColorByTopMainActivity[topMainActivity]}
-        backgroundColor={fillColorByTopMainActivity[topMainActivity]}></Box>
+        backgroundColor={fillColorByTopMainActivity[topMainActivity]}>
+        {symbolByTopMainActivity[topMainActivity]}
+      </Box>
       <Box marginLeft={2}>{t(topMainActivity)}</Box>
     </Flex>
   )
