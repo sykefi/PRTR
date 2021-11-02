@@ -2,7 +2,7 @@ import i18next from 'i18next'
 import { Namespace } from 'react-i18next'
 import { FacilityWithCoordinates } from './api/models/Facility'
 import { FacilityMainActivityCode } from './api/enums/FacilityMainActivityCode'
-import { PollutantCode } from './api/enums/PollutantCode'
+import { PollutantCodeAir, PollutantCodeWater } from './api/enums/PollutantCode'
 import { WasteTransfer } from './api/models/WasteTransfer'
 import { FacilityMapFeature } from './models/FacilityMapFeature'
 import {
@@ -64,7 +64,7 @@ export const checkForMissingTranslations = (
 
 export const getPollutantLabel = (
   t: (translationKey: TranslationKeys) => string | undefined,
-  pollutant: PollutantCode
+  pollutant: PollutantCodeAir | PollutantCodeWater
 ) => {
   const name = t(`pollutantName:${pollutant}`)
   const abbr = t(`pollutantAbbreviation:${pollutant}`)
@@ -74,7 +74,7 @@ export const getPollutantLabel = (
 
 export const getLongPollutantLabel = (
   t: (translationKey: TranslationKeys) => string | undefined,
-  pollutant: PollutantCode
+  pollutant: PollutantCodeAir | PollutantCodeWater
 ) => {
   const name = t(`pollutantName:${pollutant}`)
   const abbr = t(`pollutantAbbreviation:${pollutant}`)
@@ -104,5 +104,6 @@ export const handleCheckForMissingTranslations = () => {
     'mainActivityCodeDesc',
     Object.values(FacilityMainActivityCode)
   )
-  checkForMissingTranslations('pollutantName', Object.values(PollutantCode))
+  checkForMissingTranslations('pollutantName', Object.values(PollutantCodeAir))
+  checkForMissingTranslations('pollutantName', Object.values(PollutantCodeWater))
 }

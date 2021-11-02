@@ -72,15 +72,6 @@ releases['facilityId'] = [
 ]
 
 
-# merge duplicate facilities by name
-facilities, facility_id_to_id_merge_map = handle_merge_duplicate_facilities(
-    facilities
-)
-
-# ensure that all realease are linked to some facility (by facilityId)
-if facility_id_to_id_merge_map:
-    update_facility_ids_by_merge_map(releases, facility_id_to_id_merge_map)
-
 ensure_no_unlinked_releases_or_transfers(facilities, releases)
 
 
@@ -98,11 +89,6 @@ waste_transfers['facilityId'] = [
     clean_id(id_str) for id_str in waste_transfers['Facility_INSPIRE_ID']
 ]
 
-if facility_id_to_id_merge_map:
-    update_facility_ids_by_merge_map(
-        waste_transfers,
-        facility_id_to_id_merge_map
-    )
 
 ensure_no_unlinked_releases_or_transfers(
     facilities,

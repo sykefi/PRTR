@@ -5,7 +5,7 @@ import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { PollutantCode } from '../../api/enums/PollutantCode'
+import { PollutantCodeAir, PollutantCodeWater } from '../../api/enums/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { Medium } from '../../api/enums/Medium'
@@ -17,9 +17,10 @@ import { useYearOptions } from '../../hooks/useYearOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
 
 const getPollutantNameOptions = (
+  medium: Medium,
   t: (translationKey: TranslationKeys) => string | undefined
-): OptionType<PollutantCode>[] => {
-  return Object.values(PollutantCode)
+): OptionType<PollutantCodeAir | PollutantCodeWater>[] => {
+  return Object.values((medium === 'AIR') ? PollutantCodeAir : PollutantCodeWater)
     .reduce((prev, curr) => {
       const label = getLongPollutantLabel(t, curr)
       if (!!label) {
@@ -28,8 +29,8 @@ const getPollutantNameOptions = (
           label
         })
       } else return prev
-    }, [] as OptionType<PollutantCode>[])
-    .sort((a, b) => {
+    }, [] as OptionType<PollutantCodeAir | PollutantCodeWater>[])
+    .sort((a: OptionType<PollutantCodeAir | PollutantCodeWater>, b: OptionType<PollutantCodeAir | PollutantCodeWater>) => {
       if (a.label < b.label) {
         return -1
       }
@@ -46,7 +47,7 @@ const Form = styled.form`
 
 export const ReleaseFilterPanel = (props: {
   medium: Medium
-  urlPollutantCode: PollutantCode | undefined
+  urlPollutantCode: PollutantCodeAir | PollutantCodeWater | undefined
   urlYear: number | undefined
   urlPlacename: string | undefined
 }) => {
@@ -59,7 +60,7 @@ export const ReleaseFilterPanel = (props: {
   const history = useHistory()
   const location = useLocation()
 
-  const [pollutantCode, setPollutantCode] = useState<PollutantCode | undefined>(
+  const [pollutantCode, setPollutantCode] = useState<PollutantCodeAir | PollutantCodeWater | undefined>(
     props.urlPollutantCode
   )
   const [year, setYear] = useState<number | undefined>(props.urlYear)
@@ -67,7 +68,7 @@ export const ReleaseFilterPanel = (props: {
     props.urlPlacename
   )
 
-  const pollutantOptions = useMemo(() => getPollutantNameOptions(t), [t])
+  const pollutantOptions = useMemo(() => getPollutantNameOptions(props.medium, t), [props.medium, t])
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
   const {
@@ -120,7 +121,7 @@ export const ReleaseFilterPanel = (props: {
         marginBottom={2.0}
         width="100%">
         <Flex wrap="wrap" width="100%" sx={{ gap: 'var(--chakra-space-3)' }}>
-          <DropdownSelectorAndLabel<PollutantCode>
+          <DropdownSelectorAndLabel<PollutantCodeAir | PollutantCodeWater>
             width={350}
             minWidth={200}
             name="releasesPollutantCode"

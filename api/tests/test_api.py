@@ -37,7 +37,7 @@ def test_get_metadata():
     response = client.get(f'{root_path}/prtr-metadata')
     assert response.status_code == 200
     body = response.json()
-    assert len(body['available_reporting_years']) > 5
+    assert len(body['available_reporting_years']) >= 3
     assert body['available_reporting_years'][0] > 1900
     assert len(body['present_pollutant_codes']) > 40
     assert isinstance(body['present_pollutant_codes'][0], str)
@@ -57,7 +57,7 @@ def test_get_facilities():
 
 
 def test_get_facility_by_id():
-    facility_id = 'FI_EEA_11035'
+    facility_id = '0000001234'
     response = client.get(
         f'{root_path}/facilities?facility_id={facility_id}'
     )
@@ -70,7 +70,7 @@ def test_get_facility_by_id():
 
 
 def test_get_facility_by_name():
-    name_search = 'Sappi Finland I Oy, Kankaan tehdas'
+    name_search = 'Sappi Finland Operations Oy, Kirkniemen voimalaitos'
     response = client.get(
         f'{root_path}/facilities?name_search_str={name_search}'
     )
@@ -104,13 +104,13 @@ def test_get_releases():
 
 
 def test_get_releases_by_facility_id():
-    facility_id = 'FI_EEA_6347'
+    facility_id = '0000004082'
     response = client.get(
         f'{root_path}/releases?facility_id={facility_id}'
     )
     assert response.status_code == 200
     data = response.json()['data']
-    assert len(data) == 10
+    assert len(data) == 3
     release_prev = None
     for release in data:
         assert release['facilityId'] == facility_id
@@ -122,7 +122,7 @@ def test_get_releases_by_facility_id():
 
 
 def test_get_releases_by_year():
-    year = 2010
+    year = 2017
     response = client.get(
         f'{root_path}/releases?reporting_year={year}'
     )
@@ -153,7 +153,7 @@ def test_get_waste_transfers():
 
 
 def test_get_waste_transfers_by_facility_id():
-    facility_id = 'FI_EEA_11035'
+    facility_id = '0000021951'
     response = client.get(
         f'{root_path}/waste-transfers?facility_id={facility_id}'
     )
@@ -165,7 +165,7 @@ def test_get_waste_transfers_by_facility_id():
 
 
 def test_get_waste_transfers_by_year():
-    year = 2010
+    year = 2018
     response = client.get(
         f'{root_path}/waste-transfers?reporting_year={year}'
     )
