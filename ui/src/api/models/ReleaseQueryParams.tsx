@@ -1,5 +1,5 @@
 import { Medium } from '../enums/Medium'
-import { PollutantCode } from '../enums/PollutantCode'
+import { PollutantCodeAir, PollutantCodeWater } from '../enums/PollutantCode'
 
 export interface ReleaseQueryParams {
   facility_id?: string
@@ -7,6 +7,6 @@ export interface ReleaseQueryParams {
   limit?: number
   reporting_year?: number
   medium?: Medium
-  pollutant_code?: PollutantCode
+  pollutant_code?: PollutantCodeAir | PollutantCodeWater
   placename?: string
 }
