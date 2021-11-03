@@ -25,10 +25,16 @@ const TableStyleWrapper = styled.div`
   table,
   th,
   td {
-    border: 1px solid black;
+    border: 1px solid #c1c1c1;
+    padding: 0.2em 0.6em;
   }
   table {
     margin-bottom: 20px;
+  }
+
+  .pollutantTableContent {
+    background: white;
+    padding: 3em 8vw;
   }
 
   .pollutantTableTitleRow {
