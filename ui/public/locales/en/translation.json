@@ -23,7 +23,8 @@
     "nextPage": "Next page ⪢",
     "basicInfo": "Basic information",
     "loadingInformation": "Loading information...",
-    "additionalInfo": "Additional information"
+    "additionalInfo": "Additional information",
+    "logoText": "INDUSTRIAL RELEASES"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Send feedback"

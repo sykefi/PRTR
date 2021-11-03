@@ -86,6 +86,8 @@ const NavLink = ({
 }
 
 const PrtrLogo = () => {
+  const { t } = useTranslation()
+
   return (
     <RrLink to={RoutePath.FrontPage} data-cy="front-page-nav">
       <Flex
@@ -118,10 +120,9 @@ const PrtrLogo = () => {
           </Box>
         </Flex>
         <Box
-          marginTop="-4px"
-          fontSize={{ base: 12, md: '0.77em' }}
-          whiteSpace="nowrap">
-          SUOMEN PÄÄSTÖREKISTERI
+          fontWeight={400}
+          letterSpacing={1.2}>
+          {t('common.logoText')}
         </Box>
       </Flex>
     </RrLink>

@@ -23,7 +23,8 @@
     "nextPage": "Seuraava sivu ⪢",
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja...",
-    "additionalInfo": "Lisätietoja"
+    "additionalInfo": "Lisätietoja",
+    "logoText": "PÄÄSTÖTIETOPALVELU"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Lähetä palautetta"

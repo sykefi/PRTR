@@ -23,7 +23,8 @@
     "nextPage": "Nästa sida ⪢",
     "basicInfo": "Grunddata",
     "loadingInformation": "Uppgifterna laddas upp",
-    "additionalInfo": "Ytterligare information"
+    "additionalInfo": "Ytterligare information",
+    "logoText": "UTSLÄPPSINFORMATION"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Skicka respons"
