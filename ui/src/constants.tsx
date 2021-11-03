@@ -146,3 +146,18 @@ export const strokeColorByTopMainActivity: Record<
     FacilityTopMainActivity.OTHER
   )
 }
+
+export const symbolByTopMainActivity: Record<
+FacilityTopMainActivity,
+string
+> = {
+  [FacilityTopMainActivity.ENERGY]: '🏭',
+  [FacilityTopMainActivity.METALS]: '🔩',
+  [FacilityTopMainActivity.MINERALS]: '⛏',
+  [FacilityTopMainActivity.CHEMICAL]: '🧪',
+  [FacilityTopMainActivity.WASTE]: '♻',
+  [FacilityTopMainActivity.WOOD]: '🧻',
+  [FacilityTopMainActivity.LIVESTOCK]: '🐄',
+  [FacilityTopMainActivity.FOOD]: '🍽',
+  [FacilityTopMainActivity.OTHER]: '🛍'
+}

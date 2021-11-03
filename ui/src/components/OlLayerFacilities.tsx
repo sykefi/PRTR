@@ -8,22 +8,26 @@ import VectorSource from 'ol/source/Vector'
 import { easeOut } from 'ol/easing'
 import { StyleFunction } from 'ol/style/Style'
 import { FeatureLike } from 'ol/Feature'
-import { Style, Fill, Circle, Stroke } from 'ol/style'
-import { FacilityWithCoordinates, hasPersonalData } from '../api/models/Facility'
+import { Style, Fill, Circle, Stroke, Text } from 'ol/style'
+import {
+  FacilityWithCoordinates,
+  hasPersonalData
+} from '../api/models/Facility'
 import { facilitiesAsGeoJSONFC } from '../utils'
 import { FacilityMapFeature } from '../models/FacilityMapFeature'
 import {
   fillColorByTopMainActivity,
-  strokeColorByTopMainActivity
+  strokeColorByTopMainActivity,
+  symbolByTopMainActivity
 } from '../constants'
 import { FacilityTopMainActivity } from '../api/enums/FacilityTopMainActivity'
 
 let zoomDelay: null | ReturnType<typeof setTimeout> = null
 
-const styleFunction: StyleFunction = (feature: FeatureLike) =>
+const styleFunction: StyleFunction = (feature: FeatureLike) => [
   new Style({
     image: new Circle({
-      radius: 6,
+      radius: 10,
       fill: new Fill({
         color:
           fillColorByTopMainActivity[
@@ -38,7 +42,18 @@ const styleFunction: StyleFunction = (feature: FeatureLike) =>
         width: 1.5
       })
     })
+  }),
+  new Style({
+    text: new Text({
+      text: symbolByTopMainActivity[
+        feature.get('topMainActivity') as FacilityTopMainActivity
+      ],
+      font: '12px "Segoe UI Emoji", sans-serif',
+      offsetX: 0.5,
+      offsetY: 1
+    })
   })
+]
 
 const facilitySource = new VectorSource({
   format: new GeoJSON()
@@ -106,7 +121,9 @@ export const OlLayerFacilities = ({
     if (!!facilities) {
       const features = facilitySource
         .getFormat()
-        ?.readFeatures(facilitiesAsGeoJSONFC(facilities.filter(f => !hasPersonalData(f)))) as Feature<Geometry>[]
+        ?.readFeatures(
+          facilitiesAsGeoJSONFC(facilities.filter(f => !hasPersonalData(f)))
+        ) as Feature<Geometry>[]
       if (!!features) {
         facilitySource.addFeatures(features)
         if (!zoomToInitialExtent) {
@@ -178,7 +195,9 @@ export const OlLayerFacilitiesPersonalData = ({
     if (!!facilities) {
       const features = facilitySourcePersonalData
         .getFormat()
-        ?.readFeatures(facilitiesAsGeoJSONFC(facilities.filter(f => hasPersonalData(f)))) as Feature<Geometry>[]
+        ?.readFeatures(
+          facilitiesAsGeoJSONFC(facilities.filter(f => hasPersonalData(f)))
+        ) as Feature<Geometry>[]
       if (!!features) {
         facilitySourcePersonalData.addFeatures(features)
         if (!zoomToInitialExtent) {
