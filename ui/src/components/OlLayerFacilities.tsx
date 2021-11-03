@@ -48,7 +48,9 @@ const styleFunction: StyleFunction = (feature: FeatureLike) => [
       text: symbolByTopMainActivity[
         feature.get('topMainActivity') as FacilityTopMainActivity
       ],
-      font: '12px "Segoe UI Emoji", sans-serif'
+      font: '12px "Segoe UI Emoji", sans-serif',
+      offsetX: 0.5,
+      offsetY: 1
     })
   })
 ]
