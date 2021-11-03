@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from '@chakra-ui/layout'
+import { Box, Circle, Flex, Heading } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { FacilityTopMainActivity } from '../api/enums/FacilityTopMainActivity'
 import {
@@ -28,13 +28,14 @@ const LegendClassRow = ({
 
   return (
     <Flex marginY={4} align="center">
-      <Box
-        borderRadius="50%"
-        border="2px solid"
+      <Circle
+        h={8}
+        w={8}
+        border="solid"
         borderColor={strokeColorByTopMainActivity[topMainActivity]}
         backgroundColor={fillColorByTopMainActivity[topMainActivity]}>
         {symbolByTopMainActivity[topMainActivity]}
-      </Box>
+      </Circle>
       <Box marginLeft={2}>{t(topMainActivity)}</Box>
     </Flex>
   )
