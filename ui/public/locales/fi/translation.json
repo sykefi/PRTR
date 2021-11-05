@@ -75,13 +75,21 @@
     }
   },
   "wasteTransfers": {
-    "type": {
-      "hazardousTooltip": "Vaarallisella jätteellä tarkoitetaan direktiivin 91/689/ETY 1 artiklan 4 kohdassa määriteltyä ainetta tai esinettä.",
-      "nonHazardousTooltip": "Muut kuin vaaralliset jätteet. Vaarattomaksi jätteeksi katsotaan ne jätteet, joita ei luetella direktiivin 91/689/ETY 1 artiklan kohdassa 4."
+    "classification": {
+      "HWshortTooltip": "Vaarallisella jätteellä tarkoitetaan direktiivin 91/689/ETY 1 artiklan 4 kohdassa määriteltyä ainetta tai esinettä.",
+      "NONHWshortTooltip": "Muut kuin vaaralliset jätteet. Vaarattomaksi jätteeksi katsotaan ne jätteet, joita ei luetella direktiivin 91/689/ETY 1 artiklan kohdassa 4.",
+      "title": "Jätteen tyyppi",
+      "HW": "E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet",
+      "NONHW": "Muut kuin vaaralliset jätteet",
+      "HWshort": "Vaarallinen",
+      "NONHWshort": "Muu"
     },
-    "method": {
-      "disposalTooltip": "\"Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A",
-      "recoveryTooltip": "Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja."
+    "treatment": {
+      "DTooltip": "\"Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A",
+      "RTooltip": "Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja.",
+      "title": "Käsittely",
+      "D": "❌ Loppukäsittelyyn",
+      "R": "♻ Hyödynnettäväksi"
     },
     "allOrInternationalSelectLabel": "Haettavat tiedot",
     "allOrInternationalAllLabel": "Näytä kaikki siirrot",
@@ -90,18 +98,6 @@
     "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "quantity": "Määrä",
     "receiver": "Vastaanottaja",
-    "classification": {
-      "title": "Jätteen tyyppi",
-      "HW": "E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet",
-      "NONHW": "Muut kuin vaaralliset jätteet",
-      "HWshort": "Vaarallinen",
-      "NONHWshort": "Muu"
-    },
-    "treatment": {
-      "title": "Käsittely",
-      "D": "❌ Loppukäsittelyyn",
-      "R": "♻ Hyödynnettäväksi"
-    },
     "searchWithPlaceName": "Hae paikkakunnalla"
   },
   "säädettyjä toimintoja": {

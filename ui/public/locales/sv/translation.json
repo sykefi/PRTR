@@ -75,12 +75,20 @@
     }
   },
   "wasteTransfers": {
-    "type": {
-      "hazardousTooltip": "Med farligt avfall avses ämnen eller föremål enligt direktiv 91/689/EEG artikel 1 punkt 4",
-      "nonHazardousTooltip": "Annat avfall. Med icke-farligt avfall avses avfall som inte ingår i direktiv 91/689/EEG artikel 1 punkt 4"
+    "classification": {
+      "HWshortTooltip": "Med farligt avfall avses ämnen eller föremål enligt direktiv 91/689/EEG artikel 1 punkt 4",
+      "NONHWshortTooltip": "Annat avfall. Med icke-farligt avfall avses avfall som inte ingår i direktiv 91/689/EEG artikel 1 punkt 4",
+      "title": "Avfallstyp",
+      "HW": "Farligt avfall i E-PRTR artikel 2(4)",
+      "NONHW": "Icke-farligt avfall",
+      "HWshort": "Farligt",
+      "NONHWshort": "Annat"
     },
-    "method": {
-      "recoveryTooltip": "Med återvinningsförfaranden avses åtgärder enligt direktiv 75/442/EEG bilaga II A"
+    "treatment": {
+      "RTooltip": "Med återvinningsförfaranden avses åtgärder enligt direktiv 75/442/EEG bilaga II A",
+      "title": "Behandling",
+      "D": "❌ Till bortskaffare",
+      "R": "♻ Till återvinnare"
     },
     "allOrInternationalSelectLabel": "Visa",
     "allOrInternationalAllLabel": "Visa alla transporter",
@@ -89,18 +97,6 @@
     "wasteTransfersFetchErrorInfo": "Sökningen misslyckades, försök igen senare.",
     "quantity": "Mängd",
     "receiver": "Mottagande anläggning",
-    "classification": {
-      "title": "Avfallstyp",
-      "HW": "Farligt avfall i E-PRTR artikel 2(4)",
-      "NONHW": "Icke-farligt avfall",
-      "HWshort": "Farligt",
-      "NONHWshort": "Annat"
-    },
-    "treatment": {
-      "title": "Behandling",
-      "D": "❌ Till bortskaffare",
-      "R": "♻ Till återvinnare"
-    },
     "searchWithPlaceName": "Sök efter ort"
   },
   "säädettyjä toimintoja": {

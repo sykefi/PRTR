@@ -75,12 +75,20 @@
     }
   },
   "wasteTransfers": {
-    "type": {
-      "hazardousTooltip": "Hazardous waste means waste that is defined as hazardous by the provisions of national law.",
-      "nonHazardousTooltip": "Other waste refers to waste not defined in 91/689/EEC article 1 paragraph 4"
+    "classification": {
+      "HWshortTooltip": "Hazardous waste means waste that is defined as hazardous by the provisions of national law.",
+      "NONHWshortTooltip": "Other waste refers to waste not defined in 91/689/EEC article 1 paragraph 4",
+      "title": "Type of waste",
+      "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
+      "NONHW": "Non-hazardous waste",
+      "HWshort": "Hazardous",
+      "NONHWshort": "Other"
     },
-    "method": {
-      "recoveryTooltip": "Recovery according to directive 75/442/EEC annex II B."
+    "treatment": {
+      "RTooltip": "Recovery according to directive 75/442/EEC annex II B.",
+      "title": "Treatment",
+      "D": "❌ Destined for disposal",
+      "R": "♻ Destined for recovery"
     },
     "allOrInternationalSelectLabel": "Show",
     "allOrInternationalAllLabel": "Show all transfers",
@@ -89,18 +97,6 @@
     "wasteTransfersFetchErrorInfo": "Error in loading data. Please try again later.",
     "quantity": "Quantity",
     "receiver": "Receiver",
-    "classification": {
-      "title": "Type of waste",
-      "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
-      "NONHW": "Non-hazardous waste",
-      "HWshort": "Hazardous",
-      "NONHWshort": "Other"
-    },
-    "treatment": {
-      "title": "Treatment",
-      "D": "❌ Destined for disposal",
-      "R": "♻ Destined for recovery"
-    },
     "searchWithPlaceName": "Find by location"
   },
   "descriptions": {

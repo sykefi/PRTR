@@ -2,6 +2,7 @@ import { Badge, Box, Flex, Heading } from '@chakra-ui/layout'
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
+import { Tooltip } from '@chakra-ui/tooltip'
 import * as env from '../../env'
 import * as api from '../../api'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
@@ -46,26 +47,38 @@ const WasteTransferTable = ({
           return (
             <Tr key={wt.id}>
               <Td p={1}>
-                <Badge
-                  colorScheme={
-                    colorSchemeByWasteClassification[wt.wasteClassificationCode]
-                  }>
-                  {t(
-                    `wasteTransfers.classification.${wt.wasteClassificationCode}short`
-                  )}
-                </Badge>
+                <Tooltip
+                  label={t(
+                    `wasteTransfers.classification.${wt.wasteClassificationCode}shortTooltip`
+                  )}>
+                  <Badge
+                    colorScheme={
+                      colorSchemeByWasteClassification[
+                        wt.wasteClassificationCode
+                      ]
+                    }>
+                    {t(
+                      `wasteTransfers.classification.${wt.wasteClassificationCode}short`
+                    )}
+                  </Badge>
+                </Tooltip>
               </Td>
               <Td p={1} paddingRight={3}>
                 {wt.reportingYear}
               </Td>
               <Td p={1}>{wt.totalWasteQuantityTNE.toLocaleString('fi')}</Td>
               <Td p={1} paddingRight={2}>
-                <Badge
-                  colorScheme={
-                    colorSchemeByWasteTreatment[wt.wasteTreatmentCode]
-                  }>
-                  {t(`wasteTransfers.treatment.${wt.wasteTreatmentCode}`)}
-                </Badge>
+                <Tooltip
+                  label={t(
+                    `wasteTransfers.treatment.${wt.wasteTreatmentCode}Tooltip`
+                  )}>
+                  <Badge
+                    colorScheme={
+                      colorSchemeByWasteTreatment[wt.wasteTreatmentCode]
+                    }>
+                    {t(`wasteTransfers.treatment.${wt.wasteTreatmentCode}`)}
+                  </Badge>
+                </Tooltip>
               </Td>
               <Td p={1} paddingRight={3}>
                 {getReceiverLabel(wt)}
