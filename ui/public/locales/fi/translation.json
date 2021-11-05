@@ -85,7 +85,7 @@
       "NONHWshort": "Muu"
     },
     "treatment": {
-      "DTooltip": "\"Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A",
+      "DTooltip": "Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A säädettyjä toimintoja.",
       "RTooltip": "Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja.",
       "title": "Käsittely",
       "D": "❌ Loppukäsittelyyn",
