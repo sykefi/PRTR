@@ -1,6 +1,5 @@
 {
   "common": {
-    "welcomeMessage": "Welcome to Finland's PRTR registry",
     "frontPage": "Frontpage",
     "facilitySearch": "Facility, activity, location",
     "releasesToAir": "Releases to air",
@@ -76,6 +75,13 @@
     }
   },
   "wasteTransfers": {
+    "type": {
+      "hazardousTooltip": "Hazardous waste means waste that is defined as hazardous by the provisions of national law.",
+      "nonHazardousTooltip": "Other waste refers to waste not defined in 91/689/EEC article 1 paragraph 4"
+    },
+    "method": {
+      "recoveryTooltip": "Recovery according to directive 75/442/EEC annex II B."
+    },
     "allOrInternationalSelectLabel": "Show",
     "allOrInternationalAllLabel": "Show all transfers",
     "allOrInternationalInternationalLabel": "Show only international transfers",
@@ -95,12 +101,12 @@
       "D": "❌ Destined for disposal",
       "R": "♻ Destined for recovery"
     },
-    "searchWithPlaceName": "Find using location"
+    "searchWithPlaceName": "Find by location"
   },
   "descriptions": {
-    "Facilities": "You can search for facilities by using the map or the table and filter the list of facilities by industry sector, municipality or the name of the facility. Click the name of the facility to see information on emissions and waste transfers for the selected facility.",
-    "emissionsToAir": "Start browsing emission data by selecting the pollutant or gas. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.",
-    "emissionsToWater": "Start browsing emission information by selecting  the release substance. It is possible to filter the information by year or location.  Informaton of a specific facility, can be found under the facility search.",
-    "wasteTransfers": "Browse waste transfers by year or location. To find waste transfers of a specific facility use the facility search."
+    "Facilities": "Search for facilities by using the map or the table. Filtering is possible by industry sector, municipality or the name of the facility. Clicking on the facility reveals more information on emissions and waste transfers for the selected facility.",
+    "emissionsToAir": "Start browsing emission data by selecting the pollutant. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.",
+    "emissionsToWater": "Start browsing emission information by selecting the pollutant. It is possible to filter the information by year or location. For finding detailed information of a specific facility, please use the facility search feature.",
+    "wasteTransfers": "\"Browse through the data of waste transfers of PRTR facilities by using the selectors below. For finding waste transfers of a specific facility, please refer to facility search. Hazardous waste is defined by Article 2(14) of the E-PRTR. Non-hazardous waste is labeled as \"\"Other\"\"."
   }
 }

@@ -5,12 +5,6 @@ import { FrontPageContentFi } from './FrontPageContentFi'
 import { FrontPageContentSv } from './FrontPageContentSv'
 import { FrontPageContentEn } from './FrontPageContentEn'
 
-const DevTitle = styled.h2`
-  font-size: 22px;
-  margin-top: -2;
-  margin-bottom: 12px;
-`
-
 const FrontPageStyleWrapper = styled.div`
   h2 {
     font-size: 22px;
@@ -26,7 +20,7 @@ const FrontPageStyleWrapper = styled.div`
 `
 
 export const FrontPage = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   return (
     <Flex direction="column" align="center" p={3}>
@@ -39,7 +33,6 @@ export const FrontPage = () => {
         background="white"
         borderRadius="md"
         boxShadow="sm">
-        <DevTitle>{t('common.welcomeMessage')}</DevTitle>
         <FrontPageStyleWrapper>
           {i18n.language === 'fi' && <FrontPageContentFi />}
           {i18n.language === 'sv' && <FrontPageContentSv />}

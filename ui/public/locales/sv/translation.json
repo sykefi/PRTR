@@ -1,6 +1,5 @@
 {
   "common": {
-    "welcomeMessage": "Välkommen till Finlands PRTR register",
     "frontPage": "Framsida",
     "facilitySearch": "Anläggning, verksamhet, ort",
     "releasesToAir": "Utsläpp till luft",
@@ -76,11 +75,18 @@
     }
   },
   "wasteTransfers": {
+    "type": {
+      "hazardousTooltip": "Med farligt avfall avses ämnen eller föremål enligt direktiv 91/689/EEG artikel 1 punkt 4",
+      "nonHazardousTooltip": "Annat avfall. Med icke-farligt avfall avses avfall som inte ingår i direktiv 91/689/EEG artikel 1 punkt 4"
+    },
+    "method": {
+      "recoveryTooltip": "Med återvinningsförfaranden avses åtgärder enligt direktiv 75/442/EEG bilaga II A"
+    },
     "allOrInternationalSelectLabel": "Visa",
     "allOrInternationalAllLabel": "Visa alla transporter",
     "allOrInternationalInternationalLabel": "Visa endast internationella transporter",
     "noWasteTransfersFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
-    "wasteTransfersFetchErrorInfo": "Sökningen  misslyckades, försök igen senare.",
+    "wasteTransfersFetchErrorInfo": "Sökningen misslyckades, försök igen senare.",
     "quantity": "Mängd",
     "receiver": "Mottagande anläggning",
     "classification": {
@@ -96,6 +102,9 @@
       "R": "♻ Till återvinnare"
     },
     "searchWithPlaceName": "Sök efter ort"
+  },
+  "säädettyjä toimintoja": {
+    "\"": "Disposal according to directive 75/442/EEC annex II A."
   },
   "descriptions": {
     "Facilities": "Du kan söka anläggningar i kartan eller i tabellen och filtrera näringsgren, ort eller namn. Tryck på anläggningens namn för att se anläggningsspecifika utsläpp och avfallstransporter.",

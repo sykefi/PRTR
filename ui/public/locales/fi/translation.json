@@ -1,6 +1,5 @@
 {
   "common": {
-    "welcomeMessage": "Tervetuloa Suomen PRTR-tietopalveluun",
     "frontPage": "Etusivu",
     "facilitySearch": "Laitoshaku",
     "releasesToAir": "Päästöt ilmaan",
@@ -75,18 +74,14 @@
       "estimatedTooltip": "Asiantuntija-arvio perustuen esim. aiempiin mittauksiin, tutkimuksiin tai kokemukseen"
     }
   },
-  "wastetransfers": {
+  "wasteTransfers": {
     "type": {
-      "HazardousTooltip": "Vaarallisella jätteellä tarkoitetaan direktiivin 91/689/ETY 1 artiklan 4 kohdassa määriteltyä ainetta tai esinettä.",
-      "NonHazardousTooltip": "Vaarattomaksi jätteeksi katsotaan ne jätteet, joita ei luetella direktiivin 91/689/ETY 1 artiklan kohdassa 4."
+      "hazardousTooltip": "Vaarallisella jätteellä tarkoitetaan direktiivin 91/689/ETY 1 artiklan 4 kohdassa määriteltyä ainetta tai esinettä.",
+      "nonHazardousTooltip": "Muut kuin vaaralliset jätteet. Vaarattomaksi jätteeksi katsotaan ne jätteet, joita ei luetella direktiivin 91/689/ETY 1 artiklan kohdassa 4."
     },
     "method": {
-      "DisposalTooltip": "Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja."
-    }
-  },
-  "wasteTransfers": {
-    "method": {
-      "RecoveryTooltip": "\"Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A"
+      "disposalTooltip": "\"Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A",
+      "recoveryTooltip": "Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja."
     },
     "allOrInternationalSelectLabel": "Haettavat tiedot",
     "allOrInternationalAllLabel": "Näytä kaikki siirrot",
@@ -109,10 +104,13 @@
     },
     "searchWithPlaceName": "Hae paikkakunnalla"
   },
+  "säädettyjä toimintoja": {
+    "\"": "Med bortskaffningsförfaranden avses åtgärder enligt direktiv 75/442/EEG bilaga II A"
+  },
   "descriptions": {
     "Facilities": "Voit etsiä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",
-    "emissionsToAir": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Hakua voi rajata yhdelle tai useammalle vuodelle tai hakea tietoja paikkakunnan mukaan. Tietyn laitoksen päästöjä voit tarkastella laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
-    "emissionsToWater": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
-    "wasteTransfers": "Voit selata jätesiirtoja ja rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti."
+    "emissionsToAir": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "emissionsToWater": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "wasteTransfers": "\"Voit selata jätesiirtoja ja rajata hakua vuoden tai paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. Muut kuin vaaralliset jätteet on merkitty selitteellä \"\"Muu\"\".\""
   }
 }

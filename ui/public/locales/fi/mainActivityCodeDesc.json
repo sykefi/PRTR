@@ -13,6 +13,7 @@
   "2(c)(i)": "Laitokset, joissa rautametalleja jalostetaan kuumavalssauksella ja kapasiteetti on vähintään 20 t raakaterästä/h",
   "2(c)(ii)": "Laitokset, joissa rautametalleja jalostetaan takomalla vasaroilla ja joiden iskuenergia on vähintään 50 kJ/vasara ja käytetty lämpöteho yli 20 MW",
   "2(c)(iii)": "Laitokset, joissa rautametalleja jalostetaan suojakäsittelemällä sulalla metallilla ja käsittelymäärä on vähintään 2 t raakaterästä/h",
+  "timme\"": "Installations for the processing of ferrous metals, Application of protective fused metal coats with an input of 2 tonnes of crude steel per hour",
   "2(d)": "Rautametallivalimot, joiden tuotantokapasiteetti on vähintään 20 t/d",
   "2(e)": "Laitokset, joissa tuotetaan muita kuin rautapitoisia metalleja",
   "2(e)(i)": "Laitokset joissa tuotetaan muita kuin rautapitoisia raakametalleja malmeista, rikasteista tai sekundaarisista raaka-aineista metallurgisilla, kemiallisilla tai elektrolyyttisillä prosesseilla",
@@ -67,14 +68,14 @@
   "6(a)": "Teollisuuslaitokset, joissa valmistetaan massaa puusta tai vastaavista kuitumateriaaleista",
   "6(b)": "Teollisuuslaitokset, joissa valmistetaan paperia, kartonkia ja muita primäärisiä puutuotteita (lastulevyä, kuitulevyä ja vaneria) ja joiden tuotantokapasiteetti on vähintään 20 t/d",
   "6(c)": "Teollisuuslaitokset, joissa puuta ja puutuotteita suojataan kemiallisesti ja joiden tuotantokapasiteetti on vähintään 50 m3/d",
-  "7": "Voimaperäinen karjankasvatus ja vesiviljely",
+  "7": "Karjankasvatus ja vesiviljely",
   "7(a)": "Siipikarjan ja sikojen tehokasvatuslaitokset",
   "7(a)(i)": "Siipikarjan tehokasvatuslaitokset, joissa on vähintään 40 000 paikkaa siipikarjalle",
   "7(a)(ii)": "Sikojen tehokasvatuslaitokset, joissa on vähintään 2 000 paikkaa tuotantosioille (paino yli 30 kg)",
   "7(a)(iii)": "Sikojen tehokasvatuslaitokset, joissa on vähintään 750 paikkaa emakoille",
   "7(b)": "Voimaperäinen vesiviljely, jonka tuotantokapasiteetti on vähintään 1 000 t kalaa tai äyriäisiä/a",
   "ton fisk eller skaldjur per år\"": "Intensive aquaculture with a production capacity of 1 000 tonnes of fish or shellfish per year",
-  "8": "Elintarvike- ja juomateollisuuden eläin- ja kasvituotteet",
+  "8": "Elintarvike- ja juomateollisuus",
   "8(a)": "Teurastamot, jotka tuottavat ruhoja vähintään 50 t/d",
   "50 ton per dygn\"": "\"Slaughterhouses with a carcass production capacity of",
   "50 tonnes per day\"": "",
@@ -88,6 +89,5 @@
   "9(b)": "Nahanparkituslaitokset, joiden käsittelykapasiteetti on vähintään 12 t lopputuotteita/d",
   "9(c)": "Aineiden, esineiden ja tuotteiden pintakäsittelylaitokset, erityisesti tasoitusta, painatusta, pinnoitusta, rasvanpoistoa, vedenkestokäsittelyä, liimausta, maalausta, puhdistusta tai kyllästystä orgaanisten liuottimien avulla suorittavat laitokset, joiden liuottimen kulutuskapasiteetti on vähintään 150 kg/h tai 200 t/a",
   "9(d)": "Kovahiilen tai sähkögrafiitin tuotantolaitokset, joissa käytetään polttoa tai grafitointia",
-  "9(e)": "Laitokset, joissa rakennetaan ja maalataan laivoja tai poistetaan niistä maali ja joilla on kyky käsitellä vähintään 100 m pitkiä aluksia",
-  "MISSING": "Ei tiedossa"
+  "9(e)": "Laitokset, joissa rakennetaan ja maalataan laivoja tai poistetaan niistä maali ja joilla on kyky käsitellä vähintään 100 m pitkiä aluksia"
 }
