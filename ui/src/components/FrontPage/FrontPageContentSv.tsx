@@ -17,8 +17,9 @@ export const FrontPageContentSv = () => {
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
-          March 2021
-        </a>
+          {' '}
+          March 2021{' '}
+        </a>{' '}
         . Endast uppgifter som ingår i det ovannämnda PRTR registret
         presenteras. För tillfället presenteras uppgifterna sedan
         rapporteringsåret 2017.
@@ -43,7 +44,9 @@ export const FrontPageContentSv = () => {
           gränsöverskridande avfallstransporter 
         </li>
       </p>
-      <p>Vänligen läs användarvillkor  innan du använder tjänsten.</p>
+      <p>
+        Vänligen läs användarvillkor  innan du använder tjänsten.
+      </p>
     </>
   )
 }

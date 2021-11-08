@@ -19,7 +19,7 @@ export const FrontPageContentFi = () => {
         yhdistekohtaisille päästöille asetetut kynnysarvot ylittyvät. Tiedot
         kootaan Euroopan PRTR-rekisteriin (Pollutant Release and Transfer
         Register). Esitettävät tiedot ovat peräisin tietokannan neljännestä
-        versiosta, joka on julkaistu
+        versiosta, joka on julkaistu{' '}
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
@@ -49,7 +49,9 @@ export const FrontPageContentFi = () => {
           suoritetuista jätesiirroista 
         </li>
       </p>
-      <p>Ennen käyttöä, luethan palvelun käyttöehdot.</p>
+      <p>
+        Ennen käyttöä, luethan palvelun käyttöehdot.
+      </p>
     </>
   )
 }
