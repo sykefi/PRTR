@@ -49,6 +49,7 @@ def clear_location_data_for_main_activity_7(
     df = _clear_fields_for_main_activity_7(
         facilities,
         [
+            'pointGeometryLat', 'pointGeometryLon',
             'streetName', 'postalCode', 'buildingNumber',
             'authorityTelephoneNo'
         ]
@@ -64,6 +65,14 @@ def create_point(
     y: float,
     main_activity: MainActivityCode
 ) -> Point:
+    if ( # weaken coordinates of main activity 7
+        main_activity == MainActivityCode.SEVEN_A.value or
+        main_activity == MainActivityCode.SEVEN_A_I.value or
+        main_activity == MainActivityCode.SEVEN_A_II.value or
+        main_activity == MainActivityCode.SEVEN_A_III.value
+    ):
+        x = x + 0.1
+        y = y + 0.1
     return Point(x, y)
 
 
@@ -73,7 +82,7 @@ def add_projected_x_y_columns(
     lat_col='pointGeometryLat'
 ) -> DataFrame:
     df['point_geom_wgs'] = df.apply(
-         lambda row: create_point(row[lon_col], row[lat_col], MainActivityCode.EIGHT_A),
+         lambda row: create_point(row[lon_col], row[lat_col], row['mainActivityCode']),
          axis=1
     )
     df['point_geom_proj'] = [
