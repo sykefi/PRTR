@@ -25,6 +25,7 @@ project = pyproj.Transformer.from_crs(
 
 def _clear_field_for_main_activity_7(row: str, field_name) -> Union[None, Any]:
     if (
+        row['mainActivityCode'] == MainActivityCode.SEVEN_A.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_I.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_II.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_III.value
@@ -48,8 +49,6 @@ def clear_location_data_for_main_activity_7(
     df = _clear_fields_for_main_activity_7(
         facilities,
         [
-            'x', 'y',
-            'pointGeometryLat', 'pointGeometryLon',
             'streetName', 'postalCode', 'buildingNumber',
             'authorityTelephoneNo'
         ]
@@ -60,13 +59,21 @@ def clear_location_data_for_main_activity_7(
     return df
 
 
+def create_point(
+    x: float,
+    y: float,
+    main_activity: MainActivityCode
+) -> Point:
+    return Point(x, y)
+
+
 def add_projected_x_y_columns(
     df: DataFrame,
     lon_col='pointGeometryLon',
     lat_col='pointGeometryLat'
 ) -> DataFrame:
     df['point_geom_wgs'] = df.apply(
-         lambda row: Point(row[lon_col], row[lat_col]),
+         lambda row: create_point(row[lon_col], row[lat_col], MainActivityCode.EIGHT_A),
          axis=1
     )
     df['point_geom_proj'] = [
