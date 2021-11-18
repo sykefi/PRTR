@@ -74,7 +74,7 @@ export const facilityLayerPersonalData = new VectorLayer({
   zIndex: 3,
   source: facilitySourcePersonalData,
   style: styleFunction,
-  maxZoom: 2
+  maxZoom: 1.5
 })
 facilityLayerPersonalData.set('name', 'facilitiesPersonalData')
 
