@@ -52,6 +52,9 @@
       "disused": "Ei toiminnassa",
       "functional": "Toiminnassa",
       "notRegulated": "Ei säännelty"
+    },
+    "legend": {
+      "intensiveLivestockProduction": "Eläintenpito"
     }
   },
   "releases": {
@@ -76,8 +79,8 @@
   },
   "wasteTransfers": {
     "classification": {
-      "HWshortTooltip": "Vaarallisella jätteellä tarkoitetaan direktiivin 91/689/ETY 1 artiklan 4 kohdassa määriteltyä ainetta tai esinettä.",
-      "NONHWshortTooltip": "Muut kuin vaaralliset jätteet. Vaarattomaksi jätteeksi katsotaan ne jätteet, joita ei luetella direktiivin 91/689/ETY 1 artiklan kohdassa 4.",
+      "HWshortTooltip": "Vaarallinen jäte määritellään direktiivin 2008/98/EY 3.2 artiklan mukaisesti.",
+      "NONHWshortTooltip": "Muut kuin vaaralliset jätteet määritellään direktiivin 2008/98/EY 3.2 artiklan mukaisesti",
       "title": "Jätteen tyyppi",
       "HW": "E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet",
       "NONHW": "Muut kuin vaaralliset jätteet",
@@ -85,8 +88,8 @@
       "NONHWshort": "Muu"
     },
     "treatment": {
-      "DTooltip": "Käsittelyllä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II A säädettyjä toimintoja.",
-      "RTooltip": "Hyödyntämisellä tarkoitetaan kaikkia direktiivin 75/442/ETY liitteessä II B säädettyjä toimintoja.",
+      "DTooltip": "Käsittely määritellään direktiivin 2008/98/EY 3.9 artiklan mukaisesti.",
+      "RTooltip": "Hyödyntäminen määritellään direktiivin 2008/98/EY 3.15 artiklan mukaisesti.",
       "title": "Käsittely",
       "D": "❌ Loppukäsittelyyn",
       "R": "♻ Hyödynnettäväksi"
@@ -100,13 +103,10 @@
     "receiver": "Vastaanottaja",
     "searchWithPlaceName": "Hae paikkakunnalla"
   },
-  "säädettyjä toimintoja": {
-    "\"": "Med bortskaffningsförfaranden avses åtgärder enligt direktiv 75/442/EEG bilaga II A"
-  },
   "descriptions": {
     "Facilities": "Voit etsiä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",
-    "emissionsToAir": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
-    "emissionsToWater": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
-    "wasteTransfers": "\"Voit selata jätesiirtoja ja rajata hakua vuoden tai paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. Muut kuin vaaralliset jätteet on merkitty selitteellä \"\"Muu\"\".\""
+    "emissionsToAir": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raportoinnin raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "emissionsToWater": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raportoinnin raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "wasteTransfers": "\"Voit selata jätesiirtoja ja rajata hakua vuoden tai paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet on määritelty neuvoston direktiivin 2008/98/EY 3.2 artiklan mukaisesti. Muut kuin vaaralliset jätteet on merkitty selitteellä \"\"Muu\"\".\""
   }
 }

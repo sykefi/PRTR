@@ -52,6 +52,9 @@
       "disused": "Ur drift",
       "functional": "I drift",
       "notRegulated": "Inte reglerad"
+    },
+    "legend": {
+      "intensiveLivestockProduction": "Djurhållning"
     }
   },
   "releases": {
@@ -76,8 +79,8 @@
   },
   "wasteTransfers": {
     "classification": {
-      "HWshortTooltip": "Med farligt avfall avses ämnen eller föremål enligt direktiv 91/689/EEG artikel 1 punkt 4",
-      "NONHWshortTooltip": "Annat avfall. Med icke-farligt avfall avses avfall som inte ingår i direktiv 91/689/EEG artikel 1 punkt 4",
+      "HWshortTooltip": "Faligt avfall definieras enligt artikel 3.2 i direktiv 2008/98/EG.",
+      "NONHWshortTooltip": "Icke-farligt avfall definieras enligt artikel 3.2 i direktiv 2008/98/EG.",
       "title": "Avfallstyp",
       "HW": "Farligt avfall i E-PRTR artikel 2(4)",
       "NONHW": "Icke-farligt avfall",
@@ -85,7 +88,8 @@
       "NONHWshort": "Annat"
     },
     "treatment": {
-      "RTooltip": "Med återvinningsförfaranden avses åtgärder enligt direktiv 75/442/EEG bilaga II A",
+      "DTooltip": "Avfalsshantering definieras enligt artikel 3.9 i direktiv 2008/98/EG.",
+      "RTooltip": "Återvinning definieras enligt artikel 3.15 i direktiv 2008/98/EG.",
       "title": "Behandling",
       "D": "❌ Till bortskaffare",
       "R": "♻ Till återvinnare"
@@ -99,13 +103,11 @@
     "receiver": "Mottagande anläggning",
     "searchWithPlaceName": "Sök efter ort"
   },
-  "säädettyjä toimintoja": {
-    "\"": "Disposal according to directive 75/442/EEC annex II A."
-  },
   "descriptions": {
     "Facilities": "Du kan söka anläggningar i kartan eller i tabellen och filtrera näringsgren, ort eller namn. Tryck på anläggningens namn för att se anläggningsspecifika utsläpp och avfallstransporter.",
     "emissionsToAir": "\"Välj först utsläpp eller gas, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under \"\"Anläggningssökning\"\".\"",
     "emissionsToWater": "\"Välj först utsläpp, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under \"\"Anläggningssökning\"\".\"",
-    "wasteTransfers": "\"Du kan söka avfallstransporter och filtrera år eller ort. Anläggningsspecifika transporter hittar du under \"\"Anläggningssökning\"\".\""
-  }
+    "wasteTransfers": "\"Du kan söka avfallstransporter efter år eller ort. Anläggningsspecifika transporter hittar du under \"\"Anläggningssökning\"\". Farligt avfall definieras enligt  artikel  3.2 i direktiv 2008/98/EG. Icke-farligt avfall är märkt med förklaring \"\"Annat\"\".\""
+  },
+  "\"": "\"Voit selata jätesiirtoja ja rajata hakua vuoden tai paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. Muut kuin vaaralliset jätteet on merkitty selitteellä \"\"Muu\"\".\""
 }

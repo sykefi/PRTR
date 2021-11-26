@@ -52,6 +52,9 @@
       "disused": "Disused",
       "functional": "Functional",
       "notRegulated": "Not regulated"
+    },
+    "legend": {
+      "intensiveLivestockProduction": "Animal husbandry"
     }
   },
   "releases": {
@@ -76,8 +79,8 @@
   },
   "wasteTransfers": {
     "classification": {
-      "HWshortTooltip": "Hazardous waste means waste that is defined as hazardous by the provisions of national law.",
-      "NONHWshortTooltip": "Other waste refers to waste not defined in 91/689/EEC article 1 paragraph 4",
+      "HWshortTooltip": "Hazardous waste is defined in Article 3.2 of Directive 2008/98/EC.",
+      "NONHWshortTooltip": "Non-hazardous waste is defined in Article 3.2 of Directive 2008/98/EC.",
       "title": "Type of waste",
       "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
       "NONHW": "Non-hazardous waste",
@@ -85,7 +88,8 @@
       "NONHWshort": "Other"
     },
     "treatment": {
-      "RTooltip": "Recovery according to directive 75/442/EEC annex II B.",
+      "DTooltip": "Disposal is defined in Article 3.2 of Directive 2008/98/EC.",
+      "RTooltip": "Recovery is defined in Article 3.2 of Directive 2008/98/EC.",
       "title": "Treatment",
       "D": "❌ Destined for disposal",
       "R": "♻ Destined for recovery"
@@ -103,6 +107,6 @@
     "Facilities": "Search for facilities by using the map or the table. Filtering is possible by industry sector, municipality or the name of the facility. Clicking on the facility reveals more information on emissions and waste transfers for the selected facility.",
     "emissionsToAir": "Start browsing emission data by selecting the pollutant. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.",
     "emissionsToWater": "Start browsing emission information by selecting the pollutant. It is possible to filter the information by year or location. For finding detailed information of a specific facility, please use the facility search feature.",
-    "wasteTransfers": "\"Browse through the data of waste transfers of PRTR facilities by using the selectors below. For finding waste transfers of a specific facility, please refer to facility search. Hazardous waste is defined by Article 2(14) of the E-PRTR. Non-hazardous waste is labeled as \"\"Other\"\"."
+    "wasteTransfers": "\"You can browse waste transfers by year or location. Transfers of a specific facility can be found through the facility search. Hazardous waste is defined in Article 3.2 of the Directive 2008/98/EC. Non-hazardous waste is labeled as \"\"Other\"\"."
   }
 }
