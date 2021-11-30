@@ -105,6 +105,18 @@ _id_cleanup: Dict[str, str] = {
 }
 
 
+def clean_names(org_str: str) -> str:
+    found = []
+    names = ['Ari', 'Juha', 'Holm', 'Kangas']
+    for name in names:
+        if org_str.find(name) > -1:
+            found.append(name)
+    if len(found) > 1: # interpreted to include a name
+        for name in found:
+            org_str = org_str.replace(name, 'N.')
+    return org_str
+
+
 def clean_id(id_str: str) -> str:
     if not id_str:
         raise ValueError("Missing Facility ID")
