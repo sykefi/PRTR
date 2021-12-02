@@ -11,7 +11,7 @@ Engine 2016 Redistributable" (or newer)
 """
 
 from data_import.utils import (
-    add_projected_x_y_columns, ensure_no_unlinked_releases_or_transfers,
+    add_projected_x_y_columns, clean_names, ensure_no_unlinked_releases_or_transfers,
     handle_merge_duplicate_facilities, print_main_activity_codes_as_enum,
     print_unique_values_as_enum, clean_id, ensure_unique_ids,
     update_facility_ids_by_merge_map, clear_location_data_for_main_activity_7
@@ -53,6 +53,14 @@ conn = pyodbc.connect(
 facilities = pd.read_sql_query(queries.sql_facilities, conn)
 log(f'Read {len(facilities)} facilities')
 
+# clean person names from data
+facilities['parentCompanyName'] = [
+    clean_names(comp_str) for comp_str in facilities['parentCompanyName']
+]
+facilities['nameOfFeature'] = [
+    clean_names(name_str) for name_str in facilities['nameOfFeature']
+]
+
 facilities['facilityId'] = [
     clean_id(id_str) for id_str in facilities['Facility_INSPIRE_ID']
 ]
@@ -72,15 +80,6 @@ releases['facilityId'] = [
 ]
 
 
-# merge duplicate facilities by name
-facilities, facility_id_to_id_merge_map = handle_merge_duplicate_facilities(
-    facilities
-)
-
-# ensure that all realease are linked to some facility (by facilityId)
-if facility_id_to_id_merge_map:
-    update_facility_ids_by_merge_map(releases, facility_id_to_id_merge_map)
-
 ensure_no_unlinked_releases_or_transfers(facilities, releases)
 
 
@@ -98,11 +97,6 @@ waste_transfers['facilityId'] = [
     clean_id(id_str) for id_str in waste_transfers['Facility_INSPIRE_ID']
 ]
 
-if facility_id_to_id_merge_map:
-    update_facility_ids_by_merge_map(
-        waste_transfers,
-        facility_id_to_id_merge_map
-    )
 
 ensure_no_unlinked_releases_or_transfers(
     facilities,

@@ -1,6 +1,5 @@
 {
   "common": {
-    "welcomeMessage": "Välkommen till Finlands PRTR register",
     "frontPage": "Framsida",
     "facilitySearch": "Anläggning, verksamhet, ort",
     "releasesToAir": "Utsläpp till luft",
@@ -8,7 +7,8 @@
     "wasteTransfers": "Transport av avfall",
     "placename": "Ort",
     "streetAddress": "Gatuadress",
-    "telephoneNumberToAuthority": "Telefonnummer",
+    "telephoneNumberToAuthority": "Telefonnummer till tillsynsmyndigheten",
+    "competentAuthority": "Tillsynsmyndighet",
     "facility": "Anläggning",
     "goBack": "Tillbaka",
     "toGoBack": "Tillbaka",
@@ -21,7 +21,9 @@
     "previousPage": "⪡ Föregående sida",
     "nextPage": "Nästa sida ⪢",
     "basicInfo": "Grunddata",
-    "loadingInformation": "Uppgifterna laddas upp"
+    "loadingInformation": "Uppgifterna laddas upp",
+    "additionalInfo": "Ytterligare information",
+    "logoText": "UTSLÄPPSINFORMATION"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Skicka respons"
@@ -35,8 +37,11 @@
     "selectFacilityMainActivityCode": "Välj verksamhetsområde",
     "couldNotFindFacilityWithId": "Sökningen av uppgifterna misslyckades, försök igen senare.",
     "couldNotFindFacilityReleases": "Sökningen av utsläppen misslyckades, försök igen senare.",
-    "noReleasesFoundForFacility": "Inga träffar i databasen för den valda anläggningen",
+    "couldNotFindFacilityWasteTransfers": "Sökningen av uppgifter om avfallstransporter misslyckades, försök igen senare.",
+    "noReleasesFoundForFacility": "Inga utsläpp hittades för den valda anläggningen",
+    "noWasteTransfersFoundForFacility": "Inga avfallstransporter hittades för den valda anläggningen",
     "facilityReleaseTable": "Utsläppsdata",
+    "facilityWasteTransferTable": "Avfallstransporter",
     "goBackToFacilitySearch": "Återvänd till anläggningssökning",
     "goBackToReleaseSearch": "Återvänd till anläggningssökning",
     "goBackToWasteTransferSearch": "Återvänd till sökning av avfallstransporter",
@@ -47,6 +52,9 @@
       "disused": "Ur drift",
       "functional": "I drift",
       "notRegulated": "Inte reglerad"
+    },
+    "legend": {
+      "intensiveLivestockProduction": "Djurhållning"
     }
   },
   "releases": {
@@ -63,15 +71,16 @@
       "title": "Metod",
       "measured": "Mätning",
       "calculated": "Beräkning",
-      "estimated": "Uppskattning"
+      "estimated": "Expertberäkning",
+      "measuredTooltip": "Utsläppsmätning baserad på internationellt godkänd eller motsvarande metod (direkt/indirekt, kontinuerlig/periodisk eller engångsmätning)",
+      "calculatedTooltip": "Beräkning av utsläpp med internationellt överenskomna eller motsvarande nationella metoder (t.ex. fysikalisk-kemisk korrelation, utsläppsfaktor, massbalans)",
+      "estimatedTooltip": "Expertberäkning baserad på t.ex. tidigare mätningar, studier eller erfarenhet"
     }
   },
   "wasteTransfers": {
-    "noWasteTransfersFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
-    "wasteTransfersFetchErrorInfo": "Sökningen av avfallstransporter misslyckades, försök igen senare.",
-    "quantity": "Mängd",
-    "receiver": "Mottagande anläggning",
     "classification": {
+      "HWshortTooltip": "Faligt avfall definieras enligt artikel 3.2 i direktiv 2008/98/EG.",
+      "NONHWshortTooltip": "Icke-farligt avfall definieras enligt artikel 3.2 i direktiv 2008/98/EG.",
       "title": "Avfallstyp",
       "HW": "Farligt avfall i E-PRTR artikel 2(4)",
       "NONHW": "Icke-farligt avfall",
@@ -79,9 +88,26 @@
       "NONHWshort": "Annat"
     },
     "treatment": {
+      "DTooltip": "Avfalsshantering definieras enligt artikel 3.9 i direktiv 2008/98/EG.",
+      "RTooltip": "Återvinning definieras enligt artikel 3.15 i direktiv 2008/98/EG.",
       "title": "Behandling",
       "D": "❌ Till bortskaffare",
       "R": "♻ Till återvinnare"
-    }
-  }
+    },
+    "allOrInternationalSelectLabel": "Visa",
+    "allOrInternationalAllLabel": "Visa alla transporter",
+    "allOrInternationalInternationalLabel": "Visa endast internationella transporter",
+    "noWasteTransfersFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
+    "wasteTransfersFetchErrorInfo": "Sökningen misslyckades, försök igen senare.",
+    "quantity": "Mängd",
+    "receiver": "Mottagande anläggning",
+    "searchWithPlaceName": "Sök efter ort"
+  },
+  "descriptions": {
+    "Facilities": "Du kan söka anläggningar i kartan eller i tabellen och filtrera näringsgren, ort eller namn. Tryck på anläggningens namn för att se anläggningsspecifika utsläpp och avfallstransporter.",
+    "emissionsToAir": "\"Välj först utsläpp eller gas, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under \"\"Anläggningssökning\"\".\"",
+    "emissionsToWater": "\"Välj först utsläpp, sedan kan du filtrera år eller ort. Anläggningsspecifika utsläpp hittar du under \"\"Anläggningssökning\"\".\"",
+    "wasteTransfers": "\"Du kan söka avfallstransporter efter år eller ort. Anläggningsspecifika transporter hittar du under \"\"Anläggningssökning\"\". Farligt avfall definieras enligt  artikel  3.2 i direktiv 2008/98/EG. Icke-farligt avfall är märkt med förklaring \"\"Annat\"\".\""
+  },
+  "\"": "\"Voit selata jätesiirtoja ja rajata hakua vuoden tai paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti. Muut kuin vaaralliset jätteet on merkitty selitteellä \"\"Muu\"\".\""
 }

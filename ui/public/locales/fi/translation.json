@@ -1,6 +1,5 @@
 {
   "common": {
-    "welcomeMessage": "Tervetuloa FIN-PRTR palvelun kehitysversioon!",
     "frontPage": "Etusivu",
     "facilitySearch": "Laitoshaku",
     "releasesToAir": "Päästöt ilmaan",
@@ -23,7 +22,8 @@
     "nextPage": "Seuraava sivu ⪢",
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja...",
-    "additionalInfo": "Lisätietoja"
+    "additionalInfo": "Lisätietoja",
+    "logoText": "PÄÄSTÖTIETOPALVELU"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Lähetä palautetta"
@@ -52,6 +52,9 @@
       "disused": "Ei toiminnassa",
       "functional": "Toiminnassa",
       "notRegulated": "Ei säännelty"
+    },
+    "legend": {
+      "intensiveLivestockProduction": "Eläintenpito"
     }
   },
   "releases": {
@@ -69,20 +72,15 @@
       "measured": "Mitattu",
       "calculated": "Laskennallinen",
       "estimated": "Arvioitu",
-      "measuredTooltip": "Mitattu",
-      "calculatedTooltip": "Laskennallinen",
-      "estimatedTooltip": "Arvioitu"
+      "measuredTooltip": "Päästömittaus kansainvälisesti hyväksytyllä tai siihen verrattavalla menetelmällä (suora/epäsuora, jatkuvatoiminen/jaksottainen tai kertamittaus)",
+      "calculatedTooltip": "Päästö laskettu kansainvälisesti sovituilla tai vastaavilla kansallisilla menetelmillä (esim. fysikaaliskemialliset riippuvuus, päästökerroin, massatase)",
+      "estimatedTooltip": "Asiantuntija-arvio perustuen esim. aiempiin mittauksiin, tutkimuksiin tai kokemukseen"
     }
   },
   "wasteTransfers": {
-    "allOrInternationalSelectLabel": "Näytettävät tiedot",
-    "allOrInternationalAllLabel": "Näytä kaikki siirrot",
-    "allOrInternationalInternationalLabel": "Näytä vain kansainväliset siirrot",
-    "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
-    "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
-    "quantity": "Määrä",
-    "receiver": "Vastaanottaja",
     "classification": {
+      "HWshortTooltip": "Vaarallinen jäte määritellään direktiivin 2008/98/EY 3.2 artiklan mukaisesti.",
+      "NONHWshortTooltip": "Muut kuin vaaralliset jätteet määritellään direktiivin 2008/98/EY 3.2 artiklan mukaisesti",
       "title": "Jätteen tyyppi",
       "HW": "E-PRTR Artikla 2(14) mukaiset vaaralliset jätteet",
       "NONHW": "Muut kuin vaaralliset jätteet",
@@ -90,16 +88,25 @@
       "NONHWshort": "Muu"
     },
     "treatment": {
+      "DTooltip": "Käsittely määritellään direktiivin 2008/98/EY 3.9 artiklan mukaisesti.",
+      "RTooltip": "Hyödyntäminen määritellään direktiivin 2008/98/EY 3.15 artiklan mukaisesti.",
       "title": "Käsittely",
       "D": "❌ Loppukäsittelyyn",
       "R": "♻ Hyödynnettäväksi"
     },
+    "allOrInternationalSelectLabel": "Haettavat tiedot",
+    "allOrInternationalAllLabel": "Näytä kaikki siirrot",
+    "allOrInternationalInternationalLabel": "Näytä vain kansainväliset siirrot",
+    "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
+    "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
+    "quantity": "Määrä",
+    "receiver": "Vastaanottaja",
     "searchWithPlaceName": "Hae paikkakunnalla"
   },
   "descriptions": {
-    "Facilities": "🛈 Voit etsiä tiettyjä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",
-    "emissionsToAir": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
-    "emissionsToWater": "🛈 Voit selata PRTR-rekisteriin raportoituja päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea päästötietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
-    "wasteTransfers": "🛈 Voit selata PRTR-rekisteriin raportoituja jätesiirtoja. Voit rajata hakua yhdelle tai useammalle vuodelle, tai hakea tietoja paikkakunnan mukaan. Mikäli etsit tietyn laitoksen jätesiirtoja, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Vaaralliset jätteet ovat määritelty E-PRTR Artikla 2(14) mukaisesti."
+    "Facilities": "Voit etsiä laitoksia joko kartalta tai taulukosta. Voit rajata hakua toimialan, paikkakunnan tai nimen mukaan. Painamalla laitoksen nimen kohdalta, pääset tarkastelemaan valitsemasi laitoksen PRTR-rekisteriin tallennettuja päästömääriä ja jätesiirtoja.",
+    "emissionsToAir": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raportoinnin raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "emissionsToWater": "Voit selata päästötietoja valitsemalla ensin yhdisteen. Voit rajata hakua vuoden, toimialan tai paikkakunnan mukaan. Mikäli etsit tietyn laitoksen päästöjä, voit kokeilla löytyykö etsimäsi tieto laitoshaun avulla. Lisätietoja yhdisteistä ja niiden raportoinnin raja-arvoista löytyy <0>yhdistetaulusta<0/>.",
+    "wasteTransfers": "\"Voit selata jätesiirtoja ja rajata hakua vuoden tai paikkakunnan mukaan. Tietyn laitoksen jätesiirtoja voit tarkastella laitoshaun avulla. Vaaralliset jätteet on määritelty neuvoston direktiivin 2008/98/EY 3.2 artiklan mukaisesti. Muut kuin vaaralliset jätteet on merkitty selitteellä \"\"Muu\"\".\""
   }
 }

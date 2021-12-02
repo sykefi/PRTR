@@ -25,6 +25,7 @@ project = pyproj.Transformer.from_crs(
 
 def _clear_field_for_main_activity_7(row: str, field_name) -> Union[None, Any]:
     if (
+        row['mainActivityCode'] == MainActivityCode.SEVEN_A.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_I.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_II.value or
         row['mainActivityCode'] == MainActivityCode.SEVEN_A_III.value
@@ -48,7 +49,6 @@ def clear_location_data_for_main_activity_7(
     df = _clear_fields_for_main_activity_7(
         facilities,
         [
-            'x', 'y',
             'pointGeometryLat', 'pointGeometryLon',
             'streetName', 'postalCode', 'buildingNumber',
             'authorityTelephoneNo'
@@ -60,13 +60,29 @@ def clear_location_data_for_main_activity_7(
     return df
 
 
+def create_point(
+    x: float,
+    y: float,
+    main_activity: MainActivityCode
+) -> Point:
+    if ( # weaken coordinates of main activity 7
+        main_activity == MainActivityCode.SEVEN_A.value or
+        main_activity == MainActivityCode.SEVEN_A_I.value or
+        main_activity == MainActivityCode.SEVEN_A_II.value or
+        main_activity == MainActivityCode.SEVEN_A_III.value
+    ):
+        x = x + 0.1
+        y = y + 0.1
+    return Point(x, y)
+
+
 def add_projected_x_y_columns(
     df: DataFrame,
     lon_col='pointGeometryLon',
     lat_col='pointGeometryLat'
 ) -> DataFrame:
     df['point_geom_wgs'] = df.apply(
-         lambda row: Point(row[lon_col], row[lat_col]),
+         lambda row: create_point(row[lon_col], row[lat_col], row['mainActivityCode']),
          axis=1
     )
     df['point_geom_proj'] = [
@@ -87,6 +103,18 @@ _id_cleanup: Dict[str, str] = {
     '/': '_',
     ';': '_'
 }
+
+
+def clean_names(org_str: str) -> str:
+    found = []
+    names = ['Ari', 'Juha', 'Holm', 'Kangas']
+    for name in names:
+        if org_str.find(name) > -1:
+            found.append(name)
+    if len(found) > 1: # interpreted to include a name
+        for name in found:
+            org_str = org_str.replace(name, 'N.')
+    return org_str
 
 
 def clean_id(id_str: str) -> str:

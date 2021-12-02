@@ -1,6 +1,5 @@
 {
   "common": {
-    "welcomeMessage": "Welcome to Finland's PRTR registry",
     "frontPage": "Frontpage",
     "facilitySearch": "Facility, activity, location",
     "releasesToAir": "Releases to air",
@@ -8,7 +7,8 @@
     "wasteTransfers": "Waste transfers",
     "placename": "Location",
     "streetAddress": "Street address",
-    "telephoneNumberToAuthority": "Phone number",
+    "telephoneNumberToAuthority": "Phone number to supervising authority",
+    "competentAuthority": "Supervising authority",
     "facility": "Facility",
     "goBack": "Back",
     "toGoBack": "Return",
@@ -21,7 +21,9 @@
     "previousPage": "⪡ Previous page",
     "nextPage": "Next page ⪢",
     "basicInfo": "Basic information",
-    "loadingInformation": "Loading information..."
+    "loadingInformation": "Loading information...",
+    "additionalInfo": "Additional information",
+    "logoText": "INDUSTRIAL RELEASES"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Send feedback"
@@ -30,13 +32,16 @@
     "facilityTypeCode": "Industrial classification",
     "searchWithName": "Search by facility name",
     "searchWithPlacename": "Search by location",
-    "loadFacilitiesErroredText": "Error in fetching information. Please try again later.",
+    "loadFacilitiesErroredText": "Error in loading data. Please try again later.",
     "noFacilitiesFoundFromSearch": "No releases found with the selected attributes.",
     "selectFacilityMainActivityCode": "Select activity",
-    "couldNotFindFacilityWithId": "Error in fetching information. Please try again later.",
-    "couldNotFindFacilityReleases": "Error in fetching information. Please try again later.",
+    "couldNotFindFacilityWithId": "Error in loading data. Please try again later.",
+    "couldNotFindFacilityReleases": "Error in loading data. Please try again later.",
+    "couldNotFindFacilityWasteTransfers": "Error in loading data. Please try again later.",
     "noReleasesFoundForFacility": "No releases found for the selected facility.",
+    "noWasteTransfersFoundForFacility": "No waste transfers found for the selected facility.",
     "facilityReleaseTable": "Releases",
+    "facilityWasteTransferTable": "Waste transfers",
     "goBackToFacilitySearch": "Return to facility search",
     "goBackToReleaseSearch": "Return to releases",
     "goBackToWasteTransferSearch": "Return to waste transfers",
@@ -47,6 +52,9 @@
       "disused": "Disused",
       "functional": "Functional",
       "notRegulated": "Not regulated"
+    },
+    "legend": {
+      "intensiveLivestockProduction": "Animal husbandry"
     }
   },
   "releases": {
@@ -58,39 +66,47 @@
     "selectPollutant": "Select pollutant",
     "selectYear": "Select year",
     "noReleasesFoundFromSearch": "No releases found with the selected attributes.",
-    "releasesFetchErrorInfo": "Error in fetching information. Please try again later.",
+    "releasesFetchErrorInfo": "Error in loading data. Please try again later.",
     "method": {
       "title": "Method",
       "measured": "Measured",
       "calculated": "Calculated",
-      "estimated": "Estimated"
+      "estimated": "Estimated",
+      "measuredTooltip": "Emission measurement based on internationally approved or corresponding method (direct/indirect, continuous/periodic or single measurement)",
+      "calculatedTooltip": "Calculation of emissions with internationally agreed or corresponding national method (e.g. physical-chemical correlation, emission factor, mass balance)",
+      "estimatedTooltip": "Expert judgement based on e.g. earlier measurements, studies or experience"
     }
   },
   "wasteTransfers": {
-    "allOrInternationalSelectLabel": "Show",
-    "allOrInternationalAllLabel": "Show all transfers",
-    "allOrInternationalInternationalLabel": "Show only international transfers",
-    "noWasteTransfersFoundFromSearch": "No waste transfers found with the selected attributes.",
-    "wasteTransfersFetchErrorInfo": "Error in fetching information. Please try again later.",
-    "quantity": "Quantity",
-    "receiver": "Receiver",
     "classification": {
+      "HWshortTooltip": "Hazardous waste is defined in Article 3.2 of Directive 2008/98/EC.",
+      "NONHWshortTooltip": "Non-hazardous waste is defined in Article 3.2 of Directive 2008/98/EC.",
       "title": "Type of waste",
       "HW": "Hazardous waste as defined by Article 2(14) of the E-PRTR",
       "NONHW": "Non-hazardous waste",
       "HWshort": "Hazardous",
-      "NONHWshort": "Non-hazardous"
+      "NONHWshort": "Other"
     },
     "treatment": {
+      "DTooltip": "Disposal is defined in Article 3.2 of Directive 2008/98/EC.",
+      "RTooltip": "Recovery is defined in Article 3.2 of Directive 2008/98/EC.",
       "title": "Treatment",
       "D": "❌ Destined for disposal",
       "R": "♻ Destined for recovery"
-    }
+    },
+    "allOrInternationalSelectLabel": "Show",
+    "allOrInternationalAllLabel": "Show all transfers",
+    "allOrInternationalInternationalLabel": "Show only international transfers",
+    "noWasteTransfersFoundFromSearch": "No waste transfers found with the selected attributes.",
+    "wasteTransfersFetchErrorInfo": "Error in loading data. Please try again later.",
+    "quantity": "Quantity",
+    "receiver": "Receiver",
+    "searchWithPlaceName": "Find by location"
   },
   "descriptions": {
-    "Facilities": "🛈 You can search for specific facilities by using the map or table below. Narrowing down the list of facilities is possible by industry sector, municipality or the name of the facility. Cicking the name of the facility reveals information on emissions and waste transfers for the selected facility.",
-    "emissionsToAir": "🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.",
-    "emissionsToWater": "🛈 Start browsing emission information of Finnish PRTR facilities by first selecting pollutant. By using the adjacent selectors, it is possible to filter the information by year or location. For finding emissions of a specific facility, please refer to facility search.",
-    "wasteTransfers": "🛈 Browse through the data of waste transfers of PRTR facilities by using the selectors below. For finding waste transfers of a specific facility, please refer to facility search. Hazardous waste is defined by Article 2(14) of the E-PRTR."
+    "Facilities": "Search for facilities by using the map or the table. Filtering is possible by industry sector, municipality or the name of the facility. Clicking on the facility reveals more information on emissions and waste transfers for the selected facility.",
+    "emissionsToAir": "Start browsing emission data by selecting the pollutant. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.",
+    "emissionsToWater": "Start browsing emission information by selecting the pollutant. It is possible to filter the information by year or location. For finding detailed information of a specific facility, please use the facility search feature.",
+    "wasteTransfers": "\"You can browse waste transfers by year or location. Transfers of a specific facility can be found through the facility search. Hazardous waste is defined in Article 3.2 of the Directive 2008/98/EC. Non-hazardous waste is labeled as \"\"Other\"\"."
   }
 }

@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 import * as api from '../../api'
 import * as env from '../../env'
 import { Medium } from '../../api/enums/Medium'
-import { PollutantCode } from '../../api/enums/PollutantCode'
+import { PollutantCodeAir, PollutantCodeWater } from '../../api/enums/PollutantCode'
 import {
   useURLSearchParam,
   useURLSearchParamInt
@@ -21,7 +21,7 @@ const pageItemLimit = 20
 export const ReleaseSearch = (props: { medium: Medium }) => {
   const { t } = useTranslation()
 
-  const urlPollutantCode = useURLSearchParam<PollutantCode>(
+  const urlPollutantCode = useURLSearchParam<PollutantCodeAir | PollutantCodeWater>(
     URLSearchParamName.PollutantCode
   )
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)

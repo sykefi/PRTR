@@ -1,12 +1,12 @@
 import { Medium } from '../enums/Medium'
 import { MethodCode } from '../enums/MethodCode'
-import { PollutantCode } from '../enums/PollutantCode'
+import { PollutantCodeAir, PollutantCodeWater } from '../enums/PollutantCode'
 
 export interface BarePollutantRelease {
   id: string
   facilityId: string
   reportingYear: number
-  pollutantCode: PollutantCode
+  pollutantCode: PollutantCodeAir | PollutantCodeWater
   medium: Medium
   totalPollutantQuantityKg: number
   AccidentalPollutantQuantityKG: number

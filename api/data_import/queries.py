@@ -49,7 +49,8 @@ sql_facilities = (
     HAVING (
         (
             [2_ProductionFacility].countryCode='{conf.country_code}' AND
-            [2_ProductionFacility].facilityType='EPRTR'
+            [2_ProductionFacility].facilityType='EPRTR' AND
+            Max([2a_ProductionFacilityDetails].reportingYear)>={conf.first_year}
         )
     );
     '''
@@ -76,7 +77,9 @@ sql_releases = (
     )
     WHERE
     [2_ProductionFacility].countryCode='{conf.country_code}' AND
-    [2_ProductionFacility].facilityType='EPRTR';
+    [2_ProductionFacility].facilityType='EPRTR' AND
+    [2f_PollutantRelease].reportingYear>={conf.first_year} AND
+    [2f_PollutantRelease].medium in ('AIR', 'WATER')
     '''
 )
 
@@ -106,6 +109,7 @@ sql_waste_transfers = (
             [2h_OffSiteWasteTransfer].[Facility_INSPIRE_ID]
     WHERE
     [2_ProductionFacility].countryCode='{conf.country_code}' AND
-    [2_ProductionFacility].facilityType='EPRTR';
+    [2_ProductionFacility].facilityType='EPRTR' AND
+    [2h_OffSiteWasteTransfer].reportingYear>={conf.first_year}
     '''
 )
