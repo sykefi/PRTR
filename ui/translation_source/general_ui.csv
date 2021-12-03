@@ -2,7 +2,7 @@
 ;;;;;;;
 common.welcomeMessage;;;;;;;
 common.frontPage;Etusivu;Framsida;Frontpage;;;;
-common.facilitySearch;Laitoshaku;Anläggning, verksamhet, ort;Facility, activity, location;;;;
+common.facilitySearch;Laitoshaku;Anläggning, verksamhet, ort;Facilities, activity, location;;;;
 common.releasesToAir;Päästöt ilmaan;Utsläpp till luft;Releases to air;;;;
 common.releasesToWater;Päästöt veteen;Utsläpp till vatten;Releases to water;;;;
 common.wasteTransfers;Jätesiirrot;Transport av avfall;Waste transfers;;;;
