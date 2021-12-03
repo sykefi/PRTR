@@ -107,6 +107,6 @@
     "Facilities": "Search for facilities by using the map or the table. Filtering is possible by industry sector, municipality or the name of the facility. Clicking on the facility reveals more information on emissions and waste transfers for the selected facility.",
     "emissionsToAir": "Start browsing emission data by selecting the pollutant. It is possible to filter the information by year or location. Information of a specific facility can be found under the facility search.",
     "emissionsToWater": "Start browsing emission information by selecting the pollutant. It is possible to filter the information by year or location. For finding detailed information of a specific facility, please use the facility search feature.",
-    "wasteTransfers": "\"You can browse waste transfers by year or location. Transfers of a specific facility can be found through the facility search. Hazardous waste is defined in Article 3.2 of the Directive 2008/98/EC. Non-hazardous waste is labeled as \"\"Other\"\"."
+    "wasteTransfers": "You can browse waste transfers by year or location. Transfers of a specific facility can be found through the facility search. Hazardous waste is defined in Article 3.2 of the Directive 2008/98/EC. Non-hazardous waste is labeled as \"Other\"."
   }
 }
