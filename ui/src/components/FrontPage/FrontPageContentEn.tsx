@@ -4,9 +4,9 @@ export const FrontPageContentEn = () => {
       <h3>Information</h3>
       <p>
         This web site presents information on releases to air and water from
-        industrial and agricultural facilities in Finland.The information is
-        retreived from PRTR (Pollutant Release and Transfer Register) maintained
-        by the European Environment Agency.
+        industrial and agricultural facilities in Finland. The information is
+        retreived from PRTR (Pollutant Release and Transfer Register) maintained
+        by the European Environment Agency. 
       </p>
       <p>
         Disclosure of the information to the European Comission is regulated by
@@ -23,22 +23,25 @@ export const FrontPageContentEn = () => {
         At the moment the presentation includes data since the reporting year
         2017.
       </p>
-
-      <li>
-        <b>Releases to air</b> returns air emissions from PRTR facilities in
-        table format.
-      </li>
-      <li>
-        <b>Releases to water</b> returns releases to waterbodies.
-      </li>
-      <li>
-        <b>Waste transfers</b> returns both domestic and transboundary waste
-        transfers.
-      </li>
+      <p>You can search information using the following functions:</p>
       <p>
-        Please read through the terms of  service before using
-        the service.
+        <li>
+          <b>Facilities</b> returns information by facilities, activities or
+          location. 
+        </li>
+        <li>
+          <b>Releases to air</b> returns air emissions from PRTR facilities in
+          table format. 
+        </li>
+        <li>
+          <b>Releases to water</b> returns releases to waterbodies. 
+        </li>
+        <li>
+          <b>Waste transfers</b> returns both domestic and transboundary waste
+          transfers. 
+        </li>
       </p>
+      <p>Please read through the terms of service before using the service.</p>
     </>
   )
 }
