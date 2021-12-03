@@ -117,27 +117,19 @@ export const AdditionalInfoPageContentEn = () => {
       </p>
       <p>
         <a
-          href="https://www.ymparisto.fi/download/noname/%7B0847765D-10DE-4950-AC2F-2A003AA4B313%7D/94695"
+          href="https://unece.org/DAM/env/pp/documents/cep43e.pdf"
           target="blank">
-          Århusin sopimus
+          Aarhus Convention
         </a>
         &nbsp;(pdf 50 kt)
       </p>
       <p>
         <a
-          href="https://www.ymparisto.fi/download/noname/%7B9A379A5B-0B85-4A6E-91CD-F38869954776%7D/94696"
+          href="https://ec.europa.eu/environment/industry/stationary/e-prtr/pdf/en_prtr.pdf"
           target="blank">
-          Neuvoston päätös PRTR-osa1
+          Commission Decision PRTR
         </a>
-        .pdf (pdf 115 kt)
-      </p>
-      <p>
-        <a
-          href="https://www.ymparisto.fi/download/noname/%7B6CE60DFD-356D-4A5F-87C5-3FB3D445269A%7D/94697"
-          target="blank">
-          Neuvoston päätös PRTR-osa2
-        </a>
-        .pdf (pdf 280 kt)
+        &nbsp;(pdf 115 kt)
       </p>
       <h2>Information of the service</h2>
       <p>
