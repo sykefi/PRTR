@@ -19,6 +19,15 @@ const legendItems: FacilityTopMainActivity[] = [
   FacilityTopMainActivity.OTHER
 ]
 
+const LivestockLegend = () => {
+  const { t } = useTranslation()
+  return (
+    <Box marginLeft={2}>
+      {t('facilities.legend.intensiveLivestockProduction')}
+    </Box>
+  )
+}
+
 const LegendClassRow = ({
   topMainActivity
 }: {
@@ -36,7 +45,11 @@ const LegendClassRow = ({
         backgroundColor={fillColorByTopMainActivity[topMainActivity]}>
         {symbolByTopMainActivity[topMainActivity]}
       </Circle>
-      <Box marginLeft={2}>{t(topMainActivity)}</Box>
+      {topMainActivity === FacilityTopMainActivity.LIVESTOCK ? (
+        <LivestockLegend />
+      ) : (
+        <Box marginLeft={2}>{t(topMainActivity)}</Box>
+      )}
     </Flex>
   )
 }
