@@ -147,12 +147,12 @@ export const AdditionalInfoPageContentSv = () => {
         skickas till <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.
       </p>
       <p>
-        <a href="Användningsvillkor.pdf" target="blank">
+        <a href="Käyttöehdot.pdf" target="blank">
           Användningsvillkor
         </a>
       </p>
       <p>
-        <a href="Service proxy.pdf" target="blank">
+        <a href="Palveluseloste.pdf" target="blank">
           Service proxy
         </a>
       </p>
