@@ -41,7 +41,13 @@ export const FrontPageContentEn = () => {
           transfers. 
         </li>
       </p>
-      <p>Please read through the terms of service before using the service.</p>
+      <p>
+        Please read through{' '}
+        <a href="Käyttöehdot.pdf" target="blank">
+          the terms of service
+        </a>{' '}
+        before using the service.
+      </p>
     </>
   )
 }
