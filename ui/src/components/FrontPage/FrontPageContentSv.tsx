@@ -45,7 +45,7 @@ export const FrontPageContentSv = () => {
         </li>
       </p>
       <p>
-        Vänligen läs användarvillkor  innan du använder tjänsten.
+        Vänligen läs <a href="Käyttöehdot.pdf" target="blank">användarvillkor</a> innan du använder tjänsten.
       </p>
     </>
   )

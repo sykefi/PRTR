@@ -50,7 +50,11 @@ export const FrontPageContentFi = () => {
         </li>
       </p>
       <p>
-        Ennen käyttöä, luethan palvelun käyttöehdot.
+        Ennen käyttöä, luethan palvelun{' '}
+        <a href="Käyttöehdot.pdf" target="blank">
+          käyttöehdot
+        </a>
+        .
       </p>
     </>
   )
