@@ -4,6 +4,7 @@ export enum FacilityMainActivityCode {
   ONE_C = '1(c)',
   TWO_B = '2(b)',
   TWO_C = '2(c)',
+  TWO_C_I = '2(c)(i)',
   TWO_C_III = '2(c)(iii)',
   TWO_D = '2(d)',
   TWO_E = '2(e)',
