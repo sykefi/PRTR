@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
@@ -27,6 +28,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
   const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
+  const [sortKey, setsortKey] = useState('id')
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
     [
@@ -35,7 +37,8 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
       urlPollutantCode,
       urlFirstItemIdx,
       urlYear,
-      urlPlacename
+      urlPlacename,
+      sortKey
     ],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
@@ -45,13 +48,19 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
         reporting_year: urlYear,
         placename: urlPlacename,
         skip: urlFirstItemIdx,
-        limit: pageItemLimit
+        limit: pageItemLimit,
+        sort_key: sortKey
       })
     },
     { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
   )
   const loading = isLoading || isFetching
   const hasReleases = !!data && data.data.length > 0
+  
+  const updateSortKey = (newSortKey: string) => {
+    setsortKey(newSortKey)
+    console.log(newSortKey)  
+  }
 
   return (
     <>
@@ -99,7 +108,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
               </Box>
             )}
             {(loading || (isSuccess && hasReleases)) && (
-              <ReleaseTable loading={loading} releases={data?.data || []} />
+              <ReleaseTable loading={loading} releases={data?.data || []} updateSortKey={updateSortKey} />
             )}
           </>
         )}

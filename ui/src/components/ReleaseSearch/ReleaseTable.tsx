@@ -1,4 +1,5 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
+import { Button, ButtonGroup } from '@chakra-ui/button'
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
@@ -14,10 +15,12 @@ import { getPollutantLabel } from '../../utils'
 
 export const ReleaseTable = ({
   loading,
-  releases
+  releases,
+  updateSortKey
 }: {
   loading: boolean
   releases: PollutantRelease[]
+  updateSortKey: (newSortKey: string) => void
 }) => {
   const location = useLocation()
   const { t } = useTranslation([
@@ -26,7 +29,7 @@ export const ReleaseTable = ({
     'pollutantAbbreviation',
     'pollutantCasNumber'
   ])
-
+  
   return (
     <Box
       data-cy="releases-table"
@@ -51,12 +54,15 @@ export const ReleaseTable = ({
           <Tr>
             <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
               {t('translation:common.year')}
+              <Button onClick={() => updateSortKey("year")}>^</Button>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.quantity')} (kg)
+              <Button onClick={() => updateSortKey("quantity")}>^</Button>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.pollutant')}
+              <Button onClick={() => updateSortKey("pollutant")}>^</Button>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:common.facility')}

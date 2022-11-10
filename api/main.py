@@ -107,6 +107,7 @@ def read_pollutant_releases(
     medium: Medium = None,
     pollutant_code: PollutantCode = None,
     placename: str = None,
+    sort_key: str = None
 ):
     return prtr_data.get_releases(
         facility_id,
@@ -115,7 +116,8 @@ def read_pollutant_releases(
         reporting_year,
         medium,
         pollutant_code,
-        placename
+        placename,
+        sort_key
     )
 
 
