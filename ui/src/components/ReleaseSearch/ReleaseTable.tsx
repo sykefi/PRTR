@@ -1,5 +1,6 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
-import { Button, ButtonGroup } from '@chakra-ui/button'
+import { IconButton } from '@chakra-ui/react'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
@@ -16,11 +17,13 @@ import { getPollutantLabel } from '../../utils'
 export const ReleaseTable = ({
   loading,
   releases,
+  sort,
   updateSortKey
 }: {
   loading: boolean
   releases: PollutantRelease[]
-  updateSortKey: (newSortKey: string) => void
+  sort: {sortKey: string; descending: boolean}
+  updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const location = useLocation()
   const { t } = useTranslation([
@@ -29,11 +32,11 @@ export const ReleaseTable = ({
     'pollutantAbbreviation',
     'pollutantCasNumber'
   ])
-  
+
   return (
     <Box
       data-cy="releases-table"
-      width={750}
+      width={900}
       minWidth={250}
       maxWidth="100%"
       height="max-content"
@@ -53,22 +56,53 @@ export const ReleaseTable = ({
         <Thead>
           <Tr>
             <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
-              {t('translation:common.year')}
-              <Button onClick={() => updateSortKey("year")}>^</Button>
+              {t('translation:common.year')} 
+              <IconButton 
+              onClick={() => updateSortKey("year", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "year" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "year" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>} />
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.quantity')} (kg)
-              <Button onClick={() => updateSortKey("quantity")}>^</Button>
+              <IconButton 
+              onClick={() => updateSortKey("quantity", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "quantity" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "quantity" ? "blue" : "gray"}
+              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.pollutant')}
-              <Button onClick={() => updateSortKey("pollutant")}>^</Button>
+              <IconButton 
+              onClick={() => updateSortKey("pollutant", sort.descending)} 
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "pollutant" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "pollutant" ? "blue" : "gray"}
+              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:common.facility')}
+              <IconButton onClick={() => updateSortKey("facility", sort.descending)} 
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "facility" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "facility" ? "blue" : "gray"}
+              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.method.title')}
+              <IconButton 
+              onClick={() => updateSortKey("method", sort.descending)} 
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "method" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "method" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
             </Th>
           </Tr>
         </Thead>

@@ -28,7 +28,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
   const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
-  const [sortKey, setsortKey] = useState('id')
+  const [sort, setSort] = useState<{sortKey: string; descending: boolean}>({sortKey: "", descending: false})
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
     [
@@ -38,7 +38,8 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
       urlFirstItemIdx,
       urlYear,
       urlPlacename,
-      sortKey
+      sort.sortKey,
+      sort.descending
     ],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
@@ -49,7 +50,8 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
         placename: urlPlacename,
         skip: urlFirstItemIdx,
         limit: pageItemLimit,
-        sort_key: sortKey
+        sort_key: sort.sortKey,
+        descending: sort.descending
       })
     },
     { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
@@ -57,9 +59,10 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   const loading = isLoading || isFetching
   const hasReleases = !!data && data.data.length > 0
   
-  const updateSortKey = (newSortKey: string) => {
-    setsortKey(newSortKey)
-    console.log(newSortKey)  
+  const updateSortKey = (newSortKey: string, newDescending: boolean) => {
+    newDescending = !newDescending
+    setSort({sortKey: newSortKey, descending: newDescending})
+    console.log(newSortKey, newDescending)  
   }
 
   return (
@@ -108,7 +111,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
               </Box>
             )}
             {(loading || (isSuccess && hasReleases)) && (
-              <ReleaseTable loading={loading} releases={data?.data || []} updateSortKey={updateSortKey} />
+              <ReleaseTable loading={loading} releases={data?.data || []} updateSortKey={updateSortKey} sort={sort} />
             )}
           </>
         )}

@@ -122,18 +122,24 @@ def get_releases(
     medium: Union[Medium, None],
     pollutant_code: Union[PollutantCode, None],
     placename: Union[str, None],
-    sort_key: Union[str, None]
+    sort_key: Union[str, None],
+    descending: bool
 ) -> PRTRListResponse[PollutantRelease]:
     if sort_key is None:
         sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
     elif sort_key == "year":
-        sort_key = lambda r: -r.reportingYear
+        sort_key = lambda r: r.reportingYear
     elif sort_key == "quantity":
-        sort_key = lambda r: -r.totalPollutantQuantityKg
+        sort_key = lambda r: r.totalPollutantQuantityKg
     elif sort_key == "pollutant":
         sort_key = lambda r: r.pollutantCode
+    elif sort_key == "facility":
+        sort_key = lambda r: r.nameOfFeature
+    elif sort_key == "method":
+        sort_key = lambda r: r.methodCode
     else:
         sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+
     match = sorted([
             r for r in _releases
             if (
@@ -144,7 +150,8 @@ def get_releases(
                 (not placename or r.city == placename)
             )
         ],
-        key=sort_key
+        key=sort_key,
+        reverse=descending
     )
     print(match[0])
     return PRTRListResponse(

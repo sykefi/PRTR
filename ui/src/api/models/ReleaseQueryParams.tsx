@@ -10,4 +10,5 @@ export interface ReleaseQueryParams {
   pollutant_code?: PollutantCodeAir | PollutantCodeWater
   placename?: string
   sort_key?: string
+  descending?: boolean
 }
