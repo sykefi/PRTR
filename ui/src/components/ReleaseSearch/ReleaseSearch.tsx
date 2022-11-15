@@ -58,7 +58,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   )
   const loading = isLoading || isFetching
   const hasReleases = !!data && data.data.length > 0
-  
+
   const updateSortKey = (newSortKey: string, newDescending: boolean) => {
     newDescending = !newDescending
     setSort({sortKey: newSortKey, descending: newDescending})
@@ -80,6 +80,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
           urlPollutantCode={urlPollutantCode}
           urlYear={urlYear}
           urlPlacename={urlPlacename}
+          updateSortKey={updateSortKey}
         />
       </BelowNavigationHeaderPanel>
       <Flex

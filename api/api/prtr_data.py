@@ -153,7 +153,6 @@ def get_releases(
         key=sort_key,
         reverse=descending
     )
-    print(match[0])
     return PRTRListResponse(
         data=match[skip:skip + limit],
         count=len(match),
