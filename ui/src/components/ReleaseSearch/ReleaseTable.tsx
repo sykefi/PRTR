@@ -36,7 +36,7 @@ export const ReleaseTable = ({
   return (
     <Box
       data-cy="releases-table"
-      width={900}
+      width={920}
       minWidth={250}
       maxWidth="100%"
       height="max-content"
@@ -63,7 +63,8 @@ export const ReleaseTable = ({
               size='xs'
               variant={sort.sortKey === "year" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "year" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>} />
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.quantity')} (kg)
@@ -73,7 +74,8 @@ export const ReleaseTable = ({
               size='xs'
               variant={sort.sortKey === "quantity" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "quantity" ? "blue" : "gray"}
-              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
+              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px'/>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.pollutant')}
@@ -83,7 +85,8 @@ export const ReleaseTable = ({
               size='xs'
               variant={sort.sortKey === "pollutant" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "pollutant" ? "blue" : "gray"}
-              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
+              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px'/>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:common.facility')}
@@ -92,7 +95,8 @@ export const ReleaseTable = ({
               size='xs'
               variant={sort.sortKey === "facility" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "facility" ? "blue" : "gray"}
-              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
+              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px'/>
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.method.title')}
@@ -102,7 +106,8 @@ export const ReleaseTable = ({
               size='xs'
               variant={sort.sortKey === "method" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "method" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}/>
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px'/>
             </Th>
           </Tr>
         </Thead>
