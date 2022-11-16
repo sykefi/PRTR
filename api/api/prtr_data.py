@@ -126,7 +126,7 @@ def get_releases(
     descending: bool
 ) -> PRTRListResponse[PollutantRelease]:
     if sort_key is None:
-        sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+        sort_key = lambda r: r.pollutantCode
     elif sort_key == "year":
         sort_key = lambda r: r.reportingYear
     elif sort_key == "quantity":
@@ -138,7 +138,7 @@ def get_releases(
     elif sort_key == "method":
         sort_key = lambda r: r.methodCode
     else:
-        sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+        sort_key = lambda r: r.pollutantCode
 
     match = sorted([
             r for r in _releases

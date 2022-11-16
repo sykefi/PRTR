@@ -160,7 +160,7 @@ export const ReleaseFilterPanel = (props: {
           />
         </Flex>
         <Button
-          onClick={() => props.updateSortKey("", false)}
+          onClick={() => props.updateSortKey("", true)}
           data-cy="filter-releases-btn"
           type="submit"
           disabled={!searchInputsChanged}
