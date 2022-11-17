@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
@@ -27,9 +28,10 @@ export const WasteTransferSearch = () => {
     useURLSearchParam<AllOrInternationalFilter>(
       URLSearchParamName.AllOrInternational
     ) || AllOrInternationalFilter.ALL
+  const [sort, setSort] = useState<{sortKey: string; descending: boolean}>({sortKey: "", descending: false})
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['wasteTransfers', urlFirstItemIdx, urlYear, urlPlacename, urlAllOrInternational],
+    ['wasteTransfers', urlFirstItemIdx, urlYear, urlPlacename, urlAllOrInternational, sort.sortKey, sort.descending],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getWasteTransfers({
@@ -37,13 +39,21 @@ export const WasteTransferSearch = () => {
         skip: urlFirstItemIdx,
         limit: pageItemLimit,
         placename: urlPlacename,
-        all_or_international_filter: urlAllOrInternational
+        all_or_international_filter: urlAllOrInternational,
+        sort_key: sort.sortKey,
+        descending: sort.descending
       })
     },
     { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
   )
   const loading = isLoading || isFetching
   const hasWasteTransfers = !!data && data.data.length > 0
+
+  const updateSortKey = (newSortKey: string, newDescending: boolean) => {
+    newDescending = !newDescending
+    setSort({sortKey: newSortKey, descending: newDescending})
+    console.log(newSortKey, newDescending)  
+  }
 
   return (
     <>
@@ -87,6 +97,8 @@ export const WasteTransferSearch = () => {
               <WasteTransferTable
                 loading={loading}
                 wasteTransfers={data?.data || []}
+                updateSortKey={updateSortKey}
+                sort={sort}
               />
             )}
           </>

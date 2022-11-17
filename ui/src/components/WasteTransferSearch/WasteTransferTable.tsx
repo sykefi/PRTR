@@ -1,6 +1,8 @@
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
+import { IconButton } from '@chakra-ui/react'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { Tooltip } from '@chakra-ui/tooltip'
@@ -14,10 +16,14 @@ import { getReceiverLabel } from '../../utils'
 
 export const WasteTransferTable = ({
   loading,
-  wasteTransfers
+  wasteTransfers,
+  sort,
+  updateSortKey
 }: {
   loading: boolean
   wasteTransfers: WasteTransfer[]
+  sort: {sortKey: string; descending: boolean}
+  updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const location = useLocation()
   const { t } = useTranslation()
@@ -49,24 +55,80 @@ export const WasteTransferTable = ({
           <Tr>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
               {t('common.facility')}
+              <IconButton 
+              onClick={() => updateSortKey("facility", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "facility" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "facility" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
               {t('common.placename')}
+              <IconButton 
+              onClick={() => updateSortKey("place", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "place" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "place" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
               {t('wasteTransfers.classification.title')}
+              <IconButton 
+              onClick={() => updateSortKey("classification", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "classification" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "classification" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
               {t('common.year')}
+              <IconButton 
+              onClick={() => updateSortKey("year", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "year" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "year" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
               {t('wasteTransfers.quantity')} (t)
+              <IconButton 
+              onClick={() => updateSortKey("quantity", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "quantity" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "quantity" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
               {t('wasteTransfers.treatment.title')}
+              <IconButton 
+              onClick={() => updateSortKey("treatment", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "treatment" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "treatment" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={5} color="gray.800" fontSize="smaller">
               {t('wasteTransfers.receiver')}
+              <IconButton 
+              onClick={() => updateSortKey("receiver", sort.descending)}
+              aria-label='Toggle between ascending and descending order'
+              size='xs'
+              variant={sort.sortKey === "receiver" ? "solid" : "outline"}
+              colorScheme={sort.sortKey === "receiver" ? "blue" : "gray"}
+              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              marginLeft='4px' />
             </Th>
           </Tr>
         </Thead>
