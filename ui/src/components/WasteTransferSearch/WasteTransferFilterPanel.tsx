@@ -36,6 +36,7 @@ export const WasteTransferFilterPanel = (props: {
   urlYear: number | undefined
   urlAllOrInternational: AllOrInternationalFilter
   urlPlacename: string | undefined
+  updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const { t } = useTranslation()
   const history = useHistory()
@@ -136,6 +137,7 @@ export const WasteTransferFilterPanel = (props: {
           />
         </Flex>
         <Button
+          onClick={() => props.updateSortKey("", true)}
           data-cy="filter-waste-transfers-btn"
           type="submit"
           width="max-content"

@@ -63,6 +63,7 @@ export const WasteTransferSearch = () => {
           urlYear={urlYear}
           urlAllOrInternational={urlAllOrInternational}
           urlPlacename={urlPlacename}
+          updateSortKey={updateSortKey}
         />
       </BelowNavigationHeaderPanel>
       <Flex
