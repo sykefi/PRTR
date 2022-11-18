@@ -52,7 +52,6 @@ export const WasteTransferSearch = () => {
   const updateSortKey = (newSortKey: string, newDescending: boolean) => {
     newDescending = !newDescending
     setSort({sortKey: newSortKey, descending: newDescending})
-    console.log(newSortKey, newDescending)  
   }
 
   return (
