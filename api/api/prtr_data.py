@@ -118,7 +118,7 @@ def get_releases(
     facility_id: Union[str, None],
     skip: int,
     limit: int,
-    reporting_year: Union[int, None],
+    reporting_year: Union[List[int], None],
     medium: Union[Medium, None],
     pollutant_code: Union[PollutantCode, None],
     placename: Union[str, None]
@@ -127,14 +127,15 @@ def get_releases(
         sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
     else:
         sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
+    print(reporting_year)
     match = sorted([
             r for r in _releases
             if (
                 (not facility_id or r.facilityId == facility_id) and
-                (not reporting_year or r.reportingYear == reporting_year) and
+                (not reporting_year or r.reportingYear in reporting_year) and
                 (not medium or r.medium == medium) and
-                (not pollutant_code or r.pollutantCode == pollutant_code) and
-                (not placename or r.city == placename)
+                (not pollutant_code or r.pollutantCode in pollutant_code) and
+                (not placename or r.city in placename)
             )
         ],
         key=sort_key

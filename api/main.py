@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Optional, Union, List
 from fastapi.params import Query
 from models.enums import (
     MainActivityCode, Medium, PollutantCode,
@@ -103,10 +103,10 @@ def read_pollutant_releases(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10,
-    reporting_year: int = None,
+    reporting_year: Union[List[int], None] = Query(default=None),
     medium: Medium = None,
-    pollutant_code: PollutantCode = None,
-    placename: str = None,
+    pollutant_code: Union[List[PollutantCode], None] = Query(default=None),
+    placename: Union[List[str], None] = Query(default=None),
 ):
     return prtr_data.get_releases(
         facility_id,
