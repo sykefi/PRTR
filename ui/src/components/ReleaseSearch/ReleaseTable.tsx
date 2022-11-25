@@ -1,11 +1,12 @@
 import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/table'
 import { IconButton } from '@chakra-ui/react'
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import { useLocation } from 'react-router-dom'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { Tooltip } from '@chakra-ui/react'
+import styled from 'styled-components'
 import { PollutantRelease } from '../../api/models/PollutantRelease'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import {
@@ -13,6 +14,34 @@ import {
   translationKeyByMethodCode
 } from '../../constants'
 import { getPollutantLabel } from '../../utils'
+
+const SortIconStack = styled.span`
+  display: grid;
+  svg {
+    grid-area: 0.5 / 0.5;
+  }
+`
+
+const ColumnHeaderIcon = ({
+  sort,
+  columnKey
+}: {
+  sort: { sortKey: string; descending: boolean }
+  columnKey: string
+}) => {
+  return (
+    <>
+      {sort.sortKey === columnKey && sort.descending && <FaAngleDown />}
+      {sort.sortKey === columnKey && !sort.descending && <FaAngleUp />}
+      {sort.sortKey !== columnKey && (
+        <SortIconStack>
+          <FaAngleUp />
+          <FaAngleDown />
+        </SortIconStack>
+      )}
+    </>
+  )
+}
 
 export const ReleaseTable = ({
   loading,
@@ -22,7 +51,7 @@ export const ReleaseTable = ({
 }: {
   loading: boolean
   releases: PollutantRelease[]
-  sort: {sortKey: string; descending: boolean}
+  sort: { sortKey: string; descending: boolean }
   updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const location = useLocation()
@@ -56,58 +85,64 @@ export const ReleaseTable = ({
         <Thead>
           <Tr>
             <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
-              {t('translation:common.year')} 
-              <IconButton 
-              onClick={() => updateSortKey("year", sort.descending)}
-              aria-label='Toggle between ascending and descending order'
-              size='xs'
-              variant={sort.sortKey === "year" ? "solid" : "outline"}
-              colorScheme={sort.sortKey === "year" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
-              marginLeft='4px' />
+              {t('translation:common.year')}
+              <IconButton
+                onClick={() => updateSortKey('year', sort.descending)}
+                aria-label="Toggle between ascending and descending order"
+                size="xs"
+                variant={sort.sortKey === 'year' ? 'solid' : 'outline'}
+                colorScheme={sort.sortKey === 'year' ? 'blue' : 'gray'}
+                icon={<ColumnHeaderIcon sort={sort} columnKey="year" />}
+                marginLeft="4px"
+              />
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.quantity')} (kg)
-              <IconButton 
-              onClick={() => updateSortKey("quantity", sort.descending)}
-              aria-label='Toggle between ascending and descending order'
-              size='xs'
-              variant={sort.sortKey === "quantity" ? "solid" : "outline"}
-              colorScheme={sort.sortKey === "quantity" ? "blue" : "gray"}
-              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
-              marginLeft='4px'/>
+              <IconButton
+                onClick={() => updateSortKey('quantity', sort.descending)}
+                aria-label="Toggle between ascending and descending order"
+                size="xs"
+                variant={sort.sortKey === 'quantity' ? 'solid' : 'outline'}
+                colorScheme={sort.sortKey === 'quantity' ? 'blue' : 'gray'}
+                icon={<ColumnHeaderIcon sort={sort} columnKey="quantity" />}
+                marginLeft="4px"
+              />
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.pollutant')}
-              <IconButton 
-              onClick={() => updateSortKey("pollutant", sort.descending)} 
-              aria-label='Toggle between ascending and descending order'
-              size='xs'
-              variant={sort.sortKey === "pollutant" ? "solid" : "outline"}
-              colorScheme={sort.sortKey === "pollutant" ? "blue" : "gray"}
-              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
-              marginLeft='4px'/>
+              <IconButton
+                onClick={() => updateSortKey('pollutant', sort.descending)}
+                aria-label="Toggle between ascending and descending order"
+                size="xs"
+                variant={sort.sortKey === 'pollutant' ? 'solid' : 'outline'}
+                colorScheme={sort.sortKey === 'pollutant' ? 'blue' : 'gray'}
+                icon={<ColumnHeaderIcon sort={sort} columnKey="pollutant" />}
+                marginLeft="4px"
+              />
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:common.facility')}
-              <IconButton onClick={() => updateSortKey("facility", sort.descending)} 
-              aria-label='Toggle between ascending and descending order'
-              size='xs'
-              variant={sort.sortKey === "facility" ? "solid" : "outline"}
-              colorScheme={sort.sortKey === "facility" ? "blue" : "gray"}
-              icon = {sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
-              marginLeft='4px'/>
+              <IconButton
+                onClick={() => updateSortKey('facility', sort.descending)}
+                aria-label="Toggle between ascending and descending order"
+                size="xs"
+                variant={sort.sortKey === 'facility' ? 'solid' : 'outline'}
+                colorScheme={sort.sortKey === 'facility' ? 'blue' : 'gray'}
+                icon={<ColumnHeaderIcon sort={sort} columnKey="facility" />}
+                marginLeft="4px"
+              />
             </Th>
             <Th p={1} color="gray.800" fontSize="smaller">
               {t('translation:releases.method.title')}
-              <IconButton 
-              onClick={() => updateSortKey("method", sort.descending)} 
-              aria-label='Toggle between ascending and descending order'
-              size='xs'
-              variant={sort.sortKey === "method" ? "solid" : "outline"}
-              colorScheme={sort.sortKey === "method" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
-              marginLeft='4px'/>
+              <IconButton
+                onClick={() => updateSortKey('method', sort.descending)}
+                aria-label="Toggle between ascending and descending order"
+                size="xs"
+                variant={sort.sortKey === 'method' ? 'solid' : 'outline'}
+                colorScheme={sort.sortKey === 'method' ? 'blue' : 'gray'}
+                icon={<ColumnHeaderIcon sort={sort} columnKey="method" />}
+                marginLeft="4px"
+              />
             </Th>
           </Tr>
         </Thead>
