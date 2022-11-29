@@ -26,7 +26,7 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
   isLoading?: boolean
   options: OptionType<TOptionValue>[]
   value: OptionType<TOptionValue> | null
-  handleChange: (v: TOptionValue | undefined) => void
+  handleChange: (v: TOptionValue[] | undefined) => void
 }) => {
   return (
     <Box width={width} minWidth={minWidth}>
@@ -34,12 +34,13 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
       <ChakraSelect
         isClearable={isClearable}
         closeMenuOnSelect
+        isMulti
         name={name}
         placeholder={placeholder}
         isLoading={isLoading}
         options={options}
         value={value}
-        onChange={e => handleChange(e?.value)}
+        onChange={e => handleChange(e.map(elem => elem.value))}
       />
     </Box>
   )

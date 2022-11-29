@@ -7,7 +7,9 @@ import { Medium } from '../../api/enums/Medium'
 import { PollutantCodeAir, PollutantCodeWater } from '../../api/enums/PollutantCode'
 import {
   useURLSearchParam,
-  useURLSearchParamInt
+  useURLSearchParamArray,
+  useURLSearchParamInt,
+  useURLSearchParamIntArray
 } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { SearchInfo } from '../Common/SearchInfo'
@@ -21,12 +23,12 @@ const pageItemLimit = 20
 export const ReleaseSearch = (props: { medium: Medium }) => {
   const { t } = useTranslation()
 
-  const urlPollutantCode = useURLSearchParam<PollutantCodeAir | PollutantCodeWater>(
+  const urlPollutantCode = useURLSearchParamArray<PollutantCodeAir | PollutantCodeWater>(
     URLSearchParamName.PollutantCode
   )
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
-  const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
-  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
+  const urlYear = useURLSearchParamIntArray(URLSearchParamName.Year)
+  const urlPlacename = useURLSearchParamArray(URLSearchParamName.Placename)
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
     [
