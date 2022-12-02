@@ -6,6 +6,7 @@ import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Badge, Box, Flex, Link } from '@chakra-ui/layout'
 import { Tooltip } from '@chakra-ui/tooltip'
+import styled from 'styled-components'
 import { WasteTransfer } from '../../api/models/WasteTransfer'
 import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import {
@@ -13,6 +14,34 @@ import {
   colorSchemeByWasteTreatment
 } from '../../constants'
 import { getReceiverLabel } from '../../utils'
+
+const SortIconStack = styled.span`
+  display: grid;
+  svg {
+    grid-area: 0.5 / 0.5;
+  }
+`
+
+const ColumnHeaderIcon = ({
+  sort,
+  columnKey
+}: {
+  sort: { sortKey: string; descending: boolean }
+  columnKey: string
+}) => {
+  return (
+    <>
+      {sort.sortKey === columnKey && sort.descending && <FaAngleDown />}
+      {sort.sortKey === columnKey && !sort.descending && <FaAngleUp />}
+      {sort.sortKey !== columnKey && (
+        <SortIconStack>
+          <FaAngleUp />
+          <FaAngleDown />
+        </SortIconStack>
+      )}
+    </>
+  )
+}
 
 export const WasteTransferTable = ({
   loading,
@@ -61,7 +90,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "facility" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "facility" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="facility" />}
               marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
@@ -72,7 +101,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "place" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "place" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="place" />}
               marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
@@ -83,7 +112,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "classification" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "classification" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="classification" />}
               marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
@@ -94,7 +123,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "year" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "year" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="year" />}
               marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
@@ -105,7 +134,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "quantity" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "quantity" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="quantity" />}
               marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
@@ -116,7 +145,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "treatment" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "treatment" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="treatment" />}
               marginLeft='4px' />
             </Th>
             <Th p={1} paddingRight={5} color="gray.800" fontSize="smaller">
@@ -127,7 +156,7 @@ export const WasteTransferTable = ({
               size='xs'
               variant={sort.sortKey === "receiver" ? "solid" : "outline"}
               colorScheme={sort.sortKey === "receiver" ? "blue" : "gray"}
-              icon={sort.descending ? <FaAngleDown/> : <FaAngleUp/>}
+              icon={<ColumnHeaderIcon sort={sort} columnKey="receiver" />}
               marginLeft='4px' />
             </Th>
           </Tr>
