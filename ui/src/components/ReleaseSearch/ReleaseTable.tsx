@@ -84,7 +84,7 @@ export const ReleaseTable = ({
       <Table variant="simple" marginY={4} boxSizing="border-box">
         <Thead>
           <Tr>
-            <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={3} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('translation:common.year')}
               <IconButton
                 onClick={() => updateSortKey('year', sort.descending)}
@@ -96,7 +96,7 @@ export const ReleaseTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} color="gray.800" fontSize="smaller">
+            <Th p={1} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('translation:releases.quantity')} (kg)
               <IconButton
                 onClick={() => updateSortKey('quantity', sort.descending)}
@@ -108,7 +108,7 @@ export const ReleaseTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} color="gray.800" fontSize="smaller">
+            <Th p={1} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('translation:releases.pollutant')}
               <IconButton
                 onClick={() => updateSortKey('pollutant', sort.descending)}
@@ -120,7 +120,7 @@ export const ReleaseTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} color="gray.800" fontSize="smaller">
+            <Th p={1} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('translation:common.facility')}
               <IconButton
                 onClick={() => updateSortKey('facility', sort.descending)}
@@ -132,7 +132,7 @@ export const ReleaseTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} color="gray.800" fontSize="smaller">
+            <Th p={1} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('translation:releases.method.title')}
               <IconButton
                 onClick={() => updateSortKey('method', sort.descending)}

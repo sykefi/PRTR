@@ -60,7 +60,7 @@ export const WasteTransferTable = ({
   return (
     <Box
       data-cy="waste-transfer-table"
-      width={920}
+      width={1250}
       minWidth={250}
       maxWidth="100%"
       height="max-content"
@@ -82,7 +82,7 @@ export const WasteTransferTable = ({
       <Table variant="simple" marginY={4} boxSizing="border-box">
         <Thead>
           <Tr>
-            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('common.facility')}
               <IconButton
                 onClick={() => updateSortKey('facility', sort.descending)}
@@ -94,7 +94,7 @@ export const WasteTransferTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('common.placename')}
               <IconButton
                 onClick={() => updateSortKey('place', sort.descending)}
@@ -106,7 +106,7 @@ export const WasteTransferTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('wasteTransfers.classification.title')}
               <IconButton
                 onClick={() => updateSortKey('classification', sort.descending)}
@@ -124,7 +124,7 @@ export const WasteTransferTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('common.year')}
               <IconButton
                 onClick={() => updateSortKey('year', sort.descending)}
@@ -136,7 +136,7 @@ export const WasteTransferTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('wasteTransfers.quantity')} (t)
               <IconButton
                 onClick={() => updateSortKey('quantity', sort.descending)}
@@ -148,7 +148,7 @@ export const WasteTransferTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={1.5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('wasteTransfers.treatment.title')}
               <IconButton
                 onClick={() => updateSortKey('treatment', sort.descending)}
@@ -160,7 +160,7 @@ export const WasteTransferTable = ({
                 marginLeft="4px"
               />
             </Th>
-            <Th p={1} paddingRight={5} color="gray.800" fontSize="smaller">
+            <Th p={1} paddingRight={5} color="gray.800" fontSize="smaller" whiteSpace="nowrap">
               {t('wasteTransfers.receiver')}
               <IconButton
                 onClick={() => updateSortKey('receiver', sort.descending)}
