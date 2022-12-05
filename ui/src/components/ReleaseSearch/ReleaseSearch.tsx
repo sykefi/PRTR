@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
@@ -27,6 +28,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
   const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
+  const [sort, setSort] = useState<{sortKey: string; descending: boolean}>({sortKey: "", descending: false})
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
     [
@@ -35,7 +37,9 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
       urlPollutantCode,
       urlFirstItemIdx,
       urlYear,
-      urlPlacename
+      urlPlacename,
+      sort.sortKey,
+      sort.descending
     ],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
@@ -45,13 +49,20 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
         reporting_year: urlYear,
         placename: urlPlacename,
         skip: urlFirstItemIdx,
-        limit: pageItemLimit
+        limit: pageItemLimit,
+        sort_key: sort.sortKey,
+        descending: sort.descending
       })
     },
     { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
   )
   const loading = isLoading || isFetching
   const hasReleases = !!data && data.data.length > 0
+
+  const updateSortKey = (newSortKey: string, newDescending: boolean) => {
+    newDescending = !newDescending
+    setSort({sortKey: newSortKey, descending: newDescending})
+  }
 
   return (
     <>
@@ -68,6 +79,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
           urlPollutantCode={urlPollutantCode}
           urlYear={urlYear}
           urlPlacename={urlPlacename}
+          updateSortKey={updateSortKey}
         />
       </BelowNavigationHeaderPanel>
       <Flex
@@ -99,7 +111,7 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
               </Box>
             )}
             {(loading || (isSuccess && hasReleases)) && (
-              <ReleaseTable loading={loading} releases={data?.data || []} />
+              <ReleaseTable loading={loading} releases={data?.data || []} updateSortKey={updateSortKey} sort={sort} />
             )}
           </>
         )}
