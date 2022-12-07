@@ -67,11 +67,8 @@ export const FacilityFilterPanel = ({
 }: {
   searchHasBeenMade: boolean
   urlSearchTerm: string | undefined
-  urlPlacename: string | undefined
-  urlFacilityMainActivity:
-    | FacilityMainActivityCode
-    | FacilityTopMainActivity
-    | undefined
+  urlPlacename: string[] | undefined
+  urlFacilityMainActivity:(FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
@@ -79,10 +76,8 @@ export const FacilityFilterPanel = ({
   const [searchTerm, setSearchTerm] = useState<string | undefined>(
     urlSearchTerm
   )
-  const [placename, setPlacename] = useState<string | undefined>(urlPlacename)
-  const [facilityMainActivity, setFacilityMainActivity] = useState<
-    FacilityMainActivityCode | FacilityTopMainActivity | undefined
-  >(urlFacilityMainActivity)
+  const [placename, setPlacename] = useState<string[] | undefined>(urlPlacename)
+  const [facilityMainActivity, setFacilityMainActivity] = useState<(FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined>(urlFacilityMainActivity)
 
   const facilityMainActivityOptions = useMemo(
     () => getFacilityMainActivityOptions(t),
@@ -105,13 +100,17 @@ export const FacilityFilterPanel = ({
     if (searchTerm)
       newUrlSearchParams.set(URLSearchParamName.SearchTerm, searchTerm)
     if (facilityMainActivity) {
-      newUrlSearchParams.set(
-        URLSearchParamName.FacilityMainActivity,
-        facilityMainActivity
-      )
+      for (const fac of facilityMainActivity){
+        newUrlSearchParams.append(
+          URLSearchParamName.FacilityMainActivity,
+          fac
+        )
+      }
     }
     if (placename) {
-      newUrlSearchParams.set(URLSearchParamName.Placename, placename)
+      for (const p of placename){
+        newUrlSearchParams.append(URLSearchParamName.Placename, p)
+      }
     }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
@@ -152,11 +151,10 @@ export const FacilityFilterPanel = ({
             value={
               facilityMainActivity
                 ? asOption(
-                    facilityMainActivity,
-                    t(`mainActivityCodeDesc:${facilityMainActivity}`)
+                    facilityMainActivity, facilityMainActivity.map( elem => 
+                    t(`mainActivityCodeDesc:${elem}`))
                   )
-                : null
-            }
+                : null}
             handleChange={setFacilityMainActivity}
           />
           <DropdownSelectorAndLabel<string>

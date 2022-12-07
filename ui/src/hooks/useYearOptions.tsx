@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { PRTRApiMetadata } from '../api/models/PRTRApiMetadata'
-import { asOption, OptionType } from '../models/OptionType'
+import { asSingleOption, OptionType } from '../models/OptionType'
 import { useApiMetadata } from './useApiMetadata'
 
 const getYearOptions = (
@@ -8,7 +8,7 @@ const getYearOptions = (
 ): OptionType<number>[] => {
   return metadata
     ? metadata.available_reporting_years
-        .map(y => asOption(y, y))
+        .map(y => asSingleOption(y, y))
         .filter((o): o is OptionType<number> => Boolean(o))
     : []
 }

@@ -47,9 +47,9 @@ const Form = styled.form`
 
 export const ReleaseFilterPanel = (props: {
   medium: Medium
-  urlPollutantCode: PollutantCodeAir | PollutantCodeWater | undefined
-  urlYear: number | undefined
-  urlPlacename: string | undefined
+  urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[]| undefined
+  urlYear: number[] | undefined
+  urlPlacename: string[] | undefined
 }) => {
   const { t } = useTranslation([
     'translation',
@@ -60,11 +60,11 @@ export const ReleaseFilterPanel = (props: {
   const history = useHistory()
   const location = useLocation()
 
-  const [pollutantCode, setPollutantCode] = useState<PollutantCodeAir | PollutantCodeWater | undefined>(
+  const [pollutantCode, setPollutantCode] = useState<(PollutantCodeAir | PollutantCodeWater)[] | undefined>(
     props.urlPollutantCode
   )
-  const [year, setYear] = useState<number | undefined>(props.urlYear)
-  const [placename, setPlacename] = useState<string | undefined>(
+  const [year, setYear] = useState<number[] | undefined>(props.urlYear)
+  const [placename, setPlacename] = useState<string[] | undefined>(
     props.urlPlacename
   )
 
@@ -88,13 +88,19 @@ export const ReleaseFilterPanel = (props: {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (pollutantCode) {
-      newUrlSearchParams.set(URLSearchParamName.PollutantCode, pollutantCode)
+      for (const code of pollutantCode){
+        newUrlSearchParams.append(URLSearchParamName.PollutantCode, code)
+      }  
     }
     if (year) {
-      newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
+      for (const y of year){
+        newUrlSearchParams.append(URLSearchParamName.Year, y.toString())
+      }
     }
     if (placename) {
-      newUrlSearchParams.set(URLSearchParamName.Placename, placename.toString())
+      for (const p of placename){
+        newUrlSearchParams.append(URLSearchParamName.Placename, p.toString())
+      }
     }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
@@ -129,7 +135,7 @@ export const ReleaseFilterPanel = (props: {
             placeholder={t('translation:releases.selectPollutant')}
             value={
               pollutantCode
-                ? asOption(pollutantCode, getPollutantLabel(t, pollutantCode))
+                ? asOption(pollutantCode, pollutantCode.map( elem => getPollutantLabel(t, elem)))
                 : null
             }
             options={pollutantOptions}

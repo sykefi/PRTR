@@ -2,13 +2,19 @@ import { pickBy } from 'lodash'
 import APIError from '../models/APIError'
 
 export const serializeQueryParams = (obj: Record<string, string | number>) => {
-  return Object.entries(pickBy(obj, v => v !== undefined))
-    .reduce((prev: string[], curr) => {
-      return prev.concat(
-        encodeURIComponent(curr[0]) + '=' + encodeURIComponent(curr[1])
-      )
-    }, [])
-    .join('&')
+  const paramArray = Object.entries(pickBy(obj, v => v !== undefined))
+  const strArray = []
+  for (const p of paramArray){
+    if (Array.isArray(p[1])){ //if parameter has multiple different values
+      for (const v of p[1]){
+        strArray.push(encodeURIComponent(p[0]) + "=" + encodeURIComponent(v))
+      }
+    } else { //parameter has one value
+      strArray.push(encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1]))
+    }
+  }
+  const paramstr = strArray.join('&')
+  return paramstr
 }
 
 export const fetchData = async <T,>(
