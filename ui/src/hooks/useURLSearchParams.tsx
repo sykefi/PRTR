@@ -22,7 +22,7 @@ export const useURLSearchParamIntArray = (name: string): number[] | undefined =>
 
 export const useURLSearchParamArray = <T extends string>(name: string): T[] | undefined => {
   const urlParams = useURLSearchParams().getAll(name)
-  if (urlParams.length == 0){
+  if (urlParams.length === 0){
     return undefined as T[] | undefined
   } else {
     return urlParams as T[] | undefined

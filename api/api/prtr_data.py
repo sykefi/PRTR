@@ -60,8 +60,8 @@ def get_facilities(
     skip: int,
     limit: int,
     name_search: Union[str, None],
-    placename: Union[str, None],
-    main_activity: Union[MainActivityCode, TopMainActivity, None]
+    placename: Union[List[str], None],
+    main_activity: Union[List[Union[MainActivityCode, TopMainActivity]], None]
 ) -> PRTRListResponse[ProductionFacility]:
 
     if facility_id:
@@ -94,14 +94,14 @@ def get_facilities(
                 or (
                     f.city
                     and
-                    placename.lower() == f.city.lower()
+                    f.city.lower() in [pl.lower() for pl in placename]
                 )
             )
             and
             (
                 not main_activity
-                or f.topMainActivity == main_activity
-                or f.mainActivityCode == main_activity
+                or f.topMainActivity in main_activity
+                or f.mainActivityCode in main_activity
             )
         )
     ]
@@ -120,14 +120,13 @@ def get_releases(
     limit: int,
     reporting_year: Union[List[int], None],
     medium: Union[Medium, None],
-    pollutant_code: Union[PollutantCode, None],
-    placename: Union[str, None]
+    pollutant_code: Union[List[PollutantCode], None],
+    placename: Union[List[str], None]
 ) -> PRTRListResponse[PollutantRelease]:
     if facility_id:
         sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
     else:
         sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
-    print(reporting_year)
     match = sorted([
             r for r in _releases
             if (
@@ -161,22 +160,22 @@ def get_waste_transfers(
     facility_id: Union[str, None],
     skip: int,
     limit: int,
-    reporting_year: Union[int, None],
+    reporting_year: Union[List[int], None],
     all_or_international_filter: Union[WasteInternationality, None],
-    placename: Union[str, None]
+    placename: Union[List[str], None]
 ) -> PRTRListResponse[WasteTransfer]:
     match = [
         wt for wt in _waste_transfers
         if (
             (not facility_id or wt.facilityId == facility_id) and
-            (not reporting_year or wt.reportingYear == reporting_year) and
+            (not reporting_year or wt.reportingYear in reporting_year) and
             (
                 not all_or_international_filter
                 or all_or_international_filter == WasteInternationality.ALL
                 or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
                     waste_is_international(wt.nameOfReceiver, wt.receivingSiteCountryName))
             ) and
-            (not placename or wt.city == placename)
+            (not placename or wt.city in placename)
         )
     ]
     return PRTRListResponse(
