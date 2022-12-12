@@ -15,18 +15,20 @@ export const useURLSearchParamInt = (name: string): number | undefined => {
   return num !== undefined ? parseInt(num) : undefined
 }
 
-export const useURLSearchParamIntArray = (name: string): number[] | undefined => {
+export const useURLSearchParamIntArray = (
+  name: string
+): number[] | undefined => {
   const nums = useURLSearchParamArray(name)
-  return nums !== undefined ? nums.map(elem => parseInt(elem,10)) : undefined
+  return nums !== undefined ? nums.map(elem => parseInt(elem, 10)) : undefined
 }
 
-export const useURLSearchParamArray = <T extends string>(name: string): T[] | undefined => {
+export const useURLSearchParamArray = <T extends string>(
+  name: string
+): T[] | undefined => {
   const urlParams = useURLSearchParams().getAll(name)
-  if (urlParams.length === 0){
+  if (urlParams.length === 0) {
     return undefined as T[] | undefined
   } else {
     return urlParams as T[] | undefined
   }
 }
-
-

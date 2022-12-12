@@ -4,12 +4,14 @@ import APIError from '../models/APIError'
 export const serializeQueryParams = (obj: Record<string, string | number>) => {
   const paramArray = Object.entries(pickBy(obj, v => v !== undefined))
   const strArray = []
-  for (const p of paramArray){
-    if (Array.isArray(p[1])){ //if parameter has multiple different values
-      for (const v of p[1]){
-        strArray.push(encodeURIComponent(p[0]) + "=" + encodeURIComponent(v))
+  for (const p of paramArray) {
+    if (Array.isArray(p[1])) {
+      //if parameter has multiple different values
+      for (const v of p[1]) {
+        strArray.push(encodeURIComponent(p[0]) + '=' + encodeURIComponent(v))
       }
-    } else { //parameter has one value
+    } else {
+      //parameter has one value
       strArray.push(encodeURIComponent(p[0]) + '=' + encodeURIComponent(p[1]))
     }
   }

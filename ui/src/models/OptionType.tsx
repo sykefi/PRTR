@@ -9,11 +9,11 @@ export const asOption = <T extends string | number>(
   v: T[] | undefined,
   label: (number | string)[] | undefined
 ): OptionType<T>[] | null => {
-  return (v !== undefined && label !== undefined)
+  return v !== undefined && label !== undefined
     ? v.map((elem, index) => ({
-      value: elem,
-      label: label[index].toString()
-    }))
+        value: elem,
+        label: label[index].toString()
+      }))
     : null
 }
 

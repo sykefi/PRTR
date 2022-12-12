@@ -5,7 +5,10 @@ import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { PollutantCodeAir, PollutantCodeWater } from '../../api/enums/PollutantCode'
+import {
+  PollutantCodeAir,
+  PollutantCodeWater
+} from '../../api/enums/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { Medium } from '../../api/enums/Medium'
@@ -20,7 +23,7 @@ const getPollutantNameOptions = (
   medium: Medium,
   t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<PollutantCodeAir | PollutantCodeWater>[] => {
-  return Object.values((medium === 'AIR') ? PollutantCodeAir : PollutantCodeWater)
+  return Object.values(medium === 'AIR' ? PollutantCodeAir : PollutantCodeWater)
     .reduce((prev, curr) => {
       const label = getLongPollutantLabel(t, curr)
       if (!!label) {
@@ -30,15 +33,20 @@ const getPollutantNameOptions = (
         })
       } else return prev
     }, [] as OptionType<PollutantCodeAir | PollutantCodeWater>[])
-    .sort((a: OptionType<PollutantCodeAir | PollutantCodeWater>, b: OptionType<PollutantCodeAir | PollutantCodeWater>) => {
-      if (a.label < b.label) {
-        return -1
+    .sort(
+      (
+        a: OptionType<PollutantCodeAir | PollutantCodeWater>,
+        b: OptionType<PollutantCodeAir | PollutantCodeWater>
+      ) => {
+        if (a.label < b.label) {
+          return -1
+        }
+        if (a.label > b.label) {
+          return 1
+        }
+        return 0
       }
-      if (a.label > b.label) {
-        return 1
-      }
-      return 0
-    })
+    )
 }
 
 const Form = styled.form`
@@ -47,7 +55,7 @@ const Form = styled.form`
 
 export const ReleaseFilterPanel = (props: {
   medium: Medium
-  urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[]| undefined
+  urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[] | undefined
   urlYear: number[] | undefined
   urlPlacename: string[] | undefined
 }) => {
@@ -60,15 +68,18 @@ export const ReleaseFilterPanel = (props: {
   const history = useHistory()
   const location = useLocation()
 
-  const [pollutantCode, setPollutantCode] = useState<(PollutantCodeAir | PollutantCodeWater)[] | undefined>(
-    props.urlPollutantCode
-  )
+  const [pollutantCode, setPollutantCode] = useState<
+    (PollutantCodeAir | PollutantCodeWater)[] | undefined
+  >(props.urlPollutantCode)
   const [year, setYear] = useState<number[] | undefined>(props.urlYear)
   const [placename, setPlacename] = useState<string[] | undefined>(
     props.urlPlacename
   )
 
-  const pollutantOptions = useMemo(() => getPollutantNameOptions(props.medium, t), [props.medium, t])
+  const pollutantOptions = useMemo(
+    () => getPollutantNameOptions(props.medium, t),
+    [props.medium, t]
+  )
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
   const {
@@ -88,17 +99,17 @@ export const ReleaseFilterPanel = (props: {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (pollutantCode) {
-      for (const code of pollutantCode){
+      for (const code of pollutantCode) {
         newUrlSearchParams.append(URLSearchParamName.PollutantCode, code)
-      }  
+      }
     }
     if (year) {
-      for (const y of year){
+      for (const y of year) {
         newUrlSearchParams.append(URLSearchParamName.Year, y.toString())
       }
     }
     if (placename) {
-      for (const p of placename){
+      for (const p of placename) {
         newUrlSearchParams.append(URLSearchParamName.Placename, p.toString())
       }
     }
@@ -135,7 +146,10 @@ export const ReleaseFilterPanel = (props: {
             placeholder={t('translation:releases.selectPollutant')}
             value={
               pollutantCode
-                ? asOption(pollutantCode, pollutantCode.map( elem => getPollutantLabel(t, elem)))
+                ? asOption(
+                    pollutantCode,
+                    pollutantCode.map(elem => getPollutantLabel(t, elem))
+                  )
                 : null
             }
             options={pollutantOptions}

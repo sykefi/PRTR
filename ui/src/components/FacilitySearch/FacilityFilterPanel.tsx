@@ -68,7 +68,9 @@ export const FacilityFilterPanel = ({
   searchHasBeenMade: boolean
   urlSearchTerm: string | undefined
   urlPlacename: string[] | undefined
-  urlFacilityMainActivity:(FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined
+  urlFacilityMainActivity:
+    | (FacilityMainActivityCode | FacilityTopMainActivity)[]
+    | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const history = useHistory()
@@ -77,7 +79,9 @@ export const FacilityFilterPanel = ({
     urlSearchTerm
   )
   const [placename, setPlacename] = useState<string[] | undefined>(urlPlacename)
-  const [facilityMainActivity, setFacilityMainActivity] = useState<(FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined>(urlFacilityMainActivity)
+  const [facilityMainActivity, setFacilityMainActivity] = useState<
+    (FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined
+  >(urlFacilityMainActivity)
 
   const facilityMainActivityOptions = useMemo(
     () => getFacilityMainActivityOptions(t),
@@ -100,15 +104,12 @@ export const FacilityFilterPanel = ({
     if (searchTerm)
       newUrlSearchParams.set(URLSearchParamName.SearchTerm, searchTerm)
     if (facilityMainActivity) {
-      for (const fac of facilityMainActivity){
-        newUrlSearchParams.append(
-          URLSearchParamName.FacilityMainActivity,
-          fac
-        )
+      for (const fac of facilityMainActivity) {
+        newUrlSearchParams.append(URLSearchParamName.FacilityMainActivity, fac)
       }
     }
     if (placename) {
-      for (const p of placename){
+      for (const p of placename) {
         newUrlSearchParams.append(URLSearchParamName.Placename, p)
       }
     }
@@ -151,10 +152,13 @@ export const FacilityFilterPanel = ({
             value={
               facilityMainActivity
                 ? asOption(
-                    facilityMainActivity, facilityMainActivity.map( elem => 
-                    t(`mainActivityCodeDesc:${elem}`))
+                    facilityMainActivity,
+                    facilityMainActivity.map(elem =>
+                      t(`mainActivityCodeDesc:${elem}`)
+                    )
                   )
-                : null}
+                : null
+            }
             handleChange={setFacilityMainActivity}
           />
           <DropdownSelectorAndLabel<string>
