@@ -7,7 +7,6 @@ import * as env from '../../env'
 import { Medium } from '../../api/enums/Medium'
 import { PollutantCodeAir, PollutantCodeWater } from '../../api/enums/PollutantCode'
 import {
-  useURLSearchParam,
   useURLSearchParamArray,
   useURLSearchParamInt,
   useURLSearchParamIntArray
