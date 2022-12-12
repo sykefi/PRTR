@@ -8,7 +8,9 @@ import { LoadAnimation } from '../LoadAnimation/LoadAnimation'
 import { OlMap } from '../OlMap'
 import {
   useURLSearchParam,
-  useURLSearchParamInt
+  useURLSearchParamInt,
+  useURLSearchParamIntArray,
+  useURLSearchParamArray
 } from '../../hooks/useURLSearchParams'
 import { hasCoordinates } from '../../api/models/Facility'
 import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
@@ -26,10 +28,10 @@ export const FacilitySearch = () => {
   const { t } = useTranslation()
 
   const urlSearchTerm = useURLSearchParam(URLSearchParamName.SearchTerm)
-  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
-  const urlFacilityMainActivity = useURLSearchParam(
+  const urlPlacename = useURLSearchParamArray(URLSearchParamName.Placename)
+  const urlFacilityMainActivity = useURLSearchParamArray(
     URLSearchParamName.FacilityMainActivity
-  ) as FacilityTopMainActivity | FacilityMainActivityCode | undefined
+  ) as (FacilityTopMainActivity | FacilityMainActivityCode)[] | undefined
 
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
   const searchHasBeenMade = urlFirstItemIdx !== undefined

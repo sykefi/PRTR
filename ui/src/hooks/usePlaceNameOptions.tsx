@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { PRTRApiMetadata } from '../api/models/PRTRApiMetadata'
-import { asOption, OptionType } from '../models/OptionType'
+import { asSingleOption, OptionType } from '../models/OptionType'
 import { useApiMetadata } from './useApiMetadata'
 
 const getPlacenameOptions = (
@@ -8,7 +8,7 @@ const getPlacenameOptions = (
 ): OptionType<string>[] => {
   return metadata
     ? metadata.present_cities
-        .map(c => asOption(c, c))
+        .map(c => asSingleOption(c, c))
         .filter((o): o is OptionType<string> => Boolean(o))
     : []
 }

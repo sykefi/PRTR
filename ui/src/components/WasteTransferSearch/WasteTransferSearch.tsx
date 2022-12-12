@@ -7,7 +7,9 @@ import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilt
 import * as env from '../../env'
 import {
   useURLSearchParam,
-  useURLSearchParamInt
+  useURLSearchParamInt,
+  useURLSearchParamIntArray,
+  useURLSearchParamArray
 } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
@@ -22,8 +24,8 @@ export const WasteTransferSearch = () => {
   const { t } = useTranslation()
 
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
-  const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
-  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
+  const urlYear = useURLSearchParamIntArray(URLSearchParamName.Year)
+  const urlPlacename = useURLSearchParamArray(URLSearchParamName.Placename)
   const urlAllOrInternational =
     useURLSearchParam<AllOrInternationalFilter>(
       URLSearchParamName.AllOrInternational

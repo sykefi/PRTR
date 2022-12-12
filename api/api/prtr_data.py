@@ -60,8 +60,8 @@ def get_facilities(
     skip: int,
     limit: int,
     name_search: Union[str, None],
-    placename: Union[str, None],
-    main_activity: Union[MainActivityCode, TopMainActivity, None]
+    placename: Union[List[str], None],
+    main_activity: Union[List[Union[MainActivityCode, TopMainActivity]], None]
 ) -> PRTRListResponse[ProductionFacility]:
 
     if facility_id:
@@ -94,14 +94,14 @@ def get_facilities(
                 or (
                     f.city
                     and
-                    placename.lower() == f.city.lower()
+                    f.city.lower() in [pl.lower() for pl in placename]
                 )
             )
             and
             (
                 not main_activity
-                or f.topMainActivity == main_activity
-                or f.mainActivityCode == main_activity
+                or f.topMainActivity in main_activity
+                or f.mainActivityCode in main_activity
             )
         )
     ]
@@ -118,10 +118,10 @@ def get_releases(
     facility_id: Union[str, None],
     skip: int,
     limit: int,
-    reporting_year: Union[int, None],
+    reporting_year: Union[List[int], None],
     medium: Union[Medium, None],
-    pollutant_code: Union[PollutantCode, None],
-    placename: Union[str, None],
+    pollutant_code: Union[List[PollutantCode], None],
+    placename: Union[List[str], None],
     sort_key: Union[str, None],
     descending: bool
 ) -> PRTRListResponse[PollutantRelease]:
@@ -144,10 +144,10 @@ def get_releases(
             r for r in _releases
             if (
                 (not facility_id or r.facilityId == facility_id) and
-                (not reporting_year or r.reportingYear == reporting_year) and
+                (not reporting_year or r.reportingYear in reporting_year) and
                 (not medium or r.medium == medium) and
-                (not pollutant_code or r.pollutantCode == pollutant_code) and
-                (not placename or r.city == placename)
+                (not pollutant_code or r.pollutantCode in pollutant_code) and
+                (not placename or r.city in placename)
             )
         ],
         key=sort_key,
@@ -174,9 +174,9 @@ def get_waste_transfers(
     facility_id: Union[str, None],
     skip: int,
     limit: int,
-    reporting_year: Union[int, None],
+    reporting_year: Union[List[int], None],
     all_or_international_filter: Union[WasteInternationality, None],
-    placename: Union[str, None],
+    placename: Union[List[str], None],
     sort_key: Union[str, None],
     descending: bool
 ) -> PRTRListResponse[WasteTransfer]:
@@ -202,14 +202,14 @@ def get_waste_transfers(
             wt for wt in _waste_transfers
             if (
                 (not facility_id or wt.facilityId == facility_id) and
-                (not reporting_year or wt.reportingYear == reporting_year) and
+                (not reporting_year or wt.reportingYear in reporting_year) and
                 (
                     not all_or_international_filter
                     or all_or_international_filter == WasteInternationality.ALL
                     or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
                         waste_is_international(wt.nameOfReceiver, wt.receivingSiteCountryName))
                 ) and
-                (not placename or wt.city == placename)
+                (not placename or wt.city in placename)
             )
         ],
         key=sort_key,

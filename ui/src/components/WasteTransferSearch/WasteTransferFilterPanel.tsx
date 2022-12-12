@@ -6,9 +6,10 @@ import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
-import { asOption, OptionType } from '../../models/OptionType'
+import { asOption, asSingleOption, OptionType } from '../../models/OptionType'
 import { useYearOptions } from '../../hooks/useYearOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
+import { SingleDropdownSelectorAndLabel} from '../Common/SingleDropdownSelectorAndLabel'
 import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilter'
 import { TranslationKeys } from '../../react-i18next'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
@@ -33,23 +34,23 @@ const getAllOrInternationalOptions = (
 }
 
 export const WasteTransferFilterPanel = (props: {
-  urlYear: number | undefined
+  urlYear: number[] | undefined
   urlAllOrInternational: AllOrInternationalFilter
-  urlPlacename: string | undefined
+  urlPlacename: string[] | undefined
   updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const { t } = useTranslation()
   const history = useHistory()
   const location = useLocation()
 
-  const [year, setYear] = useState<number | undefined>(props.urlYear)
+  const [year, setYear] = useState<number[] | undefined>(props.urlYear)
   const [allOrInternational, setAllOrInternational] =
     useState<AllOrInternationalFilter>(props.urlAllOrInternational)
 
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
 
-  const [placename, setPlacename] = useState<string | undefined>(props.urlPlacename)
+  const [placename, setPlacename] = useState<string[] | undefined>(props.urlPlacename)
 
   const {
       placenameOptionsIsLoading,
@@ -61,7 +62,9 @@ export const WasteTransferFilterPanel = (props: {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (year) {
-      newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
+      for (const y of year){
+        newUrlSearchParams.append(URLSearchParamName.Year, y.toString())
+      }
     }
     if (allOrInternational) {
       newUrlSearchParams.set(
@@ -70,7 +73,9 @@ export const WasteTransferFilterPanel = (props: {
       )
     }
     if (placename) {
-      newUrlSearchParams.set(URLSearchParamName.Placename, placename)
+      for (const p of placename){
+        newUrlSearchParams.append(URLSearchParamName.Placename, p)
+      }
     }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
@@ -108,7 +113,7 @@ export const WasteTransferFilterPanel = (props: {
             value={asOption(year, year)}
             handleChange={setYear}
           />
-          <DropdownSelectorAndLabel<AllOrInternationalFilter>
+          <SingleDropdownSelectorAndLabel<AllOrInternationalFilter>
             width={350}
             minWidth={200}
             name="selectAllOrInternationalWasteTransfers"
@@ -116,7 +121,7 @@ export const WasteTransferFilterPanel = (props: {
             placeholder={t('wasteTransfers.allOrInternationalSelectLabel')}
             isClearable={false}
             options={getAllOrInternationalOptions(t)}
-            value={asOption(
+            value={asSingleOption(
               allOrInternational,
               t(`wasteTransfers.allOrInternational${allOrInternational}Label`)
             )}

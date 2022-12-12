@@ -1,4 +1,4 @@
-from typing import Optional, Union
+from typing import Optional, Union, List
 from fastapi.params import Query
 from models.enums import (
     MainActivityCode, Medium, PollutantCode,
@@ -71,8 +71,8 @@ def read_facilities(
     skip: int = 0,
     limit: int = 10,
     name_search_str: str = None,
-    placename: str = None,
-    main_activity: Optional[Union[MainActivityCode, TopMainActivity]] = Query(
+    placename: List[str] = Query(default=None),
+    main_activity: Optional[List[Union[MainActivityCode, TopMainActivity]]] = Query(
         None,
         description='Either MainActivityCode or TopMainActivity (optional).'
     )
@@ -103,10 +103,10 @@ def read_pollutant_releases(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10,
-    reporting_year: int = None,
+    reporting_year: List[int] = Query(default=None),
     medium: Medium = None,
-    pollutant_code: PollutantCode = None,
-    placename: str = None,
+    pollutant_code: List[PollutantCode] = Query(default=None),
+    placename: List[str] = Query(default=None),
     sort_key: str = None,
     descending: bool = False
 ):
@@ -132,10 +132,10 @@ def read_waste_transfers(
     facility_id: str = None,
     skip: int = 0,
     limit: int = 10,
-    reporting_year: int = None,
+    reporting_year: List[int] = Query(default=None),
     all_or_international_filter:
         WasteInternationality = WasteInternationality.ALL,
-    placename: str = None,
+    placename: List[str] = Query(default=None),
     sort_key: str = None,
     descending: bool = False
 ):
