@@ -9,7 +9,6 @@ import { OlMap } from '../OlMap'
 import {
   useURLSearchParam,
   useURLSearchParamInt,
-  useURLSearchParamIntArray,
   useURLSearchParamArray
 } from '../../hooks/useURLSearchParams'
 import { hasCoordinates } from '../../api/models/Facility'
