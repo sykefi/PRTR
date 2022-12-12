@@ -107,6 +107,8 @@ def read_pollutant_releases(
     medium: Medium = None,
     pollutant_code: List[PollutantCode] = Query(default=None),
     placename: List[str] = Query(default=None),
+    sort_key: str = None,
+    descending: bool = False
 ):
     return prtr_data.get_releases(
         facility_id,
@@ -115,7 +117,9 @@ def read_pollutant_releases(
         reporting_year,
         medium,
         pollutant_code,
-        placename
+        placename,
+        sort_key,
+        descending
     )
 
 
@@ -131,7 +135,9 @@ def read_waste_transfers(
     reporting_year: List[int] = Query(default=None),
     all_or_international_filter:
         WasteInternationality = WasteInternationality.ALL,
-    placename: List[str] = Query(default=None)
+    placename: List[str] = Query(default=None),
+    sort_key: str = None,
+    descending: bool = False
 ):
     return prtr_data.get_waste_transfers(
         facility_id,
@@ -139,5 +145,7 @@ def read_waste_transfers(
         limit,
         reporting_year,
         all_or_international_filter,
-        placename
+        placename,
+        sort_key,
+        descending
     )

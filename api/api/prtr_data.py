@@ -121,12 +121,25 @@ def get_releases(
     reporting_year: Union[List[int], None],
     medium: Union[Medium, None],
     pollutant_code: Union[List[PollutantCode], None],
-    placename: Union[List[str], None]
+    placename: Union[List[str], None],
+    sort_key: Union[str, None],
+    descending: bool
 ) -> PRTRListResponse[PollutantRelease]:
-    if facility_id:
-        sort_key = lambda r: (r.pollutantCode, -r.reportingYear)
+    if sort_key is None:
+        sort_key = lambda r: r.pollutantCode
+    elif sort_key == "year":
+        sort_key = lambda r: r.reportingYear
+    elif sort_key == "quantity":
+        sort_key = lambda r: r.totalPollutantQuantityKg
+    elif sort_key == "pollutant":
+        sort_key = lambda r: r.pollutantCode
+    elif sort_key == "facility":
+        sort_key = lambda r: r.nameOfFeature
+    elif sort_key == "method":
+        sort_key = lambda r: r.methodCode
     else:
-        sort_key = lambda r: (-r.reportingYear, r.pollutantCode)
+        sort_key = lambda r: r.pollutantCode
+
     match = sorted([
             r for r in _releases
             if (
@@ -137,7 +150,8 @@ def get_releases(
                 (not placename or r.city in placename)
             )
         ],
-        key=sort_key
+        key=sort_key,
+        reverse=descending
     )
     return PRTRListResponse(
         data=match[skip:skip + limit],
@@ -162,22 +176,46 @@ def get_waste_transfers(
     limit: int,
     reporting_year: Union[List[int], None],
     all_or_international_filter: Union[WasteInternationality, None],
-    placename: Union[List[str], None]
+    placename: Union[List[str], None],
+    sort_key: Union[str, None],
+    descending: bool
 ) -> PRTRListResponse[WasteTransfer]:
-    match = [
-        wt for wt in _waste_transfers
-        if (
-            (not facility_id or wt.facilityId == facility_id) and
-            (not reporting_year or wt.reportingYear in reporting_year) and
-            (
-                not all_or_international_filter
-                or all_or_international_filter == WasteInternationality.ALL
-                or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
-                    waste_is_international(wt.nameOfReceiver, wt.receivingSiteCountryName))
-            ) and
-            (not placename or wt.city in placename)
+    if sort_key == None:
+        sort_key = lambda wt: wt.nameOfFeature
+    elif sort_key == 'facility':
+        sort_key = lambda wt: wt.nameOfFeature
+    elif sort_key == 'place':
+        sort_key = lambda wt: (wt.city is None, wt.city) #Deals with empty fields in the data (sets None values to last in list)
+    elif sort_key == 'classification':
+        sort_key = lambda wt: wt.wasteClassificationCode
+    elif sort_key == 'year':
+        sort_key = lambda wt: wt.reportingYear
+    elif sort_key == 'quantity':
+        sort_key = lambda wt: wt.totalWasteQuantityTNE
+    elif sort_key == 'treatment':
+        sort_key = lambda wt: wt.wasteTreatmentCode
+    elif sort_key == 'receiver':
+        sort_key = lambda wt: (wt.nameOfReceiver is None, wt.nameOfReceiver) #Deals with empty fields in the data (sets None values to last in list)
+    else:
+        sort_key = lambda wt: wt.nameOfFeature
+    match = sorted([
+            wt for wt in _waste_transfers
+            if (
+                (not facility_id or wt.facilityId == facility_id) and
+                (not reporting_year or wt.reportingYear in reporting_year) and
+                (
+                    not all_or_international_filter
+                    or all_or_international_filter == WasteInternationality.ALL
+                    or (all_or_international_filter == WasteInternationality.INTERNATIONAL and
+                        waste_is_international(wt.nameOfReceiver, wt.receivingSiteCountryName))
+                ) and
+                (not placename or wt.city in placename)
+            )
+        ],
+        key=sort_key,
+        reverse=descending
         )
-    ]
+
     return PRTRListResponse(
         data=match[skip:skip + limit],
         count=len(match),

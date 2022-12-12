@@ -58,6 +58,7 @@ export const ReleaseFilterPanel = (props: {
   urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[] | undefined
   urlYear: number[] | undefined
   urlPlacename: string[] | undefined
+  updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const { t } = useTranslation([
     'translation',
@@ -179,6 +180,7 @@ export const ReleaseFilterPanel = (props: {
           />
         </Flex>
         <Button
+          onClick={() => props.updateSortKey("", true)}
           data-cy="filter-releases-btn"
           type="submit"
           disabled={!searchInputsChanged}

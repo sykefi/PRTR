@@ -143,6 +143,22 @@ def test_get_releases_by_pollutant_code():
         assert release['pollutantCode'] == pollutant_code
 
 
+def test_get_releases_sorted_by_quantity_ascending():
+    sort_key = 'quantity'
+    response = client.get(
+        f'{root_path}/releases?sort_key={sort_key}'
+    )
+    data = response.json()['data']
+    assert len(data) > 1
+    release_prev = None
+    for release in data:
+        assert _has_release_fields(release)
+        assert _has_facility_fields(release)
+        if release_prev:
+            assert release['totalPollutantQuantityKg'] >= release_prev['totalPollutantQuantityKg']
+        release_prev = release
+
+
 def test_get_waste_transfers():
     response = client.get(f'{root_path}/waste-transfers')
     assert response.status_code == 200
@@ -198,3 +214,18 @@ def test_get_waste_transfers_by_placename():
     for wt in data:
         assert _has_waste_transfer_fields(wt)
         assert wt['city'] == placename
+
+
+def test_get_waste_transfers_sorted_by_year_descending():
+    limit = 10000
+    sort_key = 'year'
+    descending = True
+    response = client.get(f'{root_path}/waste-transfers?sort_key={sort_key}&descending={descending}&limit={limit}')
+    data = response.json()['data']
+    assert len(data) > 1
+    wt_prev = None
+    for wt in data:
+        assert _has_waste_transfer_fields(wt)
+        if wt_prev:
+            assert wt['reportingYear'] <= wt_prev['reportingYear']
+        wt_prev = wt

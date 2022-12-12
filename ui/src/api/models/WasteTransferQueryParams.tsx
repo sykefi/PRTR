@@ -7,4 +7,6 @@ export interface WasteTransferQueryParams {
   reporting_year?: number[]
   all_or_international_filter?: AllOrInternationalFilter
   placename?: string[]
+  sort_key?: string
+  descending?: boolean
 }
