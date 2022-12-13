@@ -13,6 +13,7 @@ import { SingleDropdownSelectorAndLabel} from '../Common/SingleDropdownSelectorA
 import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilter'
 import { TranslationKeys } from '../../react-i18next'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
+import { arrayEquals } from '../../utils'
 
 const Form = styled.form`
   max-width: 100%;
@@ -37,6 +38,7 @@ export const WasteTransferFilterPanel = (props: {
   urlYear: number[] | undefined
   urlAllOrInternational: AllOrInternationalFilter
   urlPlacename: string[] | undefined
+  sort: { sortKey: string; descending: boolean }
   updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const { t } = useTranslation()
@@ -82,13 +84,15 @@ export const WasteTransferFilterPanel = (props: {
       pathname: location.pathname,
       search: '?' + newUrlSearchParams.toString()
     })
+    props.updateSortKey("", true)
   }
 
   const searchInputsChanged =
     (!props.urlYear && allOrInternational === AllOrInternationalFilter.ALL && !props.urlPlacename) ||
-    props.urlYear !== year ||
+    !(arrayEquals(props.urlYear, year)) ||
     props.urlAllOrInternational !== allOrInternational ||
-    props.urlPlacename !== placename
+    !(arrayEquals(props.urlPlacename, placename)) ||
+    props.sort.sortKey !== ""
 
   return (
     <Form onSubmit={handleSubmit} data-cy="waste-transfers-filter-panel">
@@ -142,7 +146,6 @@ export const WasteTransferFilterPanel = (props: {
           />
         </Flex>
         <Button
-          onClick={() => props.updateSortKey("", true)}
           data-cy="filter-waste-transfers-btn"
           type="submit"
           width="max-content"
