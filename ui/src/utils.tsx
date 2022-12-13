@@ -110,18 +110,18 @@ export const handleCheckForMissingTranslations = () => {
 
 export const arrayEquals = (a: any[] | undefined, b: any[] | undefined) => {
   if (Array.isArray(a) &&
-      Array.isArray(b) &&
-      a.length === b.length &&
-      a.every((val, index) => val === b[index])){
-        //check if arrays have the same elements
-        return true
-      } else if (a === b) {
-        //check if a and b are undefined
-        return true
-      } else if (a?.length === 0 && b === undefined || b?.length === 0 && a === undefined){
-        //check if other is an empty array and the other undefined
-        return true
-      } else {
-        return false
-      }      
+    Array.isArray(b) &&
+    a.length === b.length &&
+    a.every((val, index) => val === b[index])){
+      //check if arrays have the same elements
+      return true
+  } else if (a === undefined && b === undefined) {
+    //check if a and b are undefined
+      return true
+  } else if ((a?.length === 0 && b === undefined) || (b?.length === 0 && a === undefined)){
+    //check if other is an empty array and the other undefined
+    return true
+  } else {
+    return false
+  }      
 }
