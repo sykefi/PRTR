@@ -18,7 +18,6 @@ import { TranslationKeys } from '../../react-i18next'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 import { useYearOptions } from '../../hooks/useYearOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
-import { arrayEquals } from '../../utils'
 
 const getPollutantNameOptions = (
   medium: Medium,
@@ -59,7 +58,6 @@ export const ReleaseFilterPanel = (props: {
   urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[] | undefined
   urlYear: number[] | undefined
   urlPlacename: string[] | undefined
-  sort: { sortKey: string; descending: boolean }
   updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const { t } = useTranslation([
@@ -121,15 +119,13 @@ export const ReleaseFilterPanel = (props: {
       pathname: location.pathname,
       search: '?' + newUrlSearchParams.toString()
     })
-    props.updateSortKey("", true)
   }
 
   const searchInputsChanged =
     (!props.urlYear && !props.urlPollutantCode && !props.urlPlacename) ||
-    !(arrayEquals(props.urlYear, year)) ||
-    !arrayEquals(props.urlPollutantCode, pollutantCode) ||
-    !(arrayEquals(props.urlPlacename, placename)) ||
-    props.sort.sortKey !== ""
+    props.urlYear !== year ||
+    props.urlPollutantCode !== pollutantCode ||
+    props.urlPlacename !== placename
 
   return (
     <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">
@@ -184,6 +180,7 @@ export const ReleaseFilterPanel = (props: {
           />
         </Flex>
         <Button
+          onClick={() => props.updateSortKey("", true)}
           data-cy="filter-releases-btn"
           type="submit"
           disabled={!searchInputsChanged}

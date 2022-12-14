@@ -80,7 +80,6 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
           urlPollutantCode={urlPollutantCode}
           urlYear={urlYear}
           urlPlacename={urlPlacename}
-          sort={sort}
           updateSortKey={updateSortKey}
         />
       </BelowNavigationHeaderPanel>
