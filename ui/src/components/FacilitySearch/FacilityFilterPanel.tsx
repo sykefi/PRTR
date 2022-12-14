@@ -125,8 +125,7 @@ export const FacilityFilterPanel = ({
     !searchHasBeenMade ||
     urlSearchTerm !== searchTerm ||
     !arrayEquals(urlPlacename, placename) ||
-    !arrayEquals(urlFacilityMainActivity,facilityMainActivity)
-
+    !arrayEquals(urlFacilityMainActivity, facilityMainActivity)
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
