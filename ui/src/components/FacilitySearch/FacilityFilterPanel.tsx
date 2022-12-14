@@ -17,6 +17,7 @@ import {
 } from '../../api/enums/FacilityTopMainActivity'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
+import { arrayEquals } from '../../utils'
 
 const asMainActivityOption = (
   o: FacilityMainActivityCode | FacilityTopMainActivity,
@@ -123,8 +124,8 @@ export const FacilityFilterPanel = ({
   const allowSearch =
     !searchHasBeenMade ||
     urlSearchTerm !== searchTerm ||
-    urlPlacename !== placename ||
-    urlFacilityMainActivity !== facilityMainActivity
+    !arrayEquals(urlPlacename, placename) ||
+    !arrayEquals(urlFacilityMainActivity, facilityMainActivity)
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
