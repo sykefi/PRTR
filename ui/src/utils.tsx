@@ -111,6 +111,7 @@ export const handleCheckForMissingTranslations = () => {
   )
 }
 
+// eslint-disable-next-line
 export const arrayEquals = (a: any[] | undefined, b: any[] | undefined) => {
   if (
     Array.isArray(a) &&
