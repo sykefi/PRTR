@@ -4,17 +4,26 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import { FacilityMainActivityCode } from '../../api/enums/FacilityMainActivityCode'
+import { FacilityTopMainActivity } from '../../api/enums/FacilityTopMainActivity'
+import { CSVDownloadFacilitiesButton } from './CSVDownloadFacilitiesButton'
 
 export const FacilityPageSelector = ({
   pageItemLimit,
   firstItemIdx,
   totalItemCount,
-  loading
+  loading,
+  urlSearchTerm,
+  urlFacilityMainActivity,
+  urlPlacename
 }: {
   pageItemLimit: number
   firstItemIdx: number
   totalItemCount: number
   loading: boolean
+  urlSearchTerm: string | undefined
+  urlFacilityMainActivity: | (FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined
+  urlPlacename: string[] | undefined
 }) => {
   const { t } = useTranslation()
   const urlSearchParams = useURLSearchParams()
@@ -80,6 +89,11 @@ export const FacilityPageSelector = ({
             {t('common.nextPage')}
           </Button>
         )}
+          <CSVDownloadFacilitiesButton
+            urlSearchTerm={urlSearchTerm}
+            urlFacilityMainActivity={urlFacilityMainActivity}
+            urlPlacename={urlPlacename}
+          />
       </ButtonGroup>
     </Flex>
   )

@@ -100,6 +100,11 @@ export const ReleaseSearch = (props: { medium: Medium }) => {
                 firstItemIdx={urlFirstItemIdx}
                 totalItemCount={data.count}
                 loading={loading}
+                medium={props.medium}
+                urlPollutantCode={urlPollutantCode}
+                urlYear={urlYear}
+                urlPlacename={urlPlacename}
+                sort={sort}
               />
             )}
             {!loading && isSuccess && !hasReleases && (

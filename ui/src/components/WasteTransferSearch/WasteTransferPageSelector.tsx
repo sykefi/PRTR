@@ -4,17 +4,27 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilter'
+import { CSVDownloadWasteTransfersButton } from './CSVDownloadWasteTransfersButton'
 
 export const WasteTransferPageSelector = ({
   pageItemLimit,
   firstItemIdx,
   totalItemCount,
-  loading
+  loading,
+  urlYear,
+  urlPlacename,
+  urlAllOrInternational,
+  sort
 }: {
   pageItemLimit: number
   firstItemIdx: number
   totalItemCount: number
   loading: boolean
+  urlYear: number[] | undefined
+  urlPlacename: string[] | undefined
+  urlAllOrInternational: AllOrInternationalFilter
+  sort: { sortKey: string; descending: boolean }
 }) => {
   const { t } = useTranslation()
   const urlSearchParams = useURLSearchParams()
@@ -79,6 +89,12 @@ export const WasteTransferPageSelector = ({
             {t('common.nextPage')}
           </Button>
         )}
+          <CSVDownloadWasteTransfersButton
+            urlAllOrInternational={urlAllOrInternational}
+            urlYear={urlYear}
+            urlPlacename={urlPlacename}
+            sort={sort}
+          />
       </ButtonGroup>
     </Flex>
   )
