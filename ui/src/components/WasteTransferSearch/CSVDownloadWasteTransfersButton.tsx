@@ -6,64 +6,62 @@ import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilt
 import { WasteTransfer } from '../../api/models/WasteTransfer'
 
 export const CSVDownloadWasteTransfersButton = ({
-    urlAllOrInternational,
-    urlYear,
-    urlPlacename,
-    sort
-    }: {
-    urlAllOrInternational: AllOrInternationalFilter,
-    urlYear: number[] | undefined,
-    urlPlacename: string[] | undefined,
-    sort: { sortKey: string; descending: boolean }
+  urlAllOrInternational,
+  urlYear,
+  urlPlacename,
+  sort
+}: {
+  urlAllOrInternational: AllOrInternationalFilter
+  urlYear: number[] | undefined
+  urlPlacename: string[] | undefined
+  sort: { sortKey: string; descending: boolean }
 }) => {
-    const { t } = useTranslation()
+  const { t } = useTranslation()
 
-    const firstItemIdx = 0 //Get releases starting from the first
-    const itemLimit = -1 //Until the end 
+  const firstItemIdx = 0 //Get releases starting from the first
+  const itemLimit = -1 //Until the end
 
-    const fetchDataAndLoadCSV =
-        async () => {
-          const result = await api.getWasteTransfers({
-            reporting_year: urlYear,
-            skip: firstItemIdx,
-            limit: itemLimit,
-            placename: urlPlacename,
-            all_or_international_filter: urlAllOrInternational,
-            sort_key: sort.sortKey,
-            descending: sort.descending
-          })
-           
-        //Make PollutantRelease properties optional and delete unwanted properties    
-        result.data.forEach((v: Partial<WasteTransfer>) => {
-            delete v.facilityId
-            delete v.topMainActivity
-            delete v.id
-            delete v.mainActivityCode
-            delete v.receivingSiteCity
-            delete v.receivingSiteCountryName
-            delete v.methodCode
-             });
+  const fetchDataAndLoadCSV = async () => {
+    const result = await api.getWasteTransfers({
+      reporting_year: urlYear,
+      skip: firstItemIdx,
+      limit: itemLimit,
+      placename: urlPlacename,
+      all_or_international_filter: urlAllOrInternational,
+      sort_key: sort.sortKey,
+      descending: sort.descending
+    })
 
-        //Convert array of objects to csv
-        const csv = unparse(result.data)
+    //Make PollutantRelease properties optional and delete unwanted properties
+    result.data.forEach((v: Partial<WasteTransfer>) => {
+      delete v.facilityId
+      delete v.topMainActivity
+      delete v.id
+      delete v.mainActivityCode
+      delete v.receivingSiteCity
+      delete v.receivingSiteCountryName
+      delete v.methodCode
+    })
 
-        //Download functionality
-        const file = new Blob([csv], {type: 'text/csv;charset=utf-8'});
-        const element = document.createElement("a");
-        element.href = URL.createObjectURL(file);
-        element.download = t("wasteTransfers.fileName")+".csv";
-        document.body.appendChild(element); // Required for this to work in FireFox
-        element.click();
-      }
+    //Convert array of objects to csv
+    const csv = unparse(result.data)
 
+    //Download functionality
+    const file = new Blob([csv], { type: 'text/csv;charset=utf-8' })
+    const element = document.createElement('a')
+    element.href = URL.createObjectURL(file)
+    element.download = t('wasteTransfers.fileName') + '.csv'
+    document.body.appendChild(element) // Required for this to work in FireFox
+    element.click()
+  }
 
-    return(
-        <Button
-            data-cy="download-button"
-            colorScheme="green"
-            size="sm"
-            onClick={() => fetchDataAndLoadCSV()}>
-            {t("common.downloadCSV")}
-          </Button>
-    )
+  return (
+    <Button
+      data-cy="download-button"
+      colorScheme="green"
+      size="sm"
+      onClick={() => fetchDataAndLoadCSV()}>
+      {t('common.downloadCSV')}
+    </Button>
+  )
 }
