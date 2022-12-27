@@ -48,6 +48,7 @@
     "goBackToReleaseSearch": "Return to releases",
     "goBackToWasteTransferSearch": "Return to waste transfers",
     "mapLegendTitle": "Map colours indicate the different activities",
+    "id": "Id",
     "status": {
       "title": "Status",
       "decommissioned": "Decommissioned",

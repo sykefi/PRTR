@@ -48,6 +48,7 @@
     "goBackToReleaseSearch": "Återvänd till anläggningssökning",
     "goBackToWasteTransferSearch": "Återvänd till sökning av avfallstransporter",
     "mapLegendTitle": "Färgerna på kartan beskriver de olika verksamheten",
+    "id": "Id",
     "status": {
       "title": "Status",
       "decommissioned": "Nedlagd",

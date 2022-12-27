@@ -48,6 +48,7 @@
     "goBackToReleaseSearch": "Palaa päästöhakuun",
     "goBackToWasteTransferSearch": "Palaa jätesiirtohakuun",
     "mapLegendTitle": "Kartan värit toimialoittain",
+    "id": "Tunnus",
     "status": {
       "title": "Toiminnan tila",
       "decommissioned": "Toiminta päättynyt",

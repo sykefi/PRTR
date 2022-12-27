@@ -47,6 +47,7 @@ facilities.goBackToFacilitySearch;Palaa laitoshakuun;Återvänd till anläggning
 facilities.goBackToReleaseSearch;Palaa päästöhakuun;Återvänd till anläggningssökning;Return to releases;;;;
 facilities.goBackToWasteTransferSearch;Palaa jätesiirtohakuun;Återvänd till sökning av avfallstransporter;Return to waste transfers;;;;
 facilities.mapLegendTitle;Kartan värit toimialoittain;Färgerna på kartan beskriver de olika verksamheten;Map colours indicate the different activities;;;;
+facilities.id;Tunnus;Id;Id;;;;
 facilities.status.title;Toiminnan tila;Status;Status;;;;
 facilities.status.decommissioned;Toiminta päättynyt;Nedlagd;Decommissioned;;;;
 facilities.status.disused;Ei toiminnassa;Ur drift;Disused;;;;

@@ -100,11 +100,12 @@ export const FacilityPage = () => {
             facility={data}
             handleExit={handleExit}
             exitLabel={exitLabel}
+            facilityId={facilityId}
           />
           {data && hasCoordinates(data) && !hasPersonalData(data) && (
             <OlMap
               width={450}
-              height={450}
+              height={500}
               facilities={[data]}
               zoomToInitialExtent={false}
             />
