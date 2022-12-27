@@ -84,6 +84,10 @@ export const WasteTransferSearch = () => {
                 firstItemIdx={urlFirstItemIdx}
                 totalItemCount={data.count}
                 loading={loading}
+                urlYear={urlYear}
+                urlPlacename={urlPlacename}
+                urlAllOrInternational={urlAllOrInternational}
+                sort={sort}
               />
             )}
             {!loading && isSuccess && !hasWasteTransfers && (

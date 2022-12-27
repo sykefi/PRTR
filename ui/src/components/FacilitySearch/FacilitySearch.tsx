@@ -126,6 +126,9 @@ export const FacilitySearch = () => {
                       firstItemIdx={urlFirstItemIdx}
                       totalItemCount={data.length}
                       loading={false}
+                      urlSearchTerm={urlSearchTerm}
+                      urlFacilityMainActivity={urlFacilityMainActivity}
+                      urlPlacename={urlPlacename}
                     />
                     <FacilityList
                       facilities={data}

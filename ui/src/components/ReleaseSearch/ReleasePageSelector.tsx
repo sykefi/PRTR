@@ -4,17 +4,33 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useURLSearchParams } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
+import {
+  PollutantCodeAir,
+  PollutantCodeWater
+} from '../../api/enums/PollutantCode'
+import { Medium } from '../../api/enums/Medium'
+import { CSVDownloadReleasesButton } from './CSVDownloadReleasesButton'
 
 export const ReleasePageSelector = ({
   pageItemLimit,
   firstItemIdx,
   totalItemCount,
-  loading
+  loading,
+  medium,
+  urlPollutantCode,
+  urlYear,
+  urlPlacename,
+  sort
 }: {
   pageItemLimit: number
   firstItemIdx: number
   totalItemCount: number
   loading: boolean
+  medium: Medium
+  urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[] | undefined
+  urlYear: number[] | undefined
+  urlPlacename: string[] | undefined
+  sort: { sortKey: string; descending: boolean }
 }) => {
   const { t } = useTranslation()
   const urlSearchParams = useURLSearchParams()
@@ -79,6 +95,13 @@ export const ReleasePageSelector = ({
             {t('common.nextPage')}
           </Button>
         )}
+          <CSVDownloadReleasesButton
+            medium={medium}
+            urlPollutantCode={urlPollutantCode}
+            urlYear={urlYear}
+            urlPlacename={urlPlacename}
+            sort={sort}
+            />
       </ButtonGroup>
     </Flex>
   )

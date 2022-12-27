@@ -23,7 +23,8 @@
     "basicInfo": "Perustiedot",
     "loadingInformation": "Ladataan tietoja...",
     "additionalInfo": "Lisätietoja",
-    "logoText": "PÄÄSTÖTIETOPALVELU"
+    "logoText": "PÄÄSTÖTIETOPALVELU",
+    "downloadCSV": "Lataa tiedot (CSV)"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Lähetä palautetta"
@@ -40,6 +41,7 @@
     "couldNotFindFacilityWasteTransfers": "Laitoksen jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
     "noReleasesFoundForFacility": "Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.",
     "noWasteTransfersFoundForFacility": "Tietokannasta ei löytynyt jätesiirtoja valitulle laitokselle.",
+    "fileName": "laitokset",
     "facilityReleaseTable": "Päästötiedot",
     "facilityWasteTransferTable": "Jätesiirrot",
     "goBackToFacilitySearch": "Palaa laitoshakuun",
@@ -67,6 +69,7 @@
     "selectYear": "Valitse vuosi",
     "noReleasesFoundFromSearch": "Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.",
     "releasesFetchErrorInfo": "Päästöjen haku epäonnistui, yritä myöhemmin uudestaan.",
+    "fileName": "paastot",
     "method": {
       "title": "Selvitystapa",
       "measured": "Mitattu",
@@ -99,6 +102,7 @@
     "allOrInternationalInternationalLabel": "Näytä vain kansainväliset siirrot",
     "noWasteTransfersFoundFromSearch": "Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.",
     "wasteTransfersFetchErrorInfo": "Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.",
+    "fileName": "jatesiirrot",
     "quantity": "Määrä",
     "receiver": "Vastaanottaja",
     "searchWithPlaceName": "Hae paikkakunnalla"
