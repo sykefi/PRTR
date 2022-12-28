@@ -156,6 +156,14 @@ export const AdditionalInfoPageContentSv = () => {
           Service proxy
         </a>
       </p>
+
+      <h2>Miljötillstånd</h2>
+
+      <p>
+      Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt miljöskyddslagen. 
+      Man kan söka Miljötillstånden för de anläggningar som presenteras i denna websida från{' '} 
+      <a href="https://ylupa.avi.fi/se-FI">Databas över vatten- och miljötillstånd</a>.
+      </p>
     </>
   )
 }
