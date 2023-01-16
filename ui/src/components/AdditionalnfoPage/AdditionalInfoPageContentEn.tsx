@@ -131,6 +131,17 @@ export const AdditionalInfoPageContentEn = () => {
         </a>
         &nbsp;(pdf 115 kt)
       </p>
+      
+      <h2>Permits</h2>
+
+      <p>
+      Activities causing environmental pollution require a permit 
+      in accordance with the Environmental Protection Act. One can 
+      search for the permits of the facilities presented in this{' '}
+      service from the 
+      <a href="https://ylupa.avi.fi/fi-FI">Water and Environmental Permits Information Service</a>.
+      </p>
+
       <h2>Information of the service</h2>
       <p>
         Finnish Environment Institute has built the website on the request from
