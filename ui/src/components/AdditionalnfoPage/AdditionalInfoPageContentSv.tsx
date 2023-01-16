@@ -135,6 +135,15 @@ export const AdditionalInfoPageContentSv = () => {
         </a>
         &nbsp;(pdf 115 kt)
       </p>
+
+      <h2>Miljötillstånd</h2>
+
+      <p>
+      Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt miljöskyddslagen. 
+      Man kan söka Miljötillstånden för de anläggningar som presenteras i denna websida från{' '} 
+      <a href="https://ylupa.avi.fi/se-FI">Databas över vatten- och miljötillstånd</a>.
+      </p>
+
       <h2>Uppgifter om servicen</h2>
       <p>
         Finlands miljöcentral har förverkligat webbsidan enligt uppdrag av
@@ -155,14 +164,6 @@ export const AdditionalInfoPageContentSv = () => {
         <a href="Palveluseloste.pdf" target="blank">
           Service proxy
         </a>
-      </p>
-
-      <h2>Miljötillstånd</h2>
-
-      <p>
-      Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt miljöskyddslagen. 
-      Man kan söka Miljötillstånden för de anläggningar som presenteras i denna websida från{' '} 
-      <a href="https://ylupa.avi.fi/se-FI">Databas över vatten- och miljötillstånd</a>.
       </p>
     </>
   )
