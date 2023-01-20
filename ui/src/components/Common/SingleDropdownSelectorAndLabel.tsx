@@ -5,7 +5,7 @@ import { ChakraSelect } from '../ChakraReactSelect'
 
 type OptionValue = string | number
 
-export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
+export const SingleDropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
   width,
   minWidth,
   label,
@@ -25,8 +25,8 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
   isClearable?: boolean
   isLoading?: boolean
   options: OptionType<TOptionValue>[]
-  value: OptionType<TOptionValue>[] | null
-  handleChange: (v: TOptionValue[] | undefined) => void
+  value: OptionType<TOptionValue> | null
+  handleChange: (v: TOptionValue | undefined) => void
 }) => {
   return (
     <Box width={width} minWidth={minWidth}>
@@ -34,18 +34,17 @@ export const DropdownSelectorAndLabel = <TOptionValue extends OptionValue>({
       <ChakraSelect
         isClearable={isClearable}
         closeMenuOnSelect
-        isMulti
         name={name}
         placeholder={placeholder}
         isLoading={isLoading}
         options={options}
         value={value}
-        onChange={e => handleChange(e?.map( elem => elem?.value))}
+        onChange={e => handleChange(e?.value)}
       />
     </Box>
   )
 }
 
-DropdownSelectorAndLabel.defaultProps = {
+SingleDropdownSelectorAndLabel.defaultProps = {
   isClearable: true
 }

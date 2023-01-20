@@ -23,7 +23,8 @@
     "basicInfo": "Basic information",
     "loadingInformation": "Loading information...",
     "additionalInfo": "Additional information",
-    "logoText": "INDUSTRIAL RELEASES"
+    "logoText": "INDUSTRIAL RELEASES",
+    "downloadCSV": "Download data (CSV)"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Send feedback"
@@ -40,12 +41,14 @@
     "couldNotFindFacilityWasteTransfers": "Error in loading data. Please try again later.",
     "noReleasesFoundForFacility": "No releases found for the selected facility.",
     "noWasteTransfersFoundForFacility": "No waste transfers found for the selected facility.",
+    "fileName": "facilities",
     "facilityReleaseTable": "Releases",
     "facilityWasteTransferTable": "Waste transfers",
     "goBackToFacilitySearch": "Return to facility search",
     "goBackToReleaseSearch": "Return to releases",
     "goBackToWasteTransferSearch": "Return to waste transfers",
     "mapLegendTitle": "Map colours indicate the different activities",
+    "id": "Id",
     "status": {
       "title": "Status",
       "decommissioned": "Decommissioned",
@@ -67,6 +70,7 @@
     "selectYear": "Select year",
     "noReleasesFoundFromSearch": "No releases found with the selected attributes.",
     "releasesFetchErrorInfo": "Error in loading data. Please try again later.",
+    "fileName": "releases",
     "method": {
       "title": "Method",
       "measured": "Measured",
@@ -99,6 +103,7 @@
     "allOrInternationalInternationalLabel": "Show only international transfers",
     "noWasteTransfersFoundFromSearch": "No waste transfers found with the selected attributes.",
     "wasteTransfersFetchErrorInfo": "Error in loading data. Please try again later.",
+    "fileName": "wastetransfers",
     "quantity": "Quantity",
     "receiver": "Receiver",
     "searchWithPlaceName": "Find by location"

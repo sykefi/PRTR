@@ -131,6 +131,15 @@ export const AdditionalInfoPageContentFi = () => {
         &nbsp;(pdf 115 kt)
       </p>
 
+      <h2>Ympäristöluvat</h2>
+
+      <p>
+      Ympäristön pilaantumisen vaaraa aiheuttaville toiminnoille 
+      tarvitaan ympäristönsuojelulain mukainen lupa. Voit etsiä 
+      palvelussa esitettävien laitosten ympäristölupia aluehallintoviraston{' '}
+      <a href="https://ylupa.avi.fi/fi-FI">Vesi- ja ympäristölupien tietopalvelun</a> avulla.
+      </p>
+
       <h2>Sivuston tiedot</h2>
 
       <p>

@@ -47,6 +47,23 @@ export const FrontPageContentSv = () => {
       <p>
         Vänligen läs <a href="Käyttöehdot.pdf" target="blank">användarvillkor</a> innan du använder tjänsten.
       </p>
+
+      <p>
+        Finlands miljöcentral har förverkligat webbsidan enligt uppdrag av
+        miljöministeriet. Respons om uppgifterna och annat innehåll kan skickas
+        till  övervakningsmyndigheter (
+        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
+          ELY-keskukset
+        </a>
+        ). Respons om sidornas tekniska funktioner eller förbättringsförslag kan
+        skickas till <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.
+      </p>
+
+      <p>
+        <a href="Palveluseloste.pdf" target="blank">
+          Service proxy
+        </a>
+      </p>
     </>
   )
 }

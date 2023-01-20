@@ -25,6 +25,7 @@ common.basicInfo;Perustiedot;Grunddata;Basic information;;;;
 common.loadingInformation;Ladataan tietoja...;Uppgifterna laddas upp;Loading information...;;;;
 common.additionalInfo;Lisätietoja;Ytterligare information;Additional information;;;;
 common.logoText;PÄÄSTÖTIETOPALVELU;UTSLÄPPSINFORMATION;INDUSTRIAL RELEASES;;;;
+common.downloadCSV;Lataa tiedot (CSV);Ladda ner data (CSV);Download data (CSV);;;;
 ;;;;;;;
 footer.sendFeedbackButtonLabel;Lähetä palautetta;Skicka respons;Send feedback;;;;
 ;;;;;;;
@@ -39,12 +40,14 @@ facilities.couldNotFindFacilityReleases;Laitoksen päästötietojen haku epäonn
 facilities.couldNotFindFacilityWasteTransfers;Laitoksen jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av uppgifter om avfallstransporter misslyckades, försök igen senare.;Error in loading data. Please try again later.;;;;
 facilities.noReleasesFoundForFacility;Tietokannasta ei löytynyt päästötietoja valitulle laitokselle.;Inga utsläpp hittades för den valda anläggningen;No releases found for the selected facility.;;;;
 facilities.noWasteTransfersFoundForFacility;Tietokannasta ei löytynyt jätesiirtoja valitulle laitokselle.;Inga avfallstransporter hittades för den valda anläggningen;No waste transfers found for the selected facility.;;;;
+facilities.fileName;laitokset;anlaggningar;facilities;;;;
 facilities.facilityReleaseTable;Päästötiedot;Utsläppsdata;Releases;;;;
 facilities.facilityWasteTransferTable;Jätesiirrot;Avfallstransporter;Waste transfers;;;;
 facilities.goBackToFacilitySearch;Palaa laitoshakuun;Återvänd till anläggningssökning;Return to facility search;;;;
 facilities.goBackToReleaseSearch;Palaa päästöhakuun;Återvänd till anläggningssökning;Return to releases;;;;
 facilities.goBackToWasteTransferSearch;Palaa jätesiirtohakuun;Återvänd till sökning av avfallstransporter;Return to waste transfers;;;;
 facilities.mapLegendTitle;Kartan värit toimialoittain;Färgerna på kartan beskriver de olika verksamheten;Map colours indicate the different activities;;;;
+facilities.id;Tunnus;Id;Id;;;;
 facilities.status.title;Toiminnan tila;Status;Status;;;;
 facilities.status.decommissioned;Toiminta päättynyt;Nedlagd;Decommissioned;;;;
 facilities.status.disused;Ei toiminnassa;Ur drift;Disused;;;;
@@ -61,6 +64,7 @@ releases.selectPollutant;Valitse yhdiste;Välj kemisk förening;Select pollutant
 releases.selectYear;Valitse vuosi;Välj år;Select year;;;;
 releases.noReleasesFoundFromSearch;Tietokannasta ei löytynyt päästöjä valituilla hakuehdoilla.;Inga träffar i databasen för de valda sökvillkoren;No releases found with the selected attributes.;;;;
 releases.releasesFetchErrorInfo;Päästöjen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen av utsläppen misslyckades, försök igen senare.;Error in loading data. Please try again later.;;;;
+releases.fileName;paastot;utslapp;releases;;;;
 releases.method.title;Selvitystapa;Metod;Method;;;;
 releases.method.measured;Mitattu;Mätning;Measured;;;;
 releases.method.calculated;Laskennallinen;Beräkning;Calculated;;;;
@@ -78,6 +82,7 @@ wasteTransfers.allOrInternationalAllLabel;Näytä kaikki siirrot;Visa alla trans
 wasteTransfers.allOrInternationalInternationalLabel;Näytä vain kansainväliset siirrot;Visa endast internationella transporter;Show only international transfers;;;;
 wasteTransfers.noWasteTransfersFoundFromSearch;Tietokannasta ei löytynyt jätesiirtoja valituilla hakuehdoilla.;Inga träffar i databasen för de valda sökvillkoren;No waste transfers found with the selected attributes.;;;;
 wasteTransfers.wasteTransfersFetchErrorInfo;Jätesiirtojen haku epäonnistui, yritä myöhemmin uudestaan.;Sökningen misslyckades, försök igen senare.;Error in loading data. Please try again later.;;;;
+wasteTransfers.fileName;jatesiirrot;avfallstransporter;wastetransfers;;;;
 wasteTransfers.quantity;Määrä;Mängd;Quantity;;;;
 wasteTransfers.receiver;Vastaanottaja;Mottagande anläggning;Receiver;;;;
 wasteTransfers.classification.title;Jätteen tyyppi;Avfallstyp;Type of waste;;;;

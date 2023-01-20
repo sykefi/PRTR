@@ -56,6 +56,24 @@ export const FrontPageContentFi = () => {
         </a>
         .
       </p>
+
+      <p>
+        Suomen ympäristökeskus on toteuttanut sivuston ympäristöministeriön
+        toimeksiannosta. Palautetta päästötiedoista ja muista sisältöä
+        koskevista asioista voi lähettää valvontaviranomaisille (
+        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
+          ELY-keskukset
+        </a>
+        ). Sivuston teknisestä toiminnasta voi lähettää palautetta tai
+        kehitysehdotuksia osoitteeseen{' '}
+        <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.
+      </p>
+      
+      <p>
+        <a href="Palveluseloste.pdf" target="blank">
+          Palveluseloste
+        </a>
+      </p>
     </>
   )
 }

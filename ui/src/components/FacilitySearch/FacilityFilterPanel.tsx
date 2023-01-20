@@ -17,6 +17,7 @@ import {
 } from '../../api/enums/FacilityTopMainActivity'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
+import { arrayEquals } from '../../utils'
 
 const asMainActivityOption = (
   o: FacilityMainActivityCode | FacilityTopMainActivity,
@@ -67,10 +68,9 @@ export const FacilityFilterPanel = ({
 }: {
   searchHasBeenMade: boolean
   urlSearchTerm: string | undefined
-  urlPlacename: string | undefined
+  urlPlacename: string[] | undefined
   urlFacilityMainActivity:
-    | FacilityMainActivityCode
-    | FacilityTopMainActivity
+    | (FacilityMainActivityCode | FacilityTopMainActivity)[]
     | undefined
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
@@ -79,9 +79,9 @@ export const FacilityFilterPanel = ({
   const [searchTerm, setSearchTerm] = useState<string | undefined>(
     urlSearchTerm
   )
-  const [placename, setPlacename] = useState<string | undefined>(urlPlacename)
+  const [placename, setPlacename] = useState<string[] | undefined>(urlPlacename)
   const [facilityMainActivity, setFacilityMainActivity] = useState<
-    FacilityMainActivityCode | FacilityTopMainActivity | undefined
+    (FacilityMainActivityCode | FacilityTopMainActivity)[] | undefined
   >(urlFacilityMainActivity)
 
   const facilityMainActivityOptions = useMemo(
@@ -105,13 +105,14 @@ export const FacilityFilterPanel = ({
     if (searchTerm)
       newUrlSearchParams.set(URLSearchParamName.SearchTerm, searchTerm)
     if (facilityMainActivity) {
-      newUrlSearchParams.set(
-        URLSearchParamName.FacilityMainActivity,
-        facilityMainActivity
-      )
+      for (const fac of facilityMainActivity) {
+        newUrlSearchParams.append(URLSearchParamName.FacilityMainActivity, fac)
+      }
     }
     if (placename) {
-      newUrlSearchParams.set(URLSearchParamName.Placename, placename)
+      for (const p of placename) {
+        newUrlSearchParams.append(URLSearchParamName.Placename, p)
+      }
     }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
@@ -123,8 +124,8 @@ export const FacilityFilterPanel = ({
   const allowSearch =
     !searchHasBeenMade ||
     urlSearchTerm !== searchTerm ||
-    urlPlacename !== placename ||
-    urlFacilityMainActivity !== facilityMainActivity
+    !arrayEquals(urlPlacename, placename) ||
+    !arrayEquals(urlFacilityMainActivity, facilityMainActivity)
 
   return (
     <Form onSubmit={handleSubmit} data-cy="facility-search-panel">
@@ -153,7 +154,9 @@ export const FacilityFilterPanel = ({
               facilityMainActivity
                 ? asOption(
                     facilityMainActivity,
-                    t(`mainActivityCodeDesc:${facilityMainActivity}`)
+                    facilityMainActivity.map(elem =>
+                      t(`mainActivityCodeDesc:${elem}`)
+                    )
                   )
                 : null
             }

@@ -42,13 +42,15 @@ export const FacilityBasicInfo = ({
   loading,
   error,
   handleExit,
-  exitLabel
+  exitLabel,
+  facilityId
 }: {
   facility: Facility | undefined
   loading: boolean
   error: boolean
   handleExit: () => void
   exitLabel: string
+  facilityId: string
 }) => {
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const { i18n } = useTranslation()
@@ -122,6 +124,10 @@ export const FacilityBasicInfo = ({
                 ? t(`translation:facilities.status.${facility.status}`)
                 : ''
             }
+          />
+          <InfoPropRow
+            label={t('translation:facilities.id')}
+            value={facilityId || ''}
           />
         </>
       )}

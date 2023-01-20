@@ -48,6 +48,23 @@ export const FrontPageContentEn = () => {
         </a>{' '}
         before using the service.
       </p>
+
+      <p>
+        Finnish Environment Institute has built the website on the request from
+        the Ministry of the Environment. Feedback on data and other content can
+        be sent to supervising authorities (
+        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
+          ELY-keskukset
+        </a>
+        ). Feedback on the technical functions or improvement proposals can be
+        sent to <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.
+      </p>
+
+      <p>
+        <a href="Palveluseloste.pdf" target="blank">
+          Service proxy
+        </a>
+      </p>
     </>
   )
 }

@@ -5,7 +5,10 @@ import { FormEvent, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useHistory, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { PollutantCodeAir, PollutantCodeWater } from '../../api/enums/PollutantCode'
+import {
+  PollutantCodeAir,
+  PollutantCodeWater
+} from '../../api/enums/PollutantCode'
 import { OptionType } from '../../models/OptionType'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { Medium } from '../../api/enums/Medium'
@@ -15,12 +18,13 @@ import { TranslationKeys } from '../../react-i18next'
 import { usePlacenameOptions } from '../../hooks/usePlaceNameOptions'
 import { useYearOptions } from '../../hooks/useYearOptions'
 import { DropdownSelectorAndLabel } from '../Common/DropdownSelectorAndLabel'
+import { arrayEquals } from '../../utils'
 
 const getPollutantNameOptions = (
   medium: Medium,
   t: (translationKey: TranslationKeys) => string | undefined
 ): OptionType<PollutantCodeAir | PollutantCodeWater>[] => {
-  return Object.values((medium === 'AIR') ? PollutantCodeAir : PollutantCodeWater)
+  return Object.values(medium === 'AIR' ? PollutantCodeAir : PollutantCodeWater)
     .reduce((prev, curr) => {
       const label = getLongPollutantLabel(t, curr)
       if (!!label) {
@@ -30,15 +34,20 @@ const getPollutantNameOptions = (
         })
       } else return prev
     }, [] as OptionType<PollutantCodeAir | PollutantCodeWater>[])
-    .sort((a: OptionType<PollutantCodeAir | PollutantCodeWater>, b: OptionType<PollutantCodeAir | PollutantCodeWater>) => {
-      if (a.label < b.label) {
-        return -1
+    .sort(
+      (
+        a: OptionType<PollutantCodeAir | PollutantCodeWater>,
+        b: OptionType<PollutantCodeAir | PollutantCodeWater>
+      ) => {
+        if (a.label < b.label) {
+          return -1
+        }
+        if (a.label > b.label) {
+          return 1
+        }
+        return 0
       }
-      if (a.label > b.label) {
-        return 1
-      }
-      return 0
-    })
+    )
 }
 
 const Form = styled.form`
@@ -47,9 +56,11 @@ const Form = styled.form`
 
 export const ReleaseFilterPanel = (props: {
   medium: Medium
-  urlPollutantCode: PollutantCodeAir | PollutantCodeWater | undefined
-  urlYear: number | undefined
-  urlPlacename: string | undefined
+  urlPollutantCode: (PollutantCodeAir | PollutantCodeWater)[] | undefined
+  urlYear: number[] | undefined
+  urlPlacename: string[] | undefined
+  sort: { sortKey: string; descending: boolean }
+  updateSortKey: (newSortKey: string, newDescending: boolean) => void
 }) => {
   const { t } = useTranslation([
     'translation',
@@ -60,15 +71,18 @@ export const ReleaseFilterPanel = (props: {
   const history = useHistory()
   const location = useLocation()
 
-  const [pollutantCode, setPollutantCode] = useState<PollutantCodeAir | PollutantCodeWater | undefined>(
-    props.urlPollutantCode
-  )
-  const [year, setYear] = useState<number | undefined>(props.urlYear)
-  const [placename, setPlacename] = useState<string | undefined>(
+  const [pollutantCode, setPollutantCode] = useState<
+    (PollutantCodeAir | PollutantCodeWater)[] | undefined
+  >(props.urlPollutantCode)
+  const [year, setYear] = useState<number[] | undefined>(props.urlYear)
+  const [placename, setPlacename] = useState<string[] | undefined>(
     props.urlPlacename
   )
 
-  const pollutantOptions = useMemo(() => getPollutantNameOptions(props.medium, t), [props.medium, t])
+  const pollutantOptions = useMemo(
+    () => getPollutantNameOptions(props.medium, t),
+    [props.medium, t]
+  )
   const { yearOptionsIsLoading, yearOptionsIsError, yearOptions } =
     useYearOptions()
   const {
@@ -88,26 +102,34 @@ export const ReleaseFilterPanel = (props: {
     e.preventDefault() // prevent reload on submit
     const newUrlSearchParams = new URLSearchParams()
     if (pollutantCode) {
-      newUrlSearchParams.set(URLSearchParamName.PollutantCode, pollutantCode)
+      for (const code of pollutantCode) {
+        newUrlSearchParams.append(URLSearchParamName.PollutantCode, code)
+      }
     }
     if (year) {
-      newUrlSearchParams.set(URLSearchParamName.Year, year.toString())
+      for (const y of year) {
+        newUrlSearchParams.append(URLSearchParamName.Year, y.toString())
+      }
     }
     if (placename) {
-      newUrlSearchParams.set(URLSearchParamName.Placename, placename.toString())
+      for (const p of placename) {
+        newUrlSearchParams.append(URLSearchParamName.Placename, p.toString())
+      }
     }
     newUrlSearchParams.set(URLSearchParamName.FirstItemIdx, '0')
     history.push({
       pathname: location.pathname,
       search: '?' + newUrlSearchParams.toString()
     })
+    props.updateSortKey("", true)
   }
 
   const searchInputsChanged =
     (!props.urlYear && !props.urlPollutantCode && !props.urlPlacename) ||
-    props.urlYear !== year ||
-    props.urlPollutantCode !== pollutantCode ||
-    props.urlPlacename !== placename
+    !(arrayEquals(props.urlYear, year)) ||
+    !arrayEquals(props.urlPollutantCode, pollutantCode) ||
+    !(arrayEquals(props.urlPlacename, placename)) ||
+    props.sort.sortKey !== ""
 
   return (
     <Form onSubmit={handleSubmit} data-cy="releases-filter-panel">
@@ -129,7 +151,10 @@ export const ReleaseFilterPanel = (props: {
             placeholder={t('translation:releases.selectPollutant')}
             value={
               pollutantCode
-                ? asOption(pollutantCode, getPollutantLabel(t, pollutantCode))
+                ? asOption(
+                    pollutantCode,
+                    pollutantCode.map(elem => getPollutantLabel(t, elem))
+                  )
                 : null
             }
             options={pollutantOptions}

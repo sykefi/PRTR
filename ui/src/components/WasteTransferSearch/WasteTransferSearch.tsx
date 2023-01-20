@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
@@ -6,7 +7,9 @@ import { AllOrInternationalFilter } from '../../api/enums/AllOrInternationalFilt
 import * as env from '../../env'
 import {
   useURLSearchParam,
-  useURLSearchParamInt
+  useURLSearchParamInt,
+  useURLSearchParamIntArray,
+  useURLSearchParamArray
 } from '../../hooks/useURLSearchParams'
 import { URLSearchParamName } from '../../models/URLSearchParamName'
 import { BelowNavigationHeaderPanel } from '../Common/BelowNavigationHeaderPanel'
@@ -21,15 +24,16 @@ export const WasteTransferSearch = () => {
   const { t } = useTranslation()
 
   const urlFirstItemIdx = useURLSearchParamInt(URLSearchParamName.FirstItemIdx)
-  const urlYear = useURLSearchParamInt(URLSearchParamName.Year)
-  const urlPlacename = useURLSearchParam(URLSearchParamName.Placename)
+  const urlYear = useURLSearchParamIntArray(URLSearchParamName.Year)
+  const urlPlacename = useURLSearchParamArray(URLSearchParamName.Placename)
   const urlAllOrInternational =
     useURLSearchParam<AllOrInternationalFilter>(
       URLSearchParamName.AllOrInternational
     ) || AllOrInternationalFilter.ALL
+  const [sort, setSort] = useState<{sortKey: string; descending: boolean}>({sortKey: "", descending: false})
 
   const { isLoading, isFetching, isError, isSuccess, data } = useQuery(
-    ['wasteTransfers', urlFirstItemIdx, urlYear, urlPlacename, urlAllOrInternational],
+    ['wasteTransfers', urlFirstItemIdx, urlYear, urlPlacename, urlAllOrInternational, sort.sortKey, sort.descending],
     async () => {
       if (urlFirstItemIdx === undefined) return undefined
       return await api.getWasteTransfers({
@@ -37,13 +41,20 @@ export const WasteTransferSearch = () => {
         skip: urlFirstItemIdx,
         limit: pageItemLimit,
         placename: urlPlacename,
-        all_or_international_filter: urlAllOrInternational
+        all_or_international_filter: urlAllOrInternational,
+        sort_key: sort.sortKey,
+        descending: sort.descending
       })
     },
     { keepPreviousData: true, retry: 2, ...env.rqCacheSettings }
   )
   const loading = isLoading || isFetching
   const hasWasteTransfers = !!data && data.data.length > 0
+
+  const updateSortKey = (newSortKey: string, newDescending: boolean) => {
+    newDescending = !newDescending
+    setSort({sortKey: newSortKey, descending: newDescending})
+  }
 
   return (
     <>
@@ -53,6 +64,8 @@ export const WasteTransferSearch = () => {
           urlYear={urlYear}
           urlAllOrInternational={urlAllOrInternational}
           urlPlacename={urlPlacename}
+          sort={sort}
+          updateSortKey={updateSortKey}
         />
       </BelowNavigationHeaderPanel>
       <Flex
@@ -71,6 +84,10 @@ export const WasteTransferSearch = () => {
                 firstItemIdx={urlFirstItemIdx}
                 totalItemCount={data.count}
                 loading={loading}
+                urlYear={urlYear}
+                urlPlacename={urlPlacename}
+                urlAllOrInternational={urlAllOrInternational}
+                sort={sort}
               />
             )}
             {!loading && isSuccess && !hasWasteTransfers && (
@@ -87,6 +104,8 @@ export const WasteTransferSearch = () => {
               <WasteTransferTable
                 loading={loading}
                 wasteTransfers={data?.data || []}
+                updateSortKey={updateSortKey}
+                sort={sort}
               />
             )}
           </>

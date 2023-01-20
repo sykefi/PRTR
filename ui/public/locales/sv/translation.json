@@ -23,7 +23,8 @@
     "basicInfo": "Grunddata",
     "loadingInformation": "Uppgifterna laddas upp",
     "additionalInfo": "Ytterligare information",
-    "logoText": "UTSLÄPPSINFORMATION"
+    "logoText": "UTSLÄPPSINFORMATION",
+    "downloadCSV": "Ladda ner data (CSV)"
   },
   "footer": {
     "sendFeedbackButtonLabel": "Skicka respons"
@@ -40,12 +41,14 @@
     "couldNotFindFacilityWasteTransfers": "Sökningen av uppgifter om avfallstransporter misslyckades, försök igen senare.",
     "noReleasesFoundForFacility": "Inga utsläpp hittades för den valda anläggningen",
     "noWasteTransfersFoundForFacility": "Inga avfallstransporter hittades för den valda anläggningen",
+    "fileName": "anlaggningar",
     "facilityReleaseTable": "Utsläppsdata",
     "facilityWasteTransferTable": "Avfallstransporter",
     "goBackToFacilitySearch": "Återvänd till anläggningssökning",
     "goBackToReleaseSearch": "Återvänd till anläggningssökning",
     "goBackToWasteTransferSearch": "Återvänd till sökning av avfallstransporter",
     "mapLegendTitle": "Färgerna på kartan beskriver de olika verksamheten",
+    "id": "Id",
     "status": {
       "title": "Status",
       "decommissioned": "Nedlagd",
@@ -67,6 +70,7 @@
     "selectYear": "Välj år",
     "noReleasesFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
     "releasesFetchErrorInfo": "Sökningen av utsläppen misslyckades, försök igen senare.",
+    "fileName": "utslapp",
     "method": {
       "title": "Metod",
       "measured": "Mätning",
@@ -99,6 +103,7 @@
     "allOrInternationalInternationalLabel": "Visa endast internationella transporter",
     "noWasteTransfersFoundFromSearch": "Inga träffar i databasen för de valda sökvillkoren",
     "wasteTransfersFetchErrorInfo": "Sökningen misslyckades, försök igen senare.",
+    "fileName": "avfallstransporter",
     "quantity": "Mängd",
     "receiver": "Mottagande anläggning",
     "searchWithPlaceName": "Sök efter ort"
