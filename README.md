@@ -4,7 +4,7 @@
 
 Also known as _Hajapäästöt kartalla_
 
-This component is part of PRTR.f
+This component is part of PRTR.fi
 ### Project setup
 
 The project requires installation of [vue-cli](https://cli.vuejs.org/):
