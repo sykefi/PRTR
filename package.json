@@ -1,0 +1,45 @@
+{
+  "name": "air-pollutant-map",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "serve-dev": "vue-cli-service serve --mode dev",
+    "build-dev": "vue-cli-service build --mode dev",
+    "serve-prod": "vue-cli-service serve --mode prod",
+    "build-prod": "vue-cli-service build --mode prod",
+    "serve-dev-syke": "vue-cli-service serve --mode dev-syke",
+    "build-dev-syke": "vue-cli-service build --mode dev-syke",
+    "serve-prod-syke": "vue-cli-service serve --mode prod-syke",
+    "build-prod-syke": "vue-cli-service build --mode prod-syke",
+    "lint": "vue-cli-service lint",
+    "clean-test-cache": "rm -rf cypress/csvDownloads",
+    "cypress": "npm run clean-test-cache && npx cypress open"
+  },
+  "dependencies": {
+    "core-js": "^3.18.2",
+    "js-cookie": "^2.2.1",
+    "ol": "^6.8.1",
+    "vue": "^2.6.14",
+    "vuex": "^3.6.2",
+    "webpack": "^4.46.0"
+  },
+  "devDependencies": {
+    "@types/ol": "^6.5.3",
+    "@types/webpack-env": "^1.16.0",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "^4.5.13",
+    "@vue/cli-plugin-eslint": "^4.5.13",
+    "@vue/cli-plugin-typescript": "^4.5.13",
+    "@vue/cli-service": "^4.5.13",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "cypress": "^4.12.1",
+    "cypress-image-snapshot": "^3.1.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-cypress": "^2.11.3",
+    "eslint-plugin-vue": "^6.2.2",
+    "prettier": "^2.3.1",
+    "typescript": "^3.9.10",
+    "vue-template-compiler": "^2.6.14"
+  }
+}
