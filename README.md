@@ -2,10 +2,9 @@
 
 # air-pollutant-map
 
-Also known as _Päästöt kartalla_
+Also known as _Hajapäästöt kartalla_
 
-Online preview: [paastokartta-demo.web.app](https://paastokartta-demo.web.app/)
-
+This component is part of PRTR.f
 ### Project setup
 
 The project requires installation of [vue-cli](https://cli.vuejs.org/):
