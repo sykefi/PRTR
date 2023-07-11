@@ -18,6 +18,7 @@ import { ScrollToTop } from './components/ScrollToTop'
 import { Footer } from './components/Footer'
 import { WasteTransferSearch } from './components/WasteTransferSearch/WasteTransferSearch'
 import { AdditionalInfoPage } from './components/AdditionalnfoPage/AdditionalInfoPage'
+import AirPollutantMap from './components/AirPollutantMap'
 
 const queryClient = new QueryClient()
 
@@ -26,6 +27,7 @@ const navigationItems: NavigationItem[] = [
   { tKey: 'common.releasesToAir', path: RoutePath.ReleasesToAir },
   { tKey: 'common.releasesToWater', path: RoutePath.ReleasesToWater },
   { tKey: 'common.wasteTransfers', path: RoutePath.WasteTransfers },
+  { tKey: 'common.airPollutants', path: RoutePath.AirPollutants },
   { tKey: 'common.additionalInfo', path: RoutePath.AdditionalInfo }
 ]
 
@@ -60,6 +62,9 @@ const App = () => {
               </Route>
               <Route path={RoutePath.WasteTransfers}>
                 <WasteTransferSearch />
+              </Route>
+              <Route path={RoutePath.AirPollutants}>
+                <AirPollutantMap />
               </Route>
               <Route path={RoutePath.AdditionalInfo}>
                 <AdditionalInfoPage />
