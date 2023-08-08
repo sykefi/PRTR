@@ -1,5 +1,5 @@
-import React from "react";
-import { Box } from "@chakra-ui/layout";
+import React from 'react'
+import { Box } from '@chakra-ui/layout'
 import { useTranslation } from 'react-i18next'
 
 const AirPollutantMap: React.FC = () => {
