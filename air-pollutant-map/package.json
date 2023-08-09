@@ -13,7 +13,10 @@
     "build-prod-syke": "vue-cli-service build --mode prod-syke",
     "lint": "vue-cli-service lint",
     "clean-test-cache": "rm -rf cypress/csvDownloads",
-    "cypress": "npm run clean-test-cache && npx cypress open"
+    "cypress": "npm run clean-test-cache && npx cypress open",
+    "copy-component-to-prtr": "ncp dist ../ui/public/air-pollutant-map",
+    "build-dev-prtr": "npm run build-dev && npm run copy-component-to-prtr",
+    "build-prod-prtr": "npm run build-prod && npm run copy-component-to-prtr"
   },
   "dependencies": {
     "core-js": "^3.18.2",
