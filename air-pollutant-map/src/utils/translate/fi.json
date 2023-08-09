@@ -1,0 +1,34 @@
+{
+  "selector.vuosi.label": "Vuosi",
+  "selector.gnfr.label": "Luokka",
+  "selector.pollutant.label": "Päästö",
+  "selector.map.datatype.grid": "Ruudukko",
+  "selector.map.datatype.muni": "Kunnat",
+
+  "map.legend.title.emissions.label": "Päästömäärä",
+  "map.legend.title.emission-density.label": "Päästömäärä",
+  "map.legend.per-grid-cell": "ruudussa",
+
+  "aria.year.selector.status.text": "vaihtoehtoa (vuotta) valittavana",
+  "aria.year.selector.describe": "Napsauta nuolinäppäintä alas nähdäksesi vaihtoehdot (vuodet)",
+  "aria.gnfr.selector.status.text": "vaihtoehtoa (päästöluokkaa) valittavana",
+  "aria.gnfr.selector.describe": "Napsauta nuolinäppäintä alas nähdäksesi vaihtoehdot (päästöluokat)",
+  "aria.pollutant.selector.status.text": "vaihtoehtoa (päästöä) valittavana",
+  "aria.pollutant.selector.describe": "Napsauta nuolinäppäintä alas nähdäksesi vaihtoehdot (saastukkeet)",
+  "aria.mapdatatype.selector.label": "Valitse kartalla näytettävä data kahdesta vaihtoehdosta (ruudukko & kunnat)",
+  "aria.language.selector.label": "Valitse päästökartan kieli (FI -> suomi, SV -> ruotsi, EN -> englanti)",
+
+  "gnfr.description.combined-emissions": "Päästöt yhteensä:",
+  "gnfr.description.gnfr-share-of-total": "Valitun luokan osuus kokonaispäästöistä on",
+  "gnfr.description.share.of.reported_pre": " ja esitettävistä päästöistä",
+  "gnfr.description.share.of.reported_after": "on toiminnanharjoittajien raportoimia.",
+  "gnfr.description.no_reported_emissions": "Luokkaan ei kuulu toiminnanharjoittajien raportoimia päästöjä.",
+
+  "csv-data-download.all.button.label": "Lataa koko päästödata kunnittain",
+  "csv-data-download.municipality.button.label": "Lataa päästödata",
+
+  "csv-data-download.filename-prefix": "paastodata",
+  "csv-data-download.header-row-prefix": "Kuntanumero;Nimi;Namn;Vuosi;Luokka;",
+  "csv-data-download.loading-label": "Ladataan päästödataa",
+  "csv-data-download.failed-try-again.label": "Lataus epäonnistui, yritä myöhemmin uudestaan."
+}
