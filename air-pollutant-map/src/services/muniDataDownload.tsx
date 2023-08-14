@@ -1,7 +1,7 @@
 import { utfBom } from "@/constants";
 import { Lang } from "@/store";
 import { Gnfr, LangStringMap, Pollutant } from "@/types";
-import * as env from "../env";
+import * as env from "./../env";
 
 interface PollutantValues {
   s16: number;

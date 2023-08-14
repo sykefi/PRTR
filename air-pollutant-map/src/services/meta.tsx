@@ -7,7 +7,7 @@ import {
   DbGnfrPollutantMeta,
   GnfrPollutantMeta
 } from "@/types";
-import * as env from "../env";
+import * as env from "./../env";
 
 const gnfrMetaTable = "p_gnfr_meta";
 const pollutantMetaTable = "p_pollutant_meta";

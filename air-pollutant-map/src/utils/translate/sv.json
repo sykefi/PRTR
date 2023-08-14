@@ -23,6 +23,7 @@
   "gnfr.description.share.of.reported_pre": " och av utsläpp som visas",
   "gnfr.description.share.of.reported_after": "är rapporterade av versamhetsutövare.",
   "gnfr.description.no_reported_emissions": "Kategorin innehåller inte utsläpp rapporterade av verksamhetsutövare.",
+  "gnfr.description.no_emissions": "Inga utsläpp hittades för innevarande år och klass.",
 
   "csv-data-download.all.button.label": "Ladda ned full utsläppsdata",
   "csv-data-download.municipality.button.label": "Ladda ned utsläppsdata",

@@ -177,6 +177,8 @@ export const getTotalEmissionStats = async (
   const totalEmissions = await getTotalEmissions(year, "COMBINED", pollutant.id);
   if ((gnfrEmissions || gnfrEmissions === 0) && totalEmissions) {
     return { gnfrId, gnfrEmissions, totalEmissions, unit: pollutant.unit };
+  } else if (gnfrEmissions === 0 && totalEmissions === 0){
+    return { gnfrId, gnfrEmissions, totalEmissions, unit: pollutant.unit };
   }
   return undefined;
 };

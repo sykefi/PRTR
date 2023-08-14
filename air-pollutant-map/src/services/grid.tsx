@@ -1,5 +1,5 @@
 import * as cache from "./cache";
-import * as env from "../env";
+import * as env from "./../env";
 import { FeatureCollection, Polygon } from "@/types";
 
 const gridGeomTable = "p_grid_geom";

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="ol-map">
-      <OlMuniBasemapLayer v-if="isReady" :visible="true" :map="map" />
+      <!-- <OlMuniBasemapLayer v-if="isReady" :visible="true" :map="map" /> -->
       <OlGridDataLayer
         v-if="gnfrId && pollutant && isReady && mapDataType === mapDataTypes.GRID"
         :year="year"
@@ -38,11 +38,15 @@
 import Vue, { PropType } from "vue";
 import Map from "ol/Map.js";
 import View from "ol/View.js";
+import { Tile as TileLayer } from 'ol/layer';
+import WMTS from "ol/source/WMTS";
+import WMTSTileGrid from "ol/tilegrid/WMTS";
+import TileWMS from "ol/source/TileWMS";
 import Overlay from "ol/Overlay";
 import { Coordinate } from "ol/coordinate";
 import { Extent } from "ol/extent";
 import OlGridDataLayer from "./OlGridDataLayer.vue";
-import OlMuniBasemapLayer from "./OlMuniBasemapLayer.vue";
+// import OlMuniBasemapLayer from "./OlMuniBasemapLayer.vue";
 import GridFeaturePopup from "./GridFeaturePopup.vue";
 import MuniFeaturePopup from "./MuniFeaturePopup.vue";
 import LoadingAnimation from "./LoadingAnimation.vue";
@@ -61,7 +65,7 @@ const projection = new Projection({
 export default Vue.extend({
   components: {
     OlGridDataLayer,
-    OlMuniBasemapLayer,
+    // OlMuniBasemapLayer,
     GridFeaturePopup,
     MuniFeaturePopup,
     LoadingAnimation,
@@ -161,9 +165,31 @@ export default Vue.extend({
     }
   },
   mounted() {
+    const areaSize = 2097152; // width and height of the matrix set in ground (from capabilities)
+    const tileSize = 256; // width and height of the tile in pixels (from capabilities)
+    const matrixIds = new Array(18);
+    const resolutions = new Array(18);
+    const proxyUrl = "https://paikkatieto.ymparisto.fi/proxy/proxy.ashx?";
+
+    for (let z = 0; z < 16; ++z) {
+      matrixIds[z] = z;
+      resolutions[z] = areaSize / tileSize / Math.pow(2, z);
+    }
+
+
+    const baseLayer = new TileLayer({
+      zIndex: 3,
+      source: new TileWMS({
+        url: "http://kkxgeot1.env.fi/geoserver/ilmo-climateguide/" + "ows",
+        params: { LAYERS: "shoreline", TILED: true },
+        serverType: "geoserver",
+        attributions: "© MML, 2011",
+      }),
+    });
+
     this.map = new Map({
       target: "ol-map",
-      layers: [],
+      layers: [baseLayer],
       view: new View({
         projection,
         center: [435385.0836878328, 7247696.528687431],

@@ -23,6 +23,7 @@
   "gnfr.description.share.of.reported_pre": " and of the visible emissions",
   "gnfr.description.share.of.reported_after": "are reported by the facilities.",
   "gnfr.description.no_reported_emissions": "This class does not contain any reported emissions.",
+  "gnfr.description.no_emissions": "No emissions found for the current year and class.",
 
   "csv-data-download.all.button.label": "Lataa koko päästödata kunnittain",
   "csv-data-download.municipality.button.label": "Download emission data",

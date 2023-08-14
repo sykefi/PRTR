@@ -5,13 +5,13 @@
       {{ gnfr && gnfr.desc[lang] }}
       <div v-if="gnfrPollutantMetas && totalEmissionStats" class="stats">
         <span v-if="totalEmissionStats">
-          <span v-if="totalEmissionStats.gnfrId === 'COMBINED'">
+          <span v-if="totalEmissionStats.gnfrId === 'COMBINED' && totalEmissionStats.totalEmissions">
             {{ "gnfr.description.combined-emissions" | translate }}
             <span class="formatted-number">
               {{ roundTotalEmissions(totalEmissionStats.gnfrEmissions) }}
               {{ totalEmissionStats.unit }}
             </span></span
-          ><span v-else>
+          ><span v-else-if="totalEmissionStats.gnfrId !== 'COMBINED' && totalEmissionStats.gnfrEmissions && totalEmissionStats.totalEmissions">
             {{ "gnfr.description.gnfr-share-of-total" | translate }}
             <span class="formatted-number">
               {{ getShareOfGnfrEmissions(totalEmissionStats) }} %
@@ -20,7 +20,10 @@
               >{{ roundTotalEmissions(totalEmissionStats.gnfrEmissions) }}
               {{ totalEmissionStats.unit }}</span
             >)</span
-          ></span
+          ><span v-else-if="!totalEmissionStats.gnfrEmissions" class="no-emissions">
+            {{ "gnfr.description.no_emissions" | translate }}
+          </span>
+          </span
         ><span v-if="gnfr && gnfr.id !== 'COMBINED' && getCalcRepShareObject()">
           <span v-if="getRepRatio() > 0">
             {{ "gnfr.description.share.of.reported_pre" | translate }}
@@ -146,6 +149,9 @@ export default Vue.extend({
 }
 .formatted-number {
   color: #007ac9;
+}
+.no-emissions {
+  color: #ff2346;
 }
 .load-animation-container {
   margin: 8px 0px -2px 2px;
