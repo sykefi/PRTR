@@ -39,3 +39,17 @@ Open & run Cypress E2E tests with
 Vue.js & OpenLayers
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Update air-pollutant-map changes to PRTR ui
+To update changes that are made in air-pollutant-map to PRTR app, minified build needs to be copied in directory [ui/public/air-pollutant-map](../ui/public/air-pollutant-map/). Build script and copy script are chained for sequential execution. Copy-script requires installation of ncp. To install, run:
+```
+npm install -g ncp
+```
+
+### Compiles and minifies for development and copies minified file to PRTR ui
+
+`npm run build-dev-prtr`
+
+### Compiles and minifies for production and copies minified file to PRTR ui
+
+`npm run build-prod-prtr`
