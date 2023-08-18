@@ -54,6 +54,7 @@ import Legend from "./Legend.vue";
 import { Pollutant, MapDataType, MuniFeatureProperties } from "@/types";
 import { PollutantLegend } from "../types";
 import Projection from "ol/proj/Projection";
+import * as env from "../env";
 
 const projection = new Projection({
   code: "EPSG:3067",
@@ -178,9 +179,9 @@ export default Vue.extend({
 
 
     const baseLayer = new TileLayer({
-      zIndex: 3,
+      zIndex: 13,
       source: new TileWMS({
-        url: "http://kkxgeot1.env.fi/geoserver/ilmo-climateguide/" + "ows",
+        url: env.gsUri + "ows",
         params: { LAYERS: "shoreline", TILED: true },
         serverType: "geoserver",
         attributions: "© MML, 2011",
