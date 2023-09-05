@@ -90,6 +90,10 @@ export default Vue.extend({
         this.pollutant.coeffLegend
       );
 
+      if (!gridData){
+        return
+      }
+      
       this.layerSource.forEachFeature((feat) => {
         const emission = gridData.get(feat.get("id") as number);
         feat.setProperties({ emission });
