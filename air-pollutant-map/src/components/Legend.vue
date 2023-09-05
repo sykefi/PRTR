@@ -1,26 +1,28 @@
 <template>
   <div class="legend-wrapper">
-    <div v-if="!loading && legend" class="legend-box legend-container">
-      <div id="legend-title">
-        <span v-if="mapDataType === mapDataTypes.GRID">
-          {{ "map.legend.title.emissions.label" | translate }}
-          <br />{{ "map.legend.per-grid-cell" | translate }}
-          <span> ({{ legend.unit }})</span>
-        </span>
-        <span v-if="mapDataType === mapDataTypes.MUNICIPALITY">
-          {{ "map.legend.title.emission-density.label" | translate }}
-          <br />({{ legend.unit }} / km<sup>2</sup>)
-        </span>
-      </div>
-      <div class="legend-class-row" v-for="className in legend.classNames" :key="className">
-        <div
-          class="legend-color-box"
-          v-bind:style="{ backgroundColor: legend[className].color }"
-        />
-        <div v-if="className === 1">&lt; {{ toLocaleNumber(legend[className].max) }}</div>
-        <div v-else>
-          {{ toLocaleNumber(legend[className].min) }} -
-          {{ toLocaleNumber(legend[className].max) }}
+    <div v-if="!loading" class="legend-box legend-container">
+      <div v-if="legend">
+        <div id="legend-title">
+          <span v-if="mapDataType === mapDataTypes.GRID">
+            {{ "map.legend.title.emissions.label" | translate }}
+            <br />{{ "map.legend.per-grid-cell" | translate }}
+            <span> ({{ legend.unit }})</span>
+          </span>
+          <span v-if="mapDataType === mapDataTypes.MUNICIPALITY">
+            {{ "map.legend.title.emission-density.label" | translate }}
+            <br />({{ legend.unit }} / km<sup>2</sup>)
+          </span>
+        </div>
+        <div class="legend-class-row" v-for="className in legend.classNames" :key="className">
+          <div
+            class="legend-color-box"
+            v-bind:style="{ backgroundColor: legend[className].color }"
+          />
+          <div v-if="className === 1">&lt; {{ toLocaleNumber(legend[className].max) }}</div>
+          <div v-else>
+            {{ toLocaleNumber(legend[className].min) }} -
+            {{ toLocaleNumber(legend[className].max) }}
+          </div>
         </div>
       </div>
     </div>

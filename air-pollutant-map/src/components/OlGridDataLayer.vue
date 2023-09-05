@@ -77,10 +77,6 @@ export default Vue.extend({
       this.$store.dispatch(Dispatch.setLoading);
       this.$emit("update-total-emission-stats", undefined);
       await this.loadSourceFeatures();
-      if (this.layerSource.getFeatures() === undefined || this.layerSource.getFeatures().length == 0){
-        this.$store.dispatch(Dispatch.setLoaded);
-        return
-      }
 
       await this.handleStyleUpdate();
       await this.updateTotalEmissionStats();
@@ -93,9 +89,6 @@ export default Vue.extend({
         this.pollutant.id,
         this.pollutant.coeffLegend
       );
-      if (!gridData){
-        return
-      }
 
       this.layerSource.forEachFeature((feat) => {
         const emission = gridData.get(feat.get("id") as number);
@@ -185,7 +178,11 @@ export default Vue.extend({
         breakPoints,
         maxEmissionValue
       );
-      this.$emit("update-legend", this.legend);
+      if (!isFinite(maxEmissionValue)) {
+        this.$emit("update-legend", undefined);
+      } else {
+        this.$emit("update-legend", this.legend);
+      }
     },
 
     async updateTotalEmissionStats(): Promise<void> {

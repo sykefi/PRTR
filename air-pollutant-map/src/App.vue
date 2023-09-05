@@ -27,9 +27,6 @@
           :mapDataType="mapDataType"
           @update-total-emission-stats="(tes) => (this.totalEmissionStats = tes)"
         />
-        <!-- <div id="map-controls-container">
-          <ToggleLanguageButtons />
-        </div> -->
       </div>
       <MuniDataDownloadAll v-if="downloadFullDataEnabled" />
     </div>
@@ -40,10 +37,8 @@
 import Vue from "vue";
 import OlMap from "./components/OlMap.vue";
 import SelectorYear from "./components/SelectorYear.vue";
-// import ToggleDataType from "./components/ToggleDataType.vue";
 import SelectorPollutant from "./components/SelectorPollutant.vue";
 import SelectorGnfr from "./components/SelectorGnfr.vue";
-// import ToggleLanguageButtons from "./components/ToggleLanguageButtons.vue";
 import GnfrDescription from "./components/GnfrDescription.vue";
 import MuniDataDownloadAll from "./components/MuniDataDownloadAll.vue";
 import { Pollutant, MapDataType, Gnfr, TotalEmissionStats } from "./types";
@@ -56,8 +51,6 @@ export default Vue.extend({
     SelectorYear,
     SelectorGnfr,
     SelectorPollutant,
-    // ToggleDataType,
-    // ToggleLanguageButtons,
     GnfrDescription,
     MuniDataDownloadAll
   },

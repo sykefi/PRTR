@@ -23,16 +23,7 @@
           ><span v-else-if="!totalEmissionStats.gnfrEmissions" class="no-emissions">
             {{ "gnfr.description.no_emissions" | translate }}
           </span>
-          </span
-        ><span v-if="gnfr && gnfr.id !== 'COMBINED' && getCalcRepShareObject()">
-          <span v-if="getRepRatio() > 0">
-            {{ "gnfr.description.share.of.reported_pre" | translate }}
-            <span class="formatted-number"> {{ getRepRatio() }} %</span>
-            {{ "gnfr.description.share.of.reported_after" | translate }} </span
-          ><span v-else
-            ><span>. </span>{{ "gnfr.description.no_reported_emissions" | translate }}</span
-          ></span
-        >
+          </span>
       </div>
     </div>
     <div v-if="!gnfrPollutantMetas || !totalEmissionStats" class="load-animation-container">
@@ -65,32 +56,6 @@ export default Vue.extend({
     };
   },
   methods: {
-    getCalcRepShareObject(): GnfrPollutantMeta | undefined {
-      if (this.year && this.gnfr && this.pollutant && this.gnfrPollutantMetas) {
-        return this.gnfrPollutantMetas.find((o) => {
-          return (
-            o.year === this.year &&
-            o.gnfr === this.gnfr.id &&
-            o.pollutant === this.pollutant!.id
-          );
-        });
-      }
-      return undefined;
-    },
-    getRepRatio() {
-      const gnfrPollutantShare = this.getCalcRepShareObject();
-      if (gnfrPollutantShare) {
-        return Math.round(gnfrPollutantShare.repShare * 1000) / 10;
-      }
-      return "?";
-    },
-    getCalcRatio() {
-      const gnfrPollutantShare = this.getCalcRepShareObject();
-      if (gnfrPollutantShare) {
-        return Math.round(gnfrPollutantShare.calcShare * 1000) / 10;
-      }
-      return "?";
-    },
     roundTotalEmissions(n: number) {
       const rounded = parseFloat(n.toPrecision(3));
       if (rounded >= 1000) {

@@ -19,7 +19,7 @@
   "aria.language.selector.label": "Valitse päästökartan kieli (FI -> suomi, SV -> ruotsi, EN -> englanti)",
 
   "gnfr.description.combined-emissions": "Päästöt yhteensä:",
-  "gnfr.description.gnfr-share-of-total": "Valitun luokan osuus kokonaispäästöistä on",
+  "gnfr.description.gnfr-share-of-total": "Valitun luokan osuus kokonaishajapäästöistä on",
   "gnfr.description.share.of.reported_pre": " ja esitettävistä päästöistä",
   "gnfr.description.share.of.reported_after": "on toiminnanharjoittajien raportoimia.",
   "gnfr.description.no_reported_emissions": "Luokkaan ei kuulu toiminnanharjoittajien raportoimia päästöjä.",

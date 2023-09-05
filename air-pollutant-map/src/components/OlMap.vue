@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id="ol-map">
-      <!-- <OlMuniBasemapLayer v-if="isReady" :visible="true" :map="map" /> -->
       <OlGridDataLayer
         v-if="gnfrId && pollutant && isReady && mapDataType === mapDataTypes.GRID"
         :year="year"
@@ -46,7 +45,6 @@ import Overlay from "ol/Overlay";
 import { Coordinate } from "ol/coordinate";
 import { Extent } from "ol/extent";
 import OlGridDataLayer from "./OlGridDataLayer.vue";
-// import OlMuniBasemapLayer from "./OlMuniBasemapLayer.vue";
 import GridFeaturePopup from "./GridFeaturePopup.vue";
 import MuniFeaturePopup from "./MuniFeaturePopup.vue";
 import LoadingAnimation from "./LoadingAnimation.vue";
