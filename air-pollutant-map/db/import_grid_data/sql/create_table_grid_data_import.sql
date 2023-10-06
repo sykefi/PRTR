@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS public.grid_data_import_temp
   s19 double precision,
   s29 double precision,
   s28 double precision,
-  s37 double precision,
   s22 double precision,
   s27 double precision,
   s25 double precision

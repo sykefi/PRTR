@@ -8,7 +8,7 @@ $dbName = 'hajapaastotkartalla'
 $dbUser = 'hajapaastotkartalla_upd'
 
 # $csvFile = 'csv_data/griddata3.csv'
-$csvFile = 'E:\Daniel\hajapaastot_data\PRTR_hajapaastot_test2.csv'
+$csvFile = 'E:\Daniel\hajapaastot_data\PRTR_Hajapaastot_toinen_ajo.csv'
 
 Read-Host -Prompt "`nConnecting to db $dbName at $dbHost as $dbUser. Updating grid data from $csvFile. Press any key to continue"
 
@@ -20,7 +20,7 @@ iex "& $psql -h $dbHost -d $dbName -U $dbUser -f sql/create_table_grid_data_impo
 
 Write-Output "`n3/4 Imports new grid data to grid_data_import_temp from csv."
 $copyCsvSql = @'
-"\copy public.grid_data_import_temp (vuosi,grid_id,long,lat,gnfr,s1,s43,s3,s5,s7,s8,s38,s12,s13,s14,s15,s16,s17,s18,s40,s19,s29,s28,s37,s22,s27,s25) FROM '$csvFile' with (format csv, header true, delimiter ';', encoding 'utf-8');"
+"\copy public.grid_data_import_temp (vuosi,grid_id,long,lat,gnfr,s1,s43,s3,s5,s7,s8,s38,s12,s13,s14,s15,s16,s17,s18,s40,s19,s29,s28,s22,s27,s25) FROM '$csvFile' with (format csv, header true, delimiter ';', encoding 'utf-8');"
 '@
 iex "& $psql -h $dbHost -d $dbName -U $dbUser -c $copyCsvSql"
 Read-Host -Prompt "`nPress CTRL+C if the import was not successful or any key to continue"
