@@ -1,0 +1,35 @@
+{
+  "selector.vuosi.label": "Year",
+  "selector.gnfr.label": "Sector",
+  "selector.pollutant.label": "Pollutant",
+  "selector.map.datatype.grid": "Grid",
+  "selector.map.datatype.muni": "Municipalities",
+
+  "map.legend.title.emissions.label": "Emissions",
+  "map.legend.title.emission-density.label": "Emission density",
+  "map.legend.per-grid-cell": "in grid cell",
+
+  "aria.year.selector.status.text": "options (years) available",
+  "aria.year.selector.describe": "Arrow down for options (years)",
+  "aria.gnfr.selector.status.text": "options (emission sectors) available",
+  "aria.gnfr.selector.describe": "Arrow down for options (emission sectors)",
+  "aria.pollutant.selector.status.text": "options (pollutants) available",
+  "aria.pollutant.selector.describe": "Arrow down for options (pollutants)",
+  "aria.mapdatatype.selector.label": "Select map data type from two options (grid & municipalities)",
+  "aria.language.selector.label": "Select language language of the air pollutant map (FI -> Finnish, SV -> Swedish, EN -> English)",
+
+  "gnfr.description.combined-emissions": "Total emissions:",
+  "gnfr.description.gnfr-share-of-total": "Share of the selected class is",
+  "gnfr.description.share.of.reported_pre": " and of the visible emissions",
+  "gnfr.description.share.of.reported_after": "are reported by the facilities.",
+  "gnfr.description.no_reported_emissions": "This class does not contain any reported emissions.",
+  "gnfr.description.no_emissions": "No emissions found for the current year and class.",
+
+  "csv-data-download.all.button.label": "Lataa koko päästödata kunnittain",
+  "csv-data-download.municipality.button.label": "Download emission data",
+
+  "csv-data-download.filename-prefix": "emission_data",
+  "csv-data-download.header-row-prefix": "Municipality num.;Name FI;Name SV;Year;Sector;",
+  "csv-data-download.loading-label": "Downloading emission data",
+  "csv-data-download.failed-try-again.label": "Download failed, please try again later."
+}

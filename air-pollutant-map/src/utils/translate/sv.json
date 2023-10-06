@@ -1,0 +1,35 @@
+{
+  "selector.vuosi.label": "År",
+  "selector.gnfr.label": "Kategori",
+  "selector.pollutant.label": "Förorening",
+  "selector.map.datatype.grid": "Rutnät",
+  "selector.map.datatype.muni": "Kommuner",
+
+  "map.legend.title.emissions.label": "Utsläppsmängd",
+  "map.legend.title.emission-density.label": "Utsläppsmängd",
+  "map.legend.per-grid-cell": "i rutan",
+
+  "aria.year.selector.status.text": "Tillgängliga alternativ (år)",
+  "aria.year.selector.describe": "Tryck pil ned till alternativ (år)",
+  "aria.gnfr.selector.status.text": "tillgängliga alternativ (utsläppsklasser)",
+  "aria.gnfr.selector.describe": "Tryck pil ned till alternativ (utsläppsklasser)",
+  "aria.pollutant.selector.status.text": "tillgängliga alternativ (föroreningar)",
+  "aria.pollutant.selector.describe": "Tryck pil ned till alternativ (föroreningar)",
+  "aria.mapdatatype.selector.label": "Välj data som visas på kartan från två alternativ (rutnät & kommuner)",
+  "aria.language.selector.label": "Välj språket på luftföroreningskartan (FI -> Finnish, SV -> Swedish, EN -> English)",
+
+  "gnfr.description.combined-emissions": "Sammanlagda utsläpp:",
+  "gnfr.description.gnfr-share-of-total": "Andel av vald kategori är",
+  "gnfr.description.share.of.reported_pre": " och av utsläpp som visas",
+  "gnfr.description.share.of.reported_after": "är rapporterade av versamhetsutövare.",
+  "gnfr.description.no_reported_emissions": "Kategorin innehåller inte utsläpp rapporterade av verksamhetsutövare.",
+  "gnfr.description.no_emissions": "Inga utsläpp hittades för innevarande år och klass.",
+
+  "csv-data-download.all.button.label": "Ladda ned full utsläppsdata",
+  "csv-data-download.municipality.button.label": "Ladda ned utsläppsdata",
+
+  "csv-data-download.filename-prefix": "utsläpp_data",
+  "csv-data-download.header-row-prefix": "Kommunnummer;Namn FI;Namn SV;År;Kategori;",
+  "csv-data-download.loading-label": "Ladda ned utsläppsdata",
+  "csv-data-download.failed-try-again.label": "Download failed, please try again later."
+}
