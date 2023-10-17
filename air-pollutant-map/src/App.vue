@@ -28,7 +28,6 @@
           @update-total-emission-stats="(tes) => (this.totalEmissionStats = tes)"
         />
       </div>
-      <MuniDataDownloadAll v-if="downloadFullDataEnabled" />
     </div>
   </div>
 </template>
@@ -40,7 +39,6 @@ import SelectorYear from "./components/SelectorYear.vue";
 import SelectorPollutant from "./components/SelectorPollutant.vue";
 import SelectorGnfr from "./components/SelectorGnfr.vue";
 import GnfrDescription from "./components/GnfrDescription.vue";
-import MuniDataDownloadAll from "./components/MuniDataDownloadAll.vue";
 import { Pollutant, MapDataType, Gnfr, TotalEmissionStats } from "./types";
 import { Dispatch } from "./store";
 import * as env from "./env";
@@ -51,8 +49,7 @@ export default Vue.extend({
     SelectorYear,
     SelectorGnfr,
     SelectorPollutant,
-    GnfrDescription,
-    MuniDataDownloadAll
+    GnfrDescription
   },
   data() {
     return {

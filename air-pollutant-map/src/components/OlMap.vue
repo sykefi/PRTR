@@ -13,19 +13,13 @@
       />
     </div>
     <Legend id="map-legend-container" :legend="legend" :mapDataType="mapDataType" />
-    <div class="olpopup" ref="olpopup" v-show="gridPopupValue || muniPopupVisible">
-      <div class="popup-loading-wrapper" v-show="muniPopupLoading">
+    <div class="olpopup" ref="olpopup" v-show="gridPopupValue">
+      <div class="popup-loading-wrapper" v-show="gridPopupValue">
         <LoadingAnimation color="#007ac9" :size="25" />
       </div>
       <GridFeaturePopup
         v-if="gridPopupValue"
         :popupValue="gridPopupValue"
-        :pollutant="pollutant"
-        @close-popup="closePopup"
-      />
-      <MuniFeaturePopup
-        v-if="muniPopupFeat"
-        :featProps="muniPopupFeat"
         :pollutant="pollutant"
         @close-popup="closePopup"
       />
@@ -46,10 +40,9 @@ import { Coordinate } from "ol/coordinate";
 import { Extent } from "ol/extent";
 import OlGridDataLayer from "./OlGridDataLayer.vue";
 import GridFeaturePopup from "./GridFeaturePopup.vue";
-import MuniFeaturePopup from "./MuniFeaturePopup.vue";
 import LoadingAnimation from "./LoadingAnimation.vue";
 import Legend from "./Legend.vue";
-import { Pollutant, MapDataType, MuniFeatureProperties } from "@/types";
+import { Pollutant, MapDataType } from "@/types";
 import { PollutantLegend } from "../types";
 import Projection from "ol/proj/Projection";
 import * as env from "../env";
@@ -64,9 +57,7 @@ const projection = new Projection({
 export default Vue.extend({
   components: {
     OlGridDataLayer,
-    // OlMuniBasemapLayer,
     GridFeaturePopup,
-    MuniFeaturePopup,
     LoadingAnimation,
     Legend
   },
@@ -84,9 +75,6 @@ export default Vue.extend({
       overlay: null as Overlay | null,
       popupCoords: undefined as Coordinate | undefined,
       gridPopupValue: null as number | null,
-      muniPopupVisible: false as boolean,
-      muniPopupLoading: false as boolean,
-      muniPopupFeat: null as MuniFeatureProperties | null,
       legend: undefined as PollutantLegend | undefined
     };
   },
@@ -105,10 +93,6 @@ export default Vue.extend({
     handlePopupOnLayerChange() {
       if (this.mapDataType === MapDataType.GRID) {
         this.closePopup();
-      } else {
-        // a popup update is triggered in muni data layer, thus set loading=true
-        this.muniPopupFeat = null;
-        this.muniPopupLoading = true;
       }
     },
     updateLegend(legend: PollutantLegend) {
@@ -138,29 +122,14 @@ export default Vue.extend({
         }
       }, 0);
     },
-    setMuniFeaturePopup(
-      coordinate: Coordinate | undefined,
-      value: MuniFeatureProperties | null
-    ) {
-      this.muniPopupFeat = value;
-      this.muniPopupVisible = value ? true : false;
-      setTimeout(() => {
-        if (this.overlay) {
-          this.overlay.setPosition(coordinate);
-          this.popupCoords = coordinate;
-          this.muniPopupLoading = false;
-        }
-      }, 0);
-    },
+
     closePopup() {
       // Set the position of the pop-up window to undefined, and clear the coordinate data
       if (this.overlay) {
         this.overlay.setPosition(undefined);
       }
-      this.muniPopupVisible = false;
       this.popupCoords = undefined;
       this.gridPopupValue = null;
-      this.muniPopupFeat = null;
     }
   },
   mounted() {
