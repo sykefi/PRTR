@@ -116,4 +116,4 @@ $ python -m pytest tests/
 
 Changes for the air-pollutant-map (tab Hajapäästöt in the application) are made in the directory [air-pollutant-map](air-pollutant-map). Air-pollutant-map is originally implemented with Vue, therefore it's code is maintained separately from UI. Build of air-pollutant-map is placed inside the public-directory of UI so that the build runs on the same server as the main app. Running air-pollutant-map is embedded in to the UI with an iframe.
 
-Whenever new changes are made to the air-pollutant-map, new build needs to be made and copied in [ui/public/air-pollutant-map](ui/public/air-pollutant-map). More information about updating the changes in the other [README.md](air-pollutant-map/README.md)
+Whenever new changes are made to the air-pollutant-map, new build needs to be made and copied in [ui/public/air-pollutant-map](ui/public/air-pollutant-map). Dev-environment of air-pollutant-map can be used in local testing, but prod-environment needs to be used when changes are published. More information about updating the changes in the other [README.md](air-pollutant-map/README.md)

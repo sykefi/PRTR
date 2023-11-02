@@ -41,7 +41,7 @@ Vue.js & OpenLayers
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Update air-pollutant-map changes to PRTR ui
-To update changes that are made in air-pollutant-map to PRTR app, minified build needs to be copied in directory [ui/public/air-pollutant-map](../ui/public/air-pollutant-map/). Build script and copy script are chained for sequential execution. Copy-script requires installation of ncp. To install, run:
+To update changes that are made in air-pollutant-map to PRTR app, minified build needs to be copied in directory [ui/public/air-pollutant-map](../ui/public/air-pollutant-map/). Dev-build can be used in local testing. Prod-build needs to be used when changes are published. Build script and copy script are chained for sequential execution. Copy-script requires installation of ncp. To install, run:
 ```
 npm install -g ncp
 ```
