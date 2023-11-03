@@ -9,6 +9,7 @@ on:
       - main
     paths:
       - 'ui/**'
+      - 'air-pollutant-map/**'
       - '.github/workflows/ui-test-deploy-dev.yml'
 
 env:
@@ -17,15 +18,6 @@ env:
   NODE_VERSION: '14.x'
 
 jobs:
-  debug_github_ref:
-    name: Debug GitHub ref
-    runs-on: ubuntu-latest
-    steps:
-     - name: GitHub ref
-       run: |
-         echo "GITHUB_REF: $GITHUB_REF"
-         echo "github.ref: ${{  github.ref }}"
-         
   test:
     name: Cypress tests (UI)
     if: ${{ github.ref != 'refs/heads/dev' && github.ref != 'refs/heads/main' }}
