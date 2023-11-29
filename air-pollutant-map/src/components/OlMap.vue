@@ -14,9 +14,6 @@
     </div>
     <Legend id="map-legend-container" :legend="legend" :mapDataType="mapDataType" />
     <div class="olpopup" ref="olpopup" v-show="gridPopupValue">
-      <div class="popup-loading-wrapper" v-show="gridPopupValue">
-        <LoadingAnimation color="#007ac9" :size="25" />
-      </div>
       <GridFeaturePopup
         v-if="gridPopupValue"
         :popupValue="gridPopupValue"
@@ -40,7 +37,6 @@ import { Coordinate } from "ol/coordinate";
 import { Extent } from "ol/extent";
 import OlGridDataLayer from "./OlGridDataLayer.vue";
 import GridFeaturePopup from "./GridFeaturePopup.vue";
-import LoadingAnimation from "./LoadingAnimation.vue";
 import Legend from "./Legend.vue";
 import { Pollutant, MapDataType } from "@/types";
 import { PollutantLegend } from "../types";
@@ -58,7 +54,6 @@ export default Vue.extend({
   components: {
     OlGridDataLayer,
     GridFeaturePopup,
-    LoadingAnimation,
     Legend
   },
   props: {
@@ -162,7 +157,8 @@ export default Vue.extend({
         projection,
         center: [435385.0836878328, 7247696.528687431],
         extent: [-166488.7651729983, 6568916.617733785, 1037258.9325486642, 7903739.064762917],
-        zoom: 1.5
+        zoom: 1,
+        showFullExtent: true
       })
     });
     this.map.once("postrender", () => {
@@ -209,9 +205,7 @@ export default Vue.extend({
   right: 10px;
   z-index: 2;
 }
-.popup-loading-wrapper {
-  padding: 12px 10px 9px 10px;
-}
+
 /* Pop-up window style */
 .olpopup {
   min-width: max-content;
