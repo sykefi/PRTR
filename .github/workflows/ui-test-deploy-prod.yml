@@ -11,7 +11,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: syke-prtr-p-web
   AZURE_WEBAPP_PACKAGE_PATH: 'ui/build' # path to web resources
-  NODE_VERSION: '14.x'
+  NODE_VERSION: '20.10.0'
   REACT_APP_PRTR_SERVER: https://syke-prtr-fastapi-p-cont.azurewebsites.net # TODO replace with the final prod address
 
 jobs:
