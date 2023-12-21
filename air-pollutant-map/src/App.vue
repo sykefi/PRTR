@@ -2,6 +2,9 @@
   <div id="app-wrapper">
     <div id="app-container">
       <div id="info-panel">
+        <div class="info-text">
+          {{ "info.text" | translate }}
+        </div>
         <div id="selector-panel">
           <SelectorYear @selected-year="(year) => (this.year = year)" />
           <SelectorGnfr
@@ -143,5 +146,9 @@ export default Vue.extend({
   flex-wrap: wrap;
   top: 9px;
   left: 50px;
+}
+.info-text{
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
 </style>

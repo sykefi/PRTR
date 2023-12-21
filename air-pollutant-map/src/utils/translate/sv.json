@@ -18,6 +18,7 @@
 
   "gnfr.description.combined-emissions": "Sammanlagda utsläpp:",
   "gnfr.description.gnfr-share-of-total": "Andel av vald kategori är",
-  "gnfr.description.no_emissions": "Inga utsläpp hittades för innevarande år och klass."
+  "gnfr.description.no_emissions": "Inga utsläpp hittades för innevarande år och klass.",
 
+  "info.text": "Denna karta illustrerar den geografiska fördelningen av utsläpp i luften från källor som är inte listade under utsläpp i denna webbsida. Sådana utsläppskällor inkluderar till exempel utsläpp från el- och fjärrvärmeproduktion, olika industriprocesser, transporter, jordbruk, produktion och hantering av varor samt utsläpp från vedeldning. Kartan visar inte luftkvalitet eller miljöföroreningar."
 }
