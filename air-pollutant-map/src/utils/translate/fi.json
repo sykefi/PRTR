@@ -18,5 +18,7 @@
 
   "gnfr.description.combined-emissions": "Päästöt yhteensä:",
   "gnfr.description.gnfr-share-of-total": "Valitun luokan osuus kokonaishajapäästöistä on",
-  "gnfr.description.no_emissions": "Valitulle vuodelle ja luokalle ei löydy päästöjä."
+  "gnfr.description.no_emissions": "Valitulle vuodelle ja luokalle ei löydy päästöjä.",
+
+  "info.text": "Oheinen karttanäkymä kuvaa päästöjen jakautumista maantieteellisesti niistä päästölähteistä ilmaan, joita ei tässä palvelussa ole erikseen listattu päästöjen alla. Tällaisia päästölähteitä ovat mm. energiantuotannon ja teollisuuden pienemmät kattilat, eri teollisuusprosessit, liikenne, maatalous, tuotteiden tuotanto ja käsittely, sekä puun pienpolton päästölähteet. Kartta ei kuvaa ilmanlaatua tai ympäristön saastuneisuutta."
 }

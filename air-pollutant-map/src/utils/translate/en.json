@@ -18,5 +18,7 @@
 
   "gnfr.description.combined-emissions": "Total emissions:",
   "gnfr.description.gnfr-share-of-total": "Share of the selected class is",
-  "gnfr.description.no_emissions": "No emissions found for the current year and class."
+  "gnfr.description.no_emissions": "No emissions found for the current year and class.",
+
+  "info.text": "This map illustrates the geographical distribution of emissions into the air from sources that are not in this service separately listed under emissions. The emission sources include smaller boilers in energy production and industry, various industrial processes, transportation, agriculture, production and handling of products, as well as emissions from wood burning. The map does not depict air quality or environmental pollution."
 }
