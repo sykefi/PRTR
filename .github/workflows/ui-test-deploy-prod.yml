@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'ui/**'
+      - 'air-pollutant-map/**'
       - '.github/workflows/ui-test-deploy-prod.yml'
 
 env:
