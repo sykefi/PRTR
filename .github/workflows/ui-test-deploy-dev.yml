@@ -9,12 +9,13 @@ on:
       - main
     paths:
       - 'ui/**'
+      - 'air-pollutant-map/**'
       - '.github/workflows/ui-test-deploy-dev.yml'
 
 env:
   AZURE_WEBAPP_NAME: syke-prtr-d-web
   AZURE_WEBAPP_PACKAGE_PATH: 'ui/build' # path to web resources
-  NODE_VERSION: '14.x'
+  NODE_VERSION: '20.10.0'
 
 jobs:
   test:

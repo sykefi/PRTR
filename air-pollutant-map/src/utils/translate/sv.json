@@ -1,0 +1,24 @@
+{
+  "selector.vuosi.label": "År",
+  "selector.gnfr.label": "Kategori",
+  "selector.pollutant.label": "Förorening",
+  "selector.map.datatype.grid": "Rutnät",
+
+  "map.legend.title.emissions.label": "Utsläppsmängd",
+  "map.legend.title.emission-density.label": "Utsläppsmängd",
+  "map.legend.per-grid-cell": "i rutan",
+
+  "aria.year.selector.status.text": "Tillgängliga alternativ (år)",
+  "aria.year.selector.describe": "Tryck pil ned till alternativ (år)",
+  "aria.gnfr.selector.status.text": "tillgängliga alternativ (utsläppsklasser)",
+  "aria.gnfr.selector.describe": "Tryck pil ned till alternativ (utsläppsklasser)",
+  "aria.pollutant.selector.status.text": "tillgängliga alternativ (föroreningar)",
+  "aria.pollutant.selector.describe": "Tryck pil ned till alternativ (föroreningar)",
+  "aria.language.selector.label": "Välj språket på luftföroreningskartan (FI -> Finnish, SV -> Swedish, EN -> English)",
+
+  "gnfr.description.combined-emissions": "Sammanlagda utsläpp:",
+  "gnfr.description.gnfr-share-of-total": "Andel av vald kategori är",
+  "gnfr.description.no_emissions": "Inga utsläpp hittades för innevarande år och klass.",
+
+  "info.text": "Denna karta illustrerar den geografiska fördelningen av utsläpp i luften från källor som är inte listade under utsläpp i denna webbsida. Sådana utsläppskällor inkluderar till exempel utsläpp från el- och fjärrvärmeproduktion, olika industriprocesser, transporter, jordbruk, produktion och hantering av varor samt utsläpp från vedeldning. Kartan visar inte luftkvalitet eller miljöföroreningar."
+}

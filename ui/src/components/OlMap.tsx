@@ -6,6 +6,8 @@ import WMTS from 'ol/source/WMTS'
 import WMTSTileGrid from 'ol/tilegrid/WMTS'
 import { Extent } from 'ol/extent'
 import Projection from 'ol/proj/Projection'
+import {register} from 'ol/proj/proj4.js';
+import proj4 from 'proj4';
 import { easeOut } from 'ol/easing'
 import 'ol/ol.css'
 import './OlMap.css'
@@ -22,6 +24,9 @@ import {
   OlLayerFacilitiesPersonalData
 } from './OlLayerFacilities'
 import { FacilityMapPopupContent } from './FacilityMapPopupContent'
+
+proj4.defs("EPSG:3067","+proj=utm +zone=35 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs");
+register(proj4);
 
 const initialExtent = [-32010, 6570316, 902780, 7835076] as Extent
 

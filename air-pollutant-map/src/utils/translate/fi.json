@@ -1,0 +1,24 @@
+{
+  "selector.vuosi.label": "Vuosi",
+  "selector.gnfr.label": "Luokka",
+  "selector.pollutant.label": "Päästö",
+  "selector.map.datatype.grid": "Ruudukko",
+
+  "map.legend.title.emissions.label": "Päästömäärä",
+  "map.legend.title.emission-density.label": "Päästömäärä",
+  "map.legend.per-grid-cell": "ruudussa",
+
+  "aria.year.selector.status.text": "vaihtoehtoa (vuotta) valittavana",
+  "aria.year.selector.describe": "Napsauta nuolinäppäintä alas nähdäksesi vaihtoehdot (vuodet)",
+  "aria.gnfr.selector.status.text": "vaihtoehtoa (päästöluokkaa) valittavana",
+  "aria.gnfr.selector.describe": "Napsauta nuolinäppäintä alas nähdäksesi vaihtoehdot (päästöluokat)",
+  "aria.pollutant.selector.status.text": "vaihtoehtoa (päästöä) valittavana",
+  "aria.pollutant.selector.describe": "Napsauta nuolinäppäintä alas nähdäksesi vaihtoehdot (saastukkeet)",
+  "aria.language.selector.label": "Valitse päästökartan kieli (FI -> suomi, SV -> ruotsi, EN -> englanti)",
+
+  "gnfr.description.combined-emissions": "Päästöt yhteensä:",
+  "gnfr.description.gnfr-share-of-total": "Valitun luokan osuus kokonaishajapäästöistä on",
+  "gnfr.description.no_emissions": "Valitulle vuodelle ja luokalle ei löydy päästöjä.",
+
+  "info.text": "Oheinen karttanäkymä kuvaa päästöjen jakautumista maantieteellisesti niistä päästölähteistä ilmaan, joita ei tässä palvelussa ole erikseen listattu päästöjen alla. Tällaisia päästölähteitä ovat mm. energiantuotannon ja teollisuuden pienemmät kattilat, eri teollisuusprosessit, liikenne, maatalous, tuotteiden tuotanto ja käsittely, sekä puun pienpolton päästölähteet. Kartta ei kuvaa ilmanlaatua tai ympäristön saastuneisuutta."
+}

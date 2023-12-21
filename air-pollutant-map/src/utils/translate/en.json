@@ -1,0 +1,24 @@
+{
+  "selector.vuosi.label": "Year",
+  "selector.gnfr.label": "Sector",
+  "selector.pollutant.label": "Pollutant",
+  "selector.map.datatype.grid": "Grid",
+
+  "map.legend.title.emissions.label": "Emissions",
+  "map.legend.title.emission-density.label": "Emission density",
+  "map.legend.per-grid-cell": "in grid cell",
+
+  "aria.year.selector.status.text": "options (years) available",
+  "aria.year.selector.describe": "Arrow down for options (years)",
+  "aria.gnfr.selector.status.text": "options (emission sectors) available",
+  "aria.gnfr.selector.describe": "Arrow down for options (emission sectors)",
+  "aria.pollutant.selector.status.text": "options (pollutants) available",
+  "aria.pollutant.selector.describe": "Arrow down for options (pollutants)",
+  "aria.language.selector.label": "Select language language of the air pollutant map (FI -> Finnish, SV -> Swedish, EN -> English)",
+
+  "gnfr.description.combined-emissions": "Total emissions:",
+  "gnfr.description.gnfr-share-of-total": "Share of the selected class is",
+  "gnfr.description.no_emissions": "No emissions found for the current year and class.",
+
+  "info.text": "This map illustrates the geographical distribution of emissions into the air from sources that are not in this service separately listed under emissions. The emission sources include smaller boilers in energy production and industry, various industrial processes, transportation, agriculture, production and handling of products, as well as emissions from wood burning. The map does not depict air quality or environmental pollution."
+}
