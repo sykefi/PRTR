@@ -134,10 +134,40 @@ export const AdditionalInfoPageContentFi = () => {
       <h2>Ympäristöluvat</h2>
 
       <p>
-      Ympäristön pilaantumisen vaaraa aiheuttaville toiminnoille 
-      tarvitaan ympäristönsuojelulain mukainen lupa. Voit etsiä 
-      palvelussa esitettävien laitosten ympäristölupia aluehallintoviraston{' '}
-      <a href="https://ylupa.avi.fi/fi-FI">Vesi- ja ympäristölupien tietopalvelun</a> avulla.
+        Ympäristön pilaantumisen vaaraa aiheuttaville toiminnoille tarvitaan
+        ympäristönsuojelulain mukainen lupa. Voit etsiä palvelussa esitettävien
+        laitosten ympäristölupia aluehallintoviraston{' '}
+        <a href="https://ylupa.avi.fi/fi-FI">
+          Vesi- ja ympäristölupien tietopalvelun
+        </a>{' '}
+        avulla.
+      </p>
+
+      <h2>Paras käyttökelpoinen tekniikka</h2>
+
+      <p>
+        Teollisuuspäästödirektiivin soveltamisalaan kuuluvien laitosten
+        päästöraja-arvot, tarkkailu ja muut lupamääräykset perustuvat parhaaseen
+        käyttökelpoiseen tekniikkaan. Sillä tarkoitetaan mahdollisimman
+        tehokkaita ja kehittyneitä, teknisesti ja taloudellisesti
+        toteuttamiskelpoisia tuotanto- ja puhdistusmenetelmiä ja toiminnan
+        suunnittelu-, rakentamis-, ylläpito-, käyttö- sekä lopettamistapoja,
+        joilla voidaan ehkäistä toiminnan aiheuttama ympäristön pilaantuminen
+        tai tehokkaimmin vähentää sitä ja jotka soveltuvat
+        ympäristölupamääräysten perustaksi. Euroopan komission organisoiman
+        teollisuuden ja viranomaisten välisen tietojen vaihdon tuloksena
+        julkaistaan BAT-vertailuasiakirjoja ja jäsenmaita sitovia BAT
+        -päätelminä. Vertailuasiakirjat ja BAT-päätelmät löytyvät{' '}
+        <a href="https://eippcb.jrc.ec.europa.eu/reference" target="blank">
+          Euroopan IPPC-toimiston sivuilta
+        </a>
+        . Lisätietoja on{' '}
+        <a
+          href="https://www.ymparisto.fi/fi/kestava-kierto-ja-biotalous/kestava-tuotanto/paras-kayttokelpoinen-tekniikka-bat"
+          target="blank">
+          Suomen ympäristökeskuksen sivuilla
+        </a>
+        .
       </p>
 
       <h2>Sivuston tiedot</h2>

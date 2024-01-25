@@ -135,15 +135,42 @@ export const AdditionalInfoPageContentSv = () => {
         </a>
         &nbsp;(pdf 115 kt)
       </p>
-
       <h2>Miljötillstånd</h2>
-
       <p>
-      Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt miljöskyddslagen. 
-      Man kan söka Miljötillstånden för de anläggningar som presenteras i denna websida från{' '} 
-      <a href="https://ylupa.avi.fi/se-FI">Databas över vatten- och miljötillstånd</a>.
+        Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt
+        miljöskyddslagen. Man kan söka Miljötillstånden för de anläggningar som
+        presenteras i denna websida från{' '}
+        <a href="https://ylupa.avi.fi/se-FI">
+          Databas över vatten- och miljötillstånd
+        </a>
+        .
       </p>
-
+      <h2>Bästa tillgängliga teknik</h2>
+      <p>
+        Utsläppsgränsvärden, övervakning och andra tillståndsvillkor för
+        anläggningar som omfattas av tillämpningsområdet för direktivet om
+        industriutsläpp baserar sig på bästa tillgängliga teknik. Med det avses
+        så effektiva och utvecklade, tekniskt och ekonomiskt genomförbara
+        produktions- och reningsmetoder som möjligt samt sådana sätt att
+        planera, bygga, underhålla, driva och upphöra med verksamheten som kan
+        förebygga eller effektivast minska den förorening av miljön som
+        verksamheten orsakar och som lämpar sig som grund för
+        miljötillståndsvillkoren. Som ett resultat av det informationsutbyte
+        mellan industrin och myndigheterna som organiseras av Europeiska
+        kommissionen publiceras BAT-referensdokument och BAT-slutsatser som är
+        bindande för medlemsländerna. Referensdokumenten och BAT-slutsatserna
+        finns på{' '}
+        <a href="https://eippcb.jrc.ec.europa.eu/reference" target="blank">
+          Europeiska IPPC-byråns webbplats
+        </a>
+        . Mer information finns på{' '}
+        <a
+          href="https://www.ymparisto.fi/sv/hallbar-cirkular-ekonomi-och-bioekonomi/hallbar-produktion/basta-tillgangliga-teknik-bat"
+          target="blank">
+          Finlands miljöcentrals webbplats
+        </a>
+        .
+      </p>
       <h2>Uppgifter om servicen</h2>
       <p>
         Finlands miljöcentral har förverkligat webbsidan enligt uppdrag av
