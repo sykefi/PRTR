@@ -131,17 +131,36 @@ export const AdditionalInfoPageContentEn = () => {
         </a>
         &nbsp;(pdf 115 kt)
       </p>
-      
       <h2>Permits</h2>
-
       <p>
-      Activities causing environmental pollution require a permit 
-      in accordance with the Environmental Protection Act. One can 
-      search for the permits of the facilities presented in this
-      service from the{' '}
-      <a href="https://ylupa.avi.fi/fi-FI">Water and Environmental Permits Information Service</a>.
+        Activities causing environmental pollution require a permit in
+        accordance with the Environmental Protection Act. One can search for the
+        permits of the facilities presented in this service from the{' '}
+        <a href="https://ylupa.avi.fi/fi-FI">
+          Water and Environmental Permits Information Service
+        </a>
+        .
       </p>
-
+      <h2>Best available technology</h2>
+      <p>
+        The emission limit values, monitoring and other permit regulations of
+        plants covered by the Industrial Emissions Directive are based on the
+        best available technology. It refers to production and purification
+        methods that are as efficient and advanced as possible and technically
+        and economically feasible, as well as methods for planning,
+        constructing, maintaining, operating and terminating operations, which
+        can prevent or most effectively reduce environmental pollution caused by
+        the operations and which are suitable as the basis for environmental
+        permit regulations. As a result of the exchange of information between
+        industry and authorities organised by the European Commission, BAT
+        reference documents and BAT conclusions binding on the Member States
+        will be published. Reference documents and BAT conclusions can be found
+        on the website of{' '}
+        <a href="https://eippcb.jrc.ec.europa.eu/reference" target="blank">
+          the European IPPC Office
+        </a>
+        .
+      </p>
       <h2>Information of the service</h2>
       <p>
         Finnish Environment Institute has built the website on the request from
