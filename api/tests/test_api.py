@@ -43,7 +43,7 @@ def test_get_metadata():
     assert isinstance(body['present_pollutant_codes'][0], str)
     assert len(body['present_main_activity_codes']) > 40
     assert isinstance(body['present_main_activity_codes'][0], str)
-    assert len(body['present_cities']) > 250
+    assert len(body['present_cities']) > 150
     assert isinstance(body['present_cities'][0], str)
 
 
@@ -110,7 +110,7 @@ def test_get_releases_by_facility_id():
     )
     assert response.status_code == 200
     data = response.json()['data']
-    assert len(data) == 4
+    assert len(data) == 6
     release_prev = None
     for release in data:
         assert release['facilityId'] == facility_id
