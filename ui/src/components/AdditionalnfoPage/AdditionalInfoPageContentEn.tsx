@@ -3,14 +3,12 @@ export const AdditionalInfoPageContentEn = () => {
     <>
       <h2>Content</h2>
       <p>
-        Information in the service is from European Environment Agency's (EEA)
-        PRTR database. The currently used database is the fourth version
-        published in{' '}
+        Information in the service is from European Environment Agency's (EEA){' '}
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
           {' '}
-          March 2021{' '}
+          PRTR database
         </a>
         . The database includes information on PRTR facilities' releases to air
         and waste as well as waste transfers for the following activities:

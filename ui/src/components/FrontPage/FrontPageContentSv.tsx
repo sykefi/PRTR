@@ -11,18 +11,16 @@ export const FrontPageContentSv = () => {
       <p>
         Företag som bedriver miljöfarligt verksamhet har rapporteringsskyldighet
         enligt EG-förordningen 166/2006 om utsläpp och avfallstransporter.
-        Uppgifterna samlas i Europeiska PRTR registret (Pollutant Release and
-        Transfer Register). Information som presenteras är från den fjärde
-        versionen som publicerats i 
+        Uppgifterna samlas i Europeiska{' '}
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
           {' '}
-          March 2021{' '}
+          PRTR registret
         </a>{' '}
-        . Endast uppgifter som ingår i det ovannämnda PRTR registret
-        presenteras. För tillfället presenteras uppgifterna sedan
-        rapporteringsåret 2017.
+        (Pollutant Release and Transfer Register). Endast uppgifter som ingår i
+        det ovannämnda PRTR registret presenteras. För tillfället presenteras
+        uppgifterna sedan rapporteringsåret 2017.
       </p>
       <h3>Sökalternativ</h3>
       <p>Du kan söka databasen med följande funktioner:</p>
@@ -45,7 +43,11 @@ export const FrontPageContentSv = () => {
         </li>
       </p>
       <p>
-        Vänligen läs <a href="Käyttöehdot.pdf" target="blank">användarvillkor</a> innan du använder tjänsten.
+        Vänligen läs{' '}
+        <a href="Käyttöehdot.pdf" target="blank">
+          användarvillkor
+        </a>{' '}
+        innan du använder tjänsten.
       </p>
 
       <p>
