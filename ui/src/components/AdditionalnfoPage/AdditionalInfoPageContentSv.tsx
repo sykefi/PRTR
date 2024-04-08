@@ -3,16 +3,14 @@ export const AdditionalInfoPageContentSv = () => {
     <>
       <h2>Innehåll</h2>
       <p>
-        Informationen i tjänsten är från Europeiska miljöbyråns (EEA)
-        PRTR-databas.Information som presenteras är från den fjärde versionen
-        som publicerats i{' '}
+        Informationen i tjänsten är från Europeiska miljöbyråns (EEA){' '}
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
           {' '}
-          March 2021{' '}
+          PRTR-databas
         </a>{' '}
-        .  Databasen innehåller uppgifter om PRTR-anläggningarnas utsläpp till
+        . Databasen innehåller uppgifter om PRTR-anläggningarnas utsläpp till
         luft och vatten samt om avfallstransporter för de följande verksamheter:
       </p>
       <ul>
