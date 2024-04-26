@@ -5,12 +5,11 @@ export const AdditionalInfoPageContentFi = () => {
 
       <p>
         Sivustolla esitettävä tieto pohjautuu Euroopan ympäristökeskuksen (EEA)
-        ylläpitämään tietokantaan. Tällä hetkellä käytössä olevan tietokannan
-        neljäs versio on julkaistu{' '}
+        ylläpitämään{' '}
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
-          maaliskuussa 2021
+          tietokantaan
         </a>
         . Tietokanta sisältää tietoja suomalaisten teollisuuslaitosten
         tärkeimmistä epäpuhtauspäästöistä ilmaan ja veteen seuraavilta

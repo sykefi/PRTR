@@ -17,17 +17,15 @@ export const FrontPageContentFi = () => {
         vaarallisten toimintojensa päästö- ja jätetietoja EU-asetuksen 166/2006
         mukaisesti. Laitoksen on ilmoitettava päästöt, jos sen toiminnalle tai
         yhdistekohtaisille päästöille asetetut kynnysarvot ylittyvät. Tiedot
-        kootaan Euroopan PRTR-rekisteriin (Pollutant Release and Transfer
-        Register). Esitettävät tiedot ovat peräisin tietokannan neljännestä
-        versiosta, joka on julkaistu{' '}
+        kootaan Euroopan{' '}
         <a
           href="https://www.eea.europa.eu/data-and-maps/data/industrial-reporting-under-the-industrial-3"
           target="blank">
-          maaliskuussa 2021
-        </a>
-        . Muita kuin PRTR-raportointiin kuuluvia päästölähteitä ei palvelussa
-        esitetä. Tällä hetkellä tietoa esitetään raportointivuodesta 2017
-        eteenpäin. 
+          PRTR-rekisteriin
+        </a>{' '}
+        (Pollutant Release and Transfer Register). Muita kuin PRTR-raportointiin
+        kuuluvia päästölähteitä ei palvelussa esitetä. Tällä hetkellä tietoa
+        esitetään raportointivuodesta 2017 eteenpäin. 
       </p>
       <h3>Hakuvaihtoehdot</h3>
       <p>Voit selata rekisteriin tallennettuja tietoja seuraavin toiminnoin:</p>
@@ -68,7 +66,7 @@ export const FrontPageContentFi = () => {
         kehitysehdotuksia osoitteeseen{' '}
         <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.
       </p>
-      
+
       <p>
         <a href="Palveluseloste.pdf" target="blank">
           Palveluseloste
