@@ -1,7 +1,7 @@
-PRTR-data import: 22/01/28 13:36:03
-Read 972 facilities
-Read 3277 releases
-Read 4961 waste transfers
+PRTR-data import: 25/03/12 11:50:17
+Read 1072 facilities
+Read 5290 releases
+Read 8564 waste transfers
 Wrote facilities to file: api/assets/facilities.csv
 Wrote releases to file: api/assets/releases.csv
 Wrote waste_transfers to file: api/assets/waste_transfers.csv
