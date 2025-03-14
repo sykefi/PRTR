@@ -26,6 +26,7 @@ export enum FacilityMainActivityCode {
   FOUR_A_IX = '4(a)(ix)',
   FOUR_A_VIII = '4(a)(viii)',
   FOUR_A_X = '4(a)(x)',
+  FOUR_A_XI = '4(a)(xi)',
   FOUR_B = '4(b)',
   FOUR_B_I = '4(b)(i)',
   FOUR_B_II = '4(b)(ii)',

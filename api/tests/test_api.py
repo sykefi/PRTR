@@ -110,7 +110,7 @@ def test_get_releases_by_facility_id():
     )
     assert response.status_code == 200
     data = response.json()['data']
-    assert len(data) == 6
+    assert len(data) == 7
     release_prev = None
     for release in data:
         assert release['facilityId'] == facility_id
