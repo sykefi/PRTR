@@ -55,9 +55,13 @@ export const FacilityBasicInfo = ({
   const { t } = useTranslation(['translation', 'mainActivityCodeDesc'])
   const { i18n } = useTranslation()
 
+  /** Use LVV as hardcoded authority, as ELY-keskus doesn't exist anymore.
+   * Data is from period where ELYs existed,
+   * therefore they are still referenced in data.
+   */
   const authorityInfo =
     facility && facility.authorityName
-      ? getAuthorityInfo(facility.authorityName)
+      ? getAuthorityInfo('Finnish Supervisory Agency')
       : undefined
 
   return (
@@ -93,10 +97,13 @@ export const FacilityBasicInfo = ({
             label={t('translation:common.placename')}
             value={facility.city}
           />
-          {!hasPersonalData(facility) && (<InfoPropRow
-            label={t('translation:common.streetAddress')}
-            value={getStreetAddress(facility)}
-          />)}
+
+          {!hasPersonalData(facility) && (
+            <InfoPropRow
+              label={t('translation:common.streetAddress')}
+              value={getStreetAddress(facility)}
+            />
+          )}
           <Box marginY={2}>
             <Box fontWeight="semibold">
               {t('translation:common.competentAuthority')}
@@ -113,10 +120,11 @@ export const FacilityBasicInfo = ({
               </Link>
             )}
           </Box>
-          <InfoPropRow
+          {/* Hide as ELY-keskus doesn't exist anymore */}
+          {/* <InfoPropRow
             label={t('translation:common.telephoneNumberToAuthority')}
             value={facility.authorityTelephoneNo || ''}
-          />
+          /> */}
           <InfoPropRow
             label={t('translation:facilities.status.title')}
             value={
