@@ -1,5 +1,19 @@
 [
   {
+    "Ely_Id": 0,
+    "Nro": 0,
+    "Lyhenne": "LVV",
+    "Nimi": "Lupa- ja valvontavirasto",
+    "NimiRuo": "Tillstånds- och tillsynsverket",
+    "NimiEng": "Finnish Supervisory Agency",
+    "Puh": "",
+    "PostiOsoite": "",
+    "PostiTpaikkaNro": 0,
+    "PostiTpaikkaNimi": "",
+    "PostiTpaikkaNimiRuo": "",
+    "Url": "https://lvv.fi/ymparisto/"
+  },
+  {
     "Ely_Id": 3967,
     "Nro": 7,
     "Lyhenne": "ESA",

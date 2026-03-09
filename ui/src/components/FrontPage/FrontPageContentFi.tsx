@@ -59,8 +59,8 @@ export const FrontPageContentFi = () => {
         Suomen ympäristökeskus on toteuttanut sivuston ympäristöministeriön
         toimeksiannosta. Palautetta päästötiedoista ja muista sisältöä
         koskevista asioista voi lähettää valvontaviranomaisille (
-        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
-          ELY-keskukset
+        <a href="https://lvv.fi/ymparisto/" target="blank">
+          Lupa- ja valvontavirasto
         </a>
         ). Sivuston teknisestä toiminnasta voi lähettää palautetta tai
         kehitysehdotuksia osoitteeseen{' '}
