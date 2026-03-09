@@ -56,7 +56,7 @@ export const FacilityBasicInfo = ({
   const { i18n } = useTranslation()
 
   /** Use LVV as hardcoded authority, as ELY-keskus doesn't exist anymore.
-   * Data is from period where ELYs existed,
+   * Current data is from period where ELYs existed (2025),
    * therefore they are still referenced in data.
    */
   const authorityInfo =
