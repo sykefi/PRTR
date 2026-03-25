@@ -134,8 +134,8 @@ export const AdditionalInfoPageContentEn = () => {
         Activities causing environmental pollution require a permit in
         accordance with the Environmental Protection Act. One can search for the
         permits of the facilities presented in this service from the{' '}
-        <a href="https://ylupa.avi.fi/fi-FI">
-          Water and Environmental Permits Information Service
+        <a href="https://ytietopalvelu.lvv.fi/fi-FI" target="blank">
+          Environmental information service of the Finnish Supervisory Agency
         </a>
         .
       </p>
@@ -164,8 +164,8 @@ export const AdditionalInfoPageContentEn = () => {
         Finnish Environment Institute has built the website on the request from
         the Ministry of the Environment. Feedback on data and other content can
         be sent to supervising authorities (
-        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
-          ELY-keskukset
+        <a href="https://lvv.fi/en/environment" target="blank">
+          Finnish Supervisory Agency
         </a>
         ). Feedback on the technical functions or improvement proposals can be
         sent to <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.

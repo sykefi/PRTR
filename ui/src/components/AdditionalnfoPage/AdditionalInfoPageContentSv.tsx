@@ -138,8 +138,9 @@ export const AdditionalInfoPageContentSv = () => {
         Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt
         miljöskyddslagen. Man kan söka Miljötillstånden för de anläggningar som
         presenteras i denna websida från{' '}
-        <a href="https://ylupa.avi.fi/se-FI">
-          Databas över vatten- och miljötillstånd
+        <a href="https://ytietopalvelu.lvv.fi/sv-FI" target="blank">
+          Informationstjänsten för miljöärenden av Tillstånds- och
+          tillsynsverket
         </a>
         .
       </p>
@@ -174,8 +175,8 @@ export const AdditionalInfoPageContentSv = () => {
         Finlands miljöcentral har förverkligat webbsidan enligt uppdrag av
         miljöministeriet. Respons om uppgifterna och annat innehåll kan skickas
         till  övervakningsmyndigheter (
-        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
-          ELY-keskukset
+        <a href="https://lvv.fi/sv/miljo" target="blank">
+          Tillstånds -och tillsynsverket
         </a>
         ). Respons om sidornas tekniska funktioner eller förbättringsförslag kan
         skickas till <a href="mailto:PRTR@syke.fi">PRTR@syke.fi</a>.

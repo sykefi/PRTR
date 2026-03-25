@@ -21,8 +21,9 @@ export const AdditionalInfoPageContentFi = () => {
         <li>Mineraaliteollisuus</li>
         <li>Kemianteollisuus</li>
         <li>Jäte- ja jätevesihuolto</li>
-        <li>Paperin ja puun tuotanto ja jalostus</li>
-        <li>Kotieläintuotanto ja viljely</li>
+        <li>Metsäteollisuus</li>
+        <li>Kotieläintuotanto ja vesiviljely</li>
+        <li>Elintarvike- ja rehuteollisuus</li>
         <li>Muu toiminta</li>
       </ul>
       <p>
@@ -135,9 +136,9 @@ export const AdditionalInfoPageContentFi = () => {
       <p>
         Ympäristön pilaantumisen vaaraa aiheuttaville toiminnoille tarvitaan
         ympäristönsuojelulain mukainen lupa. Voit etsiä palvelussa esitettävien
-        laitosten ympäristölupia aluehallintoviraston{' '}
-        <a href="https://ylupa.avi.fi/fi-FI">
-          Vesi- ja ympäristölupien tietopalvelun
+        laitosten ympäristölupia Lupa- ja valvontaviraston{' '}
+        <a href="https://ytietopalvelu.lvv.fi/fi-FI" target="blank">
+          Ympäristöasioiden tietopalvelun
         </a>{' '}
         avulla.
       </p>
@@ -175,8 +176,8 @@ export const AdditionalInfoPageContentFi = () => {
         Suomen ympäristökeskus on toteuttanut sivuston ympäristöministeriön
         toimeksiannosta. Palautetta päästötiedoista ja muista sisältöä
         koskevista asioista voi lähettää valvontaviranomaisille (
-        <a href="https://www.ely-keskus.fi/ympariston-tilan-seuranta">
-          ELY-keskukset
+        <a href="https://lvv.fi/ymparisto/" target="blank">
+          Lupa- ja valvontavirasto
         </a>
         ). Sivuston teknisestä toiminnasta voi lähettää palautetta tai
         kehitysehdotuksia osoitteeseen{' '}
