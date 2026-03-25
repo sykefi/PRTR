@@ -138,8 +138,9 @@ export const AdditionalInfoPageContentSv = () => {
         Verksamhet som orsakar miljöföroreningar kräver miljötillstånd enligt
         miljöskyddslagen. Man kan söka Miljötillstånden för de anläggningar som
         presenteras i denna websida från{' '}
-        <a href="https://ylupa.avi.fi/se-FI">
-          Databas över vatten- och miljötillstånd
+        <a href="https://ytietopalvelu.lvv.fi/sv-FI" target="blank">
+          Informationstjänsten för miljöärenden av Tillstånds- och
+          tillsynsverket
         </a>
         .
       </p>
